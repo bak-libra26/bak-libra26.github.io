@@ -1,16 +1,16 @@
 ---
 tags:
-  - Jenkins
-  - Pipeline
+  - 젠킨스
+  - 파이프라인
   - YAML
 references:
   - https://github.com/jenkinsci/pipeline-as-yaml-plugin/
 created_date: 2025-08-14T09:29:02.000Z
 last_modified_date: 2025-08-14T14:54:54.000Z
 ---
-# Jenkins Pipeline as YAML 설정
+# Pipeline as YAML 설정
 
-Jenkins에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groovy`로 작성된다. 하지만 `Groovy`에 대한 지식이 부족해 대안을 찾던 중, `pipeline-as-yaml-plugin` 플러그인을 통해 `YAML`로도 스크립트를 작성할 수 있다는 점을 알게 되었다.
+젠킨스에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groovy`로 작성된다. 하지만 `Groovy`에 대한 지식이 부족해 대안을 찾던 중, `pipeline-as-yaml-plugin` 플러그인을 통해 `YAML`로도 스크립트를 작성할 수 있다는 점을 알게 되었다.
 
 ## Pipeline as YAML
 
@@ -20,16 +20,16 @@ Jenkins에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groo
     
 3. Build Configuration
     
-    1. Mode: `by Jenkinsfile As Yaml` 선택
+    1. Mode: `by 젠킨스file As Yaml` 선택
         
-    2. Script Path: `Jenkins.yaml` 파일 경로 지정
+    2. Script Path: `젠킨스.yaml` 파일 경로 지정
         
 
 ### 기본적인 문법 확인
 
 `YAML`로 Pipeline 스크립트를 작성하기 위해서는 기본 문법을 이해해야 한다. AI에게 요청할 수도 있지만, 적절한 예시가 제공되지 않는 경우가 있으므로 공식 예시를 참고하는 것이 좋다.
 
-> 기본적인 예시는 [Jenkins Yaml Pipeline Syntax](https://github.com/jenkinsci/pipeline-as-yaml-plugin/blob/main/src/test/resources/pipeline/pipelineAllinOne.yml)에서 확인할 수 있다.
+> 기본적인 예시는 [젠킨스 Yaml Pipeline Syntax](https://github.com/jenkinsci/pipeline-as-yaml-plugin/blob/main/src/test/resources/pipeline/pipelineAllinOne.yml)에서 확인할 수 있다.
 
 
 ### `Yaml` 파이프라인 작성 예시
@@ -37,7 +37,7 @@ Jenkins에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groo
 - 예시
     
     ```yaml
-    # jenkins/Jenkinsfile.yaml  
+    # jenkins/젠킨스file.yaml  
     pipeline:  
       agent:  
         node:  
@@ -48,13 +48,13 @@ Jenkins에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groo
       environment:  
         SERVICE_NAME: 'sender-manager'  
         SLACK_CHANNEL: '#이슈'  
-        REMOTE_DIR: credentials('HOME_PATH')      # Jenkins Credentials 바인딩 필요  
+        REMOTE_DIR: credentials('HOME_PATH')      # 젠킨스 Credentials 바인딩 필요  
         SERVER_NAME: credentials('DEV_IP')      # SSH 서버명 (Publish Over SSH 플러그인 기준)  
       
       stages:  
         - stage: Build  
           steps:  
-            - echo "Hello Jenkins YAML"  
+            - echo "Hello 젠킨스 YAML"  
       
         - stage: "Stage2"  
           steps:  
@@ -90,4 +90,4 @@ Jenkins에서 CI/CD를 위해 작성하는 스크립트는 기본적으로 `Groo
 
 ---
 
-요약: Jenkins에서 YAML로 파이프라인을 작성하는 것은 진입장벽이 낮고 가독성이 좋다는 장점이 있지만, 플러그인 호환성과 확장성 측면에서는 아쉬움이 있다. 실무 적용 전 충분한 테스트가 필요하다.
+요약: 젠킨스에서 YAML로 파이프라인을 작성하는 것은 진입장벽이 낮고 가독성이 좋다는 장점이 있지만, 플러그인 호환성과 확장성 측면에서는 아쉬움이 있다. 실무 적용 전 충분한 테스트가 필요하다.

@@ -1,6 +1,6 @@
 ---
 tags:
-  - Jenkins
+  - 젠킨스
   - trouble_shooting
   - credentials
 references: 
@@ -14,7 +14,7 @@ last_modified_date: 2025-08-13T16:02:25.000Z
 jenkins.plugins.publish_over.BapPublisherException: Failed to connect and initialize SSH connection. Message: [Failed to connect session for config [Dev / mcmp-01]. Message [Auth fail for methods 'publickey,gssapi-keyex,gssapi-with-mic,password']]
 ```
 
-Jenkins에서 SSH Credentials로 배포 자동화 시도를 위해 서버의 `Credential` 추가 중 위의 에러 발생
+젠킨스에서 SSH Credentials로 배포 자동화 시도를 위해 서버의 `Credential` 추가 중 위의 에러 발생
 
 ## SSH 키 생성 및 등록
 
@@ -49,11 +49,11 @@ Jenkins에서 SSH Credentials로 배포 자동화 시도를 위해 서버의 `Cr
     없으면 `touch ~/.ssh/authorized_keys`로 생성
 - 공개키(`id_rsa.pub` 또는 `id_ecdsa.pub`)를 `authorized_keys`에 추가
 - 퍼미션 문제 없는지 재확인 (`chmod 600 ~/.ssh/authorized_keys`)
-- Jenkins에서 Test Configuration 재시도, 정상 연결 확인됨
+- 젠킨스에서 Test Configuration 재시도, 정상 연결 확인됨
     
 
 ## 결론
 
 - SSH 키 생성, 공개키 등록, 퍼미션 설정까지 꼼꼼히 확인 필요
 - authorized_keys에 키가 누락되거나 퍼미션 잘못된 경우 인증 실패함
-- Jenkins SSH Credentials 오류 발생 시 위 단계 순서대로 점검하면 해결 가능
+- 젠킨스 SSH Credentials 오류 발생 시 위 단계 순서대로 점검하면 해결 가능

@@ -1,12 +1,12 @@
 ---
 tags:
-  - Jenkins
+  - 젠킨스
   - Maven
 references: 
 created_date: 2025-08-13T15:49:56.000Z
 last_modified_date: 2025-08-13T15:50:17.000Z
 ---
-# Jenkins - Maven 설정
+# 젠킨스(Jenkins) 메이븐(Maven) 설정
 
 ## Maven 설치
 
@@ -28,7 +28,7 @@ last_modified_date: 2025-08-13T15:50:17.000Z
 	6. `mvn --version` 으로 정상 설치 여부 확인
 
 
-## Jenkins - Maven 설정
+## 젠킨스 - Maven 설정
 
 - `Tools` -> `Maven Configuration`
 - `Use Default Settings` 또는 `Settings file in filesystem` 선택

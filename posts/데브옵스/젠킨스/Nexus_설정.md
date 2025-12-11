@@ -1,12 +1,12 @@
 ---
 tags:
-  - Jenkins
-  - Nexus
+  - 젠킨스
+  - nexus
 references: 
 created_date: 2025-08-13T15:48:07.000Z
 last_modified_date: 2025-08-13T16:00:32.000Z
 ---
-# Jenkins - Nexus 설정
+# 젠킨스(Jenkins), 넥서스(Nexus) 설정
 
 Nexus에서 라이브러리 받아오려면 Maven에 Nexus 관련 설정 필요함. 설정은 1. 계정 설정, 2. 레포지토리 설정으로 나뉨.
 

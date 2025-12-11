@@ -1,16 +1,16 @@
 ---
 tags:
-  - Jenkins
+  - 젠킨스
   - JDK_설치
   - JDK
 references: 
 created_date: 2025-08-13T15:19:52.000Z
 last_modified_date: 2025-08-13T15:27:01.000Z
 ---
-# Jenkins JDK
+# 젠킨스 JDK
 
-- Jenkins 빌드용 JDK 필요함
-- Jenkins 로그인 → Manage Jenkins → Tools → JDK installations 이동
+- 젠킨스 빌드용 JDK 필요함
+- 로그인 → Manage Jenkins → Tools → JDK installations 이동
 - Add JDK 클릭, Name(별칭), JAVA_HOME(설치 경로) 입력
 
 ## JDK 설치 및 환경 변수 설정

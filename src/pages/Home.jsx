@@ -23,14 +23,14 @@ function Home() {
             fontWeight: 600,
             textTransform: 'uppercase'
           }}>
-            baklibra26의 블로그
+            개발 블로그
           </span>
           <h1 style={{ marginBottom: '32px' }}>
-            import note;<br />
-            <span className="text-serif" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>import pen;</span>
+            고양이가<br />
+            <span className="text-serif" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>세상을 구한다.</span>
           </h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-            적어두지 않으면 까먹습니다.<br />
+            우리 집 고양이의 만수무강을 기원하며<br />
           </p>
         </div>
 

@@ -7,7 +7,7 @@ function AllPosts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const postsPerPage = 4;
+  const postsPerPage = 6;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,7 +49,7 @@ function AllPosts() {
       <header style={{ marginBottom: '60px', textAlign: 'center' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>전체 글</h1>
         <p style={{ color: 'var(--color-text-muted)' }}>
-          기록된 모든 이야기들을 모았습니다.
+          이것 저것, 요리 조리
         </p>
       </header>
 
