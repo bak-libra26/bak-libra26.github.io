@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { posts } from '../data/posts';
+import { posts } from '../utils/posts';
 
 function AllPosts() {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ function AllPosts() {
 
   // Filter posts
   const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          post.summary.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.summary.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -75,7 +75,7 @@ function AllPosts() {
             onBlur={(e) => e.target.style.boxShadow = 'none'}
           />
         </div>
-        
+
         <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
           {categories.map(category => (
             <button
@@ -102,14 +102,14 @@ function AllPosts() {
         <>
           <div className="posts-grid">
             {currentPosts.map((post) => (
-              <article 
-                key={post.id} 
+              <article
+                key={post.id}
                 className="card"
-                onClick={() => navigate(`/post/${post.id}`)}
-                style={{ 
-                  cursor: 'pointer', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
+                onClick={() => navigate(`/posts/${post.id}`)}
+                style={{
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
                   height: '100%',
                   backgroundColor: '#fff',
                   border: '1px solid rgba(0,0,0,0.08)',
@@ -126,9 +126,9 @@ function AllPosts() {
                 }}
               >
                 <div style={{ marginBottom: '16px' }}>
-                  <span style={{ 
-                    fontSize: '0.85rem', 
-                    color: 'var(--color-accent-wood)', 
+                  <span style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--color-accent-wood)',
                     fontWeight: 600,
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
@@ -139,9 +139,9 @@ function AllPosts() {
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', lineHeight: 1.3 }}>
                   {post.title}
                 </h2>
-                <p style={{ 
-                  fontSize: '0.95rem', 
-                  color: 'var(--color-text-muted)', 
+                <p style={{
+                  fontSize: '0.95rem',
+                  color: 'var(--color-text-muted)',
                   marginBottom: '24px',
                   flex: 1,
                   display: '-webkit-box',
@@ -151,8 +151,8 @@ function AllPosts() {
                 }}>
                   {post.summary}
                 </p>
-                <div style={{ 
-                  fontSize: '0.85rem', 
+                <div style={{
+                  fontSize: '0.85rem',
                   color: 'var(--color-text-muted)',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -170,14 +170,14 @@ function AllPosts() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div style={{ 
-              marginTop: '60px', 
-              display: 'flex', 
-              justifyContent: 'center', 
+            <div style={{
+              marginTop: '60px',
+              display: 'flex',
+              justifyContent: 'center',
               gap: '8px',
               alignItems: 'center'
             }}>
-              <button 
+              <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
                 style={{
@@ -192,7 +192,7 @@ function AllPosts() {
               >
                 &lt; 이전
               </button>
-              
+
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
                 <button
                   key={number}
@@ -214,7 +214,7 @@ function AllPosts() {
                 </button>
               ))}
 
-              <button 
+              <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 style={{

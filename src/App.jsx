@@ -14,11 +14,11 @@ function App() {
       <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
         <Header />
         <Cheoma />
-        
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts />} />
-          <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/posts/*" element={<PostDetail />} />
         </Routes>
 
         <Footer />

@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { posts } from '../data/posts';
+import { posts } from '../utils/posts';
 
 function PostDetail() {
-  const { id } = useParams();
+  const params = useParams();
+  // The wildcard param is stored in `*`.
+  // We need to decode it just in case, though React Router usually does.
+  const id = params['*'];
   const navigate = useNavigate();
-  const post = posts.find(p => p.id === parseInt(id));
+  const post = posts.find(p => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,7 +26,7 @@ function PostDetail() {
 
   return (
     <main className="container" style={{ flex: 1, paddingTop: '120px', paddingBottom: '80px' }}>
-      <button 
+      <button
         onClick={() => navigate('/')}
         style={{
           background: 'none',
@@ -42,10 +45,10 @@ function PostDetail() {
 
       <article style={{ maxWidth: '800px', margin: '0 auto' }}>
         <header style={{ marginBottom: '60px', textAlign: 'center' }}>
-          <div style={{ 
-            fontSize: '0.9rem', 
-            color: 'var(--color-accent-wood)', 
-            fontWeight: 600, 
+          <div style={{
+            fontSize: '0.9rem',
+            color: 'var(--color-accent-wood)',
+            fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
             marginBottom: '16px'
@@ -64,15 +67,15 @@ function PostDetail() {
           </ReactMarkdown>
         </div>
 
-        <div style={{ 
-          marginTop: '80px', 
-          paddingTop: '40px', 
+        <div style={{
+          marginTop: '80px',
+          paddingTop: '40px',
           borderTop: '1px solid rgba(0,0,0,0.05)',
-          textAlign: 'center' 
+          textAlign: 'center'
         }}>
-          <div style={{ 
-            fontFamily: 'var(--font-serif)', 
-            fontStyle: 'italic', 
+          <div style={{
+            fontFamily: 'var(--font-serif)',
+            fontStyle: 'italic',
             color: 'var(--color-text-muted)',
             marginBottom: '20px'
           }}>
