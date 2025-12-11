@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { posts } from '../utils/posts';
 
+import { Helmet } from 'react-helmet-async';
+
 function PostDetail() {
   const params = useParams();
   // The wildcard param is stored in `*`.
@@ -26,6 +28,14 @@ function PostDetail() {
 
   return (
     <main className="container" style={{ flex: 1, paddingTop: '120px', paddingBottom: '80px' }}>
+      <Helmet>
+        <title>{post.title} | DevKat</title>
+        <meta name="description" content={post.summary} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.summary} />
+        <meta property="og:type" content="article" />
+      </Helmet>
+
       <button
         onClick={() => navigate('/')}
         style={{

@@ -21,7 +21,7 @@ const Header = () => {
       }}
     >
       <div className="container flex justify-between items-center">
-        <Link 
+        <Link
           to="/"
           className="logo"
           style={{
@@ -32,14 +32,14 @@ const Header = () => {
             textDecoration: "none"
           }}
         >
-          baklibra26
+          Dev / baklibra26
           <span style={{ color: "var(--color-accent-wood)", marginLeft: "4px" }}>.</span>
         </Link>
         <nav>
           <ul className="flex gap-8">
             {menuItems.map((item) => (
               <li key={item.label}>
-                <Link 
+                <Link
                   to={item.path}
                   className="nav-link"
                   style={{

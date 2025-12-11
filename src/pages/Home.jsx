@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { posts } from '../utils/posts';
 
 function Home() {
@@ -11,6 +12,13 @@ function Home() {
 
   return (
     <main className="container" style={{ flex: 1, paddingTop: '120px' }}>
+      <Helmet>
+        <title>DevKat | 개발하는 고양이</title>
+        <meta name="description" content="고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양." />
+        <meta property="og:title" content="DevKat | 개발하는 고양이" />
+        <meta property="og:description" content="고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양." />
+      </Helmet>
+
       {/* Hero Section - Modern & Minimal */}
       <section className="hero flex flex-col justify-between" style={{ marginBottom: '120px', minHeight: '40vh' }}>
         <div style={{ textAlign: 'center', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -26,11 +34,11 @@ function Home() {
             개발 블로그
           </span>
           <h1 style={{ marginBottom: '32px' }}>
-            고양이가<br />
-            <span className="text-serif" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>세상을 구한다.</span>
+            개발하는 고양이는<br />
+            <span className="text-serif" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>줄여서 개고양</span>
           </h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-            우리 집 고양이의 만수무강을 기원하며<br />
+            개고냐옹냐옹<br />
           </p>
         </div>
 
