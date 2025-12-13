@@ -93,7 +93,7 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 1.235.104.73:9116  # SNMP Exporter가 실행되는 서버:포트
+        replacement: ${SERVER_IP}:9116  # SNMP Exporter가 실행되는 서버:포트
 ```
 
 설정 적용 후 Prometheus 재시작:
