@@ -48,9 +48,7 @@ Prometheus를 systemd 서비스로 관리하기 위해 `/etc/systemd/system/prom
         User=prometheus 
         Group=prometheus 
         Type=simple 
-        ExecStart=/opt/prometheus/prometheus \
-        --config.file=/opt/prometheus/prometheus.yml \
-        --storage.tsdb.path=/opt/prometheus/data 
+        ExecStart=/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus/data 
         ExecReload=/bin/kill -HUP $MAINPID 
         Restart=on-failure 
         

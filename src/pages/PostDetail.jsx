@@ -155,9 +155,9 @@ function PostDetail() {
                             display: 'block',
                             position: 'relative',
                             paddingLeft: '4.5em', // Indent content to clear line number
-                            wordBreak: 'normal', // Allow normal breaking behavior (fixes wget \n url issue)
-                            overflowWrap: 'anywhere', // Break URLs at edge
-                            whiteSpace: 'nowrap', // Essential for wrapping to happen
+                            wordBreak: 'break-all', // Force break to prevent moving chunks to next line (fixes wget URL split)
+                            overflowWrap: 'anywhere',
+                            whiteSpace: 'pre-wrap', // Essential for wrapping
                             backgroundColor: 'transparent', // Ensure no background on the line wrapper
                           }
                         }}
@@ -170,7 +170,7 @@ function PostDetail() {
                           padding: '24px 0', // Vertical padding, no horizontal (handled by lineProps)
                           background: 'rgb(30, 30, 30)', // User requested explicit RGB
                           border: 'none',
-                          overflowX: 'hidden',
+                          overflowX: 'hidden', // No scrolling needed if wrapping is on
                           color: '#ffffff'
                         }}
                         codeTagProps={{
