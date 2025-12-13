@@ -1,11 +1,11 @@
 ---
+summary: 스프링부트, 제어의 역전(Ioc) 와 의존성 주입(DI)
 tags:
   - DI
   - IoC
 references: 
 created_date: 2025-08-11T22:42:49.000Z
 last_modified_date: 2025-08-11T22:43:18.000Z
-id: 332c215a-89f0-44f4-9149-5f778d6255bb
 ---
 # 제어의 역전(IoC)과 의존성 주입(DI)
 

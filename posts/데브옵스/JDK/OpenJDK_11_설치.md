@@ -1,4 +1,5 @@
 ---
+summary: JDK 설치해보기
 tags: 
 references: 
 created_date: 2025-07-26T19:50:06.000Z

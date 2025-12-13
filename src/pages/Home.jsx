@@ -13,9 +13,9 @@ function Home() {
   return (
     <main className="container" style={{ flex: 1, paddingTop: '120px' }}>
       <Helmet>
-        <title>DevKat | 개발하는 고양이</title>
+        <title>Dev | baklibra26</title>
         <meta name="description" content="고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양." />
-        <meta property="og:title" content="DevKat | 개발하는 고양이" />
+        <meta property="og:title" content="Dev | baklibra26" />
         <meta property="og:description" content="고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양." />
       </Helmet>
 

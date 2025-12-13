@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 스크립트에서 JDK 설정하기
 tags:
 references: 
 created_date: 2025-08-14 09:29:12

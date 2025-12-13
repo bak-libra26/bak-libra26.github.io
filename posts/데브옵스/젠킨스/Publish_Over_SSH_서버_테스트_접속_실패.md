@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 Publich Over SSH 플러그인 테스트 접속 실패
 tags:
   - 젠킨스
 references: 

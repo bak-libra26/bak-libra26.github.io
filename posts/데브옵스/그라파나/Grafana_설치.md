@@ -1,4 +1,5 @@
 ---
+summary: 그라파나 설치해보자
 created-date: 2025-12-02 01:19:28
 last-modified-date: 2025-12-02 02:42:17
 ---
@@ -13,7 +14,7 @@ Grafana 패키지를 설치하기 위해 공식 YUM 저장소를 등록.
 1. 리포지토리 설정 파일 생성함.
 	- 파일 경로: `/etc/yum.repos.d/grafana.repo`
 	- 내용 예시는 다음과 같음.
-		```text  
+		```shell  
 		sudo tee /etc/yum.repos.d/grafana.repo << EOF  
 		[grafana] name=grafana  
 		baseurl=https://rpm.grafana.com  

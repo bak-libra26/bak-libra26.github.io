@@ -1,4 +1,5 @@
 ---
+summary: 프로메테우스, 레빗엠큐 익스포터 설치해보기
 created-date: 2025-12-08 01:34:09
 last-modified-date: 2025-12-08 09:08:37
 ---
@@ -75,7 +76,7 @@ RabbitMQ Exporter를 systemd 서비스로 등록합니다.
 - `/etc/systemd/system/rabbitmq-exporter.service` 파일 생성:
 
 
-```text
+```shell
 [Unit] 
 Description=RabbitMQ Exporter 
 After=network.target 
@@ -109,17 +110,14 @@ WantedBy=multi-user.target
 
 Prometheus 서버의 `prometheus.yml`에 RabbitMQ Exporter 타깃을 추가합니다.
 
-text
-
-```
+```text
 scrape_configs:   
 - job_name: 'rabbitmq'    
 - scrape_interval: 60s    
 - scrape_timeout: 30s    
 - static_configs:      
   - targets:        
-	- 222.233.53.55:9419
-	- 222.233.53.56:9419
+	- ${SERVER_IP}:${PORT}
 ```
 
 - 설정 적용 후 Prometheus 재시작:
@@ -153,7 +151,3 @@ scrape_configs:
 - RabbitMQ Exporter GitHub: [https://github.com/kbudde/rabbitmq_exporter](https://github.com/kbudde/rabbitmq_exporter)
 - Prometheus RabbitMQ Exporter 문서: [https://github.com/kbudde/rabbitmq_exporter](https://github.com/kbudde/rabbitmq_exporter)
     
-
-추가 질문하기
-
-소스 확인

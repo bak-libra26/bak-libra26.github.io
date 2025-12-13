@@ -46,10 +46,10 @@ function AllPosts() {
   };
 
   return (
-    <main className="container" style={{ paddingTop: '120px', paddingBottom: '80px', flex: 1 }}>
+    <main className="container" style={{ paddingTop: '60px', paddingBottom: '80px', flex: 1 }}>
       <Helmet>
-        <title>전체 글 | DevKat</title>
-        <meta name="description" content="DevKat 블로그의 모든 글 목록입니다." />
+        <title>전체 글</title>
+        <meta name="description" content="블로그의 모든 글 목록입니다." />
       </Helmet>
       <header style={{ marginBottom: '60px', textAlign: 'center' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>전체 글</h1>

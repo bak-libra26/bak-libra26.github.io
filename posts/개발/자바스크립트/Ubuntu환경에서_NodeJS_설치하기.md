@@ -1,9 +1,9 @@
 ---
+summary: Ubuntu환경에서 NodeJS 설치하기
 tags: 
 references: 
 created_date: 2025-07-26 22:45:36
 last_modified_date: 2025-07-26 22:45:36
-id: ab071b3d-3c2e-4dd8-bfdb-8359df59435f
 ---
 ## 우분투에서 Node.js 설치하기
 

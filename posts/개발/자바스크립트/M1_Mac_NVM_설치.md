@@ -1,11 +1,11 @@
 ---
+summary: M1 Mac 에서 NVM 설치해보기
 tags:
   - NVM
   - MacOS
 references: 
 created_date: 2025-08-13T16:35:09.000Z
 last_modified_date: 2025-08-13T16:36:13.000Z
-id: 9a8b3b96-831b-467a-a8fa-f39b989e697d
 ---
 
 # NVM 설치 방법

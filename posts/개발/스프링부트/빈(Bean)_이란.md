@@ -1,4 +1,5 @@
 ---
+summary: 스프링부트, 빈(Bean)이란
 tags:
   - 빈
   - Bean

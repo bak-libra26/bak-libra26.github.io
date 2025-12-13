@@ -1,4 +1,5 @@
 ---
+summary: 넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성
 tags:
   - Nexus
   - Nginx

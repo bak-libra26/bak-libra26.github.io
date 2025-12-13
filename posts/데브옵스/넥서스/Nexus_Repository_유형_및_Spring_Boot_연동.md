@@ -1,4 +1,5 @@
 ---
+summary: 넥서스 레퍼지토리 유형과 스프링 부트에서의 연동 방법
 tags:
   - Nexus
   - springboot

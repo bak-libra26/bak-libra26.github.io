@@ -1,4 +1,5 @@
 ---
+summary: 몽고 DB 설치해보기
 tags:
   - Ubuntu
   - MongoDB

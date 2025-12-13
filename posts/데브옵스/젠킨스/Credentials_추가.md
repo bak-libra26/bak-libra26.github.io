@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 SSH Credentials 추가하기
 tags:
   - 젠킨스
   - trouble_shooting

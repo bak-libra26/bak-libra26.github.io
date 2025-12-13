@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://bak-libra26.github.io/sitemap.xml

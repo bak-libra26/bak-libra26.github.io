@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 빌드용 메이븐 설정
 tags:
   - 젠킨스
   - Maven

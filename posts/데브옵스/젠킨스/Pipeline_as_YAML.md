@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 스크립트 작성, pipeline/yaml 
 tags:
   - 젠킨스
   - 파이프라인

@@ -1,4 +1,5 @@
 ---
+summary: M1 Mac, 레빗엠큐 설치해보기
 tags:
   - RabbitMQ
 references: 

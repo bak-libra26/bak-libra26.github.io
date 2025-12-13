@@ -1,4 +1,5 @@
 ---
+summary: 넥서스를 설치해보자.
 tags:
   - Nexus
   - Rocky_Linux

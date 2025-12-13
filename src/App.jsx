@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Cheoma from './components/Cheoma';
@@ -19,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts />} />
           <Route path="/posts/*" element={<PostDetail />} />
+          {/* Redirect any unknown route to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
         <Footer />

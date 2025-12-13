@@ -1,4 +1,5 @@
 ---
+summary: 레빗엠큐, 고급 큐 기능 알아보기 
 tags:
   - RabbitMQ
 references:

@@ -1,4 +1,5 @@
 ---
+summary: 레빗엠큐, 메세지 지속성과 생명주기 관리 방법
 tags:
   - RabbitMQ
   - TTL

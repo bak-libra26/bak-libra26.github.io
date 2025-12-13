@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스, 넥서스 설정
 tags:
   - 젠킨스
   - nexus

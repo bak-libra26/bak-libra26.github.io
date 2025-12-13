@@ -1,8 +1,7 @@
 ---
+summary: 젠킨스의 Publish Over SSH 플러그인은 배포 자동화 시 SSH 서버에 파일을 전송할 때 Remote Directory 설정 가이드
 tags:
   - Jenkins
-references:
-  - Jenkins의 Publish Over SSH 플러그인은 배포 자동화 시 SSH 서버에 파일을 전송할 때 Remote Directory 설정 가이드
 created_date: 2025-08-26 11:14:57
 last_modified_date: 2025-08-26 11:14:57
 ---

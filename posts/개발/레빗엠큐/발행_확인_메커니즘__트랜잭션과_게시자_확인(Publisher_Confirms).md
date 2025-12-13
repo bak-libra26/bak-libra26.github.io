@@ -1,4 +1,5 @@
 ---
+summary: 레빗엠큐, 발행 확인 메커니즘 / 트랜잭션과 게시자 확인
 tags:
   - RabbitMQ
   - Transaction

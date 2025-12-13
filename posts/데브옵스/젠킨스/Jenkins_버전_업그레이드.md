@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 버전 업그레이드해보기
 tags:
   - 젠킨스
 references: 

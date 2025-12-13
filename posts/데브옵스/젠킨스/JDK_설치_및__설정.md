@@ -1,4 +1,5 @@
 ---
+summary: 젠킨스 빌드용 JDK 설치 및 설정
 tags:
   - 젠킨스
   - JDK_설치

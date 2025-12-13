@@ -1,4 +1,5 @@
 ---
+summary: 프로메테우스, SNMP 를 통한 스위치 모니터링
 created-date: 2025-12-03 10:34:06
 last-modified-date: 2025-12-03 03:29:41
 ---
@@ -27,8 +28,9 @@ sudo systemctl start snmpd
 SNMP Exporter를 다운로드하고 압축을 해제합니다.
 
 ```shell
-cd /opt 
-wget https://github.com/prometheus/snmp_exporter/releases/download/v0.29.0/snmp_exporter-0.29.0.linux-amd64.tar.gz tar -xzf snmp_exporter-0.29.0.linux-amd64.tar.gz
+cd /opt
+wget https://github.com/prometheus/snmp_exporter/releases/download/v0.29.0/snmp_exporter-0.29.0.linux-amd64.tar.gz
+tar -xzf snmp_exporter-0.29.0.linux-amd64.tar.gz
 ```
 
 ---
@@ -36,7 +38,7 @@ wget https://github.com/prometheus/snmp_exporter/releases/download/v0.29.0/snmp_
 ### 3. SNMP Exporter systemd 서비스 등록
 
 - `/etc/systemd/system/snmp_exporter.service` 파일 수정
-	```text
+	```shell
 	[Unit] 
 	Description=SNMP Exporter  
 	After=network.target
@@ -71,7 +73,7 @@ sudo systemctl status snmp_exporter
 `prometheus.yml`에 SNMP Exporter 타깃을 추가한다.
 
 
-```text
+```shell
 scrape_configs:
 	...
 	
@@ -80,7 +82,7 @@ scrape_configs:
     scrape_timeout: 90s
     static_configs:
       - targets:
-        - 222.233.53.60  # 스위치 IP
+        - ${SERVER_IP}  # 스위치 IP
     metrics_path: /snmp
     params:
       auth: [public_v2]
@@ -108,9 +110,9 @@ sudo systemctl restart prometheus
 
 - 아래 명령어로 테스트:
 	```shell
-	$ snmpwalk -v2c -c public 222.233.53.60 1.3.6.1.2.1.1 
+	$ snmpwalk -v2c -c public ${SERVER_IP} 1.3.6.1.2.1.1 
 	> No Resposne ...
-	snmpwalk -v2c -c public 222.233.53.60 1.3.6.1.2.1.2
+	snmpwalk -v2c -c public ${SERVER_IP} 1.3.6.1.2.1.2
 	> No Resposne ...
 	```
 
