@@ -135,15 +135,31 @@ function PostDetail() {
                         wrapLongLines={true} // Enable component-level support for wrapping
                         lineNumberStyle={{
                           minWidth: '3em',
-                          paddingRight: '1.5em',
+                          paddingRight: '1em',
                           textAlign: 'right',
                           color: '#6e7681',
                           borderRight: '1px solid #333',
-                          marginRight: '1.5em',
-                          backgroundColor: '#1e1e1e',
+                          marginRight: '1em', // This effective margin is now part of the absolute shift logic if we used it, but with absolute positioning we control it via left/width.
+                          // However, to strictly follow user request for "p or span" separation feel, we use absolute positioning:
+                          position: 'absolute',
+                          left: 0,
+                          top: 0,
+                          height: '100%',
+                          backgroundColor: 'transparent',
                           fontFamily: 'Menlo, Monaco, "Courier New", monospace',
                           fontSize: '14px',
                           lineHeight: '1.6'
+                        }}
+                        lineProps={{
+                          style: {
+                            display: 'block',
+                            position: 'relative',
+                            paddingLeft: '4.5em', // Indent content to clear line number
+                            wordBreak: 'normal', // Allow normal breaking behavior (fixes wget \n url issue)
+                            overflowWrap: 'anywhere', // Break URLs at edge
+                            whiteSpace: 'nowrap', // Essential for wrapping to happen
+                            backgroundColor: 'transparent', // Ensure no background on the line wrapper
+                          }
                         }}
                         customStyle={{
                           margin: 0,
@@ -151,10 +167,10 @@ function PostDetail() {
                           fontSize: '14px',
                           lineHeight: '1.6',
                           fontFamily: 'Menlo, Monaco, "Courier New", monospace',
-                          padding: '24px 24px 24px 0',
-                          background: '#1e1e1e',
+                          padding: '24px 0', // Vertical padding, no horizontal (handled by lineProps)
+                          background: 'rgb(30, 30, 30)', // User requested explicit RGB
                           border: 'none',
-                          overflowX: 'hidden', // Hide horizontal scroll since we are wrapping
+                          overflowX: 'hidden',
                           color: '#ffffff'
                         }}
                         codeTagProps={{
@@ -162,12 +178,9 @@ function PostDetail() {
                             fontFamily: 'Menlo, Monaco, "Courier New", monospace',
                             fontSize: '14px',
                             lineHeight: '1.6',
-                            whiteSpace: 'pre-wrap', // Allow wrapping
-                            wordBreak: 'normal', // Do NOT break words like 'wget' arbitrarily
-                            overflowWrap: 'anywhere', // Only break long strings if they simply don't fit the container width
-                            backgroundColor: 'transparent',
                             color: '#ffffff',
-                            display: 'block'
+                            display: 'block',
+                            backgroundColor: 'transparent' // Let container bg show through
                           }
                         }}
                         {...props}
@@ -182,9 +195,9 @@ function PostDetail() {
                       background: 'var(--color-bg-subtle)',
                       padding: '0.2em 0.4em',
                       borderRadius: '4px',
-                      color: 'var(--color-accent-roof)',
+                      color: 'var(--color-accent-roof)', // Restore exact original color (navy/charcoal)
                       fontSize: '0.9em',
-                      fontFamily: '"Fira Code", "JetBrains Mono", Consolas, monospace'
+                      fontFamily: 'Menlo, Monaco, "Courier New", monospace'
                     }}
                     {...props}
                   >

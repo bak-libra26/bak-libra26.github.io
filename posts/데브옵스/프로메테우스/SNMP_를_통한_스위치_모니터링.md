@@ -45,7 +45,8 @@ tar -xzf snmp_exporter-0.29.0.linux-amd64.tar.gz
 	
 	[Service] 
 	User=root 
-	ExecStart=/opt/snmp_exporter-0.29.0.linux-amd64/snmp_exporter --config.file=/opt/snmp_exporter-0.29.0.linux-amd64/snmp.yml 
+	ExecStart=/opt/snmp_exporter-0.29.0.linux-amd64/snmp_exporter \
+	--config.file=/opt/snmp_exporter-0.29.0.linux-amd64/snmp.yml 
 	Restart=always 
 	
 	[Install] 

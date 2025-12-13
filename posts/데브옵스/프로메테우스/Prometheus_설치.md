@@ -9,32 +9,34 @@ last-modified-date: 2025-12-02 02:48:36
 
 ## 1. Prometheus 바이너리 다운로드 및 디렉터리 구성함
 
-Prometheus를 패키지 매니저가 아닌 공식 바이너리로 설치하기 위해, GitHub 릴리즈에서 tar.gz 파일을 다운로드하고 `/opt/prometheus` 경로로 정리함.[](https://co-no.tistory.com/entry/Observability-%ED%94%84%EB%A1%9C%EB%A9%94%ED%85%8C%EC%9A%B0%EC%8A%A4Prometheus-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EA%B8%B0%EB%B3%B8-%EC%84%A4%EC%A0%95-%EC%8B%A4%ED%96%89)​
+Prometheus를 패키지 매니저가 아닌 공식 바이너리로 설치하기 위해, GitHub 릴리즈에서 tar.gz 파일을 다운로드하고 `/opt/prometheus` 경로로 정리함.
 
 1. Prometheus 압축 파일 다운로드 및 압축 해제, 디렉터리 이동함.
     - 실행 명령:
         shell
 		```shell
-		wget https://github.com/prometheus/prometheus/releases/download/v2.47.1/prometheus-2.47.1.linux-amd64.tar.gz tar xvfz prometheus-2.47.1.linux-amd64.tar.gz sudo mv prometheus-2.47.1.linux-amd64 /opt/prometheus
+		wget https://github.com/prometheus/prometheus/releases/download/v2.47.1/prometheus-2.47.1.linux-amd64.tar.gz 
+        tar xvfz prometheus-2.47.1.linux-amd64.tar.gz 
+        sudo mv prometheus-2.47.1.linux-amd64 /opt/prometheus
 		```
         
 2. 위 명령을 통해 현재 디렉터리에 `prometheus-2.47.1.linux-amd64` 디렉터리가 생성되며, 이후 `/opt/prometheus` 로 이동됨.​
-3. 이동 후 주요 파일은 다음과 같음.[](https://prometheus.io/docs/prometheus/latest/getting_started/)​
+3. 이동 후 주요 파일은 다음과 같음.
     - `/opt/prometheus/prometheus` : Prometheus 서버 실행 바이너리.
     - `/opt/prometheus/promtool` : 설정 검증 및 유틸리티 바이너리.
     - `/opt/prometheus/prometheus.yml` : 기본 설정 파일.
     - `/opt/prometheus/consoles/`, `/opt/prometheus/console_libraries/` : 콘솔 템플릿 관련 디렉터리.
 
-※ 필요 시 `/opt/prometheus/data` 디렉터리를 생성해 TSDB 데이터를 저장하는 용도로 사용함.[](https://ace28.tistory.com/entry/Prometheus-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95)​
+※ 필요 시 `/opt/prometheus/data` 디렉터리를 생성해 TSDB 데이터를 저장하는 용도로 사용함.
 
 ---
 
 ## 2. Prometheus systemd 서비스 유닛 파일 생성함
 
-Prometheus를 systemd 서비스로 관리하기 위해 `/etc/systemd/system/prometheus.service` 파일을 생성함.[](https://jy-p.tistory.com/140)​
+Prometheus를 systemd 서비스로 관리하기 위해 `/etc/systemd/system/prometheus.service` 파일을 생성함.
     
 1. systemd 서비스 유닛 파일 생성함.
-    - 파일 경로: `/etc/systemd/system/prometheus.service`
+    - 파일 경로: `/etc/systemd/system/prometheus.service`
     - 내용 예시는 다음과 같음.
         ```shell
         [Unit] 
@@ -46,7 +48,11 @@ Prometheus를 systemd 서비스로 관리하기 위해 `/etc/systemd/system/pro
         User=prometheus 
         Group=prometheus 
         Type=simple 
-        ExecStart=/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus/data ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure 
+        ExecStart=/opt/prometheus/prometheus \
+        --config.file=/opt/prometheus/prometheus.yml \
+        --storage.tsdb.path=/opt/prometheus/data 
+        ExecReload=/bin/kill -HUP $MAINPID 
+        Restart=on-failure 
         
         [Install] 
         WantedBy=multi-user.target
