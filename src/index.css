@@ -87,6 +87,18 @@ ul {
   gap: 32px;
 }
 
+@media (max-width: 640px) {
+  .gap-8 {
+    gap: 16px;
+    /* Reduce gap on mobile */
+  }
+
+  .container {
+    padding: 0 16px;
+    /* Reduce padding on mobile */
+  }
+}
+
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr;
