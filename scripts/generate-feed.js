@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const BASE_URL = 'https://bak-libra26.github.io';
 const SITE_TITLE = 'Dev | baklibra26';
-const SITE_DESCRIPTION = '고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양.';
+const SITE_DESCRIPTION = '2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다.';
 const POSTS_DIR = path.join(__dirname, '../posts');
 const PUBLIC_DIR = path.join(__dirname, '../public');
 
