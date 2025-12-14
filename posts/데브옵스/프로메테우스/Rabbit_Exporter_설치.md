@@ -83,7 +83,8 @@ After=network.target
 
 [Service] 
 Type=simple 
-ExecStart=/opt/rabbitmq_exporter/rabbitmq_exporter -config-file=/opt/rabbitmq_exporter/conf/rabbitmq.conf 
+ExecStart=/opt/rabbitmq_exporter/rabbitmq_exporter \
+-config-file=/opt/rabbitmq_exporter/conf/rabbitmq.conf 
 Restart=always 
 
 [Install] 

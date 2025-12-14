@@ -107,7 +107,7 @@ sudo systemctl restart prometheus
 
 
 # 트러블슈팅
-## # community 값 불일치로 인한 연결 문제 발생
+## community 값 불일치로 인한 연결 문제 발생
 
 - 아래 명령어로 테스트:
 	```shell

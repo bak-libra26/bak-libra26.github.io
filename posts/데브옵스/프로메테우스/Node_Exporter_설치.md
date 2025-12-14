@@ -126,10 +126,10 @@ Prometheus가 Node Exporter가 제공하는 메트릭을 스크랩할 수 있도
         scrape_configs:   
 	        - job_name: 'node_exporter'    
 	          static_configs:      
-	          - targets: ['${IP:PORT}']
+	          - targets: ['${PROMETHEUS_IP:PORT}']
         ```
         
-2. `${IP:PORT}` 부분에 Node Exporter가 동작 중인 서버와 포트를 지정함. 예를 들어 동일 서버에서 기본 포트로 동작 중이면 `['1.235.104.73:9100']` 으로 설정함.​
+2. `${PROMETHEUS_IP:PORT}` 부분에 Node Exporter가 동작 중인 서버와 포트를 지정함. 예를 들어 동일 서버에서 기본 포트로 동작 중이면 `['${PROMETHEUS_IP:9100']` 으로 설정함.​
 3. 설정 변경 후 Prometheus 서비스를 재시작하거나 설정 리로드를 수행해야 변경 사항이 반영됨.
     - 재시작 예시:
         ```shell
