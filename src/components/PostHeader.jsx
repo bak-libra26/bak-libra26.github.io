@@ -1,0 +1,17 @@
+import React from 'react';
+
+function PostHeader({ title, category, date }) {
+    return (
+        <header className="post-header">
+            <div className="post-category">
+                {category}
+            </div>
+            <h1 className="post-title">{title}</h1>
+            <div className="post-date">
+                {date}
+            </div>
+        </header>
+    );
+}
+
+export default PostHeader;
