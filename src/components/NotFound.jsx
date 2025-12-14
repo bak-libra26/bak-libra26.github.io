@@ -20,7 +20,7 @@ function NotFound() {
                 onClick={() => navigate('/')}
                 className="not-found-button"
             >
-                메인으로 가기
+                돌아가기
             </button>
         </main>
     );
