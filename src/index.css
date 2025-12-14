@@ -7,23 +7,36 @@
 
   /* Hanok Accents (Reinterpreted) */
   --color-accent-wood: #8d6e63;
-  /* Warm wood for highlights */
+  /* Default: Warm wood */
   --color-accent-roof: #2c3e50;
-  /* Deep charcoal/navy for strong elements */
+  /* Default: Deep charcoal */
   --color-accent-red: #c62828;
-  /* Subtle red point */
+  /* Default: Red */
+
+  /* Code Block Default */
+  --color-code-bg: #1e1e1e;
 
   /* Typography */
   --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   --font-serif: "Noto Serif KR", serif;
-  /* Used sparingly for 'Hanok' feel */
 
   --spacing-unit: 8px;
   --border-radius: 12px;
-  /* More modern rounded corners */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Seasonal Theme: Winter (Blue/Cold) */
+:root[data-season="winter"] {
+  --color-accent-wood: #607d8b;
+  /* Blue Grey */
+  --color-accent-roof: #263238;
+  /* Dark Blue Grey */
+  --color-accent-red: #546e7a;
+  /* Muted Blue */
+  --color-code-bg: #111827;
+  /* Dark Blue-Black for code blocks */
 }
 
 * {

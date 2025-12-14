@@ -6,9 +6,15 @@ import Cheoma from './components/Cheoma';
 import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import AllPosts from './pages/AllPosts';
+import { getCurrentSeason } from './utils/theme';
 import './App.css';
 
 function App() {
+  React.useEffect(() => {
+    const season = getCurrentSeason();
+    document.documentElement.setAttribute('data-season', season);
+  }, []);
+
   return (
     <Router>
       <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
