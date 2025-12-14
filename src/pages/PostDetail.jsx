@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { posts } from '../utils/posts';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -64,10 +64,63 @@ function PostDetail() {
 
   if (!post) {
     return (
-      <div className="container" style={{ paddingTop: '120px', textAlign: 'center' }}>
-        <h2>Post not found</h2>
-        <button onClick={() => navigate('/')}>Go Home</button>
-      </div>
+      <main className="container" style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '60vh',
+        textAlign: 'center',
+        paddingTop: '60px'
+      }}>
+        <div style={{
+          fontSize: '6rem',
+          fontWeight: 900,
+          color: '#000000',
+          lineHeight: 1,
+          fontFamily: 'var(--font-serif)',
+          userSelect: 'none'
+        }}>
+          404
+        </div>
+        <h2 style={{
+          fontSize: '2rem',
+          margin: '20px 0 16px',
+          fontFamily: 'var(--font-serif)',
+          color: 'var(--color-text-main)'
+        }}>
+          글을 찾을 수 없습니다
+        </h2>
+        <p style={{
+          color: 'var(--color-text-muted)',
+          marginBottom: '40px',
+          maxWidth: '400px',
+          lineHeight: 1.6
+        }}>
+          요청하신 페이지가 삭제되었거나 잘못된 경로입니다.<br />
+          다른 글을 찾아보시거나 이전 페이지로 돌아가주세요.
+        </p>
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            padding: '12px 32px',
+            background: 'var(--color-text-main)',
+            color: 'var(--color-bg)',
+            border: 'none',
+            borderRadius: 'var(--border-radius)',
+            fontSize: '1rem',
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'opacity 0.2s',
+            fontFamily: 'var(--font-sans)'
+          }}
+          onMouseOver={(e) => e.target.style.opacity = 0.9}
+          onMouseOut={(e) => e.target.style.opacity = 1}
+        >
+          돌아가기
+        </button>
+      </main>
     );
   }
 
