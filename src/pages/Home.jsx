@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { posts } from '../utils/posts';
 
+import { formatDate } from '../utils/dateFormatter';
+
 function Home() {
   const navigate = useNavigate();
 
@@ -84,7 +86,7 @@ function Home() {
                 }}>
                   {post.category}
                 </span>
-                <span style={{ fontSize: '0.85rem', color: '#999' }}>{post.date}</span>
+                <span style={{ fontSize: '0.85rem', color: '#999' }}>{formatDate(post.date)}</span>
               </div>
               <h3 style={{ marginBottom: '16px', fontSize: '1.4rem' }}>{post.title}</h3>
               <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../utils/dateFormatter';
 
 function PostHeader({ title, category, date }) {
     return (
@@ -8,7 +9,7 @@ function PostHeader({ title, category, date }) {
             </div>
             <h1 className="post-title">{title}</h1>
             <div className="post-date">
-                {date}
+                {formatDate(date)}
             </div>
         </header>
     );

@@ -1,36 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { posts } from '../utils/posts';
+import { formatDate } from '../utils/dateFormatter'; // Correctly imported
 
 function AllPosts() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  // Hierarchical State
+  const [selectedMain, setSelectedMain] = useState('All');
+  const [selectedSub, setSelectedSub] = useState('All');
+
   const postsPerPage = 6;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // Get unique categories
-  const categories = ['All', ...new Set(posts.map(post => post.category))];
+  // 1. Build Hierarchy
+  // Input: "Dev/React", "Dev/Node", "Life/Food"
+  // Output: { 'All': [], 'Dev': ['React', 'Node'], 'Life': ['Food'] }
+  const categoryHierarchy = useMemo(() => {
+    const hierarchy = { 'All': [] };
 
-  // Filter posts
+    posts.forEach(post => {
+      // Assuming format: "Main/Sub" or just "Main"
+      const parts = post.category.split('/');
+      const main = parts[0];
+      const sub = parts[1]; // undefined if no sub-category
+
+      if (!hierarchy[main]) {
+        hierarchy[main] = [];
+      }
+
+      if (sub && !hierarchy[main].includes(sub)) {
+        hierarchy[main].push(sub);
+      }
+    });
+
+    return hierarchy;
+  }, []);
+
+  const mainCategories = Object.keys(categoryHierarchy);
+  const subCategories = selectedMain !== 'All' ? categoryHierarchy[selectedMain] : [];
+
+  // 2. Filter Logic
   const filteredPosts = posts.filter(post => {
+    // Search Filter
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.summary.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+
+    // Category Filter
+    let matchesCategory = true;
+    if (selectedMain !== 'All') {
+      // Check if post belongs to Main (starts with Main)
+      // "Dev" matches "Dev", "Dev/React"
+      matchesCategory = post.category.startsWith(selectedMain);
+
+      if (selectedSub !== 'All') {
+        // If Sub selected, must match specific sub
+        // "Dev/React"
+        // precise string check or "Main/Sub"
+        const targetCategory = `${selectedMain}/${selectedSub}`;
+        matchesCategory = post.category === targetCategory;
+      }
+    }
+
     return matchesSearch && matchesCategory;
   });
 
-  // Get current posts
+  // Pagination Logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
+  // Handlers
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -40,8 +87,14 @@ function AllPosts() {
     setCurrentPage(1);
   };
 
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
+  const handleMainCategoryChange = (main) => {
+    setSelectedMain(main);
+    setSelectedSub('All'); // Reset sub when main changes
+    setCurrentPage(1);
+  };
+
+  const handleSubCategoryChange = (sub) => {
+    setSelectedSub(sub);
     setCurrentPage(1);
   };
 
@@ -59,8 +112,8 @@ function AllPosts() {
       </header>
 
       {/* Search and Filter Section */}
-      <div style={{ marginBottom: '40px', maxWidth: '600px', margin: '0 auto 60px' }}>
-        <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ marginBottom: '40px', maxWidth: '800px', margin: '0 auto 60px' }}>
+        <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
             placeholder="검색어를 입력하세요..."
@@ -68,6 +121,7 @@ function AllPosts() {
             onChange={handleSearchChange}
             style={{
               width: '100%',
+              maxWidth: '500px',
               padding: '12px 20px',
               fontSize: '1rem',
               border: '1px solid rgba(0,0,0,0.1)',
@@ -81,25 +135,82 @@ function AllPosts() {
           />
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => handleCategoryChange(category)}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                border: selectedCategory === category ? '1px solid var(--color-text-main)' : '1px solid rgba(0,0,0,0.1)',
-                backgroundColor: selectedCategory === category ? 'var(--color-text-main)' : 'transparent',
-                color: selectedCategory === category ? '#fff' : 'var(--color-text-muted)',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Categories Container */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+
+          {/* Level 1: Main Categories */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            {mainCategories.map(category => (
+              <button
+                key={category}
+                onClick={() => handleMainCategoryChange(category)}
+                style={{
+                  padding: '10px 20px',
+                  borderRadius: '25px',
+                  border: selectedMain === category ? '2px solid var(--color-accent-wood)' : '1px solid rgba(0,0,0,0.1)',
+                  backgroundColor: selectedMain === category ? 'var(--color-accent-wood)' : 'transparent',
+                  color: selectedMain === category ? '#fff' : 'var(--color-text-muted)',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: selectedMain === category ? 600 : 400,
+                  transition: 'all 0.2s ease',
+                  minWidth: '80px'
+                }}
+              >
+                {category === 'All' ? '전체' : category}
+              </button>
+            ))}
+          </div>
+
+          {/* Level 2: Sub Categories (Conditional) */}
+          {selectedMain !== 'All' && subCategories.length > 0 && (
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '8px',
+              flexWrap: 'wrap',
+              padding: '10px 20px',
+              backgroundColor: 'var(--color-bg-subtle)',
+              borderRadius: '20px',
+              animation: 'fadeIn 0.3s ease'
+            }}>
+              <button
+                onClick={() => handleSubCategoryChange('All')}
+                style={{
+                  padding: '6px 16px',
+                  borderRadius: '15px',
+                  border: 'none',
+                  backgroundColor: selectedSub === 'All' ? 'var(--color-accent-wood)' : 'transparent',
+                  color: selectedSub === 'All' ? '#fff' : 'var(--color-text-muted)',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: selectedSub === 'All' ? 600 : 400,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                전체
+              </button>
+              {subCategories.map(sub => (
+                <button
+                  key={sub}
+                  onClick={() => handleSubCategoryChange(sub)}
+                  style={{
+                    padding: '6px 16px',
+                    borderRadius: '15px',
+                    border: 'none',
+                    backgroundColor: selectedSub === sub ? 'var(--color-accent-wood)' : 'transparent',
+                    color: selectedSub === sub ? '#fff' : 'var(--color-text-muted)',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: selectedSub === sub ? 600 : 400,
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -138,7 +249,7 @@ function AllPosts() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
-                    {post.category}
+                    {post.category.replace('/', ' > ')}
                   </span>
                 </div>
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', lineHeight: 1.3 }}>
@@ -164,7 +275,7 @@ function AllPosts() {
                   alignItems: 'center',
                   marginTop: 'auto'
                 }}>
-                  <span>{post.date}</span>
+                  <span>{formatDate(post.date)}</span>
                   <span style={{ color: 'var(--color-accent-wood)', fontWeight: 500 }}>
                     더 읽기 →
                   </span>
@@ -242,6 +353,13 @@ function AllPosts() {
           검색 결과가 없습니다.
         </div>
       )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </main>
   );
 }
