@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Dev | baklibra26</title>
+    <link>https://bak-libra26.github.io</link>
+    <description>고양이가 세상을 구한다. 개발하는 고양이는 줄여서 개고양.</description>
+    <language>ko</language>
+    
+    <item>
+      <title><![CDATA[ACK, NACK  메시지 신뢰성 보장을 위한 확인 메커니즘ote]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[# ACK(Acknowledgement)와 NACK(Negative Acknowledgement)란 무엇인가?
+
+  
+
+ACK와 NACK는 메시지 처리 상태를 확인하고, 그 결과를 브로커에 알리는 프로토콜로 RabbitMQ 같은 메시지 브로커에서 메시지의 신뢰성 있는 ...]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Exchange 타입과 라우팅  4가지 Exchange의 동작 원리]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[# Exchange
+
+`Exchange` 는 `RabbitMQ` 의 생산자와 큐 사이에서 생산자가 발행한 메세지를 어떤 큐에 적재할지 라우팅해주는 요소로 `RabbitMQ` 를 구성하는 기본 요소 4가지 중 하나이다. 기본적으로 `RabbitMQ` 는 아래의 4가지 `...]]></description>
+    </item>
+    <item>
+      <title><![CDATA[M1 MAC 레빗엠큐 설치하기 ]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/M1_MAC_레빗엠큐 설치하기_</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/M1_MAC_레빗엠큐 설치하기_</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[M1 Mac, 레빗엠큐 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[고급 큐 기능  DLX, Delay Queue, Priority Queue]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[레빗엠큐, 고급 큐 기능 알아보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[메시지 지속성과 생명주기 관리  Durable, Persistent, TTL, Auto-delete]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[레빗엠큐, 메세지 지속성과 생명주기 관리 방법]]></description>
+    </item>
+    <item>
+      <title><![CDATA[메시징 큐의 개념과 기본 구조]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시징_큐의_개념과_기본_구조</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시징_큐의_개념과_기본_구조</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[레빗엠큐, 메세징 큐의 개념과 기본 구조 알아보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[발행 확인 메커니즘  트랜잭션과 게시자 확인(Publisher Confirms)]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms)</link>
+      <guid>https://bak-libra26.github.io/posts/개발/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms)</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[레빗엠큐, 발행 확인 메커니즘 / 트랜잭션과 게시자 확인]]></description>
+    </item>
+    <item>
+      <title><![CDATA[StrictMode Definition]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/리액트/StrictMode_Definition</link>
+      <guid>https://bak-libra26.github.io/posts/개발/리액트/StrictMode_Definition</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[# React : StrictMode 란
+# React : StrictMode 란
+
+`<StrictMode>` 는 리액트 애플리케이션의 잠재적인 문제를 조기에 발견할 수 있도록  도와주는 도구로 `<StrictMode>` 는 실제로 UI에 아무런 영향을 주지 않으며, ...]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Spring Boot 란]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/스프링부트/Spring_Boot_란</link>
+      <guid>https://bak-libra26.github.io/posts/개발/스프링부트/Spring_Boot_란</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[스프링부트란 ?]]></description>
+    </item>
+    <item>
+      <title><![CDATA[빈(Bean) 이란]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/스프링부트/빈(Bean)_이란</link>
+      <guid>https://bak-libra26.github.io/posts/개발/스프링부트/빈(Bean)_이란</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[스프링부트, 빈(Bean)이란]]></description>
+    </item>
+    <item>
+      <title><![CDATA[제어의 역전(IoC) 과 의존성 주입(DI)]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</link>
+      <guid>https://bak-libra26.github.io/posts/개발/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[스프링부트, 제어의 역전(Ioc) 와 의존성 주입(DI)]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Java NIO 란 무엇인가.]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/자바_NIO/Java_NIO_란_무엇인가.</link>
+      <guid>https://bak-libra26.github.io/posts/개발/자바_NIO/Java_NIO_란_무엇인가.</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[Java NIO(New I/O) 란?]]></description>
+    </item>
+    <item>
+      <title><![CDATA[M1 Mac NVM 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/자바스크립트/M1_Mac_NVM_설치</link>
+      <guid>https://bak-libra26.github.io/posts/개발/자바스크립트/M1_Mac_NVM_설치</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[M1 Mac 에서 NVM 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Ubuntu환경에서 NodeJS 설치하기]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/자바스크립트/Ubuntu환경에서_NodeJS_설치하기</link>
+      <guid>https://bak-libra26.github.io/posts/개발/자바스크립트/Ubuntu환경에서_NodeJS_설치하기</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[Ubuntu환경에서 NodeJS 설치하기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[자바스크립트 파일 확장자 차이]]></title>
+      <link>https://bak-libra26.github.io/posts/개발/자바스크립트/자바스크립트_파일_확장자_차이</link>
+      <guid>https://bak-libra26.github.io/posts/개발/자바스크립트/자바스크립트_파일_확장자_차이</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[자바스크립트 파일 확장자 차이 알아보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[OpenJDK 11 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/JDK/OpenJDK_11_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/JDK/OpenJDK_11_설치</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[JDK 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Grafana 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/그라파나/Grafana_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/그라파나/Grafana_설치</guid>
+      <pubDate>Mon, 01 Dec 2025 16:19:28 GMT</pubDate>
+      <description><![CDATA[그라파나 설치해보자]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Node Exporter 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Node_Exporter_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Node_Exporter_설치</guid>
+      <pubDate>Mon, 01 Dec 2025 16:19:16 GMT</pubDate>
+      <description><![CDATA[프로메테우스, 노드 익스포터 설치 및 연동해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Prometheus 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Prometheus_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Prometheus_설치</guid>
+      <pubDate>Mon, 01 Dec 2025 16:19:28 GMT</pubDate>
+      <description><![CDATA[프로메테우스 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Rabbit Exporter 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Rabbit_Exporter_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/Rabbit_Exporter_설치</guid>
+      <pubDate>Sun, 07 Dec 2025 16:34:09 GMT</pubDate>
+      <description><![CDATA[프로메테우스, 레빗엠큐 익스포터 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[SNMP 를 통한 스위치 모니터링]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/SNMP_를_통한_스위치_모니터링</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/프로메테우스/SNMP_를_통한_스위치_모니터링</guid>
+      <pubDate>Wed, 03 Dec 2025 01:34:06 GMT</pubDate>
+      <description><![CDATA[프로메테우스, SNMP 를 통한 스위치 모니터링]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Nexus Repository 유형 및 Spring Boot 연동]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nexus_Repository_유형_및_Spring_Boot_연동</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nexus_Repository_유형_및_Spring_Boot_연동</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[넥서스 레퍼지토리 유형과 스프링 부트에서의 연동 방법]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Nexus 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nexus_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nexus_설치</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[넥서스를 설치해보자.]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nginx_를_이용한_Nexus에_대한_리버스_프록시_구성</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nginx_를_이용한_Nexus에_대한_리버스_프록시_구성</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Authentication Failed 에러]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/몽고DB/Authentication_Failed_에러</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/몽고DB/Authentication_Failed_에러</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[몽고 DB, Authentication Failed 예외 해결기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Ubuntu 환경에 몽고DB 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/몽고DB/Ubuntu_환경에_몽고DB_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/몽고DB/Ubuntu_환경에_몽고DB_설치</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[몽고 DB 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Credentials 추가]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Credentials_추가</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Credentials_추가</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 SSH Credentials 추가하기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[GitHub Webhook 자동 빌드 트리거링]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/GitHub_Webhook_자동_빌드_트리거링</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/GitHub_Webhook_자동_빌드_트리거링</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[# GitHub Webhook 자동 빌드 트리거링
+
+젠킨스와 GitHub를 연동하면 코드 변경(push, PR 등) 시 자동으로 파이프라인이 실행되어 CI/CD를 실현할 수 있음.  
+
+이때 `Webhook` 을 활용하면 개발자가 직접 젠킨스에서 빌드를 수동으로 실행하...]]></description>
+    </item>
+    <item>
+      <title><![CDATA[JDK 설치 및  설정]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/JDK_설치_및__설정</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/JDK_설치_및__설정</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 빌드용 JDK 설치 및 설정]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Jenkins 버전 업그레이드]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Jenkins_버전_업그레이드</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Jenkins_버전_업그레이드</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 버전 업그레이드해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Jenkins 설치]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Jenkins_설치</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Jenkins_설치</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 설치해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Maven 설정]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Maven_설정</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Maven_설정</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 빌드용 메이븐 설정]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Nexus 설정]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Nexus_설정</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Nexus_설정</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스, 넥서스 설정]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Pipeline JDK 설정]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_JDK_설정</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_JDK_설정</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 스크립트에서 JDK 설정하기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Pipeline as YAML]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_as_YAML</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_as_YAML</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 스크립트 작성, pipeline/yaml]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Publish Over SSH 서버 테스트 접속 실패]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Publish_Over_SSH_서버_테스트_접속_실패</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Publish_Over_SSH_서버_테스트_접속_실패</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 Publich Over SSH 플러그인 테스트 접속 실패]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Publish Over SSH 플러그인 Remote Directory 설정 가이드]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Publish_Over_SSH_플러그인_Remote_Directory_설정_가이드</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Publish_Over_SSH_플러그인_Remote_Directory_설정_가이드</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스의 Publish Over SSH 플러그인은 배포 자동화 시 SSH 서버에 파일을 전송할 때 Remote Directory 설정 가이드]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Slack 연동 및 알림 설정]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Slack_연동_및_알림_설정</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Slack_연동_및_알림_설정</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스, 슬랙 연동 및 알림 설정해보기]]></description>
+    </item>
+    <item>
+      <title><![CDATA[빌드 실패, 원인은 라이브러리 캐시]]></title>
+      <link>https://bak-libra26.github.io/posts/데브옵스/젠킨스/빌드_실패,_원인은_라이브러리_캐시</link>
+      <guid>https://bak-libra26.github.io/posts/데브옵스/젠킨스/빌드_실패,_원인은_라이브러리_캐시</guid>
+      <pubDate>Sun, 14 Dec 2025 16:27:58 GMT</pubDate>
+      <description><![CDATA[젠킨스 빌드 실패, 넥서스 라이브러리 캐시 지우기]]></description>
+    </item>
+  </channel>
+</rss>
