@@ -287,7 +287,7 @@ function PostDetail() {
             color: 'var(--color-text-muted)',
             marginBottom: '16px'
           }}>
-            On this page
+            이 글의 목차
           </div>
           <nav>
             {headings.map((heading, index) => (
