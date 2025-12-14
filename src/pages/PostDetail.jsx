@@ -63,7 +63,7 @@ function PostDetail() {
           gap: '8px'
         }}
       >
-        ← Back to Home
+        ← 돌아가기
       </button>
 
       <article style={{ maxWidth: '800px', margin: '0 auto' }}>
@@ -223,7 +223,7 @@ function PostDetail() {
             color: 'var(--color-text-muted)',
             marginBottom: '20px'
           }}>
-            Thanks for reading.
+            읽어주셔서 감사합니다.
           </div>
         </div>
       </article >
