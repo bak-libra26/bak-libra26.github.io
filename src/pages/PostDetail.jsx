@@ -14,7 +14,7 @@ function PostDetail() {
   const params = useParams();
   const id = params['*'];
   const navigate = useNavigate();
-  const post = posts.find(p => p.id === id);
+  const post = posts.find(p => p.id === (id ? id.normalize('NFC') : ''));
 
   useEffect(() => {
     window.scrollTo(0, 0);

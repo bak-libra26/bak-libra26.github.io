@@ -21,7 +21,7 @@ export function getPosts() {
         const relativePath = path.slice(path.indexOf('/posts/') + 7);
 
         // Remove extension for ID
-        const id = relativePath.replace(/\.md$/, '');
+        const id = relativePath.replace(/\.md$/, '').normalize('NFC');
 
         // Category is the directory path
         const lastSlashIndex = id.lastIndexOf('/');
