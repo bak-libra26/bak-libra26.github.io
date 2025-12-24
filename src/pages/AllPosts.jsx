@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { posts } from '../utils/posts';
-import { formatDate } from '../utils/dateFormatter'; // Correctly imported
 
+import { posts } from '../utils/posts';
+import { formatDate } from '../utils/dateFormatter';
+import PostCard from '../components/PostCard';
 function AllPosts() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Hierarchical State
-  const [selectedMain, setSelectedMain] = useState('All');
-  const [selectedSub, setSelectedSub] = useState('All');
+  // Multi-level category path (e.g., ['개발', '자바', '웹플럭스'])
+  const [selectedPath, setSelectedPath] = useState([]);
 
   const postsPerPage = 6;
 
@@ -19,34 +18,37 @@ function AllPosts() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // 1. Build Hierarchy
-  // Input: "Dev/React", "Dev/Node", "Life/Food"
-  // Output: { 'All': [], 'Dev': ['React', 'Node'], 'Life': ['Food'] }
-  const categoryHierarchy = useMemo(() => {
-    const hierarchy = { 'All': [] };
+  // Build multi-level category tree
+  const categoryTree = useMemo(() => {
+    const tree = {};
 
     posts.forEach(post => {
-      // Assuming format: "Main/Sub" or just "Main"
       const parts = post.category.split('/');
-      const main = parts[0];
-      const sub = parts[1]; // undefined if no sub-category
+      let current = tree;
 
-      if (!hierarchy[main]) {
-        hierarchy[main] = [];
-      }
-
-      if (sub && !hierarchy[main].includes(sub)) {
-        hierarchy[main].push(sub);
-      }
+      parts.forEach((part, index) => {
+        if (!current[part]) {
+          current[part] = {};
+        }
+        current = current[part];
+      });
     });
 
-    return hierarchy;
+    return tree;
   }, []);
 
-  const mainCategories = Object.keys(categoryHierarchy);
-  const subCategories = selectedMain !== 'All' ? categoryHierarchy[selectedMain] : [];
+  // Get current level categories based on selected path
+  const getCurrentLevelCategories = () => {
+    let current = categoryTree;
+    for (const part of selectedPath) {
+      current = current[part] || {};
+    }
+    return Object.keys(current);
+  };
 
-  // 2. Filter Logic
+  const currentLevelCategories = getCurrentLevelCategories();
+
+  // Filter Logic
   const filteredPosts = posts.filter(post => {
     // Search Filter
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -54,18 +56,10 @@ function AllPosts() {
 
     // Category Filter
     let matchesCategory = true;
-    if (selectedMain !== 'All') {
-      // Check if post belongs to Main (starts with Main)
-      // "Dev" matches "Dev", "Dev/React"
-      matchesCategory = post.category.startsWith(selectedMain);
-
-      if (selectedSub !== 'All') {
-        // If Sub selected, must match specific sub
-        // "Dev/React"
-        // precise string check or "Main/Sub"
-        const targetCategory = `${selectedMain}/${selectedSub}`;
-        matchesCategory = post.category === targetCategory;
-      }
+    if (selectedPath.length > 0) {
+      const postCategoryParts = post.category.split('/');
+      // Check if each segment of selectedPath matches the corresponding segment in post category
+      matchesCategory = selectedPath.every((segment, index) => postCategoryParts[index] === segment);
     }
 
     return matchesSearch && matchesCategory;
@@ -87,32 +81,36 @@ function AllPosts() {
     setCurrentPage(1);
   };
 
-  const handleMainCategoryChange = (main) => {
-    setSelectedMain(main);
-    setSelectedSub('All'); // Reset sub when main changes
+  const handleCategoryClick = (category, level) => {
+    // If clicking the already selected category at this level, go back one level
+    if (selectedPath[level] === category) {
+      setSelectedPath(selectedPath.slice(0, level));
+    } else {
+      const newPath = selectedPath.slice(0, level);
+      newPath.push(category);
+      setSelectedPath(newPath);
+    }
     setCurrentPage(1);
   };
 
-  const handleSubCategoryChange = (sub) => {
-    setSelectedSub(sub);
+  const handleResetPath = (level) => {
+    setSelectedPath(selectedPath.slice(0, level));
     setCurrentPage(1);
   };
 
   return (
-    <main className="container" style={{ paddingTop: '60px', paddingBottom: '80px', flex: 1 }}>
-      <Helmet>
-        <title>전체 글</title>
-        <meta name="description" content="블로그의 모든 글 목록입니다." />
-      </Helmet>
-      <header style={{ marginBottom: '60px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>전체 글</h1>
+    <main className="container page-container" style={{ marginTop: '48px', flex: 1 }}>
+      <title>전체 글</title>
+      <meta name="description" content="블로그의 모든 글 목록입니다." />
+      <header style={{ marginBottom: '24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '2.5rem' }}>전체 글</h1>
         <p style={{ color: 'var(--color-text-muted)' }}>
           이것 저것, 요리 조리
         </p>
       </header>
 
       {/* Search and Filter Section */}
-      <div style={{ marginBottom: '40px', maxWidth: '800px', margin: '0 auto 60px' }}>
+      <div style={{ marginBottom: '60px' }}>
         <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
@@ -138,79 +136,111 @@ function AllPosts() {
         {/* Categories Container */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
 
-          {/* Level 1: Main Categories */}
+          {/* Level 1: Top-level Categories */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
-            {mainCategories.map(category => (
+            <button
+              onClick={() => handleResetPath(0)}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '25px',
+                border: selectedPath.length === 0 ? '2px solid var(--color-accent-wood)' : '1px solid rgba(0,0,0,0.1)',
+                backgroundColor: selectedPath.length === 0 ? 'var(--color-accent-wood)' : 'transparent',
+                color: selectedPath.length === 0 ? '#fff' : 'var(--color-text-muted)',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: selectedPath.length === 0 ? 600 : 400,
+                transition: 'all 0.2s ease',
+                minWidth: '80px'
+              }}
+            >
+              전체
+            </button>
+            {Object.keys(categoryTree).map(category => (
               <button
                 key={category}
-                onClick={() => handleMainCategoryChange(category)}
+                onClick={() => handleCategoryClick(category, 0)}
                 style={{
                   padding: '10px 20px',
                   borderRadius: '25px',
-                  border: selectedMain === category ? '2px solid var(--color-accent-wood)' : '1px solid rgba(0,0,0,0.1)',
-                  backgroundColor: selectedMain === category ? 'var(--color-accent-wood)' : 'transparent',
-                  color: selectedMain === category ? '#fff' : 'var(--color-text-muted)',
+                  border: selectedPath[0] === category ? '2px solid var(--color-accent-wood)' : '1px solid rgba(0,0,0,0.1)',
+                  backgroundColor: selectedPath[0] === category ? 'var(--color-accent-wood)' : 'transparent',
+                  color: selectedPath[0] === category ? '#fff' : 'var(--color-text-muted)',
                   cursor: 'pointer',
                   fontSize: '1rem',
-                  fontWeight: selectedMain === category ? 600 : 400,
+                  fontWeight: selectedPath[0] === category ? 600 : 400,
                   transition: 'all 0.2s ease',
                   minWidth: '80px'
                 }}
               >
-                {category === 'All' ? '전체' : category}
+                {category}
               </button>
             ))}
           </div>
 
-          {/* Level 2: Sub Categories (Conditional) */}
-          {selectedMain !== 'All' && subCategories.length > 0 && (
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '8px',
-              flexWrap: 'wrap',
-              padding: '10px 20px',
-              backgroundColor: 'var(--color-bg-subtle)',
-              borderRadius: '20px',
-              animation: 'fadeIn 0.3s ease'
-            }}>
-              <button
-                onClick={() => handleSubCategoryChange('All')}
+          {/* Render each subsequent level */}
+          {selectedPath.map((selectedCategory, levelIndex) => {
+            // Get categories for this level
+            let current = categoryTree;
+            for (let i = 0; i <= levelIndex; i++) {
+              current = current[selectedPath[i]] || {};
+            }
+            const categoriesAtLevel = Object.keys(current);
+
+            if (categoriesAtLevel.length === 0) return null;
+
+            return (
+              <div
+                key={levelIndex}
                 style={{
-                  padding: '6px 16px',
-                  borderRadius: '15px',
-                  border: 'none',
-                  backgroundColor: selectedSub === 'All' ? 'var(--color-accent-wood)' : 'transparent',
-                  color: selectedSub === 'All' ? '#fff' : 'var(--color-text-muted)',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: selectedSub === 'All' ? 600 : 400,
-                  transition: 'all 0.2s ease'
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  flexWrap: 'wrap',
+                  padding: '10px 20px',
+                  backgroundColor: 'var(--color-bg-subtle)',
+                  borderRadius: '20px',
+                  animation: 'fadeIn 0.3s ease'
                 }}
               >
-                전체
-              </button>
-              {subCategories.map(sub => (
-                <button
-                  key={sub}
-                  onClick={() => handleSubCategoryChange(sub)}
-                  style={{
-                    padding: '6px 16px',
-                    borderRadius: '15px',
-                    border: 'none',
-                    backgroundColor: selectedSub === sub ? 'var(--color-accent-wood)' : 'transparent',
-                    color: selectedSub === sub ? '#fff' : 'var(--color-text-muted)',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                    fontWeight: selectedSub === sub ? 600 : 400,
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  {sub}
-                </button>
-              ))}
-            </div>
-          )}
+                {categoriesAtLevel.map(category => {
+                  const isSelected = selectedPath[levelIndex + 1] === category;
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => handleCategoryClick(category, levelIndex + 1)}
+                      style={{
+                        padding: '6px 16px',
+                        borderRadius: '15px',
+                        border: 'none',
+                        backgroundColor: isSelected ? 'var(--color-accent-wood)' : 'transparent',
+                        color: isSelected ? '#fff' : 'var(--color-text-muted)',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        fontWeight: isSelected ? 600 : 400,
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseOver={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.backgroundColor = 'var(--color-accent-wood)';
+                          e.currentTarget.style.color = '#fff';
+                          e.currentTarget.style.fontWeight = '600';
+                        }
+                      }}
+                      onMouseOut={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = 'var(--color-text-muted)';
+                          e.currentTarget.style.fontWeight = '400';
+                        }
+                      }}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -218,69 +248,7 @@ function AllPosts() {
         <>
           <div className="posts-grid">
             {currentPosts.map((post) => (
-              <article
-                key={post.id}
-                className="card"
-                onClick={() => navigate(`/posts/${post.id}`)}
-                style={{
-                  cursor: 'pointer',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '100%',
-                  backgroundColor: '#fff',
-                  border: '1px solid rgba(0,0,0,0.08)',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 20px rgba(0,0,0,0.1)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-                }}
-              >
-                <div style={{ marginBottom: '16px' }}>
-                  <span style={{
-                    fontSize: '0.85rem',
-                    color: 'var(--color-accent-wood)',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em'
-                  }}>
-                    {post.category.replace('/', ' > ')}
-                  </span>
-                </div>
-                <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', lineHeight: 1.3 }}>
-                  {post.title}
-                </h2>
-                <p style={{
-                  fontSize: '0.95rem',
-                  color: 'var(--color-text-muted)',
-                  marginBottom: '24px',
-                  flex: 1,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
-                }}>
-                  {post.summary}
-                </p>
-                <div style={{
-                  fontSize: '0.85rem',
-                  color: 'var(--color-text-muted)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginTop: 'auto'
-                }}>
-                  <span>{formatDate(post.date)}</span>
-                  <span style={{ color: 'var(--color-accent-wood)', fontWeight: 500 }}>
-                    더 읽기 →
-                  </span>
-                </div>
-              </article>
+              <PostCard key={post.id} post={post} />
             ))}
           </div>
 
@@ -358,6 +326,25 @@ function AllPosts() {
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-5px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+          .page-container h1 {
+            font-size: 2rem !important;
+          }
+
+          .page-container p {
+            font-size: 0.9rem !important;
+          }
+
+          .page-container input {
+            font-size: 0.9rem !important;
+            max-width: 100% !important;
+          }
+
+          .page-container button {
+            font-size: 0.85rem !important;
+          }
         }
       `}</style>
     </main>

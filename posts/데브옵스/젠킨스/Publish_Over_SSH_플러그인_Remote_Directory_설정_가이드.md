@@ -5,7 +5,6 @@ tags:
 created_date: 2025-08-26 11:14:57
 last_modified_date: 2025-08-26 11:14:57
 ---
-> 지극히 개인적으로 공부한 내용과 경험을 바탕으로 작성된 글입니다.
 
 # Jenkins Publish Over SSH 플러그인 - Remote Directory 설정 주의사항
 

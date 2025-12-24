@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Cheoma from './components/Cheoma';
+import Snowfall from './components/Snowfall';
 import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import AllPosts from './pages/AllPosts';
@@ -10,17 +10,19 @@ import { getCurrentSeason } from './utils/theme';
 import './App.css';
 
 function App() {
+  const [season, setSeason] = React.useState('');
+
   React.useEffect(() => {
-    const season = getCurrentSeason();
-    document.documentElement.setAttribute('data-season', season);
+    const currentSeason = getCurrentSeason();
+    setSeason(currentSeason);
+    document.documentElement.setAttribute('data-season', currentSeason);
   }, []);
 
   return (
     <Router>
       <div className="app-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+        {season === 'winter' && <Snowfall />}
         <Header />
-        <Cheoma />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts />} />

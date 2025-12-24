@@ -1,0 +1,232 @@
+/* Markdown Content Styles */
+.markdownContent {
+    font-size: 1.22rem;
+    line-height: 1.8;
+    color: var(--color-text-main);
+}
+
+.markdownContent h1,
+.markdownContent h2,
+.markdownContent h3,
+.markdownContent h4 {
+    margin-top: 1.625em;
+    margin-bottom: 1em;
+    color: var(--color-text-main);
+    line-height: 1.4;
+    text-align: center;
+}
+
+.markdownContent h1 {
+    font-size: 2.2rem;
+}
+
+.markdownContent h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--color-accent-wood);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.markdownContent h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-accent-roof);
+}
+
+.markdownContent p {
+    margin-bottom: 1.8em;
+    word-break: keep-all;
+    text-align: left;
+}
+
+.markdownContent blockquote {
+    border-left: 4px solid var(--color-accent-wood);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+    background-color: var(--color-bg-subtle);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    text-align: left;
+}
+
+.markdownContent blockquote p {
+    margin: 0;
+}
+
+.markdownContent a {
+    color: var(--color-accent-wood);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.markdownContent a:hover {
+    color: var(--color-accent-roof);
+    text-decoration-thickness: 2px;
+}
+
+.markdownContent ul,
+.markdownContent ol {
+    margin-bottom: 1.8em;
+    padding-left: 1.5em;
+    text-align: left;
+}
+
+.markdownContent ul {
+    list-style-type: disc;
+}
+
+.markdownContent ol {
+    list-style-type: decimal;
+}
+
+.markdownContent li {
+    margin-bottom: 0.5em;
+    padding-left: 0.5em;
+}
+
+.markdownContent li::marker {
+    color: var(--color-accent-wood);
+}
+
+.markdownContent img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin: 2.5em 0;
+    display: block;
+}
+
+.markdownContent code {
+    background-color: var(--color-bg-subtle);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--color-accent-roof);
+}
+
+.markdownContent pre {
+    margin: 2rem 0;
+    border-radius: var(--border-radius);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.markdownContent hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-accent-wood), transparent);
+    margin: 4rem 0;
+    opacity: 0.5;
+}
+
+.markdownContent strong {
+    font-weight: 700;
+    color: var(--color-accent-roof);
+}
+
+.markdownContent em {
+    font-family: var(--font-serif);
+    color: var(--color-accent-wood);
+}
+
+/* Code Block Styles */
+.codeBlockContainer {
+    margin: 2rem 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #1e1e1e;
+    max-width: 100%;
+}
+
+.codeHeader {
+    background: #1e1e1e;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.codeControls {
+    display: flex;
+    gap: 8px;
+}
+
+.codeControlDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.codeTitle {
+    flex: 1;
+    text-align: center;
+    color: #888;
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    user-select: none;
+}
+
+.codeContentWrapper {
+    position: relative;
+}
+
+.inlineCode {
+    background: var(--color-bg-subtle);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: var(--color-accent-roof);
+    font-size: 0.9em;
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+/* Responsive Mobile Styles */
+@media (max-width: 768px) {
+    .markdownContent {
+        max-width: 100%;
+        overflow-x: hidden;
+        font-size: 1rem !important;
+    }
+
+    .markdownContent h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .markdownContent h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .markdownContent h3 {
+        font-size: 1.2rem !important;
+    }
+
+    .markdownContent p {
+        font-size: 0.95rem !important;
+    }
+
+    .markdownContent pre,
+    .codeBlockContainer {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .markdownContent code {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: 0.85em !important;
+    }
+
+    .markdownContent img {
+        max-width: 100%;
+        height: auto;
+    }
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+
 import { posts } from '../utils/posts';
 
 import { formatDate } from '../utils/dateFormatter';
+import PostCard from '../components/PostCard';
 
 function Home() {
   const navigate = useNavigate();
@@ -13,16 +14,14 @@ function Home() {
   };
 
   return (
-    <main className="container" style={{ flex: 1, paddingTop: '120px' }}>
-      <Helmet>
-        <title>Dev | baklibra26</title>
-        <meta name="description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
-        <meta property="og:title" content="Dev | baklibra26" />
-        <meta property="og:description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
-      </Helmet>
+    <main className="container page-container" style={{ marginTop: '48px', flex: 1 }}>
+      <title>Dev | baklibra26</title>
+      <meta name="description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
+      <meta property="og:title" content="Dev | baklibra26" />
+      <meta property="og:description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
 
       {/* Hero Section - Modern & Minimal */}
-      <section className="hero flex flex-col justify-between" style={{ marginBottom: '120px', minHeight: '40vh' }}>
+      <section className="hero flex flex-col justify-between" style={{ marginBottom: '72px', minHeight: '20vh' }}>
         <div style={{ textAlign: 'center', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span style={{
             display: 'inline-block',
@@ -39,64 +38,55 @@ function Home() {
             개발하는 고양이는<br />
             <span className="text-serif" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>줄여서 개고양</span>
           </h1>
-          <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
+          <p className="text-serif" style={{ fontSize: '1.1rem', lineHeight: '1.8', fontStyle: 'italic', color: 'var(--color-text-muted)' }}>
             개고냐옹냐옹<br />
           </p>
         </div>
 
-        {/* Subtle Hanok Touch - Vertical Text as Accent */}
-        <div style={{
-          position: 'absolute',
-          right: '5%',
-          top: '30%',
-          writingMode: 'vertical-rl',
-          textOrientation: 'mixed',
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1rem',
-          color: 'rgba(0,0,0,0.1)',
-          letterSpacing: '1em',
-          userSelect: 'none'
-        }}>
-          日日是好日
-        </div>
       </section>
 
       {/* Blog List Section */}
       <section className="blog-list">
-        <div className="flex justify-between items-end" style={{ marginBottom: '40px' }}>
+        <div className="flex justify-between items-end" style={{ maxWidth: '992px', width: '100%', margin: '0 auto 24px', padding: '0' }}>
           <h2 style={{ margin: 0 }}>최신 글</h2>
           <a href="/posts" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'underline' }}>전체 보기</a>
         </div>
 
         <div className="posts-grid">
           {posts.slice(0, 6).map(post => (
-            <article
-              key={post.id}
-              className="card post-card"
-              style={{ cursor: 'pointer' }}
-              onClick={() => handlePostClick(post.id)}
-            >
-              <div className="flex justify-between items-center" style={{ marginBottom: '24px' }}>
-                <span style={{
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  color: 'var(--color-accent-wood)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
-                }}>
-                  {post.category}
-                </span>
-                <span style={{ fontSize: '0.85rem', color: '#999' }}>{formatDate(post.date)}</span>
-              </div>
-              <h3 style={{ marginBottom: '16px', fontSize: '1.4rem' }}>{post.title}</h3>
-              <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
-                {post.summary}
-              </p>
-              <div className="hanok-accent-line" style={{ marginTop: 'auto', width: '24px', height: '2px', backgroundColor: '#eee' }}></div>
-            </article>
+            <PostCard key={post.id} post={post} />
           ))}
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .page-container h1 {
+            font-size: 2rem !important;
+          }
+
+          .page-container h2 {
+            font-size: 1.5rem !important;
+          }
+
+          .page-container p {
+            font-size: 0.95rem !important;
+          }
+
+          /* "개발 블로그" 태그 (첫 번째 span) 타겟팅 구체화 */
+          .page-container .hero > div > span {
+            font-size: 0.8rem !important;
+          }
+          
+          /* "줄여서 개고양" 타겟팅 및 스타일 보정 */
+          .page-container .hero h1 span {
+            display: block; /* 모바일에서 줄바꿈 */
+            margin-top: 8px;
+            font-size: 1.45rem !important; /* 크기 키움 */
+          }
+
+        }
+      `}</style>
     </main>
   );
 }

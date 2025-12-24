@@ -20,6 +20,26 @@ const Footer = () => {
           &copy; 2024 baklibra26. All rights reserved.
         </p>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          footer {
+            padding: 30px 0 !important;
+            margin-top: 40px !important;
+          }
+
+          footer .flex.gap-8 {
+            gap: 12px !important;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 0.8rem !important;
+          }
+
+          footer p {
+            font-size: 0.75rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

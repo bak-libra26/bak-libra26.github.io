@@ -20,19 +20,19 @@ const Header = () => {
         borderBottom: "1px solid rgba(0,0,0,0.05)"
       }}
     >
-      <div className="container flex justify-between items-center">
+      <div className="flex justify-between items-center header-container" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '0 32px' }}>
         <Link
           to="/"
           className="logo inline-flex items-center"
           style={{
             fontSize: "1.25rem",
             fontWeight: "700",
-            lineHeight: "1",                    // 추가
+            lineHeight: "1",
             color: "var(--color-text-main)",
             letterSpacing: "-0.03em",
             textDecoration: "none",
-            display: "flex",       // Added to align text and span
-            alignItems: "center"   // Added for vertical centering,
+            display: "flex",
+            alignItems: "center"
           }}
         >
           Dev / baklibra26
@@ -72,6 +72,26 @@ const Header = () => {
         </nav>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .logo {
+            font-size: 1rem !important;
+          }
+
+          nav ul.flex {
+            gap: 12px !important;
+          }
+
+          .nav-link {
+            font-size: 0.8rem !important;
+          }
+
+          header {
+            padding: 12px 0 !important;
+          }
+        }
+      `}</style>
     </header>
   );
 };

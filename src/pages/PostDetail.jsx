@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+
 import { posts } from '../utils/posts';
 
 // Components
@@ -25,19 +25,17 @@ function PostDetail() {
   }
 
   return (
-    <main className="container" style={{ flex: 1, paddingTop: '120px', paddingBottom: '80px', position: 'relative' }}>
-      <Helmet>
-        <title>{post.title}</title>
-        <meta name="description" content={post.summary} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.summary} />
-        <meta property="og:url" content={`https://bak-libra26.github.io/posts/${post.id}`} />
-        <meta property="twitter:card" content="summary" />
-        <meta property="twitter:title" content={post.title} />
-        <meta property="twitter:description" content={post.summary} />
-        <link rel="canonical" href={`https://bak-libra26.github.io/posts/${post.id}`} />
-      </Helmet>
+    <main className="container page-container" style={{ marginTop: '48px', flex: 1, position: 'relative' }}>
+      <title>{post.title}</title>
+      <meta name="description" content={post.summary} />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content={post.title} />
+      <meta property="og:description" content={post.summary} />
+      <meta property="og:url" content={`https://bak-libra26.github.io/posts/${post.id}`} />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:title" content={post.title} />
+      <meta property="twitter:description" content={post.summary} />
+      <link rel="canonical" href={`https://bak-libra26.github.io/posts/${post.id}`} />
 
       <button
         onClick={() => navigate('/')}
@@ -60,7 +58,7 @@ function PostDetail() {
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
 
         {/* Main Article Content */}
-        <article style={{ flex: 1, maxWidth: '800px', width: '100%', minWidth: 0 }}>
+        <article style={{ width: '100%', maxWidth: '800px', minWidth: 0 }}>
           <PostHeader
             title={post.title}
             category={post.category}
@@ -75,6 +73,28 @@ function PostDetail() {
         {/* Sidebar TOC - Visible only on Desktop via CSS */}
         <TableOfContents content={post.content} />
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          /* Prevent horizontal overflow on mobile */
+          article {
+            max-width: 100vw;
+            overflow-x: hidden;
+          }
+
+          .post-title {
+            font-size: 2rem !important;
+          }
+
+          .post-category {
+            font-size: 0.8rem !important;
+          }
+
+          .post-date {
+            font-size: 0.85rem !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }

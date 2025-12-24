@@ -3,29 +3,52 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeSlug from 'rehype-slug';
+import styles from './PostContent.module.css';
 
 function PostContent({ content }) {
     return (
-        <div className="markdown-content">
+        <div className={styles.markdownContent}>
             <ReactMarkdown
                 rehypePlugins={[rehypeSlug]}
                 components={{
+                    blockquote({ node, children, ...props }) {
+                        return (
+                            <blockquote
+                                style={{
+                                    borderLeft: '4px solid var(--color-accent-wood)',
+                                    padding: '1.5rem 1.5rem',
+                                    margin: '2rem 0',
+                                    fontStyle: 'italic',
+                                    color: 'var(--color-text-muted)',
+                                    backgroundColor: 'var(--color-bg-subtle)',
+                                    borderRadius: '0 var(--border-radius) var(--border-radius) 0',
+                                    textAlign: 'left',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    minHeight: '60px'
+                                }}
+                                {...props}
+                            >
+                                {children}
+                            </blockquote>
+                        );
+                    },
                     code({ node, inline, className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         return !inline && match ? (
-                            <div className="code-block-container">
-                                <div className="code-header">
-                                    <div className="code-controls">
-                                        <div className="code-control-dot" style={{ background: '#ff5f56' }}></div>
-                                        <div className="code-control-dot" style={{ background: '#ffbd2e' }}></div>
-                                        <div className="code-control-dot" style={{ background: '#27c93f' }}></div>
+                            <div className={styles.codeBlockContainer}>
+                                <div className={styles.codeHeader}>
+                                    <div className={styles.codeControls}>
+                                        <div className={styles.codeControlDot} style={{ background: '#ff5f56' }}></div>
+                                        <div className={styles.codeControlDot} style={{ background: '#ffbd2e' }}></div>
+                                        <div className={styles.codeControlDot} style={{ background: '#27c93f' }}></div>
                                     </div>
-                                    <div className="code-title">
+                                    <div className={styles.codeTitle}>
                                         {match[1] ? match[1].toUpperCase() : 'CODE'}
                                     </div>
                                 </div>
 
-                                <div className="code-content-wrapper">
+                                <div className={styles.codeContentWrapper}>
                                     <SyntaxHighlighter
                                         style={vscDarkPlus}
                                         language={match[1]}
@@ -89,7 +112,7 @@ function PostContent({ content }) {
                                 </div>
                             </div>
                         ) : (
-                            <code className={`inline-code ${className || ''}`} {...props}>
+                            <code className={`${styles.inlineCode} ${className || ''}`} {...props}>
                                 {children}
                             </code>
                         );
