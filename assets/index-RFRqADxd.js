@@ -1404,7 +1404,7 @@ created_date: 2025-12-31 12:01:23
 last_modified_date: 2025-12-31 12:01:23
 ---
 
-# 리액티브 스트림즈와 리액터(Project Reactor)
+# 리액티브 스트림즈와 프로젝트 리액터(Project Reactor)
 
 **리액티브 스트림즈(Reactive Streams) 는 비동기 스트림을 논블로킹 방식으로 처리하면서, 생산자와 소비자 사이의 속도 차이를 제어하기 위한 표준 사양** 입니다. 
 
@@ -1570,7 +1570,7 @@ last_modified_date: 2025-12-31 12:01:23
 
 --- 
 
-## 프로젝트 리액터(Project Reactor)
+## 프로젝트 리액터Project Reactor)
 
 > [**Reactor** is a fourth-generation reactive library, based on the **Reactive Streams specification**, for building non-blocking applications on the JVM](https://projectreactor.io/)
 
