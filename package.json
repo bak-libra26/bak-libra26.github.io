@@ -8,7 +8,7 @@
     "build": "node scripts/generate-sitemap.js && node scripts/generate-feed.js && vite build && node scripts/copy-posts.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist -t"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",

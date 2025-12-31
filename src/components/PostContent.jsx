@@ -5,7 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeSlug from 'rehype-slug';
 import styles from './PostContent.module.css';
 
-function PostContent({ content }) {
+function PostContent({ content, postId }) {
     return (
         <div className={styles.markdownContent}>
             <ReactMarkdown
@@ -13,18 +13,26 @@ function PostContent({ content }) {
                 components={{
                     img({ node, ...props }) {
                         // Fix relative paths for images
-                        // Markdown file: posts/A/B/Post.md
-                        // Image file: posts/A/B/Image.png
-                        // URL: /posts/A/B/Post
-                        // Browser resolves relative "Image.png" to /posts/A/B/Post/Image.png (WRONG)
-                        // Verify if src is relative (doesn't start with / or http)
-                        if (props.src && !props.src.startsWith('/') && !props.src.startsWith('http')) {
-                            // We need to resolve it relative to the parent directory of the post
-                            // So we explicitly correct it or let browser resolve it by going up one level?
-                            // Actually, simpler: just construct the absolute path.
-                            // But we don't know the exact path here easily without context.
-                            // Assuming standard relative path behavior, prepending "../" fixes the "off-by-one" level.
-                            return <img {...props} src={`../${props.src}`} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
+                        // Markdown file: posts/개발/자바/리액티브/Post.md
+                        // Image file: posts/개발/자바/리액티브/Image.png
+                        // URL: /posts/개발/자바/리액티브/Post
+                        // Browser resolves relative "Image.png" to /posts/개발/자바/리액티브/Post/Image.png (WRONG)
+                        // We need: /posts/개발/자바/리액티브/Image.png (CORRECT)
+
+                        if (props.src && !props.src.startsWith('/') && !props.src.startsWith('http') && postId) {
+                            // Extract the directory path from postId
+                            // postId example: "개발/자바/리액티브/리액티브_스트림즈와_프로젝트_리액터"
+                            // We need: "개발/자바/리액티브"
+                            const lastSlashIndex = postId.lastIndexOf('/');
+                            const postDirectory = lastSlashIndex !== -1 ? postId.substring(0, lastSlashIndex) : '';
+
+                            // Remove ./ prefix if present
+                            const cleanSrc = props.src.startsWith('./') ? props.src.slice(2) : props.src;
+
+                            // Construct the absolute path
+                            const absolutePath = postDirectory ? `/posts/${postDirectory}/${cleanSrc}` : `/posts/${cleanSrc}`;
+
+                            return <img {...props} src={absolutePath} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
                         }
                         return <img {...props} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
                     },

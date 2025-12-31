@@ -65,7 +65,7 @@ function PostDetail() {
             date={post.date}
           />
 
-          <PostContent content={post.content} />
+          <PostContent content={post.content} postId={post.id} />
 
           <PostFooter />
         </article>
