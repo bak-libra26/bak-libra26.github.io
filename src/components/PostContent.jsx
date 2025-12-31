@@ -11,6 +11,23 @@ function PostContent({ content }) {
             <ReactMarkdown
                 rehypePlugins={[rehypeSlug]}
                 components={{
+                    img({ node, ...props }) {
+                        // Fix relative paths for images
+                        // Markdown file: posts/A/B/Post.md
+                        // Image file: posts/A/B/Image.png
+                        // URL: /posts/A/B/Post
+                        // Browser resolves relative "Image.png" to /posts/A/B/Post/Image.png (WRONG)
+                        // Verify if src is relative (doesn't start with / or http)
+                        if (props.src && !props.src.startsWith('/') && !props.src.startsWith('http')) {
+                            // We need to resolve it relative to the parent directory of the post
+                            // So we explicitly correct it or let browser resolve it by going up one level?
+                            // Actually, simpler: just construct the absolute path.
+                            // But we don't know the exact path here easily without context.
+                            // Assuming standard relative path behavior, prepending "../" fixes the "off-by-one" level.
+                            return <img {...props} src={`../${props.src}`} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
+                        }
+                        return <img {...props} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
+                    },
                     blockquote({ node, children, ...props }) {
                         return (
                             <blockquote

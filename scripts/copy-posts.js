@@ -13,6 +13,11 @@ function copyDir(src, dest) {
     const entries = fs.readdirSync(src, { withFileTypes: true });
 
     for (const entry of entries) {
+        // Skip hidden files and backup files
+        if (entry.name.startsWith('.') || entry.name.endsWith('~') || entry.name.endsWith('.swp') || entry.name.endsWith('.DS_Store')) {
+            continue;
+        }
+
         const srcPath = path.join(src, entry.name);
         const destPath = path.join(dest, entry.name);
 
