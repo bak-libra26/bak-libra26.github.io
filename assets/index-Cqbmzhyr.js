@@ -1885,7 +1885,22 @@ last_modified_date: 2026-01-08T11:03:06.000Z
     \`\`\`shell
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/사용자이름/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    \`\`\``,HN=Object.freeze(Object.defineProperty({__proto__:null,default:GN},Symbol.toStringTag,{value:"Module"})),jN=`---
+    \`\`\`
+
+
+## 설치 확인하기
+
+- Homebrew 버전 확인
+    \`\`\`shell
+    $ brew --version
+    Homebrew 5.0.9
+    \`\`\`
+
+위와같이 명령어를 입력했을 때, 설치한 Homebrew 의 버전이 출력된다면 정상적으로 설치된 것입니다.
+
+
+
+`,HN=Object.freeze(Object.defineProperty({__proto__:null,default:GN},Symbol.toStringTag,{value:"Module"})),jN=`---
 summary: 그라파나 설치해보자
 created-date: 2025-12-02 01:19:28
 last-modified-date: 2025-12-02 02:42:17
