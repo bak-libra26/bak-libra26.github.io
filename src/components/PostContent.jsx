@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -37,6 +37,14 @@ function PostContent({ content, postId }) {
                         return <img {...props} style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '2rem auto' }} />;
                     },
                     blockquote({ node, children, ...props }) {
+                        // Process children to trim leading/trailing whitespace
+                        const processedChildren = React.Children.map(children, child => {
+                            if (typeof child === 'string') {
+                                return child.trim();
+                            }
+                            return child;
+                        });
+
                         return (
                             <blockquote
                                 style={{
@@ -48,18 +56,38 @@ function PostContent({ content, postId }) {
                                     backgroundColor: 'var(--color-bg-subtle)',
                                     borderRadius: '0 var(--border-radius) var(--border-radius) 0',
                                     textAlign: 'left',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    minHeight: '60px'
+                                    minHeight: '60px',
+                                    whiteSpace: 'pre-line'
                                 }}
                                 {...props}
                             >
-                                {children}
+                                {processedChildren}
                             </blockquote>
                         );
                     },
+                    p({ node, children, ...props }) {
+                        // Check if this paragraph is inside a blockquote
+                        const isInBlockquote = node?.position?.start?.line &&
+                            content.split('\n')[node.position.start.line - 1]?.trim().startsWith('>');
+
+                        if (isInBlockquote) {
+                            return <>{children}</>;
+                        }
+
+                        return <p {...props}>{children}</p>;
+                    },
                     code({ node, inline, className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
+                        const [copied, setCopied] = useState(false);
+
+                        const handleCopy = () => {
+                            const code = String(children).replace(/\n$/, '');
+                            navigator.clipboard.writeText(code).then(() => {
+                                setCopied(true);
+                                setTimeout(() => setCopied(false), 2000);
+                            });
+                        };
+
                         return !inline && match ? (
                             <div className={styles.codeBlockContainer}>
                                 <div className={styles.codeHeader}>
@@ -71,6 +99,13 @@ function PostContent({ content, postId }) {
                                     <div className={styles.codeTitle}>
                                         {match[1] ? match[1].toUpperCase() : 'CODE'}
                                     </div>
+                                    <button
+                                        className={styles.copyButton}
+                                        onClick={handleCopy}
+                                        aria-label="Copy code"
+                                    >
+                                        {copied ? 'Copied!' : 'Copy'}
+                                    </button>
                                 </div>
 
                                 <div className={styles.codeContentWrapper}>

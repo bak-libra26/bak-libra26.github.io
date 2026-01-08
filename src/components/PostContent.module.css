@@ -86,7 +86,7 @@
 }
 
 .markdownContent li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.3em;
     padding-left: 0.5em;
 }
 
@@ -138,7 +138,7 @@
 
 /* Code Block Styles */
 .codeBlockContainer {
-    margin: 2rem 0;
+    margin: 8px 0;
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -188,6 +188,34 @@
     font-size: 0.9em;
     font-family: Menlo, Monaco, "Courier New", monospace;
 }
+
+.copyButton {
+    background: transparent;
+    border: none;
+    color: #adbac7;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    letter-spacing: 0.02em;
+    min-width: 70px;
+    text-align: center;
+}
+
+.copyButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
+}
+
+.copyButton:active {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(0.98);
+}
+
 
 /* Responsive Mobile Styles */
 @media (max-width: 768px) {
