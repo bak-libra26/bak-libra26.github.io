@@ -178,6 +178,8 @@ last_modified_date: 2026-01-08T11:03:06.000Z
     brew install cocoapods
     \`\`\`
 
+---
+
 ### Unable to get list of installed Simulator runtimes.
 
 - **해결 방법**
