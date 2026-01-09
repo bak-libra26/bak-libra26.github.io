@@ -9,8 +9,10 @@ import PostHeader from '../components/PostHeader';
 import PostContent from '../components/PostContent';
 import PostFooter from '../components/PostFooter';
 import TableOfContents from '../components/TableOfContents';
+import Giscus from '../components/Giscus';
 
 function PostDetail() {
+  // ... existing code ...
   const params = useParams();
   const id = params['*'];
   const navigate = useNavigate();
@@ -68,6 +70,9 @@ function PostDetail() {
           <PostContent content={post.content} postId={post.id} />
 
           <PostFooter />
+
+          {/* Comments Section */}
+          <Giscus />
         </article>
 
         {/* Sidebar TOC - Visible only on Desktop via CSS */}

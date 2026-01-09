@@ -3,12 +3,14 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 import styles from './PostContent.module.css';
 
 function PostContent({ content, postId }) {
     return (
         <div className={styles.markdownContent}>
             <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeSlug]}
                 components={{
                     img({ node, ...props }) {
