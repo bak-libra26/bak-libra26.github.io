@@ -19,12 +19,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/다트/플러터/플러터_설치하기</loc>
-    <lastmod>2026-01-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -32,12 +26,6 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/M1_MAC_레빗엠큐 설치하기_</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -97,12 +85,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/OpenJDK_11_설치</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_스트림즈와_프로젝트_리액터</loc>
     <lastmod>2025-12-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -111,12 +93,6 @@
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_프로그래밍_시작하기</loc>
     <lastmod>2025-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바스크립트/M1_Mac_NVM_설치</loc>
-    <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -135,6 +111,30 @@
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/환경설정/Homebrew_설치하기</loc>
     <lastmod>2026-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/환경설정/NVM_설치하기</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/환경설정/OpenJDK_11_설치하기</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/환경설정/RabbitMQ 설치하기</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/환경설정/플러터_설치하기</loc>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
