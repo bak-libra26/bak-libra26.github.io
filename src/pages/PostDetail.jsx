@@ -59,21 +59,23 @@ function PostDetail() {
       {/* Flex Container for Article + Sidebar */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
 
-        {/* Main Article Content */}
-        <article style={{ width: '100%', maxWidth: '800px', minWidth: 0 }}>
-          <PostHeader
-            title={post.title}
-            category={post.category}
-            date={post.date}
-          />
+        {/* Main Article Content Wrapper */}
+        <div style={{ width: '100%', maxWidth: '800px', minWidth: 0 }}>
+          <article>
+            <PostHeader
+              title={post.title}
+              category={post.category}
+              date={post.date}
+            />
 
-          <PostContent content={post.content} postId={post.id} />
+            <PostContent content={post.content} postId={post.id} />
 
-          <PostFooter />
+            <PostFooter />
+          </article>
 
           {/* Comments Section */}
           <Giscus />
-        </article>
+        </div>
 
         {/* Sidebar TOC - Visible only on Desktop via CSS */}
         <TableOfContents content={post.content} />
