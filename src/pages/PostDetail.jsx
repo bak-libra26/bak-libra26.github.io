@@ -74,7 +74,9 @@ function PostDetail() {
           </article>
 
           {/* Comments Section */}
-          <Giscus />
+          <div className="giscus-wrapper">
+            <Giscus />
+          </div>
         </div>
 
         {/* Sidebar TOC - Visible only on Desktop via CSS */}
@@ -87,6 +89,15 @@ function PostDetail() {
           article {
             max-width: 100vw;
             overflow-x: hidden;
+          }
+
+          /* Breakout Giscus on mobile to solve clipping */
+          /* Using negative margins now that zoom is removed */
+          .giscus-wrapper {
+            margin-left: -24px;
+            margin-right: -24px;
+            width: auto;
+            padding: 0 16px; /* Safe padding */
           }
 
           .post-title {

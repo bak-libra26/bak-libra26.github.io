@@ -51,7 +51,12 @@ body {
   color: var(--color-text-main);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  zoom: 0.85;
+  /* zoom: 0.85; Removed to fix layout calculation issues */
+}
+
+html {
+  font-size: 87.5%;
+  /* approx 14px (16 * 0.875), similar to zoom 0.85 effect */
 }
 
 html,
