@@ -47,12 +47,12 @@ function Home() {
 
       {/* Blog List Section */}
       <section className="blog-list">
-        <div className="flex justify-between items-end" style={{ maxWidth: '992px', width: '100%', margin: '0 auto 24px', padding: '0' }}>
-          <h2 style={{ margin: 0 }}>최신 글</h2>
-          <a href="/posts" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'underline' }}>전체 보기</a>
-        </div>
-
         <div className="posts-grid">
+          <div className="flex justify-between items-end" style={{ gridColumn: '1 / -1', width: '100%', marginBottom: '16px', padding: '0' }}>
+            <h2 style={{ margin: 0 }}>최신 글</h2>
+            <a href="/posts" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'underline' }}>전체 보기</a>
+          </div>
+
           {posts.slice(0, 6).map(post => (
             <PostCard key={post.id} post={post} />
           ))}

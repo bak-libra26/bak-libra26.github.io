@@ -13,8 +13,6 @@ function PostCard({ post }) {
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
-        maxWidth: '480px',
-        margin: '0 auto',
         minHeight: '320px',
         padding: '32px',
         boxSizing: 'border-box',

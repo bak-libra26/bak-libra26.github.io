@@ -140,6 +140,14 @@ ul {
   }
 }
 
+/* Tablet (iPad) Adjustment */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 80px;
+    /* Increase padding for tablet to reduce fullness */
+  }
+}
+
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(2, 480px);
@@ -150,7 +158,7 @@ ul {
 
 @media (min-width: 768px) {
   .posts-grid {
-    grid-template-columns: repeat(2, 480px);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
