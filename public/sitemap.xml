@@ -133,6 +133,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bak-libra26.github.io/posts/개발/환경설정/깃허브_비공개_레포지토리_잔디_심기</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bak-libra26.github.io/posts/개발/환경설정/플러터_설치하기</loc>
     <lastmod>2026-01-08</lastmod>
     <changefreq>weekly</changefreq>
