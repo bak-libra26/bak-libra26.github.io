@@ -86,7 +86,7 @@ function RelatedPosts({ currentPost }) {
                     color: 'var(--color-text-header)',
                     margin: 0
                 }}>
-                    관련 포스트
+                    함께 보면 좋은 글
                 </h3>
 
                 {relatedPosts.length > 4 && (
@@ -219,7 +219,7 @@ function RelatedPosts({ currentPost }) {
                     backgroundColor: 'rgba(0,0,0,0.02)',
                     borderRadius: '8px'
                 }}>
-                    현재 카테고리와 연관된 포스트가 없습니다.
+                    이 주제로는 첫 글이에요, 곧 친구들을 데려오겠습니다.
                 </div>
             )}
         </div>
