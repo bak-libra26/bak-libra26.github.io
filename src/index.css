@@ -78,7 +78,7 @@ ul {
 
 /* Layout Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -150,7 +150,7 @@ ul {
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 480px);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   justify-content: center;
 }

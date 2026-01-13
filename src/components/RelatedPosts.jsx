@@ -69,9 +69,6 @@ function RelatedPosts({ currentPost }) {
         <div style={{
             marginTop: '80px',
             marginBottom: '80px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: '90%',
             paddingTop: '40px',
             paddingBottom: '40px',
             borderTop: '1px solid rgba(0,0,0,0.08)',
