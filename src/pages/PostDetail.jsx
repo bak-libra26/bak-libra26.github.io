@@ -8,6 +8,7 @@ import NotFound from '../components/NotFound';
 import PostHeader from '../components/PostHeader';
 import PostContent from '../components/PostContent';
 import PostFooter from '../components/PostFooter';
+import RelatedPosts from '../components/RelatedPosts';
 import TableOfContents from '../components/TableOfContents';
 import Giscus from '../components/Giscus';
 
@@ -70,7 +71,9 @@ function PostDetail() {
 
             <PostContent content={post.content} postId={post.id} />
 
-            <PostFooter />
+            {/* <PostFooter /> */}
+
+            <RelatedPosts currentPost={post} />
           </article>
 
           {/* Comments Section */}
