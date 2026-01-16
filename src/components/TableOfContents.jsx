@@ -11,7 +11,7 @@ function TableOfContents({ content }) {
             const lines = content.split('\n');
             const extractedHeadings = [];
             lines.forEach(line => {
-                const match = line.match(/^(#{1,3})\s+(.+)$/);
+                const match = line.match(/^(#{2,3})\s+(.+)$/);
                 if (match) {
                     const level = match[1].length;
                     const text = match[2];
