@@ -5,7 +5,7 @@ function PostHeader({ title, category, date }) {
     return (
         <header className="post-header">
             <div className="post-category">
-                {category}
+                {category?.replace(/\//g, ' > ')}
             </div>
             <h1 className="post-title">{title}</h1>
             <div className="post-date">
