@@ -61,24 +61,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/스프링부트/Spring_Boot_란</loc>
-    <lastmod>2026-01-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/스프링부트/빈(Bean)_이란</loc>
-    <lastmod>2026-01-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</loc>
-    <lastmod>2026-01-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO_란_무엇인가.</loc>
     <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -104,6 +86,24 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_프로그래밍_시작하기</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/Spring_Boot_란</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/빈(Bean)_이란</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</loc>
     <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

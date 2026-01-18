@@ -15,9 +15,9 @@ function Home() {
 
   return (
     <main className="container page-container" style={{ marginTop: '48px', flex: 1 }}>
-      <title>Dev | baklibra26</title>
+      <title>Dev / baklibra26</title>
       <meta name="description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
-      <meta property="og:title" content="Dev | baklibra26" />
+      <meta property="og:title" content="Dev / baklibra26" />
       <meta property="og:description" content="2년차 백엔드 개발자로서, 공부한 것을 정리한 블로그입니다." />
 
       {/* Hero Section - Modern & Minimal */}
