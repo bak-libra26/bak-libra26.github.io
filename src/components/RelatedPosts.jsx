@@ -219,7 +219,13 @@ function RelatedPosts({ currentPost }) {
                     backgroundColor: 'rgba(0,0,0,0.02)',
                     borderRadius: '8px'
                 }}>
-                    이 주제로는 첫 글이네요. 앞으로 이 주제에 대한 글들을 차근차근 준비해볼게요.
+                    <p>
+                        이 주제로는 첫 글이네요.
+                    </p>
+                    <p>
+                        앞으로 이 주제에 대한 글들을 차근차근 준비해볼게요.
+                    </p>
+
                 </div>
             )}
         </div>
