@@ -1,5 +1,5 @@
 ---
-summary: Java NIO(New I/O) 란? 
+summary: java.io의 스트림·블로킹 모델 한계를 짚고, java.nio가 버퍼·채널·셀렉터 조합으로 어떻게 다른 I/O 모델을 제공하는지 정리했습니다.
 tags:
   - Java
   - JavaNIO
