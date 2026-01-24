@@ -73,7 +73,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Sinks,_리액터_스트림에_직접_값을_밀어_넣는_방법</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Sinks:_리액터_스트림에_직접_값을_밀어_넣는_방법</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -81,6 +81,12 @@
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액터,_백프레셔와_여러가지_전략</loc>
     <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액터_스레드와_스케줄러:_언제_publishOn,_subscribeOn을_쓸까</loc>
+    <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
