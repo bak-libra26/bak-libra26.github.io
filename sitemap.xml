@@ -13,6 +13,12 @@
   </url>
 
   <url>
+    <loc>https://bak-libra26.github.io/posts/개발/리액트/StrictMode_Definition</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bak-libra26.github.io/posts/개발/다트/플러터/플러터_MacOS_CodeSign_에러</loc>
     <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -63,6 +69,12 @@
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Hot_vs_Cold_Publisher:_같은_Flux가_구독자마다_다르게_보이는_이유</loc>
     <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Sinks,_리액터_스트림에_직접_값을_밀어_넣는_방법</loc>
+    <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
