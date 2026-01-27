@@ -46,6 +46,15 @@ function AllPosts() {
     return Object.keys(current);
   };
 
+  // Helper to count posts for a specific category path
+  const getCategoryCount = (path) => {
+    return posts.filter(post => {
+      const postCategoryParts = post.category.split('/');
+      if (postCategoryParts.length < path.length) return false;
+      return path.every((part, index) => postCategoryParts[index] === part);
+    }).length;
+  };
+
   const currentLevelCategories = getCurrentLevelCategories();
 
   // Filter Logic
@@ -153,7 +162,7 @@ function AllPosts() {
                 minWidth: '80px'
               }}
             >
-              전체
+              전체 ({posts.length})
             </button>
             {Object.keys(categoryTree).map(category => (
               <button
@@ -172,7 +181,7 @@ function AllPosts() {
                   minWidth: '80px'
                 }}
               >
-                {category}
+                {category.replace(/_/g, ' ')} ({getCategoryCount([category])})
               </button>
             ))}
           </div>
@@ -234,7 +243,7 @@ function AllPosts() {
                         }
                       }}
                     >
-                      {category}
+                      {category.replace(/_/g, ' ')} ({getCategoryCount([...selectedPath.slice(0, levelIndex + 1), category])})
                     </button>
                   );
                 })}
