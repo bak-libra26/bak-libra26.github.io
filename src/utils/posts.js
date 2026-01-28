@@ -37,11 +37,18 @@ export function getPosts() {
             date: metadata.date || metadata['created-date'] || metadata['created_date'] || metadata['last-modified-date'] || metadata['last_modified_date'] || 'No Date',
             summary: metadata.summary || content.slice(0, 150) + '...', // Fallback summary
             category: category, // Keep the raw directory structure as category
+            visibility: metadata.visibility || '',
             content,
             ...metadata // Spread other metadata
         };
 
-        posts.push(post);
+        switch (post.visibility) {
+            case "hidden":
+                break;
+
+            default:
+                posts.push(post);
+        }
     }
 
     // 5. Sort by date (descending)
