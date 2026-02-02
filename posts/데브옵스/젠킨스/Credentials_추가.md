@@ -12,7 +12,7 @@ last_modified_date: 2025-08-13T16:02:25.000Z
 
 
 ```shell
-jenkins.plugins.publish_over.BapPublisherException: Failed to connect and initialize SSH connection. Message: [Failed to connect session for config [Dev / mcmp-01]. Message [Auth fail for methods 'publickey,gssapi-keyex,gssapi-with-mic,password']]
+jenkins.plugins.publish_over.BapPublisherException: Failed to connect and initialize SSH connection. Message: [Failed to connect session for config [${config-name}]. Message [Auth fail for methods 'publickey,gssapi-keyex,gssapi-with-mic,password']]
 ```
 
 젠킨스에서 SSH Credentials로 배포 자동화 시도를 위해 서버의 `Credential` 추가 중 위의 에러 발생
