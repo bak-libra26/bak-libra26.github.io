@@ -6,7 +6,7 @@ tags:
 references:
 created_date: 2026-02-03 21:28:56
 last_modified_date: 2026-02-03 21:28:56
-visibility: hidden
+visibility: published
 ---
 
 > 이 글에서는 JDK 1.4 에 도입된 **java.nio** 의 **채널(`Channel`)** 이 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.
