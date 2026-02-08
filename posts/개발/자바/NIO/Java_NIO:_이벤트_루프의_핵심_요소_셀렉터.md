@@ -4,8 +4,14 @@ tags:
   - Java
   - JavaNIO
 references: 
-created_date: 2026-01-25 21:28:56
-last_modified_date: 2026-01-25 21:28:56
+created_date: 2026-02-04 21:28:56
+last_modified_date: 2026-02-04 21:28:56
 visibility: hidden
 ---
+
+> 이 글에서는 JDK 1.4 에 도입된 **java.nio** 의 **셀렉터(Selector)** 가 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.
+
+---
+
+# `java.nio`: 셀렉터(`Selector`)  
 

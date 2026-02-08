@@ -47,7 +47,7 @@ last_modified_date: 2025-08-14T14:54:54.000Z
         jdk: 'OpenJDK17'  
       
       environment:  
-        SERVICE_NAME: 'sender-manager'  
+        SERVICE_NAME: service-name  
         SLACK_CHANNEL: '#이슈'  
         REMOTE_DIR: credentials('HOME_PATH')      # 젠킨스 Credentials 바인딩 필요  
         SERVER_NAME: credentials('DEV_IP')      # SSH 서버명 (Publish Over SSH 플러그인 기준)  

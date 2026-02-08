@@ -18,32 +18,32 @@ Maven이 Nexus에 접근할 때 사용할 계정정보는 `$MAVEN_HOME/settings.
 - `settings.xml` 수정
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                              http://maven.apache.org/xsd/settings-1.0.0.xsd">
-  <servers>
-    <server>
-      <id>레포지토리ID</id>
-      <username>계정ID</username>
-      <password>계정PW</password>
-    </server>
-  </servers>
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                         xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                                                                           http://maven.apache.org/xsd/settings-1.0.0.xsd">
+     <servers>
+          <server>
+               <id>레포지토리ID</id>
+               <username>계정ID</username>
+               <password>계정PW</password>
+          </server>
+     </servers>
 </settings>
 ```
 
 ### 레포지토리 설정
 
-빌드시 필요한 라이브러리를 Nexus에서 받으려면 ‎`pom.xml`에 레포지토리 정보 추가해야 함.
+빌드시 필요한 라이브러리를 Nexus에서 받으려면 `pom.xml`에 레포지토리 정보 추가해야 함.
 
 ```xml
 <repositories>
-  <repository>
-    <id>레포지토리ID</id>
-    <name>레포지토리별칭</name>
-    <url>Nexus URL</url>
-  </repository>
+     <repository>
+          <id>레포지토리ID</id>
+          <name>레포지토리별칭</name>
+          <url>Nexus URL</url>
+     </repository>
 </repositories>
 ```
 
-- ‎`<id>` 값은 ‎`settings.xml`의 ‎`<server><id>`와 일치해야 함
-- 계정이 필요 없는 공개 레포는 ‎`<server>` 설정 생략 가능
+- `<id>` 값은 `settings.xml`의 `<server><id>`와 일치해야 함
+- 계정이 필요 없는 공개 레포는 `<server>` 설정 생략 가능

@@ -43,11 +43,11 @@ last_modified_date: 2025-08-13T16:20:22.000Z
     
     ```xml
 	<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-	                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+	                                                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
 	
-	  <servers>
+	     <servers>
 		<server>
 		  <id>${RepositoryName}</id>
 		  <username>${Id}</username>
@@ -65,11 +65,11 @@ last_modified_date: 2025-08-13T16:20:22.000Z
 - `${SPRING_BOOT_PROJECTS}/pom.xml`
 ```xml
 <repositories>
-    <repository>
-        <id>${Repository Id}</id>
-        <name>release</name>
-        <url>${Repository URL}</url>
-    </repository>
+          <repository>
+                    <id>${Repository Id}</id>
+                    <name>release</name>
+                    <url>${Repository URL}</url>
+          </repository>
 </repositories>
 ```
 
@@ -77,31 +77,16 @@ last_modified_date: 2025-08-13T16:20:22.000Z
 
 ```xml
 <distributionManagement>
-    <!-- release 버전 배포 저장소 -->
-    <repository>
-        <id>[서버 ID (settings.xml과 매칭)]</id>
-        <url>[release 리포지터리 url]</url>
-    </repository>
+          <!-- release 버전 배포 저장소 -->
+          <repository>
+                    <id>[서버 ID (settings.xml과 매칭)]</id>
+                    <url>[release 리포지터리 url]</url>
+          </repository>
 
-    <!-- snapshot 버전 배포 저장소 -->
-    <snapshotRepository>
-        <id>[서버 ID]</id>
-        <url>[snapshot 리포지터리 url]</url>
-    </snapshotRepository>
+          <!-- snapshot 버전 배포 저장소 -->
+          <snapshotRepository>
+                    <id>[서버 ID]</id>
+                    <url>[snapshot 리포지터리 url]</url>
+          </snapshotRepository>
 </distributionManagement>
 ```
-
----
-
-## 제목 추천
-
-1. Nexus Repository 유형 및 Spring Boot 연동 실전 가이드
-    
-2. Spring Boot와 Nexus 연동: Repository 타입별 설정과 자동 배포
-    
-3. Maven 기반 Spring Boot 프로젝트의 Nexus Repository 연결 및 배포 방법
-    
-4. Nexus와 연동하는 Spring Boot 프로젝트 설정 노하우
-    
-5. Repository 정책과 Spring Boot 연동을 위한 Nexus 활용법
-

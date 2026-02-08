@@ -9,7 +9,7 @@ last_modified_date: 2026-01-27 21:28:56
 visibility: public
 ---
 
-> 이 글에서는 **Java NIO** 의 **ByteBuffer** 가 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.
+> 이 글에서는 JDK 1.4 에 도입된 **java.nio** 의 **바이트 버퍼(`ByteBuffer`)** 가 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.
 
 ---
 
