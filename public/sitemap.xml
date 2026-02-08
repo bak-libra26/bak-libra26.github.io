@@ -67,8 +67,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/Java:_문자열_인코딩</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_java.io의_한계를_넘은_새로운_모델</loc>
     <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_단방향_스트림_대신_양방향_채널로</loc>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -79,14 +91,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_셀렉터로_여러_소켓을_이벤트_루프로_관리하기</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_스트림_대신_채널로_파일과_소켓_다루기</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_이벤트_루프의_핵심_요소_셀렉터</loc>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -224,7 +230,7 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nexus_Repository_유형_및_Spring_Boot_연동</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -236,19 +242,19 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/넥서스/Nginx_를_이용한_Nexus에_대한_리버스_프록시_구성</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Credentials_추가</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/GitHub_Webhook_자동_빌드_트리거링</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -278,19 +284,19 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Nexus_설정</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_JDK_설정</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/Pipeline_as_YAML</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -314,7 +320,7 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/데브옵스/젠킨스/빌드_실패,_원인은_라이브러리_캐시</loc>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
