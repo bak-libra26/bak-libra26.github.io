@@ -191,6 +191,3 @@ TCP 서버와 연결된 이후에는 해당 `SocketChannel` 을 통해 데이터
 
 
 ---
-
-
-## `Channel`: 
