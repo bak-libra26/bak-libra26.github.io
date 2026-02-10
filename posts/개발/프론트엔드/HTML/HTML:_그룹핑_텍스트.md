@@ -3,6 +3,8 @@ summary: HTML 의 그룹핑 텍스트(Grouping Text)에 대해서 알아보자.
 tags:
   - HTML 그룹핑 텍스트(Grouping Text)
 references: 
+created_date: 2026-02-09T21:09:52.000Z
+last_modified_date: 2026-02-09T22:38:52.000Z
 ---
 
 > 이 글에서는 HTML(HyperText Markup Language) 에서 그룹핑 텍스트(Grouping Text) 가 무엇이고 어떤 것들이 있는지 정리했습니다.
@@ -11,7 +13,7 @@ references:
 
 # HTML: 그룹핑 텍스트(Grouping Text)
 
-HTML 에서는 텍스트를 “그룹”으로 묶기 위해 `<div></div>` 와 `<span></<span>` 이라는 태그를 사용합니다.
+HTML 에서는 텍스트를 "그룹"으로 묶기 위해 `<div></div>` 와 `<span></<span>` 이라는 태그를 사용합니다.
 이 둘 모두 다른 요소들을 감싸서 구조를 만들거나 스타일/스크립트를 적용하기 위한 용도로 사용됩니다.
 
 ## 그룹핑 텍스트: `<div></div>`
