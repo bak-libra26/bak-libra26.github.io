@@ -5,7 +5,7 @@ references:
 created_date: 2025-08-03 18:16:47
 last_modified_date: 2025-08-03 18:17:02
 ---
-# React : StrictMode 란
+
 # React : StrictMode 란
 
 `<StrictMode>` 는 리액트 애플리케이션의 잠재적인 문제를 조기에 발견할 수 있도록  도와주는 도구로 `<StrictMode>` 는 실제로 UI에 아무런 영향을 주지 않으며, 오직 개발 환경에서만 동작한다.

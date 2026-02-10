@@ -13,170 +13,230 @@
   </url>
 
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/다트/플러터/어플리케이션_이름_변경_방법</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/다트/플러터/플러터_MacOS_CodeSign_에러</loc>
-    <lastmod>2026-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://bak-libra26.github.io/posts/개발/데이터베이스/몽고DB/Authentication_Failed_에러</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/메시징_큐의_개념과_기본_구조</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/메시징_큐의_개념과_기본_구조</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms)</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/메세지큐/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms)</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/Java:_문자열_인코딩</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/Java:_문자열_인코딩</loc>
     <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_java.io의_한계를_넘은_새로운_모델</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/NIO/Java_NIO:_java.io의_한계를_넘은_새로운_모델</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_단방향_스트림_대신_양방향_채널로</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/NIO/Java_NIO:_단방향_스트림_대신_양방향_채널로</loc>
     <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_바이트_버퍼로_버퍼_상태_관리하기</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/NIO/Java_NIO:_바이트_버퍼로_버퍼_상태_관리하기</loc>
     <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/NIO/Java_NIO:_이벤트_루프의_핵심_요소_셀렉터</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/NIO/Java_NIO:_이벤트_루프의_핵심_요소_셀렉터</loc>
     <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/네티/Netty:_java.net과_java.nio의_한계를_보완한_비동기_이벤트_기반_네트워크_프레임워크</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/네티/Netty:_java.net과_java.nio의_한계를_보완한_비동기_이벤트_기반_네트워크_프레임워크</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Hot_vs_Cold_Publisher:_같은_Flux가_구독자마다_다르게_보이는_이유</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/Hot_vs_Cold_Publisher:_같은_Flux가_구독자마다_다르게_보이는_이유</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/Sinks:_리액터_스트림에_직접_값을_밀어_넣는_방법</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/Sinks:_리액터_스트림에_직접_값을_밀어_넣는_방법</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액터,_백프레셔와_여러가지_전략</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/리액터,_백프레셔와_여러가지_전략</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액터_스레드와_스케줄러:_언제_publishOn,_subscribeOn을_쓸까</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/리액터_스레드와_스케줄러:_언제_publishOn,_subscribeOn을_쓸까</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_스트림즈_구현체,_리액터_한_번_써보기</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/리액티브_스트림즈_구현체,_리액터_한_번_써보기</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_스트림즈와_프로젝트_리액터</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/리액티브_스트림즈와_프로젝트_리액터</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/리액티브/리액티브_프로그래밍_시작하기</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/리액티브/리액티브_프로그래밍_시작하기</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/Spring_Boot_란</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/스프링부트/Spring_Boot_란</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/빈(Bean)_이란</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/스프링부트/빈(Bean)_이란</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바/스프링부트/제어의_역전(IoC)_과_의존성_주입(DI)</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바스크립트/Ubuntu환경에서_NodeJS_설치하기</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바스크립트/Ubuntu환경에서_NodeJS_설치하기</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바스크립트/리액트/StrictMode_Definition</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/백엔드/자바스크립트/자바스크립트_파일_확장자_차이</loc>
     <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bak-libra26.github.io/posts/개발/자바스크립트/자바스크립트_파일_확장자_차이</loc>
+    <loc>https://bak-libra26.github.io/posts/개발/크로스플랫폼/다트/플러터/어플리케이션_이름_변경_방법</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/크로스플랫폼/다트/플러터/플러터_MacOS_CodeSign_에러</loc>
     <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_구조와_필수_태그</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_그룹핑_텍스트</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_여러가지_목록</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_인풋,_사용자에게_입력을_받자</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_임베디드_미디어</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_전역_속성</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_테이블_태그</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_텍스트_관련_태그</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_폼,_입력_필드를_묶어_서버로_전달하자</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/자바스크립트/리액트/StrictMode_Definition</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/프론트엔드:_로드맵따라_시작해보기</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

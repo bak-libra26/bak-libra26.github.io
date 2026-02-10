@@ -6,7 +6,7 @@
 | 2026-01-12 | [리액티브 스트림즈 구현체, 리액터 한 번 써보기](posts/개발/자바/리액티브/리액티브_스트림즈_구현체,_리액터_한_번_써보기.md) |
 | 2026-01-11 | [깃허브 비공개 레포지토리 잔디 심기](posts/개발/환경설정/깃허브_비공개_레포지토리_잔디_심기.md) |
 | 2026-01-09 | [깃허브 페이지 댓글 구현하기](posts/사이드_프로젝트/개인_블로그/깃허브_페이지_댓글_구현하기.md) |
-| 2026-01-08 | [플러터 MacOS CodeSign 에러](posts/개발/다트/플러터/플러터_MacOS_CodeSign_에러.md) |
+| 2026-01-08 | [플러터 MacOS CodeSign 에러](posts/개발/크로스플랫폼/다트/플러터/플러터_MacOS_CodeSign_에러.md) |
 | 2026-01-08 | [Homebrew 설치하기](posts/개발/환경설정/Homebrew_설치하기.md) |
 | 2026-01-08 | [플러터 설치하기](posts/개발/환경설정/플러터_설치하기.md) |
 | 2025-12-31 | [리액티브 스트림즈와 프로젝트 리액터](posts/개발/자바/리액티브/리액티브_스트림즈와_프로젝트_리액터.md) |
@@ -19,14 +19,14 @@
 | 2025-08-26 | [Publish Over SSH 서버 테스트 접속 실패](posts/데브옵스/젠킨스/Publish_Over_SSH_서버_테스트_접속_실패.md) |
 | 2025-08-26 | [빌드 실패, 원인은 라이브러리 캐시](posts/데브옵스/젠킨스/빌드_실패,_원인은_라이브러리_캐시.md) |
 | 2025-08-26 | [Publish Over SSH 플러그인 Remote Directory 설정 가이드](posts/데브옵스/젠킨스/Publish_Over_SSH_플러그인_Remote_Directory_설정_가이드.md) |
-| 2025-08-23 | [발행 확인 메커니즘  트랜잭션과 게시자 확인(Publisher Confirms)](posts/개발/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms).md) |
+| 2025-08-23 | [발행 확인 메커니즘  트랜잭션과 게시자 확인(Publisher Confirms)](posts/개발/메세지큐/레빗엠큐/발행_확인_메커니즘__트랜잭션과_게시자_확인(Publisher_Confirms).md) |
 | 2025-08-23 | [Java NIO 란 무엇인가.](posts/개발/자바/NIO/Java_NIO_란_무엇인가..md) |
 | 2025-08-23 | [RabbitMQ 설치하기](posts/개발/환경설정/RabbitMQ%20설치하기.md) |
-| 2025-08-21 | [고급 큐 기능  DLX, Delay Queue, Priority Queue](posts/개발/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue.md) |
-| 2025-08-21 | [메시지 지속성과 생명주기 관리  Durable, Persistent, TTL, Auto-delete](posts/개발/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete.md) |
-| 2025-08-19 | [ACK, NACK  메시지 신뢰성 보장을 위한 확인 메커니즘ote](posts/개발/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote.md) |
-| 2025-08-18 | [Exchange 타입과 라우팅  4가지 Exchange의 동작 원리](posts/개발/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리.md) |
-| 2025-08-18 | [메시징 큐의 개념과 기본 구조](posts/개발/레빗엠큐/메시징_큐의_개념과_기본_구조.md) |
+| 2025-08-21 | [고급 큐 기능  DLX, Delay Queue, Priority Queue](posts/개발/메세지큐/레빗엠큐/고급_큐_기능__DLX,_Delay_Queue,_Priority_Queue.md) |
+| 2025-08-21 | [메시지 지속성과 생명주기 관리  Durable, Persistent, TTL, Auto-delete](posts/개발/메세지큐/레빗엠큐/메시지_지속성과_생명주기_관리__Durable,_Persistent,_TTL,_Auto-delete.md) |
+| 2025-08-19 | [ACK, NACK  메시지 신뢰성 보장을 위한 확인 메커니즘ote](posts/개발/메세지큐/레빗엠큐/ACK,_NACK__메시지_신뢰성_보장을_위한_확인_메커니즘ote.md) |
+| 2025-08-18 | [Exchange 타입과 라우팅  4가지 Exchange의 동작 원리](posts/개발/메세지큐/레빗엠큐/Exchange_타입과_라우팅__4가지_Exchange의_동작_원리.md) |
+| 2025-08-18 | [메시징 큐의 개념과 기본 구조](posts/개발/메세지큐/레빗엠큐/메시징_큐의_개념과_기본_구조.md) |
 | 2025-08-14 | [Pipeline as YAML](posts/데브옵스/젠킨스/Pipeline_as_YAML.md) |
 | 2025-08-14 | [Pipeline JDK 설정](posts/데브옵스/젠킨스/Pipeline_JDK_설정.md) |
 | 2025-08-13 | [GitHub Webhook 자동 빌드 트리거링](posts/데브옵스/젠킨스/GitHub_Webhook_자동_빌드_트리거링.md) |
