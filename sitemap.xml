@@ -175,6 +175,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/CSS/CSS:_인라인·내부·외부_스타일</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/CSS/CSS:_작성_규칙</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/CSS/CSS:_캐스케이드_레이어</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/CSS/CSS:_캐스케이딩_규칙과_우선순위</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_구조와_필수_태그</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -200,12 +224,6 @@
   </url>
   <url>
     <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_여러가지_목록</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bak-libra26.github.io/posts/개발/프론트엔드/HTML/HTML:_인라인·내부·외부_스타일</loc>
     <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
