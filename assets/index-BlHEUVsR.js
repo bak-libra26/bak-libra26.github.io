@@ -3728,6 +3728,7 @@ tags:
 references:
 created_date: 2026-02-12T23:09:52.000Z
 last_modified_date: 2026-02-12T20:38:52.000Z
+visibility: hidden
 ---
 
 > 이 글에서는 CSS(Cascading Style Sheet)의 조합 셀렉터에 대해 정리합니다.
