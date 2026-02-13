@@ -10,7 +10,7 @@ const LatestPosts = () => {
             <div className='latest-posts__header'>
                 <h2 className='latest-posts__title'>최신 글</h2>
                 <a className='latest-posts__viewall'
-                    href='/posts'>
+                    href='/posts?page=1'>
                     전체 보기
                 </a>
             </div>

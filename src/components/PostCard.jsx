@@ -15,13 +15,10 @@ const PostCard = ({ post }) => {
                                 const isLast = index === post.categories.length - 1;
 
                                 return (
-                                    <>
-                                        <li key={category}>
+                                        <li  key={category}>
                                             { category }
+                                            { !isLast && <span> · </span>}
                                         </li>
-                                        { !isLast && <span> · </span>}
-                                    </>
-
                                 );
                             })
                     }

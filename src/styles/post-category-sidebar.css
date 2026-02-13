@@ -1,5 +1,5 @@
 .post-sidebar {
-    width: 265px;
+    min-width: 266px;
 }
 
 .post-sidebar__menu {
@@ -23,13 +23,13 @@
     padding: 0 8px;
 
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semi-bold);
     color: var(--color-text-muted);
 
     border: none;
     background: transparent;
     cursor: pointer;
 }
+
 
 .post-sidebar__category span:first-child {
     display: flex;
@@ -44,6 +44,9 @@
 .post-sidebar__submenu {
     margin: 4px 0 8px;
     padding: 0;
+
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.2s ease;
 }
 
 /* 서브카테고리 버튼 */
@@ -63,4 +66,29 @@
     background: transparent;
     text-align: left;
     cursor: pointer;
+}
+
+.post-sidebar__category[data-active=true],
+.post-sidebar__subcategory[data-active=true] {
+    font-weight: var(--font-weight-bold);
+    color: black;
+}
+
+.post-sidebar__category-toggle {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+/* 열릴 때: 충분히 큰 값으로 */
+.post-sidebar__submenu.is-open {
+    max-height: 500px; /* 서브카테고리 최대 높이보다 크게 */
+    opacity: 1;
+}
+
+/* 닫힐 때: 0으로 줄임 */
+.post-sidebar__submenu.is-closed {
+    max-height: 0;
+    opacity: 0;
 }

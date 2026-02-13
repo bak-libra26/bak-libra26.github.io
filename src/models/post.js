@@ -45,6 +45,14 @@ class Post {
         return this._categories;
     }
 
+    get category() {
+        return this._categories[0];
+    }
+
+    get subcategory() {
+        return this.categories[1];
+    }
+
     get visibility() {
         return this._visibility;
     }

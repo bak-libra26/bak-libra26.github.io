@@ -4,7 +4,7 @@ import '../styles/header.css';
 
 const navigators = [
     { name: '홈', to: '/' },
-    { name: '전체 글', to: '/posts' },
+    { name: '전체 글', to: '/posts?page=1' },
 ]
 
 const Header = () => {

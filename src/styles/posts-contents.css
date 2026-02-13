@@ -1,0 +1,21 @@
+
+.posts-layout {
+    display: flex;
+
+    margin: 55px 0px;
+    width: 100%;
+
+    border-top: 1px solid var(--color-border);
+
+}
+
+
+.posts-layout__content {
+    margin: 16px;
+    display: grid;
+
+
+    min-width: 700px;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+}
