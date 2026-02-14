@@ -1,0 +1,42 @@
+#wrap {
+    display: flex;
+    min-height: 100vh;
+
+    flex-direction: column;
+    background-color: var(--color-bg);
+}
+
+#wrap > *:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* 사파리 */
+    background-color: rgba(var(--color-bg), 0.6);
+}
+
+footer {
+    height: var(--footer-height);
+}
+
+main {
+    flex: 1;
+    /* TODO: padding-bottom */
+    padding-bottom: 128px;
+
+    z-index: 1;
+}
+
+.container {
+    max-width: 1024px;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 0 16px;
+}

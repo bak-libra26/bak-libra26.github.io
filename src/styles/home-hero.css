@@ -1,0 +1,36 @@
+.home-hero {
+    padding: 96px 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.home-home__hero-kicker {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+}
+
+.home-hero__title {
+    font-size: var(--font-size-extra-large-x2);
+    font-weight: var(--font-weight-extra‑bold);
+
+    text-align: center;
+}
+
+.home-hero__subtitle {
+    font-style: italic;
+    color: var(--color-muted);
+}
+
+
+.home-hero__caption {
+    color: var(--color-muted);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+
+    font-style: italic;
+}

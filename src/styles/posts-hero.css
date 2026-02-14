@@ -1,0 +1,26 @@
+.posts-hero {
+    margin-top: 66px;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.posts-hero__header {
+    text-align: center;
+}
+
+.posts-hero__title {
+    font-size: var(--font-size-extra-large);
+    font-weight: var(--font-weight-bold);
+
+}
+
+.posts-hero__caption {
+    color: var(--color-muted);
+    font-size: var(--font-size-base);
+}

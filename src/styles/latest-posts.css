@@ -1,0 +1,25 @@
+.latest-posts__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.latest-posts__viewall:hover {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+
+.latest-posts__grid {
+    display: grid;
+
+    margin: 0;
+    padding: 0;
+
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+ol > li {
+    list-style: none;
+}

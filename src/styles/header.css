@@ -1,0 +1,36 @@
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__site-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+}
+
+nav > ol {
+    gap: 24px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--color-muted);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-regular);
+}
+
+.nav-link[data-active="true"] {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.nav-link:hover {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+
+
+
