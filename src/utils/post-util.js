@@ -32,17 +32,18 @@ const _categories = _posts
         if (!acc[category]) {
             acc[category] = {
                 total: 0,
-                children: {},
+                category: category,
+                subcategories: {},
             };
         }
         acc[category].total += 1;
 
         // 하위 value 카운트
         if (child) {
-            if (!acc[category].children[child]) {
-                acc[category].children[child] = 0;
+            if (!acc[category].subcategories[child]) {
+                acc[category].subcategories[child] = 0;
             }
-            acc[category].children[child] += 1;
+            acc[category].subcategories[child] += 1;
         }
 
         return acc;
@@ -65,13 +66,15 @@ const PostUtil = {
     },
 
     findBy(category, subcategory) {
-        if (category === undefined && subcategory === undefined) {
+        if (category === '전체') {
             return this.posts;
-        } else if (subcategory === undefined) {
-            return this.posts.filter((post) => post.category === category);
         }
 
-       return this.posts.filter((post) => post.category === category && post.subcategory === subcategory);
+        if (subcategory === null) {
+            return this.posts.filter((post) => post.category === category);
+        } else {
+            return this.posts.filter((post) => post.category === category && post.subcategory === subcategory);
+        }
     }
 
 }
