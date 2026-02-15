@@ -1,31 +1,34 @@
 import {useSearchParams} from "react-router-dom";
-import {useState} from "react";
 
-import PostCategorySidebar from "../components/PostCategorySidebar.jsx";
 import PostsContent from "../components/PostsContent.jsx";
+import PostCategorySidebar from "../components/PostCategorySidebar.jsx";
 
 import '../styles/components/posts-hero.css';
 import '../styles/components/posts-contents.css';
 import '../styles/components/posts-search.css'
 
 const PostsPage = () => {
-
-    const [selected, setSelected] = useState({
-        category: undefined,
-        subcategory: undefined,
-    });
-
     const [searchParams] = useSearchParams();
+
+    const category = searchParams.get('category') || '전체';
+    const subcategory = searchParams.get('subcategory');
     const page = Math.max(Number(searchParams.get("page") || 1), 1);
+
+    const params = {
+        category: category,
+        subcategory: subcategory,
+        page: page
+    }
+
 
     return (
         <>
             <PostsHero />
-            <PostsSearch />
+            {/*<PostsSearch />*/}
 
             <section className={`posts-layout`}>
-                <PostCategorySidebar selected={selected} onSelected={setSelected}/>
-                <PostsContent page={page} category={selected.category} subcategory={selected.subcategory}/>
+                <PostCategorySidebar params={params}/>
+                <PostsContent params={params} />
             </section>
         </>
     )

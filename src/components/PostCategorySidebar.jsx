@@ -2,9 +2,11 @@ import PostUtil from "../utils/post-util.js";
 
 import '../styles/components/post-category-sidebar.css';
 import {useState} from "react";
+import QueryUtil from "../utils/query-util.js";
+
 
 const PostCategorySidebar = ({
-    selected, onSelected
+    params
 }) => {
     const categories = PostUtil.categories;
     const total = Object.values(categories)
@@ -16,34 +18,26 @@ const PostCategorySidebar = ({
             <nav className={'post-sidebar__nav'}>
                 <ul className={'post-sidebar__menu'}>
                     <li>
-                        <button className={`post-sidebar__category`}
-                                data-active={selected.category === undefined && selected.subcategory === undefined}
-                                onClick={() => {
-                                    onSelected({
-                                        category: undefined,
-                                        subcategory: undefined
-                                    });
-                                }}>
+                        <a className={`post-sidebar__category`}
+                           href={QueryUtil.getPostsHref({page: 1, category: params.category})}
+                                data-active={params.category === '전체'}>
                                     <span>
                                         <i className="fa-solid fa-code post-sidebar__category-icon"></i>
                                         전체 ({total})
                                     </span>
-                        </button>
+                        </a>
                     </li>
 
                     {
                         Object.entries(categories)
-                        .map(([category, metadata]) => {
+                            .map(([category, metadata]) => {
 
-                            return <PostCategorySidebarItem
-                                        key={category}
-                                        category={category}
-                                        total={metadata.total}
-                                        subcategories={metadata.children}
-                                        selected={selected}
-                                        onSelected={onSelected}
-                            />
-                        })
+                                return <PostCategorySidebarItem
+                                            key={category}
+                                            metadata={metadata}
+                                            params={params}
+                                />
+                            })
                     }
                 </ul>
             </nav>
@@ -52,19 +46,17 @@ const PostCategorySidebar = ({
 }
 
 const PostCategorySidebarItem = ({
-     category, total, subcategories, selected, onSelected
+     params, metadata
  }) => {
+    const total = metadata.total;
+    const category = metadata.category
+    const subcategories = metadata.subcategories;
+
     const [isOpen, setOpen] = useState(true);
 
     return <li key={category}>
-        <button className={`post-sidebar__category`}
-                data-active={selected.category === category && selected.subcategory === undefined}
-                onClick={() => {
-                    onSelected({
-                        category: category,
-                        subcategory: undefined
-                    });
-                }}>
+        <a className={`post-sidebar__category`} href={QueryUtil.getPostsHref({page: 1, category: category, subcategory: undefined})}
+                data-active={params.category === category && params.subcategory === null}>
                 <span>
                     <i className="fa-solid fa-code post-sidebar__category-icon"></i>
                     { category } ({total})
@@ -78,7 +70,7 @@ const PostCategorySidebarItem = ({
                         : (<i className="fa-solid fa-minus"></i>)
                 }
             </button>
-        </button>
+        </a>
 
         <ul className={`post-sidebar__submenu ${isOpen ? "is-open" : "is-closed"}`}>
             {
@@ -86,16 +78,10 @@ const PostCategorySidebarItem = ({
                     .map(([subcategory, subtotal]) => {
                         return (
                             <li key={subcategory}>
-                                <button className={`post-sidebar__subcategory`}
-                                        data-active={selected.category === category && selected.subcategory === subcategory}
-                                        onClick={() => {
-                                            onSelected({
-                                                category: category,
-                                                subcategory: subcategory
-                                            });
-                                        }}>
+                                <a className={`post-sidebar__subcategory`} href={QueryUtil.getPostsHref({page: 1, category: category, subcategory: subcategory})}
+                                        data-active={params.subcategory === subcategory}>
                                     { subcategory } ({ subtotal })
-                                </button>
+                                </a>
                             </li>
                         );
                     })

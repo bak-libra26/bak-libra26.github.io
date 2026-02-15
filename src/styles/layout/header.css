@@ -6,6 +6,8 @@
 }
 
 .header__site-title {
+    user-select: none;
+
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-bold);
 }

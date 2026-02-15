@@ -1,10 +1,11 @@
 import {Link, useLocation} from "react-router-dom";
 
 import '../styles/layout/header.css';
+import QueryUtil from "../utils/query-util.js";
 
 const navigators = [
     { name: '홈', to: '/' },
-    { name: '전체 글', to: '/posts?page=1' },
+    { name: '전체 글', to: QueryUtil.getPostsHref({page: 1, category: '전체'}) },
 ]
 
 const Header = () => {
@@ -25,7 +26,7 @@ const Header = () => {
                                     <li key={navigator.to}>
                                         <a href={navigator.to}
                                               className='nav-link'
-                                              data-active={pathname === navigator.to || undefined}>
+                                              data-active={pathname === navigator.to.split('?')[0] || undefined}>
                                             { navigator.name }
                                         </a>
                                     </li>

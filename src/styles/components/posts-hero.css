@@ -1,4 +1,6 @@
 .posts-hero {
+    user-select: none;
+
     margin-top: 66px;
     padding: 0 16px;
 

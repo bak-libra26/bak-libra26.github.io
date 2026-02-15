@@ -1,4 +1,6 @@
 import PostUtil from "../utils/post-util.js";
+import QueryUtil from "../utils/query-util.js";
+
 import PostCard from "../components/PostCard.jsx";
 
 import '../styles/components/home-hero.css'
@@ -34,7 +36,7 @@ const LatestPosts = () => {
             <div className='latest-posts__header'>
                 <h2 className='latest-posts__title'>최신 글</h2>
                 <a className='latest-posts__viewall'
-                   href='/posts?page=1'>
+                   href={QueryUtil.getPostsHref({page: 1, category: '전체'})}>
                     전체 보기
                 </a>
             </div>
