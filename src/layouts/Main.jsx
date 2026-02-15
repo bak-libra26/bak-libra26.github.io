@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 
-import '../styles/main.css';
+import '../styles/layout/main.css';
 
 
 const Main = () => {

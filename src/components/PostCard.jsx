@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 import DateUtil from "../utils/date-util.js";
 
-import '../styles/post-card.css';
+import '../styles/components/post-card.css';
 
 const PostCard = ({ post }) => {
     return (

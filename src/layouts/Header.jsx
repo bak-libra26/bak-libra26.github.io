@@ -1,6 +1,6 @@
 import {Link, useLocation} from "react-router-dom";
 
-import '../styles/header.css';
+import '../styles/layout/header.css';
 
 const navigators = [
     { name: '홈', to: '/' },

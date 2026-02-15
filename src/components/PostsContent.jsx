@@ -2,7 +2,7 @@ import PostCard from "./PostCard.jsx";
 
 import PostUtil from "../utils/post-util.js";
 
-import '../styles/posts-contents.css';
+import '../styles/components/posts-contents.css';
 
 const PostsContent = ({page, category, subcategory}) => {
     const pageSize = 6;
