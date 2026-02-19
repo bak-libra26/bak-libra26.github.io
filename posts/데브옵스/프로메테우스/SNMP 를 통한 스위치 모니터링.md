@@ -1,6 +1,6 @@
 ---
 summary: 프로메테우스, SNMP 를 통한 스위치 모니터링
-created-date: 2025-12-03 10:34:06
+created_date: 2025-12-03 10:34:06
 last-modified-date: 2025-12-03 03:29:41
 ---
 

@@ -1,6 +1,6 @@
 ---
 summary: 그라파나 설치해보자
-created-date: 2025-12-02 01:19:28
+created_date: 2025-12-02 01:19:28
 last-modified-date: 2025-12-02 02:42:17
 ---
 # Grafana 설치

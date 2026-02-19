@@ -1,6 +1,6 @@
 ---
 summary: 프로메테우스, 레빗엠큐 익스포터 설치해보기
-created-date: 2025-12-08 01:34:09
+created_date: 2025-12-08 01:34:09
 last-modified-date: 2025-12-08 09:08:37
 ---
 

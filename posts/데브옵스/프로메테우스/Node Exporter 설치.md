@@ -1,6 +1,6 @@
 ---
 summary: 프로메테우스, 노드 익스포터 설치 및 연동해보기
-created-date: 2025-12-02 01:19:16
+created_date: 2025-12-02 01:19:16
 last-modified-date: 2025-12-03 10:34:06
 ---
 # Node Exporter 설치 문서

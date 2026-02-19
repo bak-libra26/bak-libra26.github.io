@@ -1,6 +1,6 @@
 ---
 summary: 프로메테우스 설치해보기
-created-date: 2025-12-02 01:19:28
+created_date: 2025-12-02 01:19:28
 last-modified-date: 2025-12-02 02:48:36
 ---
 # Prometheus 설치 문서
