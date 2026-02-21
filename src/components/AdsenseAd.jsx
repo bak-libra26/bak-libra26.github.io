@@ -18,8 +18,7 @@ const AdsenseAd = ({
             style={{
                 display: 'block',
                 minHeight: '280px',
-                margin: '24px',
-
+                margin: '24px 0',
                 border: import.meta.env.DEV ? '1px dashed black' : 'none',
                 backgroundColor: import.meta.env.DEV ? '#fafafa' : 'transparent', // 옵션: dev에서만 살짝 배경
             }}
