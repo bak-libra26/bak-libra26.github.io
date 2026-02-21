@@ -1,0 +1,39 @@
+@import "post-detail-meta.css";
+@import "post-detail-body.css";
+@import "post-detail-recommends.css";
+@import "post-detail-toc.css";
+
+.post-detail {
+    display: flex;
+    gap: 36px;
+
+    padding: var(--space-2) 0;
+    margin: var(--space-6) 0;
+}
+
+.post-detail__sidebar {
+    flex: 0 0 280px;           /* flex-grow:0, flex-shrink:0, basis:280px */
+    max-width: 222px;
+}
+
+.post-detail__main {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.post-heading {
+    scroll-margin-top: 180px; /* 고정 헤더 높이 + 여유. 숫자는 네 레이아웃에 맞게 조절 */
+}
+
+
+
+/* 모바일 전용 (예: 767px 이하만) */
+@media (max-width: 768px) {
+    .post-detail {
+        display: block;
+    }
+
+    .post-detail__toc {
+        display: none;
+    }
+}

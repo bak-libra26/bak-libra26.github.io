@@ -1,14 +1,14 @@
-import {Link} from "react-router-dom";
-
 import DateUtil from "../utils/date-util.js";
 
 import '../styles/components/post-card.css';
+import HrefUtil from "../utils/href-util.js";
+import {Link} from "react-router-dom";
 
 const PostCard = ({ post }) => {
     return (
-        <Link to={`/posts/${post.path}`}>
+        <Link to={HrefUtil.getPostDetailHref({path: post.path})}>
             <article className="post-card">
-                <ol className='post-card_categories'>
+                <ol className='post__categories'>
                     {
                         post.categories
                             .map((category, index) => {

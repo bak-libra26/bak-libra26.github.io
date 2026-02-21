@@ -112,7 +112,7 @@ visibility: published
 
 ---
 
-#### 번외) `Files` 를 통해 이 모든 과정을 손쉽게
+### `Files` 를 통해 이 모든 과정을 손쉽게
 
 개인적으로는 파일을 읽거나 파일에 데이터를 쓰는 간단한 작업은 파일 채널(`FileChannel`) 이 아니라 `Files` 에 정의된 `Files.readAllBytes()`, `Files.write()` 과 같은 유틸리티 메서드를 사용합니다. 
 `Files` 안에 정의되어있는 유틸리티 메서드들은 내부적으로 `FileChannelImpl` 을 사용해서 이 과정을 쉽게 처리할 수 있도록 도와줍니다.

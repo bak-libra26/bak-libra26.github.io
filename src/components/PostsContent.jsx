@@ -2,8 +2,9 @@ import PostCard from "./PostCard.jsx";
 
 import PostUtil from "../utils/post-util.js";
 
-import '../styles/components/posts-contents.css';
-import QueryUtil from "../utils/query-util.js";
+import '../styles/pages/posts/posts-contents.css';
+import HrefUtil from "../utils/href-util.js";
+import {Link} from "react-router-dom";
 
 const PostsContent = ({
     params,
@@ -15,7 +16,7 @@ const PostsContent = ({
     const size = 4;
     const start = (page - 1) * size;
 
-    const posts = PostUtil.findBy(category, subcategory);
+    const posts = PostUtil.findBy({category, subcategory});
     const last = Math.ceil(posts.length / size);
 
     return (
@@ -56,10 +57,11 @@ const PostNavigation = ({
         <nav className="posts-pagination__nav" aria-label="Posts pages">
             <ul className={`posts-pagination`}>
                 <li className="posts-pagination__item">
-                    <a className="posts-pagination__link" href={QueryUtil.getPostsHref({page: 1, category, subcategory})}
-                       data-active={curr === 1 ? 'true' : 'false'}>
+                    <Link className="posts-pagination__link"
+                          to={HrefUtil.getPostsHref({page: 1, category, subcategory})}
+                          data-active={curr === 1 ? 'true' : 'false'}>
                         1
-                    </a>
+                    </Link>
                 </li>
 
                 {/* ... */}
@@ -74,10 +76,11 @@ const PostNavigation = ({
                     pages.map(page => {
                         return (
                             <li key={page} className={`posts-pagination__item`}>
-                                <a className={`posts-pagination__link `} href={QueryUtil.getPostsHref({page: page, category, subcategory})}
-                                   data-active={page === curr ? 'true' : 'false'}>
+                                <Link className={`posts-pagination__link `}
+                                      to={HrefUtil.getPostsHref({page: page, category, subcategory})}
+                                      data-active={page === curr ? 'true' : 'false'}>
                                     { page }
-                                </a>
+                                </Link>
                             </li>
                         );
                     })
@@ -94,10 +97,11 @@ const PostNavigation = ({
                 {/* max */}
                 {last > 1 && (
                     <li className="posts-pagination__item">
-                        <a className="posts-pagination__link" href={QueryUtil.getPostsHref({page: last, category, subcategory})}
-                           data-active={curr === last ? 'true' : 'false'}>
+                        <Link className="posts-pagination__link"
+                              to={HrefUtil.getPostsHref({page: last, category, subcategory})}
+                              data-active={curr === last ? 'true' : 'false'}>
                             {last}
-                        </a>
+                        </Link>
                     </li>
                 )}
             </ul>

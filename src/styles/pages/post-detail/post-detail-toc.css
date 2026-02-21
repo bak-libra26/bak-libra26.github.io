@@ -1,0 +1,52 @@
+
+
+
+/* post-detail__toc */
+.post-detail__toc {
+    font-size: var(--font-size-extra-small);
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+}
+
+.post-detail__toc__title {
+    font-weight: var(--font-weight-semi-bold);
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+}
+
+.post-detail__toc__list {
+    padding: 0 0;
+    margin: 0 0 ;
+}
+
+.post-detail__toc__item {
+    list-style: none;
+    margin: var(--space-4) 0; /* 여기 숫자 키우면서 간격 조절 (예: 10px, 12px) */
+}
+
+.post-detail__toc__item--h2 {
+    margin-top: var(--space-3);
+}
+
+.post-detail__toc__item--h3 {
+    margin-left: var(--space-4);
+}
+
+.post-detail__toc__item--h4 {
+    margin-left: calc(var(--space-4) * 2);
+}
+
+
+
+/* 기존 패딩 규칙은 정리 */
+.post-detail__toc__item:not(.post-detail__toc__item--h1, .post-detail__toc__item--h2) {
+    padding: 0;             /* 필요 없으면 제거하거나 0으로 */
+}
+
+
+.post-detail__toc__item[data-active="true"] > a {
+    color: var(--color-blue-700);
+    font-weight: 600;
+    border-left: 2px solid var(--color-blue-700);
+    padding-left: 6px;
+}

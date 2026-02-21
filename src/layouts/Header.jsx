@@ -1,11 +1,11 @@
 import {Link, useLocation} from "react-router-dom";
 
 import '../styles/layout/header.css';
-import QueryUtil from "../utils/query-util.js";
+import HrefUtil from "../utils/href-util.js";
 
 const navigators = [
-    { name: '홈', to: '/' },
-    { name: '전체 글', to: QueryUtil.getPostsHref({page: 1, category: '전체'}) },
+    { name: '홈', to: '/', path: '/' },
+    { name: '전체 글', to: HrefUtil.getPostsHref({page: 1, category: '전체'}), path: '/posts' },
 ]
 
 const Header = () => {
@@ -22,13 +22,14 @@ const Header = () => {
                     <ol>
                         {
                             navigators.map((navigator) => {
+                                const path = navigator.path;
                                 return (
                                     <li key={navigator.to}>
-                                        <a href={navigator.to}
+                                        <Link to={navigator.to}
                                               className='nav-link'
-                                              data-active={pathname === navigator.to.split('?')[0] || undefined}>
+                                              data-active={path == pathname}>
                                             { navigator.name }
-                                        </a>
+                                        </Link>
                                     </li>
                                 );
                             })

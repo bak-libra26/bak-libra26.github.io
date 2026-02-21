@@ -9,8 +9,8 @@
 
     height: var(--footer-height);
 
-    color: var(--color-muted);
     font-size: var(--font-size-extra-small);
+    border-top: 1px solid var(--color-border);
 }
 
 .footer-inner > div {
@@ -19,9 +19,17 @@
 }
 
 .footer-links {
-    font-weight: var(--font-weight-semi-bold);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-regular);
 }
 
-.footer-meta {
+.footer-links a:hover {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+}
 
+
+.footer-meta {
+    color: var(--text-primary);
+    text-align: center;
 }

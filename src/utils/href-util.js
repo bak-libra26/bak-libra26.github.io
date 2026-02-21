@@ -1,6 +1,6 @@
-const QueryUtil = {
+const HrefUtil = {
     get({baseUrl, searchParams}) {
-        const query = searchParams.toString();
+        const query = searchParams && searchParams.toString();
         return query ? `${baseUrl}?${query}` : baseUrl;
     },
 
@@ -14,8 +14,14 @@ const QueryUtil = {
         if (category) searchParams.set('category', category);
         if (subcategory) searchParams.set('subcategory', subcategory);
 
-        return QueryUtil.get({baseUrl: baseUrl, searchParams: searchParams});
+        return HrefUtil.get({baseUrl: baseUrl, searchParams: searchParams});
+    },
+
+    getPostDetailHref({path}) {
+        const baseUrl = '/posts/' + path;
+
+        return HrefUtil.get({baseUrl: baseUrl});
     }
 };
 
-export default QueryUtil;
+export default HrefUtil;

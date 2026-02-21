@@ -25,15 +25,15 @@
     flex: 1;
     border: none;
     outline: none;
-    color: var(--color-text);
+    color: var(--text-primary);
     background-color: transparent;
     padding: 0.5rem 1.1rem;
 }
 
 .search-bar__input::placeholder {
-    color: var(--color-muted);
+    color: var(--text-muted);
 }
 
 .search-bar:focus-within {
-    border-color: var(--color-muted);
+    border-color: var(--text-muted);
 }

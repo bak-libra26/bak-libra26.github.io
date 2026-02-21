@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container footer-inner">
                 <div className="footer-links">
                     <a href="https://www.instagram.com/simjungh">인스타그램</a>
-                    <a href="https://www.instagram.com/simjungh">깃허브</a>
+                    <a href="https://github.com/bak-libra26">깃허브</a>
                     <a href="mailto:bak-libra26@gmail.com">이메일</a>
                     <span>|</span>
                     <a href="/feed.xml" >RSS</a>

@@ -45,7 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 
 html, body {
     min-height: 100vh;
-    background-color: var(--color-bg);
 }
 
 #root, #__next {
@@ -54,34 +53,60 @@ html, body {
 
 :root {
     /* using theme */
-    --color-bg: #ffffff;
-    --color-surface: #f5f5f5;
-    --color-muted: rgb(102, 102, 102);
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-500: #6b7280;
+    --color-gray-900: #111827;
 
-    --color-primary: #2563eb;
-    --color-primary-weak: #dbeafe;
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-600: #2563eb;
+    --color-blue-700: #1d4ed8;
 
-    --color-text: #111827;
-    --color-text-muted: #6b7280;
+
+    --color-bg-primary: var(--color-gray-50);
+    --color-bg-secondary: var(--color-gray-100);
+    --color-surface: #ffffff;
+    --color-surface-hover: var(--color-gray-50);
+
+    --color-code-highlight: #F5DEB3;
+    --color-code-highlight-weak: #FFF8DC;
+    --color-primary: #F5F5F5;
+    --color-primary-weak: #EEEEEE;
 
     --color-border: #e5e7eb;
 
+    /* BORDER */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+
     /** using fonts */
+    --text-primary: #111827;         /* 본문 텍스트 */
+    --text-secondary: #374151;       /* 부제목 */
+    --text-tertiary: #6b7280;        /* 보조 텍스트 */
+    --text-muted: #9ca3af;           /* 힌트, 비활성 */
+    --text-disabled: #d1d5db;        /* 비활성화 */
+    --text-inverse: #ffffff;         /* 어두운 배경 위 */
+
     --font-size-extra-small: 0.75rem;  /* 서브텍스트, 본문 보조 */
     --font-size-small: 0.9rem;  /* 서브텍스트, 본문 보조 */
     --font-size-base: 1rem;    /* 기본 본문 */
-    --font-size-base: 1rem;    /* 기본 본문 */
     --font-size-large: 1.25rem;  /* 조금 큰 본문, 강조 문장 */
     --font-size-extra-large: 1.5rem;    /* 섹션 제목 */
-    --font-size-extra-large-x2: 3rem;
-    --font-size-extra-large-x3: 4.5rem;
-    --font-size-extra-large-x4: 6rem;
 
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-semi-bold: 600;
     --font-weight-bold: 700;
     --font-weight-extra‑bold: 800;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
 
     /* using spacing, margin or padding */
     --space-1: 4px;
@@ -90,13 +115,21 @@ html, body {
     --space-4: 16px;
     --space-5: 24px;
     --space-6: 32px;
+    --space-7: 64px;
 
     /* using layout */
     --header-height: 135px;
+    --header-mobile-height: 64px;
     --footer-height: 188px;
+
+    --mobile_breakpoint: 768px;
+
+    /* Z-INDEX */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-modal: 1050;
+    --z-tooltip: 1070;
 }
-
-
 
 a {
     color: inherit;

@@ -1,8 +1,7 @@
 .posts-hero {
     user-select: none;
 
-    margin-top: 66px;
-    padding: 0 16px;
+    margin: 36px 16px 82px 16px;
 
     display: flex;
     flex-direction: column;
@@ -23,6 +22,6 @@
 }
 
 .posts-hero__caption {
-    color: var(--color-muted);
+    color: var(--text-muted);
     font-size: var(--font-size-base);
 }

@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "fa7ab3d23a75fe39",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e9525e64163d8e3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4ac664d31def9aea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "사이드 프로젝트/블로그/블로그: 메타 태그 최적화하기.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "블로그: 메타 태그 최적화하기"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e9db1071753deba4",
+    "type": "split",
+    "children": [
+      {
+        "id": "08dfb35b5ebefca4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4ce161d5dd824617",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "40171a79c22502ce",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "208ec2992546dcf3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5967add5d4d4d62a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3d8d3f508f7023b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "63a7fb2cf678529a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"
+            }
+          },
+          {
+            "id": "4dc541d213551eee",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"
+            }
+          },
+          {
+            "id": "af2d78a073d51009",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "01b44bb2281f1e90",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "3e8a041c79da82dd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "4ac664d31def9aea",
+  "lastOpenFiles": [
+    "사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기.md",
+    "사이드 프로젝트/블로그/블로그 포스팅 워크플로우.png",
+    "사이드 프로젝트/블로그/img.png",
+    "사이드 프로젝트/블로그/블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: 목차 기능 추가하기.md",
+    "사이드 프로젝트/블로그/블로그: 코드 하이라이트 기능 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: 코드 하이라이팅 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: 반응형 레이아웃 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: GISCUS 를 통한 댓글 기능 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: GISCUS 를 통한 댓글 기능 추가하기.md",
+    "사이드 프로젝트/블로그/블로그: 마크다운 파일로 포스팅 기능 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: 마크다운.md",
+    "사이드 프로젝트/블로그/블로그: 마크다운 파일로 동작하는 블로그 포스팅 기능 구현하기.md",
+    "사이드 프로젝트/블로그/블로그: 메타 태그 최적화하기.md",
+    "사이드 프로젝트/블로그/블로그: 댓글 기능 추가하기.md",
+    "사이드 프로젝트/블로그/discussions_checkbox.png",
+    "개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md",
+    "사이드 프로젝트/블로그/Untitled.md",
+    "개발/메세지큐/레빗엠큐/여러가지 Exchange 타입과 라우팅 방식.md",
+    "개발/프론트엔드/자바스크립트/리액트/StrictMode Definition.md",
+    "사이드 프로젝트/개인_블로그/깃허브 페이지 댓글 구현하기.md",
+    "데브옵스/프로메테우스/SNMP 를 통한 스위치 모니터링.md",
+    "데브옵스/프로메테우스/Rabbit Exporter 설치.md",
+    "데브옵스/프로메테우스/Prometheus 설치.md",
+    "데브옵스/프로메테우스/Node Exporter 설치.md",
+    "데브옵스/젠킨스/빌드 실패, 원인은 라이브러리 캐시.md",
+    "데브옵스/젠킨스/Slack 연동 및 알림 설정.md",
+    "데브옵스/젠킨스/Publish Over SSH 플러그인 Remote Directory 설정 가이드.md",
+    "데브옵스/젠킨스/Publish Over SSH 서버 테스트 접속 실패.md",
+    "개발/환경설정/깃허브 비공개 레포지토리 잔디 기여 설정 변경.png",
+    "개발/환경설정/깃허브 비공개 레포지토리 잔디.png",
+    "개발/백엔드/자바/리액티브/리액터, 백프레셔와 여러가지 전략 백프레셔.png"
+  ]
+}

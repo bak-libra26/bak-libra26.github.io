@@ -1,5 +1,5 @@
 ---
-summary: 깃허브 페이지 개인 블로그 댓글 giscus 로 구현하기
+summary: GitHub Pages로 올린 개인 블로그에 댓글 기능을 붙이기 위해 Utterances, Disqus, Giscus 같은 도구들을 비교해 보고, 그중 Giscus를 선택한 이유와 실제 적용 방법을 정리한 글입니다. 
 tags: 
 references: 
 created_date: 2026-01-09T15:09:52.000Z
@@ -55,14 +55,14 @@ last_modified_date: 2026-01-09T15:09:52.000Z
     > Giscus 는 댓글을 관리할 레포지토리가 필요합니다. 또한 해당 레포지토리는 **Public**이어야 하고 **Discussions** 기능이 켜져 있어야 합니다.
 
     1. `댓글 레포지토리` -> `Settings` > `General` > `Features` 섹션에서 **Discussions** 체크박스를 활성화
-        ![레포지토리 discussion 설정](./discussions_checkbox.png)
+        ![레포지토리 discussion 설정](discussions_checkbox.png)
 
 2. **Giscus 앱 설치**
 
     1. [Giscus 앱 페이지](https://github.com/apps/giscus)로 이동 후, **Install** 버튼을 클릭
-        ![giscus 앱 설치](./giscus_site.png)
+        ![giscus 앱 설치](giscus_site.png)
     2. 댓글 기능을 적용할 저장소를 선택하고 설치를 완료
-        ![giscus 레포지토리 설정](./giscus_install.png)
+        ![giscus 레포지토리 설정](giscus_install.png)
 
 3. **Giscus 설정 및 스크립트 생성**
 
@@ -159,7 +159,7 @@ last_modified_date: 2026-01-09T15:09:52.000Z
 
 ## 적용 후 모습
 
-![giscus 댓글창](./giscus_component.png)
+![giscus 댓글창](giscus_component.png)
 
 이제 블로그 포스트 하단에 깔끔한 GitHub 스타일의 댓글창이 생성된 것을 확인할 수 있습니다. 댓글을 남기기 위해선 GitHub 계정으로 로그인해야하지만 이렇게 편하게 댓글을 구현할 수 있다니 정말 좋은 것 같습니다.
 

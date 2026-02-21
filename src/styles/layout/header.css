@@ -12,26 +12,32 @@
     font-weight: var(--font-weight-bold);
 }
 
-nav > ol {
+.header-inner ol {
     gap: 24px;
-    list-style: none;
     display: flex;
     align-items: center;
 }
 
+.header-inner ol,
+.header-inner ul,
+.header-inner li {
+    list-style: none;
+}
+
+
 .nav-link {
-    color: var(--color-muted);
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-regular);
 }
 
 .nav-link[data-active="true"] {
-    font-weight: var(--font-weight-semi-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 .nav-link:hover {
-    font-weight: var(--font-weight-semi-bold);
+    font-weight: var(--font-weight-bold);
 }
+
 
 
 

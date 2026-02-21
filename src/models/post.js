@@ -1,24 +1,21 @@
+
 class Post {
     constructor({
                     absolutePath, metadata, content
     }) {
-        this._path = absolutePath.replace('/src/assets/posts/', '');
+        this._path = absolutePath.replace('../assets/posts', '').replace(/\.md$/, '').slice(1);
 
-        this._title = this._path.split('/').pop().replace('.md', '');
+        this._title = this._path.split('/').pop();
         this._metadata = metadata;
         this._content = content;
+        this._tags = metadata['tags'];
         this._summary = metadata['summary'];
 
         this._visibility = metadata['visibility'];
         this._createdDate = new Date(metadata['created_date']);
+        this._lastModifiedDate = new Date(metadata['last_modified_date']);
 
-        // TODO: 카테고리 사용 전략.
         this._categories = this._path.slice(0, this._path.lastIndexOf('/')).split('/');
-    }
-
-
-    get absolutePath() {
-        return this._absolutePath;
     }
 
     get path() {
@@ -29,12 +26,16 @@ class Post {
         return this._title;
     }
 
+    get content() {
+        return this._content;
+    }
+
     get metadata() {
         return this._metadata;
     }
 
-    get content() {
-        return this._content;
+    get tags() {
+        return this._tags;
     }
 
     get summary() {
@@ -64,6 +65,11 @@ class Post {
     get createdDate() {
         return this._createdDate;
     }
+
+    get lastModifiedDate() {
+        return this._lastModifiedDate;
+    }
+
 
 }
 

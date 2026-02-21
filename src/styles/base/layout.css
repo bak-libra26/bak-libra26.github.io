@@ -3,34 +3,35 @@
     min-height: 100vh;
 
     flex-direction: column;
-    background-color: var(--color-bg);
+    z-index: 1;
 }
 
 #wrap > *:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
+    // border-bottom: 1px solid var(--color-border);
 }
 
-header {
+#wrap > header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: var(--z-sticky);
     height: var(--header-height);
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* 사파리 */
-    background-color: rgba(var(--color-bg), 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px); /* 사파리 */
+    background-color: rgba(var(--color-bg-primary), 0.6);
 }
 
-footer {
+#wrap > footer {
+    margin-top: var(--space-4);
     height: var(--footer-height);
 }
 
-main {
+#wrap > main {
     flex: 1;
-    /* TODO: padding-bottom */
-    padding-bottom: 128px;
+    z-index: inherit;
 
-    z-index: 1;
+    margin-top: 36px;
+    margin-bottom: 36px;
 }
 
 .container {
@@ -39,4 +40,11 @@ main {
 
     margin: 0 auto;
     padding: 0 16px;
+}
+
+@media (max-width: 768px) {
+    #wrap > header {
+        height: var(--header-mobile-height);
+    }
+
 }

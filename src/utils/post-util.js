@@ -1,7 +1,7 @@
 import Post from "../models/post.js";
 import MarkdownUtil from "./markdown-util.js";
 
-const globs = import.meta.glob('/src/assets/posts/**/*.md', {
+const globs = import.meta.glob('../assets/posts/**/*.md', {
     eager: true,
     query: 'raw'
 });
@@ -22,33 +22,6 @@ const _posts = Object.entries(globs)
     .filter((post) => !post.isHidden)
     .sort((a, b) => a.createdDate - b.createdDate).reverse();
 
-const _categories = _posts
-    .map((post) => post.categories)
-    .map((arr) => arr.slice(0, 3)) // [key, v1, v2]
-    .reduce((acc, [category, child]) => {
-        if (!category) return acc;
-
-        // 상위 key 카운트
-        if (!acc[category]) {
-            acc[category] = {
-                total: 0,
-                category: category,
-                subcategories: {},
-            };
-        }
-        acc[category].total += 1;
-
-        // 하위 value 카운트
-        if (child) {
-            if (!acc[category].subcategories[child]) {
-                acc[category].subcategories[child] = 0;
-            }
-            acc[category].subcategories[child] += 1;
-        }
-
-        return acc;
-    }, {});
-
 
 
 const PostUtil = {
@@ -61,11 +34,31 @@ const PostUtil = {
         return _posts.slice(0, 6);
     },
 
-    get categories() {
-        return _categories;
+    icons({category}) {
+        switch (category) {
+            case '전체':
+                return 'fa-border-all';
+
+            case '개발':
+                return 'fa-code';
+
+            case '사이드 프로젝트':
+                return 'fa-flask-vial';
+
+            case '데브옵스':
+                return 'fa-server';
+
+            default:
+                return 'fa-file-circle-question';
+        }
     },
 
-    findBy(category, subcategory) {
+    findByCategory({category: category}) {
+        return [...new Set(_posts.filter((post) => post.category === category)
+                                 .map((post) => post.category))];
+    },
+
+    findBy({category: category, subcategory: subcategory}) {
         if (category === '전체') {
             return this.posts;
         }
@@ -75,8 +68,15 @@ const PostUtil = {
         } else {
             return this.posts.filter((post) => post.category === category && post.subcategory === subcategory);
         }
-    }
+    },
 
+    findByPath({ path }) {
+        return _posts.find((post) => post.path === path);
+    },
+
+    findByCategories({categories}) {
+        return this.posts.filter((p) => p.categories === categories);
+    },
 }
 
 export default PostUtil;
