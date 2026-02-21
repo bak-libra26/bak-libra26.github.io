@@ -1,0 +1,38 @@
+.home-hero {
+    margin: 42px 16px 62px 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+
+    user-select: none;
+}
+
+.home-home__hero-kicker {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+}
+
+.home-hero__title {
+    font-size: 2.4rem;
+    font-weight: var(--font-weight-extra‑bold);
+
+    text-align: center;
+}
+
+.home-hero__subtitle {
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+
+.home-hero__caption {
+    color: var(--text-muted);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+
+    font-style: italic;
+}

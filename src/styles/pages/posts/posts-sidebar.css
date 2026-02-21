@@ -1,0 +1,99 @@
+.post-sidebar__nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    margin: 16px;
+    padding: 0;
+
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.post-sidebar__menu ol,
+.post-sidebar__menu ul,
+.post-sidebar__menu li {
+    list-style: none;
+}
+
+.post-sidebar__category {
+    margin: 0;
+    width: 168px;
+    align-content: center;
+
+    margin-bottom: var(--space-3);
+
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.post-sidebar__category-label {
+    margin-left: var(--space-2);
+}
+
+.post-sidebar__category__link,
+.post-sidebar__subcategory {
+    margin: 0;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-radius: var(--border-radius-md);
+}
+
+.post-sidebar__category__link[data-active="true"],
+.post-sidebar__subcategory__link[data-active="true"] {
+    font-weight: var(--font-weight-bold);
+}
+
+
+/* 모바일 전용 (예: 767px 이하만) */
+@media (max-width: 768px) {
+    .post-sidebar {
+        width: 64px;
+    }
+
+    .post-sidebar__category {
+        width: 46px;
+        max-height: 46px;
+
+        border: 2px solid var(--color-bg-primary);
+        border-radius: var(--border-radius-md);
+    }
+
+    .post-sidebar__category__link {
+        justify-content: center;
+
+    }
+
+    /* 마우스 올렸을 때 */
+    .post-sidebar__category:hover {
+        background-color: var(--color-bg-primary);
+    }
+
+    /* 클릭 눌렀을 때(press 중) */
+    .post-sidebar__category:active {
+        transform: scale(0.94);
+    }
+
+    .post-sidebar__category__link[data-active="true"],
+    .post-sidebar__subcategory__link[data-active="true"] {
+        font-weight: var(--font-weight-regular);
+        background-color: var(--text-primary);
+        color: white
+    }
+
+    .post-sidebar__category__link[data-active="false"],
+    .post-sidebar__subcategory__link[data-active="false"] {
+        font-weight: var(--font-weight-regular);
+    }
+
+}

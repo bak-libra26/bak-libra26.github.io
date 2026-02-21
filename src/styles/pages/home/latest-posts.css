@@ -1,0 +1,37 @@
+.latest-posts__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.latest-posts__viewall:hover {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.latest-posts__grid ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+.latest-posts__grid {
+    display: grid;
+
+    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.latest-posts__grid ol,
+.latest-posts__grid ul,
+.latest-posts__grid li {
+    list-style: none;
+}
+
+/* 모바일 전용 (예: 767px 이하만) */
+@media (max-width: 768px) {
+    .latest-posts__grid {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
