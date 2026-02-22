@@ -9,7 +9,6 @@ const Layout = () => {
     return <div id="wrap">
         <Header />
         <Main />
-        <AdsenseAd slot="1102442335" />
         <Footer />
     </div>
 }

@@ -475,4 +475,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Obsidian
+src/assets/posts/.obsidian
+
 # End of https://www.toptal.com/developers/gitignore/api/react,intellij+all,intellij+iml,intellij,visualstudiocode,macos,windows,linux,node

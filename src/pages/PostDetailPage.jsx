@@ -40,7 +40,7 @@ const PostDetailPage = () => {
                 <section className={`post-detail__main`}>
                     <PostDetailMeta post={post} />
                     <PostDetailBody post={post} />
-                    <AdsenseAd slot="1102442335" />
+                    <AdsenseAd slot="7492590861" />
                     <PostDetailRecommendList post={post} />
                     <PostDetailComment />
                 </section>
