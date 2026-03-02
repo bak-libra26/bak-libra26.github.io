@@ -5,7 +5,9 @@ export default class Image {
         this._url = obj.default;
 
         const logical = path.replace('../assets/posts', '');
-        this._path = logical.slice(0, logical.lastIndexOf('/'));  // '/사이드 프로젝트/블로그'
+        this._path = logical.slice(0, logical.lastIndexOf('/'))
+                            .split('?')[0];  // '/사이드 프로젝트/블로그'
+
         this._name = logical.slice(logical.lastIndexOf('/') + 1); // 'github_pages_deploy_404_routing.png'
     }
 
