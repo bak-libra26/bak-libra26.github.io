@@ -2905,8 +2905,6 @@ public interface PasswordEncoder {
 
 AuthenticationProvider가 자격 증명을 검증했다면, 인증이 완료된 상태를 나타내기 위해 Authentication 객체의 authenticated 플래그를 true로 설정한 뒤 반환해야 합니다.
 
-여러 예제 코드에서 AuthenticationProvider 가 Authentication 구현체인 UsernamePasswordAuthenticationToken 를 아래와 반환하도록 코드를 작성한걸 볼 수 있는데   
-
 - **검증을 마친 뒤 \`Authentication\` 반환하기**
     
     \`\`\`java
