@@ -2411,7 +2411,7 @@ JWT(JSON Web Token)는 토큰 기반 인증에서 인증과 인가 정보를 함
 
 토큰 안에는 **“사용자가 누구인지, 어떤 권한을 가졌는지”** 같은 내용을 JSON 형태로 담아 두고, 여기에 서명을 붙여 두기 때문에 서버는 매 요청마다 이 토큰이 중간에 위조되었는지만 확인하면 되고, 서명이 유효하다면 토큰 안에 담긴 사용자 정보와 권한을 그대로 신뢰할 수 있습니다.
 `,Ox=Object.freeze(Object.defineProperty({__proto__:null,default:Dx},Symbol.toStringTag,{value:"Module"})),Nx=`---
-summary: 스프링 시큐리티에서 CSRF 보호가 왜 필요한지, 세션·쿠키를 전제로 토큰이 언제 생성되고 어떻게 검증되는지, 그리고 REST API·SPA 환경에서 csrf().disable()과 CookieCsrfTokenRepository를 언제 어떻게 써야 하는지를 정리한 글입니다.
+summary: 스프링 시큐리티에서 CORS를 처리하는 세 가지 레이어(Servlet-level, Security-level, MVC-level)의 아키텍처를 완벽히 이해하고, 각 방식의 차이와 올바른 선택 기준을 배우는 실무 가이드.
 tags: 
 references:
   - https://docs.spring.io/spring-framework/reference/web/webmvc-cors.html
@@ -2420,7 +2420,7 @@ created_date: 2026-03-04T20:09:52.000Z
 last_modified_date: 2026-03-04T22:09:52.000Z
 ---
 
-> 이 글에서는 세션·쿠키가 어떻게 동작하는지부터, CSRF가 왜 발생하는지, 그리고 스프링 시큐리티가 CSRF 토큰을 이용해 이를 어떻게 막는지 정리합니다.
+> 이 글에서는 프리플라이트 요청이 왜 필요한지, Servlet-level·Security-level·MVC-level 세 가지 방식에서 CORS를 처리하는 방법, 그리고 실제 CORS 에러가 났을 때 어디를 확인해야 하는지 정리합니다.
 
 
 ## CORS(Cross-Origin Resource Sharing)란 무엇인가
@@ -2666,7 +2666,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 ### 스프링 시큐리티의 CORS 처리
 
-스프링 시큐리티에서는 \`http.cors()\` 설정을 통해 CORS 처리를 활성화합니다.[web:53]  
+스프링 시큐리티에서는 \`http.cors()\` 설정을 통해 CORS 처리를 활성화합니다.
 이 설정을 켜면 시큐리티는 내부적으로 CORS 전용 필터(\`CorsFilter\`)를 \`SecurityFilterChain\`에 등록하고,  
 **시큐리티 필터 체인 단계에서** 브라우저가 보내는 프리플라이트(OPTIONS)와 실제 요청에 CORS 응답 헤더를 추가합니다.
 
@@ -2738,7 +2738,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
 
 \`CorsFilter\`는 결과적으로 \`checkRequestType\`에서 판별한 결과에 따라  
 단순/실제 CORS 요청은 \`handleSimpleCORS\`, 프리플라이트 요청은 \`handlePreflightCORS\`,  
-CORS가 아닌 요청은 \`handleNonCORS\`, 스펙을 위반한 요청은 \`handleInvalidCORS\`로 보내는 분기 역할을 수행합니다.[web:48]
+CORS가 아닌 요청은 \`handleNonCORS\`, 스펙을 위반한 요청은 \`handleInvalidCORS\`로 보내는 분기 역할을 수행합니다.
 
 \`\`\`java
 public class CorsFilter extends GenericFilter {
