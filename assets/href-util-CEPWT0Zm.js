@@ -1,0 +1,1 @@
+const s={getPostsHref({page:e,category:n,subcategory:o}){let t="/posts";return n&&n!=="전체"&&(t+="/"+encodeURIComponent(n),o&&(t+="/"+encodeURIComponent(o))),e>1?`${t}?page=${e}`:t},getPostDetailHref({path:e}){return"/posts/"+e.split("/").map(encodeURIComponent).join("/")}};export{s as H};

@@ -1,0 +1,11 @@
+description: Core Competencies
+
+competencies:
+  - name: Backend Engineering
+    detail: Spring 기반의 RESTful API 설계 및 개발. 비즈니스 로직을 견고하고 확장 가능한 구조로 구현합니다.
+
+  - name: System Design
+    detail: MSA, 메시지 큐, 캐싱 등을 활용하여 확장 가능한 시스템 아키텍처를 설계합니다.
+
+  - name: Technical Writing
+    detail: 학습한 내용을 체계적으로 정리하고 공유하여 지식을 확산합니다.
