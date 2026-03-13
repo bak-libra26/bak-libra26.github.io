@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/리액티브/리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까"><meta property="og:type" content="article"><meta property="og:title" content="리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 - bak-libra26"><meta property="og:description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/리액티브/리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-01-21T15:39:21.000Z"><meta property="article:modified_time" content="2026-01-21T15:39:21.000Z"><meta property="article:tag" content="리액티브 프로그래밍"><meta property="article:tag" content="웹플럭스"><meta property="article:tag" content="리액터"><meta property="article:tag" content="Thread"><meta property="article:tag" content="Scheduler"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 - bak-libra26"><meta name="twitter:description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 - bak-libra26","description":"이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다.","url":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/리액티브/리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"리액티브 프로그래밍, 웹플럭스, 리액터, Thread, Scheduler","datePublished":"2026-01-21T15:39:21.000Z","dateModified":"2026-01-21T15:39:21.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/리액티브/리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/리액티브/리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/스프링/리액티브</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드/스프링" data-discover="true">스프링</a></span><span><span class="sep">/</span><span class="current">리액티브</span></span></nav><header class="post-meta"><h1 class="post-detail__title">리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까</h1><div class="post-detail__tags"><span class="tag tag--primary">리액티브 프로그래밍</span><span class="tag">웹플럭스</span><span class="tag">리액터</span><span class="tag">Thread</span><span class="tag">Scheduler</span></div><div class="post-detail__meta"><span>2026-01-22</span><span class="sep">·</span><span>8 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 리액티브</span><span class="count">(7/7)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>리액티브 프로그래밍 시작하기</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%A6%88%EC%99%80%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%A6%AC%EC%95%A1%ED%84%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>리액티브 스트림즈와 프로젝트 리액터</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%A6%88%20%EA%B5%AC%ED%98%84%EC%B2%B4%2C%20%EB%A6%AC%EC%95%A1%ED%84%B0%20%ED%95%9C%20%EB%B2%88%20%EC%8D%A8%EB%B3%B4%EA%B8%B0" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>리액티브 스트림즈 구현체, 리액터 한 번 써보기</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/%EB%A6%AC%EC%95%A1%ED%84%B0%2C%20%EB%B0%B1%ED%94%84%EB%A0%88%EC%85%94%EC%99%80%20%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20%EC%A0%84%EB%9E%B5" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>리액터, 백프레셔와 여러가지 전략</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/Hot%20vs%20Cold_Publisher%3A%20%EA%B0%99%EC%9D%80%20Flux%EA%B0%80%20%EA%B5%AC%EB%8F%85%EC%9E%90%EB%A7%88%EB%8B%A4%20%EB%8B%A4%EB%A5%B4%EA%B2%8C%20%EB%B3%B4%EC%9D%B4%EB%8A%94%20%EC%9D%B4%EC%9C%A0" data-discover="true"><span class="num">5.</span><span class="check">✓</span><span>Hot vs Cold_Publisher: 같은 Flux가 구독자마다 다르게 보이는 이유</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/Sinks%3A%20%EB%A6%AC%EC%95%A1%ED%84%B0%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%97%90%20%EC%A7%81%EC%A0%91%20%EA%B0%92%EC%9D%84%20%EB%B0%80%EC%96%B4%20%EB%84%A3%EB%8A%94%20%EB%B0%A9%EB%B2%95" data-discover="true"><span class="num">6.</span><span class="check">✓</span><span>Sinks: 리액터 스트림에 직접 값을 밀어 넣는 방법</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/%EB%A6%AC%EC%95%A1%ED%84%B0%20%EC%8A%A4%EB%A0%88%EB%93%9C%EC%99%80%20%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%AC%3A%20%EC%96%B8%EC%A0%9C%20publishOn%2C%20subscribeOn%EC%9D%84%20%EC%93%B8%EA%B9%8C" data-discover="true"><span class="num">7.</span><span class="current-marker">→</span><span>리액터 스레드와 스케줄러: 언제 publishOn, subscribeOn을 쓸까 (현재)</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C/Sinks%3A%20%EB%A6%AC%EC%95%A1%ED%84%B0%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%97%90%20%EC%A7%81%EC%A0%91%20%EA%B0%92%EC%9D%84%20%EB%B0%80%EC%96%B4%20%EB%84%A3%EB%8A%94%20%EB%B0%A9%EB%B2%95" data-discover="true">← prev</a><span class="disabled">next →</span></div></nav><main class="detail-body"><p>리액터로 작성된 코드를 보면, 같은 비즈니스 로직인데도 로그에 찍히는 스레드 이름이 <code>reactor-http-nio-*</code>, <code>boundedElastic-*</code>, <code>parallel-*</code>처럼 제각각인 경우가 많습니다.  <code>Spring Web MVC</code> 기반 스프링부트 프로젝트에 익숙하시다면, 하나의 HTTP 요청이 톰캣 워커 스레드 하나에서 처리되는 패턴에 익숙할 테니 이런 스레드 전환이 더 낯설게 느껴질 수 있습니다.</p>
+<p><strong>하지만 리액터라고 해서 항상 여러 스레드를 오가며 실행되는 것은 아닙니다.</strong>  별도의 스케줄러를 사용하지 않으면 체인 전체가 하나의 스레드에서만 동작하고, <code>Spring WebFlux</code>처럼 프레임워크가 정해 둔 기본 스레드(이벤트 루프 등) 위에서만 실행되는 경우도 많습니다.
+만약 <strong>스케줄러를 직접 설정하거나, 프레임워크 내부에서 다른 스레드 풀을 사용하는 구간이 있을 때에만 체인 일부가 다른 스레드로 옮겨 가고, 그 스레드 이름이 로그에 드러나는 것</strong>입니다.</p>
+<p>문제는 “어디서, 왜 스레드가 바뀌는지”를 모른 채 코드를 작성하면, 디버깅이 어려워져 병목 구간이 생겨도 원인을 쉽게 짚어내지 못한다는 점입니다. <strong>이번 글에서는 리액터에서 스레드가 바뀌는 지점과 바뀌는 이유에 대해 알아보겠습니다.</strong></p>
+<hr>
+<h1 id="리액터-스레드와-스케줄러-위에-서-있는-모델" class="post-heading post-heading__h1">리액터: 스레드와 스케줄러 위에 서 있는 모델</h1>
+<p>일반적인 의미에서의 스레드와 스케줄러를 먼저 짚고 가겠습니다.</p>
+<blockquote>
+<p><strong>스레드(Thread):</strong> 실제로 작업이 실행되는 실행 단위;
+<strong>스케줄러(Scheduler):</strong> 여러 작업(또는 스레드)을 어떤 순서와 규칙으로 CPU에 올릴지 결정하는 스케줄링 정책;</p>
+</blockquote>
+<p>일반적으로 리액터 코드는 발행자(<code>Publisher</code>), 구독자(<code>Subscriber</code>), 여러 개의 연산자(<code>Operator</code>)로 구성되고, 이것들이 하나의 파이프라인을 이룹니다. 이러한 파이프라인에 <strong>따로 스케줄러를 추가하지 않으면 이 코드는 보통 하나의 스레드 위에서만 동작</strong> 하며, 이러한 파이프라인에 <code>외부 API 호출</code> 또는 <code>DB I/O</code> 처럼 블로킹 구간이 존재한다면, 그 부분이 끝날 때까지 뒤에 이어진 작업들도 함께 블로킹될 수밖에 없습니다.</p>
+<p>리액터가 진짜 힘을 발휘하는 지점도 바로 여기입니다. 적은 수의 스레드로 최대한 많은 작업을 처리하려면, <strong>블로킹 구간은 중요한 스레드에서 분리하고, 가벼운 연산은 한 스레드에 묶어 두도록 체인을 설계해야 합니다.</strong></p>
+<p>다시 말해, <strong>“적은 수의 스레드로 논블로킹하게 많은 작업을 처리하겠다”</strong> 는 리액터의 목표를 제대로 살리려면, <strong>어느 구간을 함께 묶고 어느 지점에서 스레드를 갈아탈지, 스레드와 스케줄러 관점에서 실행 경계를 의도적으로 설계해 줘야 합니다.</strong></p>
+<p>이걸 이해하려면 먼저, 아무런 스케줄러를 쓰지 않았을 때 체인이 어떻게 동작하는지, 즉 <strong>“하나의 스레드에서만 도는 기본 모델”</strong> 부터 짚고 넘어가는 게 좋습니다.</p>
+<hr>
+<h2 id="리액터-하나의-스레드에서-동작한다" class="post-heading post-heading__h2">리액터: 하나의 스레드에서 동작한다.</h2>
+<p>스케줄러를 사용하지 않는 가장 단순한 경우부터 보면 이해하기 쉽습니다. 아래 코드처럼 <strong>아무 스케줄러도 쓰지 않고 <code>main</code> 스레드에서 바로 구독하면, 체인 전체가 <code>main</code> 스레드 하나에서만 실행</strong>됩니다.</p>
+<ul>
+<li>
+<p><strong>스케줄러를 추가하지 않은 예제</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NoSchedulerDemo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="4">        Flux.just(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)</span>
+<span class="code-line numbered-code-line" data-line-number="5">            .map(i -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="6">                System.out.printf(<span class="hljs-string">"[%s] map: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="7">                        Thread.currentThread().getName(), i);</span>
+<span class="code-line numbered-code-line" data-line-number="8">                <span class="hljs-keyword">return</span> i * <span class="hljs-number">10</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="9">            })</span>
+<span class="code-line numbered-code-line" data-line-number="10">            .filter(i -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="11">                System.out.printf(<span class="hljs-string">"[%s] filter: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="12">                        Thread.currentThread().getName(), i);</span>
+<span class="code-line numbered-code-line" data-line-number="13">                <span class="hljs-keyword">return</span> i &lt; <span class="hljs-number">15</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="14">            })</span>
+<span class="code-line numbered-code-line" data-line-number="15">            .subscribe(i -&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="16">                System.out.printf(<span class="hljs-string">"[%s] subscribe: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="17">                        Thread.currentThread().getName(), i)</span>
+<span class="code-line numbered-code-line" data-line-number="18">            );</span>
+<span class="code-line numbered-code-line" data-line-number="19">    }</span>
+<span class="code-line numbered-code-line" data-line-number="20">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>출력 로그</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">[main] map: 1</span>
+<span class="code-line numbered-code-line" data-line-number="2">[main] filter: 10</span>
+<span class="code-line numbered-code-line" data-line-number="3">[main] subscribe: 10</span>
+<span class="code-line numbered-code-line" data-line-number="4">[main] map: 2</span>
+<span class="code-line numbered-code-line" data-line-number="5">[main] filter: 20</span>
+<span class="code-line numbered-code-line" data-line-number="6">[main] map: 3</span>
+<span class="code-line numbered-code-line" data-line-number="7">[main] filter: 30</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위 로그에서 <code>map</code>과 <code>subscribe</code>에서 찍히는 모든 로그의 스레드 이름이 <code>main</code>인 것을 확인할 수 있습니다.
+따로 스케줄러를 전혀 건드리지 않았을 때 리액터 체인이 따르는 가장 기본적인 스레드 모델이 바로 이런 형태입니다.</p>
+<hr>
+<h3 id="하나의-스레드에-블로킹-구간이-끼어들면" class="post-heading post-heading__h3">하나의 스레드에 블로킹 구간이 끼어들면?</h3>
+<p>이 구조가 문제가 되는 순간은, 이 한 스레드 모델 안에 <strong>오래 걸리는 블로킹 작업이 끼어 있을 때</strong>입니다.</p>
+<p>예를 들어 위 코드의 <strong>map 구간에서 외부 API 호출이나 DB I/O처럼 수십~수백 ms 이상 걸리는 작업을 수행한다고 가정</strong>해 보겠습니다.
+그러면 <strong>그 시간 동안 이 스레드는 그 작업만 처리하느라 바빠지고, 뒤에 이어진 filter와 subscribe 구간도 모두 그 스레드가 다시 “비는 순간”까지 그대로 멈춰 서 있게 됩니다.</strong></p>
+<p>간단한 데모로, map 안에 <code>Thread.sleep(...)</code>을 잠깐 추가해 보면 여전히 모든 로그는 main 스레드에서 찍히지만, 각 로그 사이의 간격이 눈에 띄게 벌어지는 걸 바로 확인할 수 있습니다. <strong>겉으로는 리액터 연산자가 이어진 비동기 체인처럼 보이지만, 실제 실행 흐름만 놓고 보면 한 스레드 위에서 순서대로 막히는, 동기/블로킹 코드와 크게 다르지 않은 동작이 되어 버리는 셈입니다.</strong></p>
+<hr>
+<h2 id="리액터-스레드-분리하기" class="post-heading post-heading__h2">리액터: 스레드 분리하기</h2>
+<p><a href="#%ED%95%98%EB%82%98%EC%9D%98-%EC%8A%A4%EB%A0%88%EB%93%9C%EC%97%90-%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B5%AC%EA%B0%84%EC%9D%B4-%EB%81%BC%EC%96%B4%EB%93%A4%EB%A9%B4">하나의 스레드에 블로킹 구간이 끼어들면</a> 에서 보았듯이, 하나의 스레드로 동작하는 구성에서 블로킹 구간이 끼어들면 그 구간이 끝날 때까지 뒤에 이어진 작업들이 모두 함께 멈추게 되어 전체 처리량이 눈에 띄게 떨어집니다. 이 문제를 해결하려면 <strong>병목이 되는 블로킹 구간만 별도의 스레드(또는 스레드 풀)로 떼어내고, 나머지 구간은 기존 스레드 위에 그대로 두어 이벤트 루프나 중요한 스레드를 막지 않도록 설계</strong>해야 합니다.</p>
+<p>이를 위해 리액터는 체인 중간이나 시작 지점의 실행 스레드를 바꿀 수 있는 두 가지 연산자, <strong><code>publishOn</code>과 <code>subscribeOn</code>을 제공</strong>합니다. <strong><code>publishOn</code>은 “여기부터 아래 연산자들”의 실행 컨텍스트를 다른 스케줄러로 옮기는 역할</strong>을 하고, <strong><code>subscribeOn</code>은 “체인이 어디에서 구독·요청을 시작할지”를 지정해서 소스 구간 전체를 다른 스레드로 이동시키는 역할</strong>을 합니다.</p>
+<p>이제 간단한 예제를 통해 두 연산자가 실제로 어떻게 동작하는지 차례대로 살펴보겠습니다.</p>
+<hr>
+<h3 id="publishon-체인-중간에서-스레드-바꾸기" class="post-heading post-heading__h3">publishOn: 체인 중간에서 스레드 바꾸기</h3>
+<p><strong><code>publishOn(Scheduler scheduler)</code></strong> 은 <strong>“지금까지는 그대로 두고, 이 지점부터 아래쪽 연산자들만 다른 스레드에서 실행하고 싶을 때” 쓰는 연산자</strong>입니다. 위치 기준으로 동작하기 때문에, 체인 어디에 두느냐가 <strong>곧 “어디서 스레드를 갈아탈지”를 의미</strong>합니다.</p>
+<ul>
+<li>
+<p><strong><code>publishOn(Scheduler scheduler)</code> 예제</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PublishOnDemo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="4">        Flux.range(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)</span>
+<span class="code-line numbered-code-line" data-line-number="5">            .map(i -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="6">                System.out.printf(<span class="hljs-string">"[%s] map 1: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="7">                        Thread.currentThread().getName(), i);</span>
+<span class="code-line numbered-code-line" data-line-number="8">                <span class="hljs-keyword">return</span> i;</span>
+<span class="code-line numbered-code-line" data-line-number="9">            })</span>
+<span class="code-line numbered-code-line" data-line-number="10">            .publishOn(Schedulers.boundedElastic()) <span class="hljs-comment">// 여기서부터 스레드 전환</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">            .map(i -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="12">                System.out.printf(<span class="hljs-string">"[%s] map 2: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="13">                        Thread.currentThread().getName(), i);</span>
+<span class="code-line numbered-code-line" data-line-number="14">                <span class="hljs-keyword">return</span> i * <span class="hljs-number">10</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="15">            })</span>
+<span class="code-line numbered-code-line" data-line-number="16">            .subscribe(i -&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="17">                System.out.printf(<span class="hljs-string">"[%s] subscribe: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="18">                        Thread.currentThread().getName(), i)</span>
+<span class="code-line numbered-code-line" data-line-number="19">            );</span>
+<span class="code-line numbered-code-line" data-line-number="20">    }</span>
+<span class="code-line numbered-code-line" data-line-number="21">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>출력 로그</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">[main] map 1: 1</span>
+<span class="code-line numbered-code-line" data-line-number="2">[main] map 1: 2</span>
+<span class="code-line numbered-code-line" data-line-number="3">[main] map 1: 3</span>
+<span class="code-line numbered-code-line" data-line-number="4">[boundedElastic-1] map 2: 1</span>
+<span class="code-line numbered-code-line" data-line-number="5">[boundedElastic-1] subscribe: 10</span>
+<span class="code-line numbered-code-line" data-line-number="6">[boundedElastic-1] map 2: 2</span>
+<span class="code-line numbered-code-line" data-line-number="7">[boundedElastic-1] subscribe: 20</span>
+<span class="code-line numbered-code-line" data-line-number="8">[boundedElastic-1] map 2: 3</span>
+<span class="code-line numbered-code-line" data-line-number="9">[boundedElastic-1] subscribe: 30</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위 예제를 실행해 보면, 첫번쨰 <code>map</code> 까지는 <code>main</code> 스레드에서 실행되나, 두번째 <code>map</code>와 <code>subscribe</code>는 <code>boundedElastic-…</code> 같은 이름의 스레드에서 찍히는 걸 볼 수 있습니다. 즉, <strong><code>publishOn</code>은 “업스트림에서 내려오는 시그널(onNext, onComplete, onError)을 받아, 그 이후 구간만 지정한 스케줄러 위에서 처리하게 만드는 연산자”</strong> 라고 이해하면 됩니다.</p>
+<hr>
+<h3 id="subscribeon-체인-시작-스레드-정하기" class="post-heading post-heading__h3">subscribeOn: 체인 시작 스레드 정하기</h3>
+<p><strong><code>subscribeOn(Scheduler scheduler)</code></strong> 은 <strong>“이 리액터 체인을 어느 스레드에서 시작할지”를 정하는 연산자</strong>입니다. 체인 어디에 두더라도, 소스 <code>Publisher</code>와 그 업스트림의 시그널(<code>subscribe</code>, <code>onSubscribe</code>, <code>request</code>, <code>onNext</code>)이 <strong>지정한 스케줄러에서 실행되도록 만드는 게 핵심</strong>입니다.</p>
+<ul>
+<li>
+<p><strong><code>subscribeOn(Scheduler scheduler)</code> 예제</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SubscribeOnDemo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException {</span>
+<span class="code-line numbered-code-line" data-line-number="4">        Flux.range(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)</span>
+<span class="code-line numbered-code-line" data-line-number="5">            .map(i -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="6">                System.out.printf(<span class="hljs-string">"[%s] map: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="7">                        Thread.currentThread().getName(), i);</span>
+<span class="code-line numbered-code-line" data-line-number="8">                <span class="hljs-keyword">return</span> i * <span class="hljs-number">10</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="9">            })</span>
+<span class="code-line numbered-code-line" data-line-number="10">            .subscribeOn(Schedulers.boundedElastic()) <span class="hljs-comment">// 체인 시작 스레드 지정</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">            .subscribe(i -&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="12">                System.out.printf(<span class="hljs-string">"[%s] subscribe: %d%n"</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="13">                        Thread.currentThread().getName(), i)</span>
+<span class="code-line numbered-code-line" data-line-number="14">            );</span>
+<span class="code-line numbered-code-line" data-line-number="15">    }</span>
+<span class="code-line numbered-code-line" data-line-number="16">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>출력 로그</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1">[boundedElastic-<span class="hljs-number">1</span>] map: <span class="hljs-number">1</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">[boundedElastic-<span class="hljs-number">1</span>] subscribe: <span class="hljs-number">10</span></span>
+<span class="code-line numbered-code-line" data-line-number="3">[boundedElastic-<span class="hljs-number">1</span>] map: <span class="hljs-number">2</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">[boundedElastic-<span class="hljs-number">1</span>] subscribe: <span class="hljs-number">20</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">[boundedElastic-<span class="hljs-number">1</span>] map: <span class="hljs-number">3</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">[boundedElastic-<span class="hljs-number">1</span>] subscribe: <span class="hljs-number">30</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<p>이 코드는 <code>main</code> 스레드에서 <code>subscribe()</code>를 호출하지만, 실제로 <code>map</code>과 <code>subscribe</code> 로그는 모두 <code>boundedElastic-1</code> 같은 이름의 스레드에서 찍힙니다. 즉, <strong><code>subscribeOn</code>이 “소스를 구독하는 작업 자체를 <code>boundedElastic</code> 스레드에서 수행해라”라고 지시</strong>했고, 그 결과 <strong>체인 전체가 그 스레드에서 시작되어 흘러가는 형태</strong>가 됩니다.</p>
+<p>정리하면, <strong><code>subscribeOn</code>은 “소스가 어느 스레드에서 값을 만들고 흘려보낼지”를 정하는 용도</strong>이고, <strong><code>publishOn</code>은 “체인 중간의 어느 지점부터 다른 스레드에서 소비·가공할지”를 정하는 용도</strong>라고 볼 수 있습니다</p>
+<hr>
+<h2 id="리액터-여러가지-스케줄러" class="post-heading post-heading__h2">리액터: 여러가지 스케줄러</h2>
+<p><code>publishOn</code>, <code>subscribeOn</code>에 이어서, 리액터에서 자주 쓰는 스케줄러들을 용도별로 정리해보았습니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>스케줄러</th><th>주요 용도</th><th>스레드 특성</th><th>언제 쓰면 좋은지</th></tr></thead><tbody><tr><td><code>Schedulers.immediate()</code></td><td>스케줄링 없이 바로 실행</td><td>현재 호출한 <strong>같은</strong> 스레드에서 즉시 실행</td><td>별도 스레드 전환이 전혀 필요 없을 때, 테스트용</td></tr><tr><td><code>Schedulers.single()</code></td><td>단일 작업 큐, 순차 실행</td><td>공용 단일 스레드(또는 newSingle로 별도 생성), FIFO 순차 처리</td><td>로그 처리, 순서 보장이 중요한 가벼운 작업</td></tr><tr><td><code>Schedulers.parallel()</code></td><td>CPU 바운드 병렬 작업</td><td>CPU 코어 수만큼의 고정 스레드 풀, 각 워커는 단일 스레드</td><td>빠른 계산/변환 작업, non-blocking 연산 병렬 처리</td></tr><tr><td><code>Schedulers.boundedElastic()</code></td><td>블로킹 I/O 오프로딩</td><td>“코어 수 × N” 수준의 제한된(bounded) 스레드 풀, 큐 포함</td><td>DB/JDBC, 외부 API 호출 등 오래 걸리는 블로킹 작업</td></tr><tr><td><code>Schedulers.fromExecutorService(executor)</code></td><td>커스텀 실행 환경 연동</td><td>기존 <code>ExecutorService</code>를 감싼 스케줄러</td><td>직접 구성한 스레드 풀이나 라이브러리용 executor를 쓰고 싶을 때</td></tr></tbody></table>
+<p>여기까지가 스레드와 스케줄러, 그리고 publishOn/subscribeOn의 기본 사용법입니다. 마지막으로, 실제 코드에서 어떤 스케줄러를 선택할지 고민될 때 참고할 수 있는 작은 체크리스트를 정리해 보았습니다.</p>
+<ul>
+<li><strong>어떤 스케줄러를 쓸지 헷갈릴 때</strong>
+<ol>
+<li><strong>이 구간은 CPU 계산 위주인가?</strong> → <code>Schedulers.parallel()</code> 고려.</li>
+<li><strong>이 구간은 오래 기다리는 블로킹 I/O인가?</strong> → <code>Schedulers.boundedElastic()</code> 으로 분리.</li>
+<li><strong>순서가 꼭 보장돼야 하는 가벼운 작업인가?</strong> → <code>Schedulers.single()</code>.</li>
+<li><strong>굳이 스레드를 바꾸지 않아도 되는가?</strong> → 스케줄러를 쓰지 않거나 <code>Schedulers.immediate()</code> 유지.</li>
+</ol>
+</li>
+</ul></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%258B%25B0%25EB%25B8%258C%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%2584%25B0%2520%25EC%258A%25A4%25EB%25A0%2588%25EB%2593%259C%25EC%2599%2580%2520%25EC%258A%25A4%25EC%25BC%2580%25EC%25A4%2584%25EB%259F%25AC%253A%2520%25EC%2596%25B8%25EC%25A0%259C%2520publishOn%252C%2520subscribeOn%25EC%259D%2584%2520%25EC%2593%25B8%25EA%25B9%258C&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%9D%B4+%EA%B8%80%EC%97%90%EC%84%9C%EB%8A%94+Reactor+%EC%B2%B4%EC%9D%B8%EC%97%90%EC%84%9C+%E2%80%9C%EC%96%B4%EB%94%94%EC%84%9C%2C+%EC%99%9C+%EC%8A%A4%EB%A0%88%EB%93%9C%EA%B0%80+%EB%B0%94%EB%80%8C%EB%8A%94%EC%A7%80%E2%80%9D%EB%A5%BC+Schedulers%2C+publishOn%2C+subscribeOn+%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%258B%25B0%25EB%25B8%258C%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%2584%25B0%2520%25EC%258A%25A4%25EB%25A0%2588%25EB%2593%259C%25EC%2599%2580%2520%25EC%258A%25A4%25EC%25BC%2580%25EC%25A4%2584%25EB%259F%25AC%253A%2520%25EC%2596%25B8%25EC%25A0%259C%2520publishOn%252C%2520subscribeOn%25EC%259D%2584%2520%25EC%2593%25B8%25EA%25B9%258C&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%258B%25B0%25EB%25B8%258C%2F%25EB%25A6%25AC%25EC%2595%25A1%25ED%2584%25B0%2520%25EC%258A%25A4%25EB%25A0%2588%25EB%2593%259C%25EC%2599%2580%2520%25EC%258A%25A4%25EC%25BC%2580%25EC%25A4%2584%25EB%259F%25AC%253A%2520%25EC%2596%25B8%25EC%25A0%259C%2520publishOn%252C%2520subscribeOn%25EC%259D%2584%2520%25EC%2593%25B8%25EA%25B9%258C" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#리액터-하나의-스레드에서-동작한다" class="toc__item active" style="padding-left: 12px;">리액터: 하나의 스레드에서 동작한다.</a><a href="#하나의-스레드에-블로킹-구간이-끼어들면" class="toc__item" style="padding-left: 26px;">하나의 스레드에 블로킹 구간이 끼어들면?</a><a href="#리액터-스레드-분리하기" class="toc__item" style="padding-left: 12px;">리액터: 스레드 분리하기</a><a href="#publishon-체인-중간에서-스레드-바꾸기" class="toc__item" style="padding-left: 26px;">publishOn: 체인 중간에서 스레드 바꾸기</a><a href="#subscribeon-체인-시작-스레드-정하기" class="toc__item" style="padding-left: 26px;">subscribeOn: 체인 시작 스레드 정하기</a><a href="#리액터-여러가지-스케줄러" class="toc__item" style="padding-left: 12px;">리액터: 여러가지 스케줄러</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/스프링/리액티브</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

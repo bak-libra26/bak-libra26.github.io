@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/데브옵스/넥서스/Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성"><meta property="og:type" content="article"><meta property="og:title" content="Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 - bak-libra26"><meta property="og:description" content="넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성"><meta property="og:url" content="https://bak-libra26.co.kr/posts/데브옵스/넥서스/Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2025-08-13T16:07:56.000Z"><meta property="article:modified_time" content="2025-08-13T16:07:56.000Z"><meta property="article:tag" content="Nexus"><meta property="article:tag" content="Nginx"><meta property="article:tag" content="ReverseProxy"><meta property="article:tag" content="HTTPS"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 - bak-libra26"><meta name="twitter:description" content="넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 72%;"></div></div><span class="loading-progress-pct">72%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 - bak-libra26","description":"넥서스 도메인 적용해보기, Nginx를 이용한 리버스 프록시 구성","url":"https://bak-libra26.co.kr/posts/데브옵스/넥서스/Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"Nexus, Nginx, ReverseProxy, HTTPS","datePublished":"2025-08-13T16:07:56.000Z","dateModified":"2025-08-13T16:07:56.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/데브옵스/넥서스/Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 - bak-libra26","item":"https://bak-libra26.co.kr/posts/데브옵스/넥서스/Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/데브옵스/넥서스</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/데브옵스" data-discover="true">데브옵스</a></span><span><span class="sep">/</span><span class="current">넥서스</span></span></nav><header class="post-meta"><h1 class="post-detail__title">Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성</h1><div class="post-detail__tags"><span class="tag tag--primary">Nexus</span><span class="tag">Nginx</span><span class="tag">ReverseProxy</span><span class="tag">HTTPS</span></div><div class="post-detail__meta"><span>2025-08-14</span><span class="sep">·</span><span>1 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 넥서스</span><span class="count">(1/3)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item active" href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nginx%20%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20Nexus%EC%97%90%20%EB%8C%80%ED%95%9C%20%EB%A6%AC%EB%B2%84%EC%8A%A4%20%ED%94%84%EB%A1%9D%EC%8B%9C%20%EA%B5%AC%EC%84%B1" data-discover="true"><span class="num">1.</span><span class="current-marker">→</span><span>Nginx 를 이용한 Nexus에 대한 리버스 프록시 구성 (현재)</span></a><a class="series-nav__item future" href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nexus%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span style="min-width: 16px;"></span><span>Nexus 설치하기</span></a><a class="series-nav__item future" href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nexus%20Repository%20%EC%9C%A0%ED%98%95%20%EB%B0%8F%20Spring%20Boot%20%EC%97%B0%EB%8F%99" data-discover="true"><span class="num">3.</span><span style="min-width: 16px;"></span><span>Nexus Repository 유형 및 Spring Boot 연동</span></a></div><div class="series-nav__footer"><span class="disabled">← prev</span><a href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nexus%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true">next →</a></div></nav><main class="detail-body"><h2 id="최신-버전-maven-사용을-위한-nexus-도메인-적용" class="post-heading post-heading__h2">최신 버전 Maven 사용을 위한 Nexus 도메인 적용</h2>
+<ul>
+<li>Maven에서 Nexus 도메인(<code>nexus.example.com</code> 등)으로 접근해야 최신 라이브러리 사용 가능</li>
+</ul>
+<blockquote>
+<p>Tips: 도메인 적용하면 의존성 파일 다운로드 안정적, 빌드 환경 일관성 확보</p>
+</blockquote>
+<hr>
+<h2 id="nginx로-도메인-네임-적용" class="post-heading post-heading__h2">Nginx로 도메인 네임 적용</h2>
+<ul>
+<li>Nginx가 HTTPS 요청을 받아 Nexus가 실행 중인 포트로 안전하게 리버스 프록시함</li>
+</ul>
+<h3 id="nginx-설치" class="post-heading post-heading__h3">Nginx 설치</h3>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">BASH</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-bash"><span class="code-line numbered-code-line" data-line-number="1">yum install nginx -y</span>
+<span class="code-line numbered-code-line" data-line-number="2">systemctl status nginx   <span class="hljs-comment"># 상태 확인</span></span>
+<span class="code-line numbered-code-line" data-line-number="3">systemctl start nginx    <span class="hljs-comment"># 실행</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">systemctl stop nginx     <span class="hljs-comment"># 중지</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">systemctl restart nginx  <span class="hljs-comment"># 재시작</span></span>
+</code></pre></figure>
+<ul>
+<li>로그: <code>/var/log/nginx/access.log</code>, <code>/var/log/nginx/error.log</code></li>
+<li>80 포트 접속으로 nginx 기본 페이지 확인</li>
+</ul>
+<hr>
+<h3 id="nginx-도메인ssl-설정-보안-적용" class="post-heading post-heading__h3">Nginx 도메인/SSL 설정 (보안 적용)</h3>
+<ul>
+<li>
+<p>설정파일: <code>/etc/nginx/conf.d/default.conf</code></p>
+</li>
+<li>
+<p>발급받은 SSL 인증서는 <code>/etc/nginx/ssl</code>에 저장</p>
+</li>
+<li>
+<p><code>/etc/nginx/conf.d/default.conf</code></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">NGINX</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-nginx"><span class="code-line numbered-code-line" data-line-number="1">server {  </span>
+<span class="code-line numbered-code-line" data-line-number="2">	listen 443 ssl http2;  </span>
+<span class="code-line numbered-code-line" data-line-number="3">	server_name nexus.example.com;ssl_certificate /etc/nginx/ssl/certificate.crt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">	</span>
+<span class="code-line numbered-code-line" data-line-number="5">	ssl_certificate_key /etc/nginx/ssl/private.key;</span>
+<span class="code-line numbered-code-line" data-line-number="6">	ssl_protocols TLSv1.2 TLSv1.3;</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">	location / {</span>
+<span class="code-line numbered-code-line" data-line-number="9">	          proxy_pass http://localhost:40000;</span>
+<span class="code-line numbered-code-line" data-line-number="10">	          proxy_set_header Host $host;</span>
+<span class="code-line numbered-code-line" data-line-number="11">	          proxy_set_header X-Real-IP $remote_addr;</span>
+<span class="code-line numbered-code-line" data-line-number="12">	          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="code-line numbered-code-line" data-line-number="13">	          proxy_set_header X-Forwarded-Proto $scheme;</span>
+<span class="code-line numbered-code-line" data-line-number="14">	}</span>
+<span class="code-line numbered-code-line" data-line-number="15">}</span>
+</code></pre></figure>
+</li>
+</ul></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nexus%20Repository%20%EC%9C%A0%ED%98%95%20%EB%B0%8F%20Spring%20Boot%20%EC%97%B0%EB%8F%99" data-discover="true"><span class="connector">├</span><span>Nexus Repository 유형 및 Spring Boot 연동</span></a></li><li><a class="related-posts__item" href="/posts/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/%EB%84%A5%EC%84%9C%EC%8A%A4/Nexus%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>Nexus 설치하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EB%258D%25B0%25EB%25B8%258C%25EC%2598%25B5%25EC%258A%25A4%2F%25EB%2584%25A5%25EC%2584%259C%25EC%258A%25A4%2FNginx%2520%25EB%25A5%25BC%2520%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C%2520Nexus%25EC%2597%2590%2520%25EB%258C%2580%25ED%2595%259C%2520%25EB%25A6%25AC%25EB%25B2%2584%25EC%258A%25A4%2520%25ED%2594%2584%25EB%25A1%259D%25EC%258B%259C%2520%25EA%25B5%25AC%25EC%2584%25B1&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EB%84%A5%EC%84%9C%EC%8A%A4+%EB%8F%84%EB%A9%94%EC%9D%B8+%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0%2C+Nginx%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%9C+%EB%A6%AC%EB%B2%84%EC%8A%A4+%ED%94%84%EB%A1%9D%EC%8B%9C+%EA%B5%AC%EC%84%B1&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EB%258D%25B0%25EB%25B8%258C%25EC%2598%25B5%25EC%258A%25A4%2F%25EB%2584%25A5%25EC%2584%259C%25EC%258A%25A4%2FNginx%2520%25EB%25A5%25BC%2520%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C%2520Nexus%25EC%2597%2590%2520%25EB%258C%2580%25ED%2595%259C%2520%25EB%25A6%25AC%25EB%25B2%2584%25EC%258A%25A4%2520%25ED%2594%2584%25EB%25A1%259D%25EC%258B%259C%2520%25EA%25B5%25AC%25EC%2584%25B1&amp;term=posts%2F%25EB%258D%25B0%25EB%25B8%258C%25EC%2598%25B5%25EC%258A%25A4%2F%25EB%2584%25A5%25EC%2584%259C%25EC%258A%25A4%2FNginx%2520%25EB%25A5%25BC%2520%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C%2520Nexus%25EC%2597%2590%2520%25EB%258C%2580%25ED%2595%259C%2520%25EB%25A6%25AC%25EB%25B2%2584%25EC%258A%25A4%2520%25ED%2594%2584%25EB%25A1%259D%25EC%258B%259C%2520%25EA%25B5%25AC%25EC%2584%25B1" loading="lazy" style=""></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#최신-버전-maven-사용을-위한-nexus-도메인-적용" class="toc__item active" style="padding-left: 12px;">최신 버전 Maven 사용을 위한 Nexus 도메인 적용</a><a href="#nginx로-도메인-네임-적용" class="toc__item" style="padding-left: 12px;">Nginx로 도메인 네임 적용</a><a href="#nginx-설치" class="toc__item" style="padding-left: 26px;">Nginx 설치</a><a href="#nginx-도메인ssl-설정-보안-적용" class="toc__item" style="padding-left: 26px;">Nginx 도메인/SSL 설정 (보안 적용)</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/데브옵스/넥서스</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

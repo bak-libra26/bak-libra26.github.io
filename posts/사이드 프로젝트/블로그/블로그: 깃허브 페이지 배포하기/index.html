@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>블로그: 깃허브 페이지 배포하기 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="이 글은 `Vite`와 `리액트`로 만든 개인 블로그를 깃허브 페이지에 정적 사이트로 배포하고 도메인(`bak-libra26.co.kr`) 를 연동하는 과정을 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 깃허브 페이지 배포하기"><meta property="og:type" content="article"><meta property="og:title" content="블로그: 깃허브 페이지 배포하기 - bak-libra26"><meta property="og:description" content="이 글은 `Vite`와 `리액트`로 만든 개인 블로그를 깃허브 페이지에 정적 사이트로 배포하고 도메인(`bak-libra26.co.kr`) 를 연동하는 과정을 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 깃허브 페이지 배포하기"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-18T15:09:52.000Z"><meta property="article:modified_time" content="2026-02-18T15:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="블로그: 깃허브 페이지 배포하기 - bak-libra26"><meta name="twitter:description" content="이 글은 `Vite`와 `리액트`로 만든 개인 블로그를 깃허브 페이지에 정적 사이트로 배포하고 도메인(`bak-libra26.co.kr`) 를 연동하는 과정을 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"블로그: 깃허브 페이지 배포하기 - bak-libra26","description":"이 글은 `Vite`와 `리액트`로 만든 개인 블로그를 깃허브 페이지에 정적 사이트로 배포하고 도메인(`bak-libra26.co.kr`) 를 연동하는 과정을 정리했습니다.","url":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 깃허브 페이지 배포하기","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-02-18T15:09:52.000Z","dateModified":"2026-02-18T15:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 깃허브 페이지 배포하기"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"블로그: 깃허브 페이지 배포하기 - bak-libra26","item":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 깃허브 페이지 배포하기"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/사이드 프로젝트/블로그</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"블로그: 깃허브 페이지 배포하기.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/사이드 프로젝트" data-discover="true">사이드 프로젝트</a></span><span><span class="sep">/</span><span class="current">블로그</span></span></nav><header class="post-meta"><h1 class="post-detail__title">블로그: 깃허브 페이지 배포하기</h1><div class="post-detail__meta"><span>2026-02-19</span><span class="sep">·</span><span>4 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 블로그</span><span class="count">(6/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20GISCUS%20%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%EB%8C%93%EA%B8%80%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>블로그: GISCUS 를 통한 댓글 기능 구현하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%20%ED%8C%8C%EC%9D%BC%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%ED%8F%AC%EC%8A%A4%ED%8C%85%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>블로그: 마크다운을 HTML로 변환하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%AA%A9%EC%B0%A8(TOC)%20%EA%B8%B0%EB%8A%A5%20%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>블로그: 목차(TOC) 기능 추가하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">5.</span><span class="check">✓</span><span>블로그: 메타 태그 최적화하기</span></a><a class="series-nav__item active" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EA%B9%83%ED%97%88%EB%B8%8C%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">6.</span><span class="current-marker">→</span><span>블로그: 깃허브 페이지 배포하기 (현재)</span></a></div><div class="series-nav__footer"><a href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true">← prev</a><span class="disabled">next →</span></div></nav><main class="detail-body"><blockquote>
+<p>이 글은 리액트로 구성한 프로젝트를 깃허브 페이지로 배포하는 과정을 정리한 글입니다.</p>
+</blockquote>
+<h2 id="블로그-개발-환경과-스택" class="post-heading post-heading__h2">블로그: 개발 환경과 스택</h2>
+<p>제가 만든 블로그는 Vite와 리액트 19 버전을 기반으로 개발했고, 깃허브 페이지(GitHub Pages)를 통해 정적 사이트 형태로 배포했습니다.
+깃허브 페이지는 정적 웹 사이트를 무료로 호스팅할 수 있는 서비스라, 별도 서버 없이도 손쉽게 배포 환경을 구성할 수 있었습니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>구분</th><th>내용</th></tr></thead><tbody><tr><td>빌드 도구</td><td>Vite</td></tr><tr><td>프레임워크</td><td>리액트 19</td></tr><tr><td>배포 방식</td><td>깃허브 페이지(GitHub Pages)</td></tr></tbody></table>
+<p>사용하는 기술 스택에 따라 설정 방법이 조금씩 달라질 수 있어 Vite + 리액트 19 를 기준으로 작성된 글임을 참고해 주세요.</p>
+<hr>
+<h2 id="블로그-깃허브-페이지-배포하기" class="post-heading post-heading__h2">블로그: 깃허브 페이지 배포하기</h2>
+<p>이제 실제로 이 블로그를 깃허브 페이지에 올리기 위해, 배포에 필요한 스크립트를 먼저 정리하겠습니다.
+<code>Vite</code>로 빌드한 정적 파일을 깃허브 페이지에서 바로 호스팅할 수 있도록, <code>package.json</code>에 빌드·배포용 명령을 추가해서 배포 작업을 자동화해보겠습니다.</p>
+<hr>
+<h3 id="스크립트-작성하기" class="post-heading post-heading__h3">스크립트 작성하기</h3>
+<p>배포 자동화를 위해 <code>package.json</code>의 <code>scripts</code>에 <code>deploy</code> 명령을 추가해야합니다.</p>
+<ul>
+<li>배포를 위한 <code>package.json</code> 수정
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSON</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-json"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-punctuation">{</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">  ...</span>
+<span class="code-line numbered-code-line" data-line-number="3">  <span class="hljs-attr">"scripts"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-attr">"dev"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"vite --host"</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">    <span class="hljs-attr">"build"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"vite build"</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">    ...</span>
+<span class="code-line numbered-code-line" data-line-number="7">    <span class="hljs-attr">"deploy"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"gh-pages -d dist -t"</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">  ...</span>
+<span class="code-line numbered-code-line" data-line-number="10"><span class="hljs-punctuation">}</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위와 같이 수정하고 <code>npm run build</code> 명령어를 실행하면 프로젝트 루트에 빌드 결과물에 해당하는 <code>dist</code> 폴더가 생성됩니다.
+이후에 <code>npm run deploy</code> 를 실행하면 <code>gh-pages</code> 를 통해 빌드된 정적 파일(<code>/dist/*</code>)을 깃허브 페이지 전용 브랜치(<code>gh-pages</code>)에 업로드됩니다.</p>
+<hr>
+<h3 id="배포-확인하기" class="post-heading post-heading__h3">배포 확인하기</h3>
+<ul>
+<li><strong>명령어 실행 후 체크리스트</strong>
+<ol>
+<li><strong><code>gh-pages</code> 브랜치 생성 여부 확인</strong></li>
+<li><strong><code>gh-pages</code> 브랜치 안에 빌드 결과물(<code>dist</code>) 정상 배포 여부 확인</strong></li>
+</ol>
+</li>
+</ul>
+<p>위 두 가지가 확인되었다면 잠시 후에 깃허브 페이지가 제공하는 주소(<code>https://{깃허브 계정}.github.io</code>)로 접속했을 때 배포된 웹 페이지가 확인됩니다.</p>
+<hr>
+<h3 id="트러블-슈팅-404-페이지를-찾지-못했습니다" class="post-heading post-heading__h3">트러블 슈팅: 404: 페이지를 찾지 못했습니다.</h3>
+<ul>
+<li><strong>배포 후, 404: 페이지를 찾지 못하는 경우.</strong>
+<img alt="github_pages_deploy_404_routing.png" loading="lazy" decoding="async" src="/images/posts/사이드 프로젝트/블로그/github_pages_deploy_404_routing.png" style="cursor: zoom-in;"></li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong><code>BrowserRouter</code> 설정 확인</strong></p>
+<p>GitHub Pages에서 서브 경로로 배포하는 경우, 라우터의 basename이 실제 서비스 주소와 맞지 않으면 새로고침이나 직접 URL 입력 시 404가 발생할 수 있습니다.
+<code>&lt;BrowserRouter base='/'&gt;...&lt;/BrowserRouter&gt;</code> 로 되어있다면 <code>bak-libra26.github.io</code>와 같이 <code>${계정}.github.io</code> 와 같은 깃허브 페이지 주소로 변경해주어야합니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSX</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-jsx"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">const</span> basename = <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">env</span>.<span class="hljs-property">MODE</span> === <span class="hljs-string">'development'</span> ? <span class="hljs-string">'/'</span> : <span class="hljs-string">'/bak-libra26.github.io'</span>; <span class="hljs-comment">// 혹은 실제 배포 경로</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">&lt;<span class="xml hljs-tag hljs-name">BrowserRouter</span> <span class="xml hljs-tag hljs-attr">basename</span>=<span class="xml hljs-tag hljs-string">{basename}</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">...</span>
+<span class="code-line numbered-code-line" data-line-number="5">&lt;/<span class="xml hljs-tag hljs-name">BrowserRouter</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong><code>&lt;a&gt;</code> 를 <code>&lt;Link&gt;</code> 로 변경하기</strong></p>
+<p>리액트 라우터를 사용하는 <code>SPA(Single Page Application)</code>에서 내부 페이지 이동에 <code>&lt;a&gt;</code> 태그를 사용하는 경우, 브라우저가 전체 페이지를 새로 요청하고 깃허브 페이지는 해당 경로에 정적 파일을 직접 찾게되어 404가 발생합니다.
+이를 방지하기 위해서 내부 라우팅에는 <code>&lt;a&gt;</code> 대신 리액트 라우터에서 제공하는 <code>&lt;Link&gt;</code> 컴포넌트를 사용해야 합니다.</p>
+</li>
+</ul>
+<h2 id="블로그-깃허브-페이지-도메인--dns-설정" class="post-heading post-heading__h2">블로그: 깃허브 페이지 도메인 &amp; DNS 설정</h2>
+<h3 id="사용할-도메인-결제" class="post-heading post-heading__h3">사용할 도메인 결제</h3>
+<p>먼저 블로그에 연결할 도메인을 구매해야합니다.
+가비아, 닷네임코리아, Cloudflare 등 도메인 구매 사이트를 이용해서 도메인을 구매해주세요.
+참고로 저는 <a href="https://www.hosting.kr/">호스팅케이알</a> 에서 구매했습니다.</p>
+<hr>
+<h3 id="깃허브-페이지-설정" class="post-heading post-heading__h3">깃허브 페이지 설정</h3>
+<ul>
+<li>깃허브 페이지 설정
+<img alt="github_pages_deploy_github_page_setting.png" loading="lazy" decoding="async" src="/images/posts/사이드 프로젝트/블로그/github_pages_deploy_github_page_setting.png" style="cursor: zoom-in;"></li>
+</ul>
+<ol>
+<li>레포지토리의 <code>Settings</code> &gt; <code>Pages</code>로 이동합니다.</li>
+<li><code>Custom domain</code>에 연결할 도메인(예: bak-libra26.co.kr)을 적은 후 저장합니다.</li>
+<li><code>SSL</code> 인증서 발급이 완료되면 <code>Enforce HTTPS</code> 옵션을 체크하여 항상 <code>HTTPS</code>로 접속되게 설정합니다.</li>
+</ol>
+<hr>
+<h3 id="cname-추가" class="post-heading post-heading__h3">CNAME 추가</h3>
+<p>깃허브 페이지 설정 화면에서 <code>Custom domain</code>을 저장하면 레포지토리 루트에 CNAME 파일이 생성되지만, 빌드/배포 과정에서 이 파일이 사라지는 경우가 있습니다.
+이걸 대비해서 프로젝트의 루트에 <code>public</code> 를 만들어 <code>CNAME</code> 파일을 직접 추가해두겠습니다.</p>
+<ul>
+<li><code>/public/CNAME</code> 파일 추가
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">TEXT</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-text"><span class="code-line numbered-code-line" data-line-number="1">bak-libra26.co.kr</span>
+</code></pre></figure>
+</li>
+</ul>
+<h3 id="a-레코드-추가" class="post-heading post-heading__h3">A 레코드 추가</h3>
+<p><code>bak-libra26.co.kr</code> 과 같은 루트 도메인 바로 접속하고 싶은 경우에 <code>DNS</code> 설정에서 <code>A 레코드</code>를 추가하여 <code>GitHub Pages IP</code>로 향하도록 설정해야 합니다.
+도메인을 구매한 업체의 사이트의 <code>DNS 설정 페이지</code>에서 아래처럼 <code>A 레코드</code>를 추가해 주세요.</p>
+<blockquote>
+<p><a href="https://docs.github.com/ko/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">깃허브 페이지 | 사용자 지정 도메인 관리</a> 를 참고하셔도 좋아요</p>
+</blockquote>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">TEXT</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-text"><span class="code-line numbered-code-line" data-line-number="1">타입: A</span>
+<span class="code-line numbered-code-line" data-line-number="2">호스트: @</span>
+<span class="code-line numbered-code-line" data-line-number="3">값: 185.199.108.153</span>
+<span class="code-line numbered-code-line" data-line-number="4">값: 185.199.109.153</span>
+<span class="code-line numbered-code-line" data-line-number="5">값: 185.199.110.153</span>
+<span class="code-line numbered-code-line" data-line-number="6">값: 185.199.111.153</span>
+</code></pre></figure>
+<ul>
+<li><code>@</code>는 루트 도메인(<code>bak-libra26.co.kr</code>)을 의미합니다.</li>
+<li><code>깃허브 페이지 IP</code>는 여러 개를 모두 추가하는 것이 좋습니다.</li>
+</ul>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 메타 태그 최적화하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%AA%A9%EC%B0%A8(TOC)%20%EA%B8%B0%EB%8A%A5%20%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 목차(TOC) 기능 추가하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 마크다운을 HTML로 변환하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%20%ED%8C%8C%EC%9D%BC%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%ED%8F%AC%EC%8A%A4%ED%8C%85%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20GISCUS%20%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%EB%8C%93%EA%B8%80%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>블로그: GISCUS 를 통한 댓글 기능 구현하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EA%25B9%2583%25ED%2597%2588%25EB%25B8%258C%2520%25ED%258E%2598%25EC%259D%25B4%25EC%25A7%2580%2520%25EB%25B0%25B0%25ED%258F%25AC%25ED%2595%2598%25EA%25B8%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%9D%B4+%EA%B8%80%EC%9D%80+%60Vite%60%EC%99%80+%60%EB%A6%AC%EC%95%A1%ED%8A%B8%60%EB%A1%9C+%EB%A7%8C%EB%93%A0+%EA%B0%9C%EC%9D%B8+%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%A5%BC+%EA%B9%83%ED%97%88%EB%B8%8C+%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90+%EC%A0%95%EC%A0%81+%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A1%9C+%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B3%A0+%EB%8F%84%EB%A9%94%EC%9D%B8%28%60bak-libra26.co.kr%60%29+%EB%A5%BC+%EC%97%B0%EB%8F%99%ED%95%98%EB%8A%94+%EA%B3%BC%EC%A0%95%EC%9D%84+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EA%25B9%2583%25ED%2597%2588%25EB%25B8%258C%2520%25ED%258E%2598%25EC%259D%25B4%25EC%25A7%2580%2520%25EB%25B0%25B0%25ED%258F%25AC%25ED%2595%2598%25EA%25B8%25B0&amp;term=posts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EA%25B9%2583%25ED%2597%2588%25EB%25B8%258C%2520%25ED%258E%2598%25EC%259D%25B4%25EC%25A7%2580%2520%25EB%25B0%25B0%25ED%258F%25AC%25ED%2595%2598%25EA%25B8%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#블로그-개발-환경과-스택" class="toc__item active" style="padding-left: 12px;">블로그: 개발 환경과 스택</a><a href="#블로그-깃허브-페이지-배포하기" class="toc__item" style="padding-left: 12px;">블로그: 깃허브 페이지 배포하기</a><a href="#스크립트-작성하기" class="toc__item" style="padding-left: 26px;">스크립트 작성하기</a><a href="#배포-확인하기" class="toc__item" style="padding-left: 26px;">배포 확인하기</a><a href="#트러블-슈팅-404-페이지를-찾지-못했습니다" class="toc__item" style="padding-left: 26px;">트러블 슈팅: 404: 페이지를 찾지 못했습니다.</a><a href="#블로그-깃허브-페이지-도메인--dns-설정" class="toc__item" style="padding-left: 12px;">블로그: 깃허브 페이지 도메인 &amp; DNS 설정</a><a href="#사용할-도메인-결제" class="toc__item" style="padding-left: 26px;">사용할 도메인 결제</a><a href="#깃허브-페이지-설정" class="toc__item" style="padding-left: 26px;">깃허브 페이지 설정</a><a href="#cname-추가" class="toc__item" style="padding-left: 26px;">CNAME 추가</a><a href="#a-레코드-추가" class="toc__item" style="padding-left: 26px;">A 레코드 추가</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/사이드 프로젝트/블로그</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

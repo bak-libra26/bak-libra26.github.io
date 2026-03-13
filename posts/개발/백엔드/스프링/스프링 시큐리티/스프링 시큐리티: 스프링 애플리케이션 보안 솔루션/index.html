@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="스프링 시큐리티가 어떤 보안 프레임워크인지, 그리고 스프링 기반 웹 애플리케이션에서 인증·인가와 각종 웹 보안을 어떤 구조로 처리하는지 필터 체인 관점에서 간단히 정리한 글입니다"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 스프링 애플리케이션 보안 솔루션"><meta property="og:type" content="article"><meta property="og:title" content="스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 - bak-libra26"><meta property="og:description" content="스프링 시큐리티가 어떤 보안 프레임워크인지, 그리고 스프링 기반 웹 애플리케이션에서 인증·인가와 각종 웹 보안을 어떤 구조로 처리하는지 필터 체인 관점에서 간단히 정리한 글입니다"><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 스프링 애플리케이션 보안 솔루션"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-28T22:09:52.000Z"><meta property="article:modified_time" content="2026-02-28T22:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 - bak-libra26"><meta name="twitter:description" content="스프링 시큐리티가 어떤 보안 프레임워크인지, 그리고 스프링 기반 웹 애플리케이션에서 인증·인가와 각종 웹 보안을 어떤 구조로 처리하는지 필터 체인 관점에서 간단히 정리한 글입니다"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 - bak-libra26","description":"스프링 시큐리티가 어떤 보안 프레임워크인지, 그리고 스프링 기반 웹 애플리케이션에서 인증·인가와 각종 웹 보안을 어떤 구조로 처리하는지 필터 체인 관점에서 간단히 정리한 글입니다","url":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 스프링 애플리케이션 보안 솔루션","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-02-28T22:09:52.000Z","dateModified":"2026-02-28T22:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 스프링 애플리케이션 보안 솔루션"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 스프링 애플리케이션 보안 솔루션"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"스프링 시큐리티: 스프링 애플리케이션 보안 솔루션.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드/스프링" data-discover="true">스프링</a></span><span><span class="sep">/</span><span class="current">스프링 시큐리티</span></span></nav><header class="post-meta"><h1 class="post-detail__title">스프링 시큐리티: 스프링 애플리케이션 보안 솔루션</h1><div class="post-detail__meta"><span>2026-03-01</span><span class="sep">·</span><span>4 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 스프링 시큐리티</span><span class="count">(1/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%B3%B4%EC%95%88%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="num">1.</span><span class="current-marker">→</span><span>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="num">2.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="num">3.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="num">4.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">5.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></div><div class="series-nav__footer"><span class="disabled">← prev</span><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 스프링 시큐리티의 역할과 주요 기능, 그리고 스프링 기반 웹 애플리케이션 안에서 어떻게 동작하는지까지 큰 그림 위주로 정리해 보았습니다.</p>
+</blockquote>
+<h2 id="스프링-애플리케이션과-보안" class="post-heading post-heading__h2">스프링 애플리케이션과 보안</h2>
+<p>스프링으로 웹 서비스를 만들다 보면 로그인, 마이페이지, 관리자 페이지처럼 “누구인지”와 “여길 들어와도 되는지”를 매번 확인해야 하는 기능을 만들곤 합니다.
+이를 위해 세션이나 토큰을 사용해 로그인 상태를 관리하지만, 화면과 API가 늘어날수록 어디는 로그인 없이 열리고, 어디는 권한 체크를 빼먹는 식으로 생각지도 못한 구간에 보안 구멍이 생기기 쉽습니다.</p>
+<p>이렇게 사용자를 인증하고 접근 권한을 주는 과정을 하나씩 직접 구현하다 보면, 나도 모르는 새에 애플리케이션 기능이나 보안 쪽에 문제가 생기는 경우가 많습니다.
+이런 문제를 줄이기 위해 스프링 진영에서는 애플리케이션의 인증·인가를 비롯한 여러 보안 기능을 표준화된 방식으로 쉽게 구현할 수 있도록, <strong>스프링 시큐리티</strong>라는 보안 프레임워크를 제공합니다.</p>
+<hr>
+<h2 id="스프링-시큐리티란-" class="post-heading post-heading__h2">스프링 시큐리티란 ?</h2>
+<p>스프링 시큐리티는 스프링 기반 애플리케이션에서 인증·인가와 주요 웹 보안 기능을 맡는 보안 프레임워크입니다. 로그인, 권한 체크, 세션·토큰 관리, CSRF 같은 보안 요소를 직접 매번 구현하기보다는, 한 번 표준화해 두고 재사용할 수 있게 도와주는 역할을 합니다.</p>
+<h3 id="스프링-시큐리티는-무엇을-해주는가-" class="post-heading post-heading__h3">스프링 시큐리티는 무엇을 해주는가 ?</h3>
+<h4 id="인증authentication" class="post-heading post-heading__h4">인증(Authentication)</h4>
+<p>인증은 “이 사용자가 진짜 누구인지”를 확인하는 과정으로 대표적인 인증 방법으로는 아이디/비밀번호를 활용한 인증 방식과 소셜 로그인 등이 있습니다.</p>
+<p>스프링 시큐리티에서 자주 사용하는 인증 방식과, 각 방식이 언제 쓰기 좋은지 간단히 정리해보았습니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>인증 방식</strong></th><th><strong>언제 사용하는가 ?</strong></th></tr></thead><tbody><tr><td><strong>HTTP Basic</strong></td><td>간단한 내부용 API, 테스트용 환경 등 UI 없이 빠르게 인증만 붙이고 싶을 때.</td></tr><tr><td><strong>폼 로그인(Form Login)</strong></td><td>일반적인 웹 애플리케이션, 자체 로그인 화면이 있는 서비스.</td></tr><tr><td><strong>세션 기반 인증</strong></td><td>서버 렌더링 웹, 전통적인 MVC 구조 서비스.</td></tr><tr><td><strong>JWT 기반 토큰 인증</strong></td><td>REST API, SPA·모바일 클라이언트처럼 stateless하게 인증하고 싶을 때.</td></tr><tr><td><strong>OAuth2 / 소셜 로그인</strong></td><td>“구글로 로그인”, “카카오로 로그인” 같은 소셜 로그인이 필요한 서비스.</td></tr><tr><td><strong>Remember-me 인증</strong></td><td>자주 방문하는 서비스에서 브라우저를 껐다 켜도 로그인 유지하고 싶을 때.</td></tr></tbody></table>
+<hr>
+<h4 id="인가authorization" class="post-heading post-heading__h4">인가(Authorization)</h4>
+<p>인가는 “이 사용자가 어디까지 들어와도 되는지”를 결정하는 단계로, 어떤 URL·API·화면(기능)에 접근할 수 있는지를 정하는 역할을 합니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>인가 방식</strong></th><th><strong>어디에 쓰는가</strong></th></tr></thead><tbody><tr><td><strong>URL 기반 인가</strong></td><td><strong>"/admin/**"</strong>, <strong>"/mypage/**"</strong> 처럼 경로별 접근 제한.</td></tr><tr><td><strong>메서드 기반 인가</strong></td><td>서비스·컨트롤러 메서드 단위로 권한을 걸고 싶을 때.</td></tr></tbody></table>
+<hr>
+<h4 id="공통-보안-공격-방어csrf-세션-고정-클릭재킹-등" class="post-heading post-heading__h4">공통 보안 공격 방어(CSRF, 세션 고정, 클릭재킹 등)</h4>
+<p>웹 애플리케이션은 "CSRF"나 "세션 고정", "클릭재킹"과 같은  사용자를 노리는 다양한 공격에도 노출될 수 있습니다.</p>
+<p>스프링 시큐리티는 이러한 공격을 CSRF 토큰 검증, 세션 ID 재발급(세션 고정 공격 방지), X-Frame-Options 같은 보안 헤더 설정으로 기본적으로 방어해 줍니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>공격 종류</th><th>어떤 공격인가</th><th>스프링 시큐리티가 막는 방법</th></tr></thead><tbody><tr><td><strong>CSRF</strong></td><td>로그인된 사용자를 속여 원치 않는 요청을 보내게 하는 공격.</td><td>CSRF 토큰을 발급하고, 상태 변경 요청마다 토큰을 함께 보내도록 강제해 토큰이 없는/틀린 요청은 막습니다.</td></tr><tr><td><strong>세션 고정 공격</strong></td><td>공격자가 미리 만든 세션 ID를 피해자에게 쓰게 해서, 그 세션으로 로그인하게 만든 뒤 세션을 가로채는 공격.</td><td>사용자가 로그인할 때 세션 ID를 새로 발급하거나 변경해, 기존 세션 ID를 악용하기 어렵게 만듭니다.</td></tr><tr><td><strong>클릭재킹</strong></td><td>페이지를 보이지 않는 iframe 안에 넣고, 사용자가 다른 버튼을 클릭한다고 생각하지만 실제로는 우리 사이트 버튼을 누르게 하는 공격.</td><td>기본적으로 X-Frame-Options 같은 응답 헤더를 설정해, 임의의 사이트에서 우리 페이지를 iframe으로 띄우지 못하게 합니다.</td></tr></tbody></table>
+<hr>
+<h2 id="스프링-시큐리티가-어떻게-동작하는가-" class="post-heading post-heading__h2">스프링 시큐리티가 어떻게 동작하는가 ?</h2>
+<p>스프링 시큐리티가 어떻게 동작하는지 알아보기 전에, 먼저 스프링 기반 웹 애플리케이션이 서블릿 컨테이너 위에서 어떻게 요청을 처리하는지부터 알아보겠습니다.</p>
+<hr>
+<h3 id="스프링과-서블릿-기반-아키텍처" class="post-heading post-heading__h3">스프링과 서블릿 기반 아키텍처</h3>
+<p><img alt="servlet-container-architecture" loading="lazy" decoding="async" src="/images/posts/개발/백엔드/스프링/스프링 시큐리티/servlet-container-architecture.png" style="cursor: zoom-in;"></p>
+<p>클라이언트에서 HTTP 요청이 들어오면 서블릿 컨테이너는 이 요청을 여러 서블릿 필터로 이루어진 필터 체인에 먼저 통과시킵니다.
+이 필터 체인 안에는 스프링이 등록한 DelegatingFilterProxy(위임 필터 프록시)가 있고, 이 프록시를 통해 요청은 스프링이 빈으로 등록해 둔 여러 필터들을 거친 뒤 DispatcherServlet으로 전달됩니다.</p>
+<hr>
+<h3 id="스프링-시큐리티-필터-아키텍처" class="post-heading post-heading__h3">스프링 시큐리티 필터 아키텍처</h3>
+<p><img alt="spring-security-filter-chain-architecture" loading="lazy" decoding="async" src="/images/posts/개발/백엔드/스프링/스프링 시큐리티/spring-security-filter-chain-architecture.png" style="cursor: zoom-in;"></p>
+<p>스프링 시큐리티에서는 DelegatingFilterProxy가 FilterChainProxy로 요청 처리를 위임합니다.</p>
+<p>FilterChainProxy는 내부에 여러 개의 SecurityFilterChain을 가지고 있고, 현재 요청의 URL 패턴에 맞는 체인을 골라 그 안에 정의된 필터들을 순서대로 실행합니다.
+정리하자면, DelegatingFilterProxy가 FilterChainProxy로 요청을 넘기고 FilterChainProxy가 여러 SecurityFilterChain을 통해 인증(로그인), 인가(권한 체크), 세션 관리, CSRF 보호 같은 필터들을 실행하는 구조입니다.</p>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%2595%25A0%25ED%2594%258C%25EB%25A6%25AC%25EC%25BC%2580%25EC%259D%25B4%25EC%2585%2598%2520%25EB%25B3%25B4%25EC%2595%2588%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EA%B0%80+%EC%96%B4%EB%96%A4+%EB%B3%B4%EC%95%88+%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC%EC%9D%B8%EC%A7%80%2C+%EA%B7%B8%EB%A6%AC%EA%B3%A0+%EC%8A%A4%ED%94%84%EB%A7%81+%EA%B8%B0%EB%B0%98+%EC%9B%B9+%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90%EC%84%9C+%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80+%EA%B0%81%EC%A2%85+%EC%9B%B9+%EB%B3%B4%EC%95%88%EC%9D%84+%EC%96%B4%EB%96%A4+%EA%B5%AC%EC%A1%B0%EB%A1%9C+%EC%B2%98%EB%A6%AC%ED%95%98%EB%8A%94%EC%A7%80+%ED%95%84%ED%84%B0+%EC%B2%B4%EC%9D%B8+%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C+%EA%B0%84%EB%8B%A8%ED%9E%88+%EC%A0%95%EB%A6%AC%ED%95%9C+%EA%B8%80%EC%9E%85%EB%8B%88%EB%8B%A4&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%2595%25A0%25ED%2594%258C%25EB%25A6%25AC%25EC%25BC%2580%25EC%259D%25B4%25EC%2585%2598%2520%25EB%25B3%25B4%25EC%2595%2588%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%2595%25A0%25ED%2594%258C%25EB%25A6%25AC%25EC%25BC%2580%25EC%259D%25B4%25EC%2585%2598%2520%25EB%25B3%25B4%25EC%2595%2588%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#스프링-애플리케이션과-보안" class="toc__item active" style="padding-left: 12px;">스프링 애플리케이션과 보안</a><a href="#스프링-시큐리티란-" class="toc__item" style="padding-left: 12px;">스프링 시큐리티란 ?</a><a href="#스프링-시큐리티는-무엇을-해주는가-" class="toc__item" style="padding-left: 26px;">스프링 시큐리티는 무엇을 해주는가 ?</a><a href="#인증authentication" class="toc__item" style="padding-left: 40px;">인증(Authentication)</a><a href="#인가authorization" class="toc__item" style="padding-left: 40px;">인가(Authorization)</a><a href="#공통-보안-공격-방어csrf-세션-고정-클릭재킹-등" class="toc__item" style="padding-left: 40px;">공통 보안 공격 방어(CSRF, 세션 고정, 클릭재킹 등)</a><a href="#스프링-시큐리티가-어떻게-동작하는가-" class="toc__item" style="padding-left: 12px;">스프링 시큐리티가 어떻게 동작하는가 ?</a><a href="#스프링과-서블릿-기반-아키텍처" class="toc__item" style="padding-left: 26px;">스프링과 서블릿 기반 아키텍처</a><a href="#스프링-시큐리티-필터-아키텍처" class="toc__item" style="padding-left: 26px;">스프링 시큐리티 필터 아키텍처</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

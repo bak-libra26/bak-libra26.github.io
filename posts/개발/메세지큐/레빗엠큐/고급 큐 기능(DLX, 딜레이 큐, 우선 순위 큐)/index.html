@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="레빗엠큐, 고급 큐 기능 알아보기"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"><meta property="og:type" content="article"><meta property="og:title" content="고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) - bak-libra26"><meta property="og:description" content="레빗엠큐, 고급 큐 기능 알아보기"><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2025-08-21T11:34:57.000Z"><meta property="article:modified_time" content="2025-08-21T11:34:57.000Z"><meta property="article:tag" content="RabbitMQ"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) - bak-libra26"><meta name="twitter:description" content="레빗엠큐, 고급 큐 기능 알아보기"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 72%;"></div></div><span class="loading-progress-pct">72%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) - bak-libra26","description":"레빗엠큐, 고급 큐 기능 알아보기","url":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"RabbitMQ","datePublished":"2025-08-21T11:34:57.000Z","dateModified":"2025-08-21T11:34:57.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/메세지큐/레빗엠큐</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/메세지큐" data-discover="true">메세지큐</a></span><span><span class="sep">/</span><span class="current">레빗엠큐</span></span></nav><header class="post-meta"><h1 class="post-detail__title">고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)</h1><div class="post-detail__tags"><span class="tag tag--primary">RabbitMQ</span></div><div class="post-detail__meta"><span>2025-08-21</span><span class="sep">·</span><span>6 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 레빗엠큐</span><span class="count">(5/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%95%20%ED%81%90%EC%9D%98%20%20%EA%B0%9C%EB%85%90%EA%B3%BC%20%EA%B8%B0%EB%B3%B8%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>메시징 큐의  개념과 기본 구조</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20Exchange%20%ED%83%80%EC%9E%85%EA%B3%BC%20%EB%9D%BC%EC%9A%B0%ED%8C%85%20%EB%B0%A9%EC%8B%9D" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>여러가지 Exchange 타입과 라우팅 방식</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%8B%A0%EB%A2%B0%EC%84%B1%20%EB%B3%B4%EC%9E%A5%EC%9D%84%20%EC%9C%84%ED%95%9C%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(ACK%2C%20NACK)" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>메시지 신뢰성 보장을 위한 확인 메커니즘(ACK, NACK)</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%A7%80%EC%86%8D%EC%84%B1%EA%B3%BC%20%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0%20%EA%B4%80%EB%A6%AC(Durable%2C%20Persistent%2C%20TTL%2C%20Auto-delete)" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EA%B3%A0%EA%B8%89%20%ED%81%90%20%EA%B8%B0%EB%8A%A5(DLX%2C%20%EB%94%9C%EB%A0%88%EC%9D%B4%20%ED%81%90%2C%20%EC%9A%B0%EC%84%A0%20%EC%88%9C%EC%9C%84%20%ED%81%90)" data-discover="true"><span class="num">5.</span><span class="current-marker">→</span><span>고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐) (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%B0%9C%ED%96%89%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%2C%20%EA%B2%8C%EC%8B%9C%EC%9E%90%ED%99%95%EC%9D%B8)" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>발행 확인 메커니즘(트랜잭션, 게시자확인)</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%A7%80%EC%86%8D%EC%84%B1%EA%B3%BC%20%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0%20%EA%B4%80%EB%A6%AC(Durable%2C%20Persistent%2C%20TTL%2C%20Auto-delete)" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%B0%9C%ED%96%89%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%2C%20%EA%B2%8C%EC%8B%9C%EC%9E%90%ED%99%95%EC%9D%B8)" data-discover="true">next →</a></div></nav><main class="detail-body"><h1 id="rabbitmq---고급-큐-기능의-필요성" class="post-heading post-heading__h1">RabbitMQ - 고급 큐 기능의 필요성</h1>
+<p>RabbitMQ에서 기본적으로 제공하는 큐는 메시지의 단순 전달 및 재처리 기능을 지원한다. 그러나 실제 서비스 환경에서는 다음과 같은 한계점이 존재한다.</p>
+<ul>
+<li><strong>재처리 메시지 반복 문제</strong><br>
+메시지 재처리가 필요한 경우, 일반적으로 Nack(Negative Acknowledgement)을 수행한다. Nack 처리된 메시지는 큐의 최상단에 다시 적재되어 같은 메시지가 반복적으로 처리된다. 만약 해당 메시지가 지속적으로 처리되지 않으면 동일한 메시지만 계속해서 재처리되는 문제가 발생한다.</li>
+<li><strong>지연 재처리의 어려움</strong><br>
+기본 큐만으로는 메시지의 재처리 주기를 설정하여 일정 시간 후에 재처리하는 기능을 구현하기 어렵다. 즉, 메시지 재처리 시점의 제어가 제한적이다.</li>
+<li><strong>메시지 우선순위 관리의 한계</strong><br>
+메시지는 발행(Publish) 순서대로 큐에 적재되며, 소비자는 인입된 순서대로 메시지를 처리한다. 메시지별로 우선순위를 부여하여 높은 우선순위의 메시지를 먼저 처리하는 기능을 기본 큐만으로 구현하기 어렵다.</li>
+</ul>
+<p>이러한 문제를 해결하기 위해 RabbitMQ의 고급 큐 기능(Delay Queue, Priority Queue 등) 을 사용할 수 있다.</p>
+<h2 id="dlxdead-letter-exchange" class="post-heading post-heading__h2">DLX(Dead Letter Exchange)</h2>
+<blockquote>
+<p>예제: <a href="https://github.com/bak-libra26/rabbitmq-handbook/tree/main/src/main/java/kr/co/baklibra26/rabbitmq/handbook/queue/dead_letter_exchange">RabbitMQ - Dead Letter Exchange Handbook</a></p>
+</blockquote>
+<p>DLX(Dead Letter Exchange) 란 메세지가 정상적으로 처리되지 않은 경우(Reject, TTL 만료, 큐의 최대 길이 초과 등) 해당 메세지를 "Dead Letter Exchange" 로 보내 별도의 큐에서 관리할 수 있게 해주는 기능이다.</p>
+<ul>
+<li>
+<p>DLX(Dead Letter Exchange) 의 장점</p>
+<ol>
+<li>재처리가 필요한 메세지를 일반 큐와 분리하여 별도의 큐에서 관리할 수 있다.</li>
+<li>메세지의 성격에 따라 큐를 분리해 각각의 상황에 맞는 재처리 로직을 적용할 수 있다.</li>
+</ol>
+</li>
+<li>
+<p>DLX(Dead Letter Exchange) 의 단점</p>
+<ol>
+<li>재처리해야하는 메세지의 종류가 많아질수록  DLX 큐와 컨슈머를 각각 따로 만들어야한다.</li>
+<li>시스템 구조가 복잡해질 수 있으며, 메세지 분류 기준과 DLX 큐 관리 방안을 잘 고려하여 설계해야한다.</li>
+</ol>
+</li>
+</ul>
+<h3 id="dlx-동작-원리" class="post-heading post-heading__h3">DLX 동작 원리</h3>
+<p>메세지 만료(TTL), 메세지 거절(Reject), 큐 최대 길이 초과(max-length) 중 하나의 조건에 해당하는 경우, 해당 메세지는 일반 큐에서 "Dead Letter Exchange" 로 전달되며, 이렇게 전달된 메세지는 큐에 미리 설정되어있는 DLX 큐로 메세지를 라우팅하고 별도의 컨슈머가 해당 메세지를 처리한다.</p>
+<ul>
+<li>흐름 간단 요약
+<ol>
+<li>메시지가 원래 큐에 들어온다.</li>
+<li>만료, 리젝, 최대 길이 초과 중 하나의 조건이 발생한다.</li>
+<li>RabbitMQ가 해당 메시지를 Dead Letter Exchange(DLX)로 전달한다.</li>
+<li>DLX는 미리 지정된 큐(Dead Letter Queue)로 메시지를 라우팅한다.</li>
+<li>Dead Letter Queue에서 별도의 컨슈머가 메시지를 재처리하거나, 로그를 남기거나, 알림을 보낼 수 있다.</li>
+</ol>
+</li>
+</ul>
+<h3 id="dlx-설정" class="post-heading post-heading__h3">DLX 설정</h3>
+<p><code>rabbitmqctl</code> 을 통해 <code>DLX</code> 설정을 추가하는 경우 <code>1. DLX 정책명</code>, <code>2. DLX 를 적용할 큐 이름 정규식</code>, <code>3. DLX 를 적용할 익스체인지 이름</code>, <code>4. DLX 적용 범위</code> 를 설정할 수 있다.</p>
+<ul>
+<li>
+<p>• <strong>큐</strong>**(queues)<strong><strong>에</strong> <strong>적용</strong></strong>:**<br>
+정책이 지정한 큐에만 직접 적용됩니다.<br>
+예를 들어, dead-letter-exchange 정책을 큐에 적용하면,<br>
+해당 큐에서만 DLX 동작이 활성화됩니다.</p>
+</li>
+<li>
+<p><strong>익스체인지</strong>**(exchanges)<strong><strong>에</strong> <strong>적용</strong></strong>:**<br>
+정책이 익스체인지 자체에 적용됩니다.<br>
+하지만, dead-letter-exchange와 같은 큐 속성은 익스체인지에 적용해도<br>
+큐의 동작에는 영향을 주지 않습니다.<br>
+(즉, DLX 정책은 큐에만 의미가 있습니다.)</p>
+</li>
+<li>
+<p><strong>all:</strong><br>
+큐와 익스체인지 모두에 정책을 적용합니다.<br>
+하지만, 정책의 내용에 따라 실제로 적용되는 대상이 다를 수 있습니다.</p>
+</li>
+<li>
+<p>DLX 정책 추가</p>
+</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">rabbitmqctl set_policy ${정책 이름} ${큐 이름 정규식} '{"dead-letter-exchange":"${DLX 익스체인지 이름}"' --apply-to ${queues|exchanges|all}</span>
+</code></pre></figure>
+<h2 id="delay-queue" class="post-heading post-heading__h2">Delay Queue</h2>
+<blockquote>
+<p>예제 : <a href="https://github.com/bak-libra26/rabbitmq-handbook/tree/main/src/main/java/kr/co/baklibra26/rabbitmq/handbook/queue/delayed_queue">RabbitMQ - Delay-Queue Handbook</a></p>
+</blockquote>
+<p>Delay Queue는 메시지를 즉시 처리하지 않고, 지정한 지연 시간(delay) 이후에 처리할 수 있도록 지원하는 큐이다. 예를 들어, 회원가입 후 10분 뒤에 환영 메일을 보내거나, 일정 시간 후에 알림을 전송해야 하는 경우에 활용됩니다.</p>
+<p>일반 큐에서는 메시지에 시간 정보를 기록하고, 소비자가 해당 시간이 될 때까지 메시지를 재적재(Nack)하는 방식이 필요하나, Delay Queue는 메시지 전송 시 지연 시간을 설정하면, 지정한 시간이 지난 후 자동으로 소비자에게 전달된다.</p>
+<ul>
+<li>Delay Queue 주요 특징
+<ol>
+<li>메시지별로 개별 지연 시간 설정 가능</li>
+<li>지정한 시간이 지난 후에만 메시지가 소비자에게 전달됨</li>
+<li>예약 알림, 만료 처리, 재시도 로직 등에 활용</li>
+</ol>
+</li>
+</ul>
+<p>RabbitMQ 에서 Delay Queue 를 사용하고 싶은 경우, <code>x-delayed-message</code> 플러그인을 설치해야한다.</p>
+<h3 id="플러그인-설치" class="post-heading post-heading__h3">플러그인 설치</h3>
+<ul>
+<li>rabbitmq plugin 디렉토리 확인</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">rabbitmq-plugins directories -s</span>
+</code></pre></figure>
+<ul>
+<li>플러그인 설치</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">PLAINTEXT</span></figcaption><pre class="post-detail__code-block hljs"><code><span class="code-line numbered-code-line" data-line-number="1">wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v4.1.0/rabbitmq_delayed_message_exchange-4.1.0.ez</span>
+</code></pre></figure>
+<ul>
+<li>플러그인 사용</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">rabbitmq-plugins enable rabbitmq_delayed_message_exchange</span>
+</code></pre></figure>
+<h3 id="delay-queue-예시" class="post-heading post-heading__h3">Delay Queue 예시</h3>
+<ul>
+<li>Delay Queue 예시 코드</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DelayQueueMain</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="2">  </span>
+<span class="code-line numbered-code-line" data-line-number="3">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAYED_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">"delay.exchange"</span>;  </span>
+<span class="code-line numbered-code-line" data-line-number="4">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAYED_QUEUE</span> <span class="hljs-operator">=</span> <span class="hljs-string">"delay.queue"</span>;  </span>
+<span class="code-line numbered-code-line" data-line-number="5">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ROUTING_KEY</span> <span class="hljs-operator">=</span> <span class="hljs-string">"delay.routingkey"</span>;  </span>
+<span class="code-line numbered-code-line" data-line-number="6">  </span>
+<span class="code-line numbered-code-line" data-line-number="7">	<span class="hljs-meta">@Bean</span>  </span>
+<span class="code-line numbered-code-line" data-line-number="8">	<span class="hljs-keyword">public</span> CustomExchange <span class="hljs-title function_">delayExchange</span><span class="hljs-params">()</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="9">		Map&lt;String, Object&gt; args = Map.of(<span class="hljs-string">"x-delay-type"</span>, <span class="hljs-string">"direct"</span>);  </span>
+<span class="code-line numbered-code-line" data-line-number="10">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomExchange</span>(DELAYED_EXCHANGE, <span class="hljs-string">"x-delay-message"</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, args);  </span>
+<span class="code-line numbered-code-line" data-line-number="11">	}  </span>
+<span class="code-line numbered-code-line" data-line-number="12">  </span>
+<span class="code-line numbered-code-line" data-line-number="13">	<span class="hljs-meta">@Bean</span>  </span>
+<span class="code-line numbered-code-line" data-line-number="14">	<span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">delayQueue</span><span class="hljs-params">()</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="15">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Queue</span>(DELAYED_QUEUE, <span class="hljs-literal">true</span>);  </span>
+<span class="code-line numbered-code-line" data-line-number="16">	}  </span>
+<span class="code-line numbered-code-line" data-line-number="17">  </span>
+<span class="code-line numbered-code-line" data-line-number="18">	<span class="hljs-meta">@Bean</span>  </span>
+<span class="code-line numbered-code-line" data-line-number="19">	<span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">binding</span><span class="hljs-params">(Queue delayQueue, CustomExchange delayExchange)</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="20">		<span class="hljs-keyword">return</span> BindingBuilder.bind(delayQueue).to(delayExchange).with(ROUTING_KEY).noargs();  </span>
+<span class="code-line numbered-code-line" data-line-number="21">	}  </span>
+<span class="code-line numbered-code-line" data-line-number="22">  </span>
+<span class="code-line numbered-code-line" data-line-number="23">	<span class="hljs-meta">@Bean</span>  </span>
+<span class="code-line numbered-code-line" data-line-number="24">	<span class="hljs-keyword">public</span> CommandLineRunner <span class="hljs-title function_">testSend</span><span class="hljs-params">(RabbitTemplate rabbitTemplate)</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="25">		<span class="hljs-keyword">return</span> args -&gt; {  </span>
+<span class="code-line numbered-code-line" data-line-number="26">			<span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">"테스트 메시지"</span>;  </span>
+<span class="code-line numbered-code-line" data-line-number="27">			<span class="hljs-type">MessageProperties</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageProperties</span>();  </span>
+<span class="code-line numbered-code-line" data-line-number="28">			props.setHeader(<span class="hljs-string">"x-delay"</span>, <span class="hljs-number">3000</span>); <span class="hljs-comment">// 3초 지연  </span></span>
+<span class="code-line numbered-code-line" data-line-number="29">			<span class="hljs-type">Message</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>(message.getBytes(), props);  </span>
+<span class="code-line numbered-code-line" data-line-number="30">			rabbitTemplate.send(DELAYED_EXCHANGE, ROUTING_KEY, msg);  </span>
+<span class="code-line numbered-code-line" data-line-number="31">			System.out.println(<span class="hljs-string">"지연 메시지 전송 완료"</span>);  </span>
+<span class="code-line numbered-code-line" data-line-number="32">		};  </span>
+<span class="code-line numbered-code-line" data-line-number="33">	}  </span>
+<span class="code-line numbered-code-line" data-line-number="34">  </span>
+<span class="code-line numbered-code-line" data-line-number="35">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {  </span>
+<span class="code-line numbered-code-line" data-line-number="36">		SpringApplication.run(DelayQueueMain.class, args);  </span>
+<span class="code-line numbered-code-line" data-line-number="37">	}  </span>
+<span class="code-line numbered-code-line" data-line-number="38">}</span>
+</code></pre></figure>
+<h4 id="delay-queue-설정-요약" class="post-heading post-heading__h4">Delay Queue 설정 요약</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align: center;">항목</th><th style="text-align: center;">설정값/설명</th></tr></thead><tbody><tr><td style="text-align: center;">Exchange 타입</td><td style="text-align: center;">x-delayed-message</td></tr><tr><td style="text-align: center;">Exchange args</td><td style="text-align: center;">x-delay-type=direct, fanout, topic, headers</td></tr><tr><td style="text-align: center;">바인딩</td><td style="text-align: center;">원하는 라우팅키로 바인딩</td></tr><tr><td style="text-align: center;">메세지 헤더</td><td style="text-align: center;">x-delay (ms 단위, 예: 3000 = 3초 지연)</td></tr></tbody></table>
+<h2 id="priority-queue" class="post-heading post-heading__h2">Priority Queue</h2>
+<blockquote>
+<p>예제 : <a href="https://github.com/bak-libra26/rabbitmq-handbook/tree/main/src/main/java/kr/co/baklibra26/rabbitmq/handbook/queue/priority_queue">RabbitMQ - Priority-Queue Handbook</a>
+RabbitMQ 3.5.0 이상 버전에서 기본적으로 제공한다.</p>
+</blockquote>
+<p>우선순위 큐는 메시지에 우선순위 속성(priority)을 설정하여&nbsp;높은&nbsp;우선순위 메시지를&nbsp;먼저&nbsp;처리하는&nbsp;큐이다. 예를&nbsp;들어,&nbsp;우선순위 큐는&nbsp;VIP 고객&nbsp;주문 우선&nbsp;처리, 시스템 장애&nbsp;알림 우선 전송, 긴급&nbsp;배치 작업&nbsp;우선&nbsp;실행 등&nbsp;일반 메시지보다 먼저 처리되어야&nbsp;하는 경우에&nbsp;사용할 수&nbsp;있다.</p>
+<p>우선순위 큐를 사용하지 않고 메세지를 우선순위에 따라 처리하고자 하는 경우에는 아래와 같은 방법이 사용될 수 있다.</p>
+<ol>
+<li>
+<p>일반 큐만으로 우선순위를 구현하는 방법.
+우선순위별로 일반큐를 분리하여 생성하여 사용한다. ex) <code>high.message</code>, <code>mid.message</code>, <code>low,message</code></p>
+</li>
+<li>
+<p>프로세스 내부에서 메세지를 정렬하여 처리하는 방법.
+일반 큐의 메세지를 프로세스 내부에서 우선순위에 따라 정렬하여 처리한다. ex) <code>SortedSet</code>, <code>sorted(Comparater::comparing)</code></p>
+</li>
+</ol>
+<p>위와&nbsp;같은 방법을 사용하면&nbsp;메시지를&nbsp;우선순위로&nbsp;정렬하기&nbsp;위한 별도의&nbsp;비즈니스&nbsp;로직이 필요하기 때문에&nbsp;신경쓸 부분이&nbsp;많아져&nbsp;복잡성이&nbsp;증가한다. 또한 큐&nbsp;관리, 메시지&nbsp;분배, 정렬 성능 등 추가적인&nbsp;고려사항이&nbsp;발생한다.</p>
+<ul>
+<li>우선순위 큐 사용의 장점
+<ul>
+<li>자동 정렬: RabbitMQ가&nbsp;우선순위에&nbsp;따라 자동으로 메시지 정렬</li>
+<li>성능&nbsp;최적화: 효율적인&nbsp;정렬 알고리즘 사용</li>
+<li>구현&nbsp;단순: 복잡한&nbsp;분배&nbsp;로직이나&nbsp;정렬 로직&nbsp;불필요</li>
+</ul>
+</li>
+</ul></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%B0%9C%ED%96%89%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%2C%20%EA%B2%8C%EC%8B%9C%EC%9E%90%ED%99%95%EC%9D%B8)" data-discover="true"><span class="connector">├</span><span>발행 확인 메커니즘(트랜잭션, 게시자확인)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%A7%80%EC%86%8D%EC%84%B1%EA%B3%BC%20%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0%20%EA%B4%80%EB%A6%AC(Durable%2C%20Persistent%2C%20TTL%2C%20Auto-delete)" data-discover="true"><span class="connector">├</span><span>메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%8B%A0%EB%A2%B0%EC%84%B1%20%EB%B3%B4%EC%9E%A5%EC%9D%84%20%EC%9C%84%ED%95%9C%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(ACK%2C%20NACK)" data-discover="true"><span class="connector">├</span><span>메시지 신뢰성 보장을 위한 확인 메커니즘(ACK, NACK)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20Exchange%20%ED%83%80%EC%9E%85%EA%B3%BC%20%EB%9D%BC%EC%9A%B0%ED%8C%85%20%EB%B0%A9%EC%8B%9D" data-discover="true"><span class="connector">├</span><span>여러가지 Exchange 타입과 라우팅 방식</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%95%20%ED%81%90%EC%9D%98%20%20%EA%B0%9C%EB%85%90%EA%B3%BC%20%EA%B8%B0%EB%B3%B8%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">└</span><span>메시징 큐의  개념과 기본 구조</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EA%25B3%25A0%25EA%25B8%2589%2520%25ED%2581%2590%2520%25EA%25B8%25B0%25EB%258A%25A5%28DLX%252C%2520%25EB%2594%259C%25EB%25A0%2588%25EC%259D%25B4%2520%25ED%2581%2590%252C%2520%25EC%259A%25B0%25EC%2584%25A0%2520%25EC%2588%259C%25EC%259C%2584%2520%25ED%2581%2590%29&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90%2C+%EA%B3%A0%EA%B8%89+%ED%81%90+%EA%B8%B0%EB%8A%A5+%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EA%25B3%25A0%25EA%25B8%2589%2520%25ED%2581%2590%2520%25EA%25B8%25B0%25EB%258A%25A5%28DLX%252C%2520%25EB%2594%259C%25EB%25A0%2588%25EC%259D%25B4%2520%25ED%2581%2590%252C%2520%25EC%259A%25B0%25EC%2584%25A0%2520%25EC%2588%259C%25EC%259C%2584%2520%25ED%2581%2590%29&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EA%25B3%25A0%25EA%25B8%2589%2520%25ED%2581%2590%2520%25EA%25B8%25B0%25EB%258A%25A5%28DLX%252C%2520%25EB%2594%259C%25EB%25A0%2588%25EC%259D%25B4%2520%25ED%2581%2590%252C%2520%25EC%259A%25B0%25EC%2584%25A0%2520%25EC%2588%259C%25EC%259C%2584%2520%25ED%2581%2590%29" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#dlxdead-letter-exchange" class="toc__item active" style="padding-left: 12px;">DLX(Dead Letter Exchange)</a><a href="#dlx-동작-원리" class="toc__item" style="padding-left: 26px;">DLX 동작 원리</a><a href="#dlx-설정" class="toc__item" style="padding-left: 26px;">DLX 설정</a><a href="#delay-queue" class="toc__item" style="padding-left: 12px;">Delay Queue</a><a href="#플러그인-설치" class="toc__item" style="padding-left: 26px;">플러그인 설치</a><a href="#delay-queue-예시" class="toc__item" style="padding-left: 26px;">Delay Queue 예시</a><a href="#delay-queue-설정-요약" class="toc__item" style="padding-left: 40px;">Delay Queue 설정 요약</a><a href="#priority-queue" class="toc__item" style="padding-left: 12px;">Priority Queue</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/메세지큐/레빗엠큐</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

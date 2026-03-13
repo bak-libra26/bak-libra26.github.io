@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/네티/Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크"><meta property="og:type" content="article"><meta property="og:title" content="Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크 - bak-libra26"><meta property="og:description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/네티/Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-01-25T10:18:21.000Z"><meta property="article:modified_time" content="2026-01-25T10:18:21.000Z"><meta property="article:tag" content="자바"><meta property="article:tag" content="네티"><meta property="article:tag" content="네트워크 프레임워크"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크 - bak-libra26"><meta name="twitter:description" content="이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크 - bak-libra26","description":"이 글에서는 Reactor 체인에서 “어디서, 왜 스레드가 바뀌는지”를 Schedulers, publishOn, subscribeOn 중심으로 정리했습니다.","url":"https://bak-libra26.co.kr/posts/개발/백엔드/네티/Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"자바, 네티, 네트워크 프레임워크","datePublished":"2026-01-25T10:18:21.000Z","dateModified":"2026-01-25T10:18:21.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/네티/Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/네티/Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/네티</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><span class="current">네티</span></span></nav><header class="post-meta"><h1 class="post-detail__title">Netty: java.net과 java.nio의 한계를 보완한 비동기 이벤트 기반 네트워크 프레임워크</h1><div class="post-detail__tags"><span class="tag tag--primary">자바</span><span class="tag">네티</span><span class="tag">네트워크 프레임워크</span></div><div class="post-detail__meta"><span>2026-01-25</span><span class="sep">·</span><span>9 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><main class="detail-body"><blockquote>
+<p><strong>이 글에서는 네티(Netty)가 무엇인지, 등장하게된 배경을 중심으로 살펴봅니다.</strong></p>
+</blockquote>
+<h2 id="javanet-기본적인-소켓-네트워크-프로그래밍" class="post-heading post-heading__h2"><code>java.net</code>: 기본적인 소켓 네트워크 프로그래밍</h2>
+<p>일반적으로 자바로 TCP/IP 기반 네트워크 프로그래밍을 해야 한다면 서버는 <code>java.net.ServerSocket</code>, 클라이언트는 <code>java.net.Socket</code>을 사용하는 방식을 먼저 떠올리게 됩니다. <strong>이 방식은 입력과 출력을 <code>InputStream</code> / <code>OutputStream</code>으로 동기식·블로킹 방식으로 처리</strong>하기 때문에 <strong>연결 수가 많아질수록 쓰레드와 확장성 측면에서 한계가 드러납니다.</strong></p>
+<hr>
+<h3 id="javanet--스트림-기반의-소켓-구조-한눈에-보기" class="post-heading post-heading__h3"><code>java.net</code>:  스트림 기반의 소켓 구조 한눈에 보기</h3>
+<p><code>java.net</code>은 <strong>소켓을 열고<code>InputStream</code> / <code>OutputStream</code>을 꺼낸 뒤, 연결마다 하나의 연속적인 바이트 스트림으로 데이터를 주고받는 구조를 사용합니다.</strong></p>
+<blockquote>
+<p><strong>스트림:</strong> 순서가 있는 데이터의 흐름</p>
+</blockquote>
+<p>서버와 클라이언트를 구현한 코드 자체는 조금 다르지만, <strong>둘 다 “스트림에서 읽고, 스트림에 쓰는” 동일한 패턴 위에서 동작</strong>합니다.
+아래 코드는 가장 단순한 형태의 TCP/IP 서버 코드로 서버 소켓을 연 후, 클라이언트가 접속할 때마다 새로운 쓰레드를 만들어 해당 연결의 입출력을 전담하게 합니다.</p>
+<ul>
+<li><strong><code>java.net</code> 을 사용한 TCP/IP 서버 예제</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="4">      <span class="hljs-keyword">final</span> <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">8080</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">      <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="7">          <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> sc.accept();</span>
+<span class="code-line numbered-code-line" data-line-number="8">          System.out.println(<span class="hljs-string">"connected from "</span> + socket.getLocalSocketAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">          <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="11">              <span class="hljs-keyword">try</span> (<span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> socket.getInputStream()) {</span>
+<span class="code-line numbered-code-line" data-line-number="12">                  <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(is));</span>
+<span class="code-line numbered-code-line" data-line-number="13"></span>
+<span class="code-line numbered-code-line" data-line-number="14">                  <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="15">                  <span class="hljs-keyword">while</span> ((line = br.readLine()) != <span class="hljs-literal">null</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="16">                      System.out.println(<span class="hljs-string">"\""</span> + line + <span class="hljs-string">"\" received from "</span> + socket.getLocalSocketAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="17">                  }</span>
+<span class="code-line numbered-code-line" data-line-number="18">              } <span class="hljs-keyword">catch</span> (IOException e) {</span>
+<span class="code-line numbered-code-line" data-line-number="19">                  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);</span>
+<span class="code-line numbered-code-line" data-line-number="20">              }</span>
+<span class="code-line numbered-code-line" data-line-number="21"></span>
+<span class="code-line numbered-code-line" data-line-number="22"></span>
+<span class="code-line numbered-code-line" data-line-number="23">          }).start();</span>
+<span class="code-line numbered-code-line" data-line-number="24">      }</span>
+<span class="code-line numbered-code-line" data-line-number="25">    }</span>
+<span class="code-line numbered-code-line" data-line-number="26">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>연결을 받아들이는 <code>accept()</code> 호출은 새 클라이언트가 올 때까지 블로킹되고, <strong>각 클라이언트 연결을 처리하는 쓰레드 안에서는 <code>InputStream.read()</code>와 <code>OutputStream.write()</code>가 데이터가 준비될 때까지 블로킹된 채 대기</strong>합니다. 그래서 클라이언트가 많아질수록 이런 쓰레드가 기하급수적으로 늘어나고, 컨텍스트 스위칭과 쓰레드 스택 메모리 사용량도 함께 증가하여, 접속자가 많아질수록 서버의 확장성이 급격히 떨어집니다.</p>
+<hr>
+<h2 id="javanio-논블로킹-네트워크-프로그래밍의-시작" class="post-heading post-heading__h2"><code>java.nio</code>: 논블로킹 네트워크 프로그래밍의 시작</h2>
+<p><code>java.net</code> 소켓은 스트림 기반 블로킹 I/O라, 많은 연결을 처리할수록 이를 담당하는 쓰레드 수가 기하급수적으로 늘어나는 구조입니다. 이런 한계를 완화하기 위해 <strong>자바 1.4에서 도입된 <code>java.nio</code>는 채널(Channel), 버퍼(Buffer), 셀렉터(Selector) 를 중심으로 한 논블로킹 I/O 모델을 제공</strong>합니다.</p>
+<hr>
+<h3 id="javanio-채널channel" class="post-heading post-heading__h3"><code>java.nio</code>: 채널(Channel)</h3>
+<p><code>java.net</code> 가 소켓마다 InputStream, OutputStream을 따로 꺼내서 읽기와 쓰기를 처리했다면, <strong><code>java.nio</code> 는 채널(Channel)이라는 추상화를 통해 양방향 입출력을 한 객체에 모아 처리</strong>합니다.
+예를 들어 TCP 클라이언트 소켓은 <code>SocketChannel</code>, 서버 소켓은 <code>ServerSocketChannel</code>로 표현되며, 이 채널들이 <code>ByteBuffer</code>와 같은 버퍼에서 데이터를 읽어 오거나 버퍼에 담긴 데이터를 네트워크로 써 내보내는 방식으로 동작합니다.</p>
+<p>채널의 중요한 특징은 <strong>논블로킹 모드를 지원</strong>한다는 점입니다. 채널을 논블로킹으로 설정하면 <code>read()</code>를 호출했을 때 데이터가 아직 도착하지 않았다면 바로 0을 반환하고, 준비된 경우에만 실제로 바이트를 읽습니다. 덕분에 <strong>하나의 쓰레드가 여러 채널을 돌면서 “지금 처리할 수 있는 것들만 조금씩 처리하는” 구조</strong>를 만들 수 있게 됩니다.</p>
+<ul>
+<li><strong>논블로킹 방식을 지원하는 <code>java.nio</code>의 <code>Channel</code></strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">SocketChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> SocketChannel.open(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">8080</span>));</span>
+<span class="code-line numbered-code-line" data-line-number="2">channel.configureBlocking(<span class="hljs-literal">false</span>); <span class="hljs-comment">// 논블로킹 모드로 전환</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="javanio-버퍼bytebuffer" class="post-heading post-heading__h3"><code>java.nio</code>: 버퍼(ByteBuffer)</h3>
+<p><code>java.net</code> 에서는 일반적으로 byte[] 배열을 직접 만든 후, <code>InputStream.read(byte[])</code>로 데이터를 채운 뒤, 필요한 만큼만 잘라 쓰는 식으로 작업했습니다. <strong><code>java.nio</code></strong> 는 여기에 한 단계 더 들어가서, <strong>바이트 배열을 <code>ByteBuffer</code>라는 객체로 감싸고 <code>position</code>, <code>limit</code>, <code>capacity</code> 같은 메타데이터를 함께 관리</strong>합니다.</p>
+<p><code>ByteBuffer</code>는 “얼마나 읽어왔는지”, “어디까지 썼는지”를 명시적으로 관리할 수 있어서, 부분적으로 읽힌 데이터나, 여러 번에 나눠 오는 패킷을 다룰 때 유용합니다. 예를 들어 채널에서 데이터를 읽으면 <code>position</code>이 늘어나고, <code>flip()</code>을 호출하면 읽기 모드로 전환되어 <code>position</code>을 0으로 돌린 뒤 limit까지를 읽을 수 있게 됩니다.</p>
+<ul>
+<li><strong><code>ByteBuffer</code> 사용 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-type">int</span> <span class="hljs-variable">read</span> <span class="hljs-operator">=</span> channel.read(buffer); <span class="hljs-comment">// 채널 → 버퍼로 읽기</span></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-keyword">if</span> (read &gt; <span class="hljs-number">0</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="5">    buffer.flip();               <span class="hljs-comment">// 읽기 모드로 전환</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-comment">// buffer에서 데이터 소비...</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="javanio-셀렉터selector" class="post-heading post-heading__h3"><code>java.nio</code>: 셀렉터(Selector)</h3>
+<p>채널과 버퍼만으로는 “논블로킹 I/O”의 장점을 다 살리기 어렵습니다. <strong>Selector는 하나의 쓰레드가 여러 채널을 동시에 감시하면서, 지금 당장 읽기/쓰기가 가능한 채널만 골라서 처리할 수 있게 해주는 핵심 컴포넌트</strong>입니다.</p>
+<p>사용 흐름은 대략 이렇습니다. 먼저 Selector.open()으로 셀렉터를 생성하고, 각 채널을 register()를 통해 셀렉터에 등록합니다. 이후 루프 안에서 select()를 호출하면, 읽기 가능, 쓰기 가능, 연결 완료 같은 이벤트가 발생한 채널이 있을 때까지 블로킹되었다가, 준비된 채널 목록을 돌려줍니다. 애플리케이션 코드는 이 목록을 순회하면서 각 채널에서 read() 또는 write()를 수행하고, 다시 select()를 호출하는 패턴으로 동작합니다.</p>
+<p>이 구조 덕분에 <strong>더 이상 “연결 1개당 쓰레드 1개”를 강제하지 않고도, 하나의 이벤트 루프 쓰레드가 수많은 연결을 관리</strong>할 수 있게 됩니다. <strong>네티의 <code>EventLoop</code>가 내부적으로 바로 이 셀렉터 기반 이벤트 루프 위에서 동작</strong>하기 때문에, Selector는 네티의 쓰레드 모델을 이해하는 데도 중요한 배경 지식이 됩니다.</p>
+<ul>
+<li><strong><code>Selector</code> 사용 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">Selector</span> <span class="hljs-variable">selector</span> <span class="hljs-operator">=</span> Selector.open();</span>
+<span class="code-line numbered-code-line" data-line-number="2">channel.configureBlocking(<span class="hljs-literal">false</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3">channel.register(selector, SelectionKey.OP_READ);</span>
+<span class="code-line numbered-code-line" data-line-number="4"></span>
+<span class="code-line numbered-code-line" data-line-number="5"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="6">    selector.select();                 <span class="hljs-comment">// 준비된 채널이 생길 때까지 블로킹</span></span>
+<span class="code-line numbered-code-line" data-line-number="7">    Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span>
+<span class="code-line numbered-code-line" data-line-number="8">    <span class="hljs-keyword">for</span> (SelectionKey key : keys) {</span>
+<span class="code-line numbered-code-line" data-line-number="9">        <span class="hljs-keyword">if</span> (key.isReadable()) {</span>
+<span class="code-line numbered-code-line" data-line-number="10">            <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> (SocketChannel) key.channel();</span>
+<span class="code-line numbered-code-line" data-line-number="11">            <span class="hljs-comment">// ch.read(buffer) 등으로 처리</span></span>
+<span class="code-line numbered-code-line" data-line-number="12">        }</span>
+<span class="code-line numbered-code-line" data-line-number="13">    }</span>
+<span class="code-line numbered-code-line" data-line-number="14">    keys.clear();                      <span class="hljs-comment">// 다음 루프를 위해 정리</span></span>
+<span class="code-line numbered-code-line" data-line-number="15">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="javanio-채널--버퍼--셀렉터를-합친-서버-구조-예시" class="post-heading post-heading__h3"><code>java.nio</code>: 채널 · 버퍼 · 셀렉터를 합친 서버 구조 예시</h3>
+<p>채널(<code>Channel</code>)과 버퍼(<code>ByteBuffer</code>), 그리고 셀렉터(<code>Selector</code>) 이 세 가지를 합쳐서, 논블로킹 이벤트 루프 구조로 바꿨을 때 어떻게 코드가 달라지는지 예제를 통해 살펴보겠습니다.</p>
+<ul>
+<li><strong><code>java.nio</code> 를 사용 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="3">        <span class="hljs-type">ServerSocketChannel</span> <span class="hljs-variable">serverChannel</span> <span class="hljs-operator">=</span> ServerSocketChannel.open();</span>
+<span class="code-line numbered-code-line" data-line-number="4">        serverChannel.configureBlocking(<span class="hljs-literal">false</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="5">        serverChannel.bind(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(<span class="hljs-number">8080</span>));</span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+<span class="code-line numbered-code-line" data-line-number="7">        <span class="hljs-type">Selector</span> <span class="hljs-variable">selector</span> <span class="hljs-operator">=</span> Selector.open();</span>
+<span class="code-line numbered-code-line" data-line-number="8">        serverChannel.register(selector, SelectionKey.OP_ACCEPT);</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="11"></span>
+<span class="code-line numbered-code-line" data-line-number="12">        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="13">            selector.select();</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">            Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span>
+<span class="code-line numbered-code-line" data-line-number="16">            Iterator&lt;SelectionKey&gt; it = keys.iterator();</span>
+<span class="code-line numbered-code-line" data-line-number="17"></span>
+<span class="code-line numbered-code-line" data-line-number="18">            <span class="hljs-keyword">while</span> (it.hasNext()) {</span>
+<span class="code-line numbered-code-line" data-line-number="19">                <span class="hljs-type">SelectionKey</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> it.next();</span>
+<span class="code-line numbered-code-line" data-line-number="20">                it.remove();</span>
+<span class="code-line numbered-code-line" data-line-number="21"></span>
+<span class="code-line numbered-code-line" data-line-number="22">                <span class="hljs-keyword">if</span> (key.isAcceptable()) {</span>
+<span class="code-line numbered-code-line" data-line-number="23">                    <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> serverChannel.accept();</span>
+<span class="code-line numbered-code-line" data-line-number="24">                    client.configureBlocking(<span class="hljs-literal">false</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="25">                    System.out.println(<span class="hljs-string">"[ACCEPT] "</span> + client.getRemoteAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="26"></span>
+<span class="code-line numbered-code-line" data-line-number="27">                    client.register(selector, SelectionKey.OP_READ);</span>
+<span class="code-line numbered-code-line" data-line-number="28"></span>
+<span class="code-line numbered-code-line" data-line-number="29">                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key.isReadable()) {</span>
+<span class="code-line numbered-code-line" data-line-number="30">                    <span class="hljs-type">SocketChannel</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> (SocketChannel) key.channel();</span>
+<span class="code-line numbered-code-line" data-line-number="31">                    buffer.clear();</span>
+<span class="code-line numbered-code-line" data-line-number="32">                    <span class="hljs-type">int</span> <span class="hljs-variable">read</span> <span class="hljs-operator">=</span> client.read(buffer);</span>
+<span class="code-line numbered-code-line" data-line-number="33"></span>
+<span class="code-line numbered-code-line" data-line-number="34">                    <span class="hljs-keyword">if</span> (read &lt;= <span class="hljs-number">0</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="35">                        System.out.println(<span class="hljs-string">"[CLOSE] "</span> + client.getRemoteAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="36">                        key.cancel();</span>
+<span class="code-line numbered-code-line" data-line-number="37">                        client.close();</span>
+<span class="code-line numbered-code-line" data-line-number="38">                        <span class="hljs-keyword">continue</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="39">                    }</span>
+<span class="code-line numbered-code-line" data-line-number="40"></span>
+<span class="code-line numbered-code-line" data-line-number="41">                    buffer.flip();</span>
+<span class="code-line numbered-code-line" data-line-number="42">                    <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[buffer.remaining()];</span>
+<span class="code-line numbered-code-line" data-line-number="43">                    buffer.get(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="44">                    <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="45"></span>
+<span class="code-line numbered-code-line" data-line-number="46">                    System.out.println(<span class="hljs-string">"[RECV] "</span> + line.trim()</span>
+<span class="code-line numbered-code-line" data-line-number="47">                                      + <span class="hljs-string">" from "</span> + client.getRemoteAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="48">                }</span>
+<span class="code-line numbered-code-line" data-line-number="49">            }</span>
+<span class="code-line numbered-code-line" data-line-number="50">        }</span>
+<span class="code-line numbered-code-line" data-line-number="51">    }</span>
+<span class="code-line numbered-code-line" data-line-number="52">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<p><code>java.net</code>은 연결마다 전용 쓰레드를 두고 블로킹 방식으로 처리했지만, <strong><code>java.nio</code>는 하나 이상의 셀렉터 기반 이벤트 루프가 등록된 채널들 중 “지금 I/O 처리가 가능한 채널”만 골라서 순차적으로 조금씩 처리</strong>한다는 점이 핵심입니다.</p>
+<hr>
+<h3 id="javanio-스레드는-줄었는데-코드는-더-복잡해졌다" class="post-heading post-heading__h3"><code>java.nio</code>: 스레드는 줄었는데, 코드는 더 복잡해졌다</h3>
+<p><code>java.nio</code> 덕분에 “연결 1개당 쓰레드 1개” 모델에서 벗어나, 적은 수의 쓰레드로 더 많은 연결을 처리할 수 있는 기반은 마련되었습니다. 다만 그만큼 채널·버퍼·셀렉터를 직접 다루는 코드가 필요해지고, 아래와 같은 단점들이 개발자 쪽으로 그대로 이전되었다는 점도 함께 보게 됩니다.</p>
+<ul>
+<li>
+<p><strong><code>java.nio</code> 를 통한 네트워크 프로그래밍의 한계</strong></p>
+<ol>
+<li>채널, 버퍼, 셀렉터를 애플리케이션 코드에서 직접 다뤄야 해서 각 채널의 부분 읽기/부분 쓰기, 버퍼에 남은 데이터, 메시지 경계 상태를 일일이 관리해야 한다.</li>
+<li>여러 연결과 예외 상황(타임아웃, 연결 종료, 동시 이벤트 등)을 처리하기 위해 복잡한 상태 머신과 예외 처리가 <code>select()</code> 루프 주변에 쌓이면서, 코드 구조가 빠르게 난해해진다.</li>
+<li>셀렉터 구현이 <code>OS</code>마다 달라 <code>epoll</code>/<code>select</code> 관련 버그나 성능 이슈에 직접 영향을 받고, <code>direct ByteBuffer</code> 사용 시 네이티브 메모리와 리소스 해제를 별도로 관리해야 하는 등 플랫폼·메모리 레벨의 디테일까지 신경 써야 한다.</li>
+<li><code>java.nio</code>는 저수준 I/O API에 가까워서 TCP 프레이밍, 인코더/디코더, 다단계 핸들러 파이프라인 같은 고수준 구조를 모두 직접 설계·구현해야 하고, 이를 재사용 가능한 프레임워크로 끌어올리기까지의 진입 장벽이 높다.</li>
+</ol>
+</li>
+</ul>
+<p>결국 <strong><code>java.nio</code></strong> 는 <strong>“성능과 스케일”은 해결</strong>했지만, 그만큼 <strong>“코드 복잡도와 구현 난이도”라는 비용을 개발자에게</strong> 넘겨 주었습니다. 이 시점에서, <code>java.nio</code>의 장점을 그대로 살리면서도 저수준 디테일은 감춰 주는 프레임워크가 필요해졌고, 그 역할을 하는 대표적인 도구가 바로 네티(<code>Netty</code>)입니다.</p>
+<hr>
+<h1 id="netty-비동기-이벤트-기반-네트워크-프레임워크" class="post-heading post-heading__h1">Netty: 비동기 이벤트 기반 네트워크 프레임워크</h1>
+<p><code>java.net</code> 은 단순하지만 쓰레드와 확장성에 한계가 있었고, <code>java.nio</code> 는 논블로킹 I/O 로 이 문제를 풀어 주는 대신 채널·버퍼·셀렉터를 직접 다뤄야 하는 복잡함을 가져왔습니다. <code>네티(Netty)</code>는 이 두 세계 사이에서, <code>java.nio</code> 위에 비동기 이벤트 기반 네트워크 애플리케이션 프레임워크를 올려 놓고 서버·클라이언트를 더 적은 코드로, 더 일관된 모델(EventLoop–Channel–Pipeline–Handler) 위에서 구현할 수 있도록 해 줍니다.</p>
+<h2 id="netty-핵심-구조-한-번에-보기" class="post-heading post-heading__h2">Netty: 핵심 구조 한 번에 보기</h2>
+<p>네티에서 서버 측 구성을 이해할 때는 보통 <strong><code>EventLoop</code>, <code>Channel</code>, <code>ChannelPipeline</code>, <code>ChannelHandler</code> 네 가지 요소</strong>로 정리해 볼 수 있습니다.</p>
+<hr>
+<h3 id="eventloop-네티의-스레드-모델" class="post-heading post-heading__h3">EventLoop: 네티의 스레드 모델</h3>
+<p><code>java.nio</code>에서 직접 구현하던 <strong>“Selector + while(select()) 루프”를 네티가 대신 캡슐화해 둔 것이 바로 <code>EventLoop</code></strong> 입니다. 내부적으로는 <code>java.nio</code>의 셀렉터 위에서 돌아가는 단일 쓰레드 이벤트 루프로, 하나의 이벤트 루프가 여러 채널의 I/O 이벤트를 처리합니다. 덕분에 <strong>“연결 1개당 쓰레드 1개” 대신, “소수의 이벤트 루프 쓰레드가 많은 연결을 돌려 가며 처리하는 구조”</strong> 를 자연스럽게 사용할 수 있습니다.</p>
+<hr>
+<h3 id="channel-연결의-단위" class="post-heading post-heading__h3">Channel: 연결의 단위</h3>
+<p><strong>원격 피어와의 네트워크 연결 하나</strong>를 표현하는 객체로, 기존의 <code>Socket</code>/<code>SocketChannel</code>에 해당합니다.
+각 채널은 하나의 이벤트 루프에 배정되고, 그 채널과 관련된 I/O 이벤트는 <strong>항상 같은 쓰레드(<code>EventLoop</code>)에서 처리되도록 보장</strong>됩니다.</p>
+<hr>
+<h3 id="channelpipeline-이벤트-처리-경로" class="post-heading post-heading__h3">ChannelPipeline: 이벤트 처리 경로</h3>
+<p><strong>해당 채널로 들어오고 나가는 이벤트가 지나가는 처리 파이프라인</strong>입니다.
+내부적으로 여러 채널 핸들러를 양방향 연결 리스트 형태로 연결해 두고, 읽기/쓰기 이벤트가 발생했을 때 이 핸들러 체인을 순서대로 통과시키며 처리합니다.</p>
+<hr>
+<h3 id="channelhandler-이벤트-처리-로직" class="post-heading post-heading__h3">ChannelHandler: 이벤트 처리 로직</h3>
+<p><strong>실제 업무 로직을 수행하는 컴포넌트</strong>로, 디코더, 인코더, 비즈니스 로직, 로깅 등 역할별로 잘게 쪼개어 핸들러를 구성합니다.
+이들을 파이프라인에 조합해 넣는 방식으로, <strong>TCP 프레이밍부터 메시지 파싱, 응답 생성까지를 모듈화된 형태로 표현</strong>할 수 있습니다.</p>
+<p>이 구조 덕분에, <strong>개발자는 더 이상 Selector, ByteBuffer, SelectionKey를 직접 만지지 않고도 “이벤트가 들어왔을 때 어떤 순서로 어떤 핸들러를 태울지” 중심으로 서버·클라이언트를 설계</strong>할 수 있습니다.</p>
+<hr>
+<p>이 글에서는 네티(Netty)가 어떤 배경에서 등장했고, 네트워크 프로그래밍을 어떤 모델로 바라보게 만드는지 큰 그림만 살펴보았습니다.</p></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EB%2584%25A4%25ED%258B%25B0%2FNetty%253A%2520java.net%25EA%25B3%25BC%2520java.nio%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B3%2584%25EB%25A5%25BC%2520%25EB%25B3%25B4%25EC%2599%2584%25ED%2595%259C%2520%25EB%25B9%2584%25EB%258F%2599%25EA%25B8%25B0%2520%25EC%259D%25B4%25EB%25B2%25A4%25ED%258A%25B8%2520%25EA%25B8%25B0%25EB%25B0%2598%2520%25EB%2584%25A4%25ED%258A%25B8%25EC%259B%258C%25ED%2581%25AC%2520%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584%25EC%259B%258C%25ED%2581%25AC&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%9D%B4+%EA%B8%80%EC%97%90%EC%84%9C%EB%8A%94+Reactor+%EC%B2%B4%EC%9D%B8%EC%97%90%EC%84%9C+%E2%80%9C%EC%96%B4%EB%94%94%EC%84%9C%2C+%EC%99%9C+%EC%8A%A4%EB%A0%88%EB%93%9C%EA%B0%80+%EB%B0%94%EB%80%8C%EB%8A%94%EC%A7%80%E2%80%9D%EB%A5%BC+Schedulers%2C+publishOn%2C+subscribeOn+%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EB%2584%25A4%25ED%258B%25B0%2FNetty%253A%2520java.net%25EA%25B3%25BC%2520java.nio%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B3%2584%25EB%25A5%25BC%2520%25EB%25B3%25B4%25EC%2599%2584%25ED%2595%259C%2520%25EB%25B9%2584%25EB%258F%2599%25EA%25B8%25B0%2520%25EC%259D%25B4%25EB%25B2%25A4%25ED%258A%25B8%2520%25EA%25B8%25B0%25EB%25B0%2598%2520%25EB%2584%25A4%25ED%258A%25B8%25EC%259B%258C%25ED%2581%25AC%2520%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584%25EC%259B%258C%25ED%2581%25AC&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EB%2584%25A4%25ED%258B%25B0%2FNetty%253A%2520java.net%25EA%25B3%25BC%2520java.nio%25EC%259D%2598%2520%25ED%2595%259C%25EA%25B3%2584%25EB%25A5%25BC%2520%25EB%25B3%25B4%25EC%2599%2584%25ED%2595%259C%2520%25EB%25B9%2584%25EB%258F%2599%25EA%25B8%25B0%2520%25EC%259D%25B4%25EB%25B2%25A4%25ED%258A%25B8%2520%25EA%25B8%25B0%25EB%25B0%2598%2520%25EB%2584%25A4%25ED%258A%25B8%25EC%259B%258C%25ED%2581%25AC%2520%25ED%2594%2584%25EB%25A0%2588%25EC%259E%2584%25EC%259B%258C%25ED%2581%25AC" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#javanet-기본적인-소켓-네트워크-프로그래밍" class="toc__item active" style="padding-left: 12px;">`java.net`: 기본적인 소켓 네트워크 프로그래밍</a><a href="#javanet--스트림-기반의-소켓-구조-한눈에-보기" class="toc__item" style="padding-left: 26px;">`java.net`:  스트림 기반의 소켓 구조 한눈에 보기</a><a href="#javanio-논블로킹-네트워크-프로그래밍의-시작" class="toc__item" style="padding-left: 12px;">`java.nio`: 논블로킹 네트워크 프로그래밍의 시작</a><a href="#javanio-채널channel" class="toc__item" style="padding-left: 26px;">`java.nio`: 채널(Channel)</a><a href="#javanio-버퍼bytebuffer" class="toc__item" style="padding-left: 26px;">`java.nio`: 버퍼(ByteBuffer)</a><a href="#javanio-셀렉터selector" class="toc__item" style="padding-left: 26px;">`java.nio`: 셀렉터(Selector)</a><a href="#javanio-채널--버퍼--셀렉터를-합친-서버-구조-예시" class="toc__item" style="padding-left: 26px;">`java.nio`: 채널 · 버퍼 · 셀렉터를 합친 서버 구조 예시</a><a href="#javanio-스레드는-줄었는데-코드는-더-복잡해졌다" class="toc__item" style="padding-left: 26px;">`java.nio`: 스레드는 줄었는데, 코드는 더 복잡해졌다</a><a href="#netty-핵심-구조-한-번에-보기" class="toc__item" style="padding-left: 12px;">Netty: 핵심 구조 한 번에 보기</a><a href="#eventloop-네티의-스레드-모델" class="toc__item" style="padding-left: 26px;">EventLoop: 네티의 스레드 모델</a><a href="#channel-연결의-단위" class="toc__item" style="padding-left: 26px;">Channel: 연결의 단위</a><a href="#channelpipeline-이벤트-처리-경로" class="toc__item" style="padding-left: 26px;">ChannelPipeline: 이벤트 처리 경로</a><a href="#channelhandler-이벤트-처리-로직" class="toc__item" style="padding-left: 26px;">ChannelHandler: 이벤트 처리 로직</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/네티</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

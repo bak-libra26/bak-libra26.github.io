@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>플러터 설치하기 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="M1 Mac에 다트/플러터 설치해보기"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/환경설정/플러터 설치하기"><meta property="og:type" content="article"><meta property="og:title" content="플러터 설치하기 - bak-libra26"><meta property="og:description" content="M1 Mac에 다트/플러터 설치해보기"><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/환경설정/플러터 설치하기"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-01-08T11:03:06.000Z"><meta property="article:modified_time" content="2026-01-08T11:03:06.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="플러터 설치하기 - bak-libra26"><meta name="twitter:description" content="M1 Mac에 다트/플러터 설치해보기"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 72%;"></div></div><span class="loading-progress-pct">72%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"플러터 설치하기 - bak-libra26","description":"M1 Mac에 다트/플러터 설치해보기","url":"https://bak-libra26.co.kr/posts/개발/환경설정/플러터 설치하기","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-01-08T11:03:06.000Z","dateModified":"2026-01-08T11:03:06.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/환경설정/플러터 설치하기"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"플러터 설치하기 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/환경설정/플러터 설치하기"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/환경설정</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"플러터 설치하기.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><span class="current">환경설정</span></span></nav><header class="post-meta"><h1 class="post-detail__title">플러터 설치하기</h1><div class="post-detail__meta"><span>2026-01-08</span><span class="sep">·</span><span>2 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 환경설정</span><span class="count">(6/7)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/Ubuntu%20%ED%99%98%EA%B2%BD%EC%97%90%20%EB%AA%BD%EA%B3%A0DB%20%EC%84%A4%EC%B9%98" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>Ubuntu 환경에 몽고DB 설치</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/OpenJDK%2011%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>OpenJDK 11 설치하기</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/NVM%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>NVM 설치하기</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/RabbitMQ%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>RabbitMQ 설치하기</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/Homebrew%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">5.</span><span class="check">✓</span><span>Homebrew 설치하기</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%ED%94%8C%EB%9F%AC%ED%84%B0%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">6.</span><span class="current-marker">→</span><span>플러터 설치하기 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B9%83%ED%97%88%EB%B8%8C%20%EB%B9%84%EA%B3%B5%EA%B0%9C%20%EB%A0%88%ED%8F%AC%EC%A7%80%ED%86%A0%EB%A6%AC%20%EC%9E%94%EB%94%94%20%EC%8B%AC%EA%B8%B0" data-discover="true"><span class="num">7.</span><span style="min-width: 16px;"></span><span>깃허브 비공개 레포지토리 잔디 심기</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/Homebrew%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B9%83%ED%97%88%EB%B8%8C%20%EB%B9%84%EA%B3%B5%EA%B0%9C%20%EB%A0%88%ED%8F%AC%EC%A7%80%ED%86%A0%EB%A6%AC%20%EC%9E%94%EB%94%94%20%EC%8B%AC%EA%B8%B0" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p><strong>본 글에서는 M1 Mac 환경에 Homebrew를 사용하여 플러터를 설치해봅니다.</strong>
+<strong>Homebrew 설치 방법은 <a href="https://bak-libra26.co.kr/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/Homebrew_%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0">Homebrew 설치하기</a>를 참고해주세요.</strong></p>
+</blockquote>
+<hr>
+<h1 id="플러터-설치하기" class="post-heading post-heading__h1">플러터 설치하기</h1>
+<ul>
+<li>
+<p><strong>플러터 설치 명령어</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">brew install flutter</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>플러터 버전 확인</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">flutter --version</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>플러터 개발 환경 진단하기</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta prompt_">$ </span><span class="bash">flutter doctor</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">[✓] Flutter (Channel stable, 3.38.5, on macOS 26.2 darwin-arm64, locale ko-KR)</span>
+<span class="code-line numbered-code-line" data-line-number="3">[✓] Android toolchain - develop for Android devices</span>
+<span class="code-line numbered-code-line" data-line-number="4">[✓] Xcode - develop for iOS and macOS  </span>
+<span class="code-line numbered-code-line" data-line-number="5">[✓] Chrome - develop for the web</span>
+</code></pre></figure>
+<p>flutter doctor에서 **✓ (체크 표시)**는 해당 항목이 정상임을 의미합니다. Android toolchain, Xcode, Chrome이 모두 ✓라면 해당 플랫폼 개발이 가능합니다</p>
+</li>
+<li>
+<p><strong>상태 표시 해석</strong></p>
+<ul>
+<li>✓: 설치 및 설정 완료 (문제 없음)</li>
+<li>✗ (X): 필수 구성 요소 누락 - 즉시 수정 필요</li>
+<li>! (경고): 경미한 문제 - 개발 가능하나 권장 해결</li>
+</ul>
+</li>
+</ul>
+<p><code>flutter doctor</code> 명령어를 실행했을 때, **✓**가 아닌 경우, 아래와 같이 해결할 수 있습니다.</p>
+<hr>
+<h2 id="다트-개발-환경-설정" class="post-heading post-heading__h2">다트 개발 환경 설정</h2>
+<h3 id="다트-경로-오류" class="post-heading post-heading__h3">다트 경로 오류</h3>
+<p><code>flutter doctor</code> 실행 시 다트 경로 경고가 나타날 수 있습니다. 이는 Homebrew로 별도 설치된 Dart SDK가 Flutter 내장 Dart와 충돌하기 때문인데 이는 아래의 명령어를 실행하여 해결할 수 있습니다.</p>
+<ul>
+<li><strong>Homebrew로 별도 설치된 Dart SDK 제거 명령어</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">brew uninstall dart</span>
+<span class="code-line numbered-code-line" data-line-number="2">brew cleanup</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h2 id="안드로이드-개발-환경-설정" class="post-heading post-heading__h2">안드로이드 개발 환경 설정</h2>
+<h3 id="unable-to-locate-android-sdk" class="post-heading post-heading__h3">Unable to locate Android SDK.</h3>
+<blockquote>
+<p>안드로이드 SDK 경로를 찾을 수 없습니다.</p>
+</blockquote>
+<ul>
+<li><strong>해결 방법</strong>
+<ol>
+<li><strong>Android Studio 설치</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">brew install --cask android-studio</span>
+</code></pre></figure>
+</li>
+<li><strong>Android Studio 실행</strong>
+<ol>
+<li><strong>Preferences(Cmd + ,)</strong> &gt; <strong>System Settigns</strong> &gt; <strong>Android SDK</strong> &gt; <strong>SDK Tools</strong></li>
+<li><strong>Android SDK Command-line Tools (latest)</strong> 체크</li>
+<li><strong>Apply</strong></li>
+</ol>
+</li>
+<li><strong>Android SDK 라이선스에 동의하기</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">flutter doctor --android-licenses</span>
+</code></pre></figure>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="ios-개발-환경-설정" class="post-heading post-heading__h2">IOS 개발 환경 설정</h2>
+<h3 id="xcode-installation-is-incomplete" class="post-heading post-heading__h3">Xcode installation is incomplete;</h3>
+<blockquote>
+<p>Xcode가 설치되어 있지 않습니다.</p>
+</blockquote>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">[✗] Xcode - develop for iOS and macOS</span>
+<span class="code-line numbered-code-line" data-line-number="2">    ✗ Xcode installation is incomplete; a full installation is necessary for iOS and macOS development.</span>
+<span class="code-line numbered-code-line" data-line-number="3">        Download at: https://developer.apple.com/xcode/</span>
+<span class="code-line numbered-code-line" data-line-number="4">        Or install Xcode via the App Store.</span>
+<span class="code-line numbered-code-line" data-line-number="5">        Once installed, run:</span>
+<span class="code-line numbered-code-line" data-line-number="6">            sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span>
+<span class="code-line numbered-code-line" data-line-number="7">            sudo xcodebuild -runFirstLaunch</span>
+</code></pre></figure>
+<ul>
+<li><strong>해결 방법</strong>
+<ol>
+<li>앱스토어에서 <code>Xcode</code> 설치</li>
+<li>명령어 실행
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span>
+<span class="code-line numbered-code-line" data-line-number="2">sudo xcodebuild -runFirstLaunch</span>
+</code></pre></figure>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="cocoapods-not-installed" class="post-heading post-heading__h3">CocoaPods not installed.</h3>
+<blockquote>
+<p>CocoaPods가 설치되어 있지 않습니다.</p>
+</blockquote>
+<ul>
+<li><strong>해결 방법</strong></li>
+</ul>
+<ol>
+<li>CocoaPods 설치
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">brew install cocoapods</span>
+</code></pre></figure>
+</li>
+</ol>
+<hr>
+<h3 id="unable-to-get-list-of-installed-simulator-runtimes" class="post-heading post-heading__h3">Unable to get list of installed Simulator runtimes.</h3>
+<ul>
+<li><strong>해결 방법</strong>
+<ol>
+<li>IOS 시뮬레이터 설치
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">xcodebuild -downloadPlatform iOS</span>
+</code></pre></figure>
+</li>
+</ol>
+</li>
+</ul></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B9%83%ED%97%88%EB%B8%8C%20%EB%B9%84%EA%B3%B5%EA%B0%9C%20%EB%A0%88%ED%8F%AC%EC%A7%80%ED%86%A0%EB%A6%AC%20%EC%9E%94%EB%94%94%20%EC%8B%AC%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>깃허브 비공개 레포지토리 잔디 심기</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/Homebrew%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>Homebrew 설치하기</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/RabbitMQ%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>RabbitMQ 설치하기</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/NVM%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>NVM 설치하기</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/OpenJDK%2011%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>OpenJDK 11 설치하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2599%2598%25EA%25B2%25BD%25EC%2584%25A4%25EC%25A0%2595%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520%25EC%2584%25A4%25EC%25B9%2598%25ED%2595%2598%25EA%25B8%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=M1+Mac%EC%97%90+%EB%8B%A4%ED%8A%B8%2F%ED%94%8C%EB%9F%AC%ED%84%B0+%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EA%B8%B0&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2599%2598%25EA%25B2%25BD%25EC%2584%25A4%25EC%25A0%2595%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520%25EC%2584%25A4%25EC%25B9%2598%25ED%2595%2598%25EA%25B8%25B0&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2599%2598%25EA%25B2%25BD%25EC%2584%25A4%25EC%25A0%2595%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520%25EC%2584%25A4%25EC%25B9%2598%25ED%2595%2598%25EA%25B8%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#다트-개발-환경-설정" class="toc__item active" style="padding-left: 12px;">다트 개발 환경 설정</a><a href="#다트-경로-오류" class="toc__item" style="padding-left: 26px;">다트 경로 오류</a><a href="#안드로이드-개발-환경-설정" class="toc__item" style="padding-left: 12px;">안드로이드 개발 환경 설정</a><a href="#unable-to-locate-android-sdk" class="toc__item" style="padding-left: 26px;">Unable to locate Android SDK.</a><a href="#ios-개발-환경-설정" class="toc__item" style="padding-left: 12px;">IOS 개발 환경 설정</a><a href="#xcode-installation-is-incomplete" class="toc__item" style="padding-left: 26px;">Xcode installation is incomplete;</a><a href="#cocoapods-not-installed" class="toc__item" style="padding-left: 26px;">CocoaPods not installed.</a><a href="#unable-to-get-list-of-installed-simulator-runtimes" class="toc__item" style="padding-left: 26px;">Unable to get list of installed Simulator runtimes.</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/환경설정</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

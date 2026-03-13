@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="바이트 버퍼(ByteBuffer) 의 position/limit/capacity와 flip/clear/compact 동작을 중심으로, 버퍼가 읽기/쓰기 모드를 어떻게 오가며 데이터를 다루는지 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 바이트 버퍼로 버퍼 상태 관리하기"><meta property="og:type" content="article"><meta property="og:title" content="Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 - bak-libra26"><meta property="og:description" content="바이트 버퍼(ByteBuffer) 의 position/limit/capacity와 flip/clear/compact 동작을 중심으로, 버퍼가 읽기/쓰기 모드를 어떻게 오가며 데이터를 다루는지 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 바이트 버퍼로 버퍼 상태 관리하기"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-01-27T21:28:56.000Z"><meta property="article:modified_time" content="2026-01-27T21:28:56.000Z"><meta property="article:tag" content="Java"><meta property="article:tag" content="JavaNIO"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 - bak-libra26"><meta name="twitter:description" content="바이트 버퍼(ByteBuffer) 의 position/limit/capacity와 flip/clear/compact 동작을 중심으로, 버퍼가 읽기/쓰기 모드를 어떻게 오가며 데이터를 다루는지 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 - bak-libra26","description":"바이트 버퍼(ByteBuffer) 의 position/limit/capacity와 flip/clear/compact 동작을 중심으로, 버퍼가 읽기/쓰기 모드를 어떻게 오가며 데이터를 다루는지 정리했습니다.","url":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 바이트 버퍼로 버퍼 상태 관리하기","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"Java, JavaNIO","datePublished":"2026-01-27T21:28:56.000Z","dateModified":"2026-01-27T21:28:56.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 바이트 버퍼로 버퍼 상태 관리하기"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 바이트 버퍼로 버퍼 상태 관리하기"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/언어/자바/NIO</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"Java NIO: 바이트 버퍼로 버퍼 상태 관리하기.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/언어" data-discover="true">언어</a></span><span><span class="sep">/</span><a href="/posts/개발/언어/자바" data-discover="true">자바</a></span><span><span class="sep">/</span><span class="current">NIO</span></span></nav><header class="post-meta"><h1 class="post-detail__title">Java NIO: 바이트 버퍼로 버퍼 상태 관리하기</h1><div class="post-detail__tags"><span class="tag tag--primary">Java</span><span class="tag">JavaNIO</span></div><div class="post-detail__meta"><span>2026-01-28</span><span class="sep">·</span><span>8 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· NIO</span><span class="count">(2/3)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20java.io%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%A5%BC%20%EB%84%98%EC%9D%80%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%AA%A8%EB%8D%B8" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>Java NIO: java.io의 한계를 넘은 새로운 모델</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%B0%94%EC%9D%B4%ED%8A%B8%20%EB%B2%84%ED%8D%BC%EB%A1%9C%20%EB%B2%84%ED%8D%BC%20%EC%83%81%ED%83%9C%20%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span class="current-marker">→</span><span>Java NIO: 바이트 버퍼로 버퍼 상태 관리하기 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%8B%A8%EB%B0%A9%ED%96%A5%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%20%EB%8C%80%EC%8B%A0%20%EC%96%91%EB%B0%A9%ED%96%A5%20%EC%B1%84%EB%84%90%EB%A1%9C" data-discover="true"><span class="num">3.</span><span style="min-width: 16px;"></span><span>Java NIO: 단방향 스트림 대신 양방향 채널로</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20java.io%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%A5%BC%20%EB%84%98%EC%9D%80%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%AA%A8%EB%8D%B8" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%8B%A8%EB%B0%A9%ED%96%A5%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%20%EB%8C%80%EC%8B%A0%20%EC%96%91%EB%B0%A9%ED%96%A5%20%EC%B1%84%EB%84%90%EB%A1%9C" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 JDK 1.4 에 도입된 <strong>java.nio</strong> 의 <strong>바이트 버퍼(<code>ByteBuffer</code>)</strong> 가 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.</p>
+</blockquote>
+<hr>
+<h1 id="javanio-바이트버퍼bytebuffer" class="post-heading post-heading__h1"><code>java.nio</code>: 바이트버퍼(<code>ByteBuffer</code>)</h1>
+<p>바이트 버퍼(<code>ByteBuffer</code>)는 <code>java.nio</code> 에서 입출력 데이터를 효율적으로 다루기 위한 메모리 버퍼 클래스입니다.</p>
+<hr>
+<h2 id="bytebuffer-생성-위치에-따른-차이" class="post-heading post-heading__h2"><code>ByteBuffer</code>: 생성 위치에 따른 차이.</h2>
+<p>바이트 버퍼는 메모리 할당 위치에 따라 <code>DirectByteBuffer</code> 와 <code>HeapByteBuffer</code> 로 나눌 수 있 두 가지로 나눌 수 있습니다.
+<code>DirectByteBuffer</code> 는 운영체제의 시스템 메모리에 직접 생성되어 커널 메모리와 직접 데이터를 교환하기 때문에 압도적인 성능적 이점이 존재하나 생성 비용이 높다는 단점이 존재합니다.
+반면 <code>HeapByteBuffer</code> 는 <code>JVM(Java Virtual Machine)</code> 이 관리하는 힙 메모리에 생성되기 때문에 생성이 빠르나 I/O 작업 시 내부 복사 과정이 발생해 느리다는 단점이 존재합니다.</p>
+<ul>
+<li>
+<p><strong><code>DirectByteBuffer</code></strong>: <strong>운영체제 시스템 메모리에 생성</strong>된다.</p>
+<ol>
+<li><strong><code>allocateDirect(int capacity)</code> 로 생성</strong>한다.</li>
+<li>운영체제(<code>OS; Operating System</code>)에 시스템 메모리를 할당받아야 한다.</li>
+<li>데이터 커널 메모리와 직접 데이터 교환하기 때문에 <strong>대용량 파일 또는 네트워크 I/O 가 빠르다.</strong></li>
+</ol>
+</li>
+<li>
+<p><strong><code>HeapByteBuffer</code></strong>: <strong><code>JVM</code> 의 힙 메모리에 생성</strong>된다.</p>
+<ol>
+<li><strong><code>allocate(int capacity)</code> 로 생성</strong>한다.</li>
+<li><code>JVM(Java Virtual Machine)</code> 가 관리하는 힙 메모리 안 빈공간을 할당받아 생성한다.</li>
+<li>파일 또는 네트워크 I/O 시, <strong>내부 복사 과정이 필요하여 속도가 느리다.</strong></li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="bytebuffer-생성-방법" class="post-heading post-heading__h2"><code>ByteBuffer</code>: 생성 방법</h2>
+<p>바이트버퍼를 생성하는 방식은 크게 3가지로 <code>allocate(int capacity)</code>, <code>allocateDirect(int capacity)</code>, <code>wrap(byte[] array)</code> 가 존재합니다.</p>
+<hr>
+<h3 id="allocateint-capatiy" class="post-heading post-heading__h3">allocate(int capatiy)</h3>
+<ul>
+<li><strong><code>allocate(int capacity)</code> 를 통한 바이트 버퍼 생성 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+</code></pre></figure>
+</li>
+</ul>
+<p><strong><code>allocate(int capacity)</code> 는 <code>JVM</code> 의 힙 메모리에 바이트 버퍼를 생성</strong>하는 메서드입니다.</p>
+<hr>
+<h3 id="allocatedirectint-capatiy" class="post-heading post-heading__h3">allocateDirect(int capatiy)</h3>
+<ul>
+<li><strong><code>allocateDirect(int capacity)</code> 를 통한 바이트 버퍼 생성 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocateDirect(<span class="hljs-number">1024</span>);</span>
+</code></pre></figure>
+</li>
+</ul>
+<p><strong><code>allocateDirect(int capacity)</code> 는 운영체제의 시스템 메모리에 바이트 버퍼를 생성</strong>하는 메서드입니다.</p>
+<hr>
+<h3 id="wrapbyte-array" class="post-heading post-heading__h3">wrap(byte[] array)</h3>
+<ul>
+<li><strong><code>wrap(byte[] array)</code> 를 통한 바이트 버퍼 생성 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">16</span>];</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocateDirect(bytes);</span>
+</code></pre></figure>
+</li>
+</ul>
+<p><strong><code>wrap(byte[] array)</code> 는 이미 존재하는 바이트 배열(<code>byte[]</code>) 를 사용하는 바이트 버퍼를 생성</strong>하는 메서드입니다.
+<code>allocate(int capacity)</code>, <code>allocateDirect(int capacity)</code> 와는 달리 기존에 사용하는 배열로 바이트 버퍼를 사용할 수 있다는 장점이 있습니다.
+다만 <strong>기존 바이트 배열의 값이 바뀌면 버퍼 내용도 함께 바뀌므로 주의</strong>해야합니다.</p>
+<hr>
+<h4 id="wrapbyte-array-주의점" class="post-heading post-heading__h4"><code>wrap(byte[] array)</code> 주의점</h4>
+<ul>
+<li>
+<p><strong><code>wrap(byte[] array)</code> 주의점 예제</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">8</span>];</span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="5">    System.out.println(<span class="hljs-string">"(변경 전) 바이트 배열 = "</span> + Arrays.toString(bytes));</span>
+<span class="code-line numbered-code-line" data-line-number="6">    System.out.println(<span class="hljs-string">"(변경 전) 바이트 버퍼 내부 바이트 배열 = "</span> + Arrays.toString(byteBuffer.array()));</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">    <span class="hljs-type">byte</span>[] hello = <span class="hljs-string">"hello"</span>.getBytes(StandardCharsets.UTF_8);</span>
+<span class="code-line numbered-code-line" data-line-number="9">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; hello.length; i ++) {</span>
+<span class="code-line numbered-code-line" data-line-number="10">      <span class="hljs-type">byte</span> <span class="hljs-variable">val</span> <span class="hljs-operator">=</span> hello[i];</span>
+<span class="code-line numbered-code-line" data-line-number="11">      bytes[i] = val;</span>
+<span class="code-line numbered-code-line" data-line-number="12">    }</span>
+<span class="code-line numbered-code-line" data-line-number="13"></span>
+<span class="code-line numbered-code-line" data-line-number="14">    System.out.println(<span class="hljs-string">"(변경 후) 바이트 배열 = "</span> + Arrays.toString(bytes));</span>
+<span class="code-line numbered-code-line" data-line-number="15">    System.out.println(<span class="hljs-string">"(변경 후) 바이트 버퍼 내부 바이트 배열 = "</span> + Arrays.toString(byteBuffer.array()));</span>
+<span class="code-line numbered-code-line" data-line-number="16">  }</span>
+<span class="code-line numbered-code-line" data-line-number="17">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong><code>wrap(byte[] array)</code> 주의점 예제 로그</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1">(변경 전) 바이트 배열 = [0, 0, 0, 0, 0, 0, 0, 0]</span>
+<span class="code-line numbered-code-line" data-line-number="2">(변경 전) 바이트 버퍼 내부 바이트 배열 = [0, 0, 0, 0, 0, 0, 0, 0]</span>
+<span class="code-line numbered-code-line" data-line-number="3">(변경 후) 바이트 배열 = [104, 101, 108, 108, 111, 0, 0, 0]</span>
+<span class="code-line numbered-code-line" data-line-number="4">(변경 후) 바이트 버퍼 내부 바이트 배열 = [104, 101, 108, 108, 111, 0, 0, 0]</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h2 id="bytebuffer-다뤄보기" class="post-heading post-heading__h2"><code>ByteBuffer</code>: 다뤄보기</h2>
+<p><strong>바이트 버퍼</strong>는 단순히 <strong>바이트 배열을 감싼 객체가 아니라, 버퍼 상태(position/limit/capacity)를 함께 관리하는 채널 기반 I/O를 위한 버퍼 추상화</strong>입니다</p>
+<hr>
+<h3 id="bytebuffer-capacity" class="post-heading post-heading__h3"><code>ByteBuffer</code>: <code>capacity</code></h3>
+<p><strong><code>capacity</code></strong> 는 <strong>바이트 버퍼의 내부 바이트 배열의 최대 크기를 의미</strong>합니다. 바이트 배열(<code>byte[]</code>) 과 마찬가지로 한 번 정해지면 절대 변하지 않습니다.
+만약 데이터를 더 많이, 더 적게 담고싶다면 새로운 크기의 버퍼를 만들어야합니다.</p>
+<ul>
+<li><strong><code>capacity</code> 속성</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-comment">// 1024바이트(1KB) 크기의 버퍼 생성</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-comment">// 생성 시 지정한 크기는 변경할 수 없습니다.</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">System.out.println(byteBuffer.capacity()); <span class="hljs-comment">// 1024</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="bytebuffer-position" class="post-heading post-heading__h3"><code>ByteBuffer</code>: <code>position</code></h3>
+<p><strong><code>position</code></strong> 은 <strong>바이트 버퍼가 다루는 바이트 배열에 데이터를 쓰거나 읽을 위치(인덱스)를 의미</strong>합니다.</p>
+<hr>
+<h4 id="position-데이터-쓰기" class="post-heading post-heading__h4"><code>position</code>: 데이터 쓰기</h4>
+<p><code>ByteBuffer.put(byte b)</code> 는 바이트 버퍼에 데이터를 쓰는 가장 기본적인 메서드입니다.
+이 메서드가 호출되면 버퍼 내부에서는 다음과 같은 일이 일어납니다.</p>
+<ol>
+<li><strong>현재 위치(position)에 기록</strong>: 바이트 버퍼는 현재 <code>position</code>이 가리키는 인덱스에 전달받은 <code>byte b</code>를 저장합니다.</li>
+<li><strong>포지션 자동 이동</strong>: 쓰기 작업을 마친 직후, <code>position</code> 값을 자동으로 1 증가시킵니다.</li>
+</ol>
+<p>이렇게 바이트 버퍼는 쓰기 작업 후, <code>position</code>이 다음 칸을 가리키게 함으로써, 인덱스를 일일이 계산하지 않아도 연속해서 데이터를 채워 넣을 수 있게 해줍니다.</p>
+<hr>
+<h4 id="position--데이터-읽기" class="post-heading post-heading__h4"><code>position</code>:  데이터 읽기</h4>
+<p><code>ByteBuffer.get()</code> 는 바이트 버퍼의 현재 포지션에 해당하는 값을 가져오는 메서드입니다.
+이 메서드가 호출되면 버퍼 내부에서는 다음과 같은 일이 일어납니다.</p>
+<ol>
+<li><strong>현재 위치(position)에 데이터 읽기</strong>: 바이트 버퍼는 현재 <code>position</code> 이 가리키는 인덱스에 존재하는 값을 읽습니다.</li>
+<li><strong>포지션 자동 이동</strong>: 읽기 작업을 마친 후, <code>position</code> 값을 자동으로 1 증가시킵니다.</li>
+</ol>
+<p>이렇게 바이트 버퍼는 읽기 작업 후, <code>position</code>이 다음 칸을 가리키게 함으로써, 인덱스를 일일이 계산하지 않아도 연속해서 데이터를 읽을 수 있게 해줍니다.</p>
+<p>만약 현재 포지션이 아닌 다른 포지션의 값을 읽고싶다면 <code>ByteBuffer.get(int position)</code> 을 사용하면 됩니다.
+이 메서드는 절대 위치 읽기 방식으로 <code>position</code> 값을 변경시키지 않고 데이터를 읽어옵니다.</p>
+<hr>
+<h3 id="bytebuffer-limit" class="post-heading post-heading__h3"><code>ByteBuffer</code>: limit</h3>
+<p><strong><code>limit</code></strong> 은 <strong>읽고 쓸 수 있는 최대치를 의미</strong>합니다.
+바이트 버퍼를 생성한 직후, 바이트 버퍼의 <code>capacity</code> 와 <code>limit</code> 값은 동일합니다.</p>
+<ul>
+<li><strong><code>limit</code> 속성</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-comment">// 1024바이트(1KB) 크기의 버퍼 생성</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-comment">// 생성 시 지정한 크기는 변경할 수 없습니다.</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">System.out.println(byteBuffer.limit()); <span class="hljs-comment">// 1024</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="bytebuffer-flip" class="post-heading post-heading__h3"><code>ByteBuffer</code>: <code>flip()</code></h3>
+<ul>
+<li><strong>데이터를 쓰고난 후, 읽으려면?</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">byte</span>[] bytes = <span class="hljs-string">"hello"</span>.getBytes(StandardCharsets.UTF_8);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">8</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i &lt; bytes.length; i++) {</span>
+<span class="code-line numbered-code-line" data-line-number="5">    byteBuffer.put(bytes[i]);</span>
+<span class="code-line numbered-code-line" data-line-number="6">}</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8"><span class="hljs-comment">// 이후에는 어떻게 ?</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위와 같이 문자열 "hello" 를 바이트 버퍼에 쓰고 나서 바로 읽으려고 하면, <code>put()</code>이 끝난 시점의 <code>position</code>은 이미 문자열 끝을 가리키고 있는 상태입니다.
+<code>put()</code>과 <code>get()</code>은 호출될 때마다 <code>position</code>을 자동으로 증가시키기 때문에, 데이터를 다 써 놓고 “처음부터 다시 읽고 싶다”라고 할 때 그대로 읽기 시작하면 내가 방금 작성한 데이터를 제대로 읽기 어렵습니다.</p>
+<p>데이터를 쓰고 난 후에, 처음부터 쓴 데이터만 깔끔하게 읽으려면 어떻게 하는 게 좋을까요?
+<strong>지금까지 기록한 구간을 “읽기 범위”로 딱 잘라두고, 읽기는 항상 0부터 시작하면 가장 편할 것</strong>입니다.
+바로 <strong>이 작업을 대신 해 주는 메서드가 <code>flip()</code></strong> 입니다.</p>
+<ul>
+<li><strong><code>flip</code>: 데이터를 쓰고난 후, 읽어보자.</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">byte</span>[] bytes = <span class="hljs-string">"hello"</span>.getBytes(StandardCharsets.UTF_8);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">byteBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">8</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i &lt; bytes.length; i++) {</span>
+<span class="code-line numbered-code-line" data-line-number="5">    byteBuffer.put(bytes[i]);</span>
+<span class="code-line numbered-code-line" data-line-number="6">}</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">System.out.println(byteBuffer); <span class="hljs-comment">// java.nio.HeapByteBuffer[pos=5 lim=8 cap=8]</span></span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">byteBuffer.flip(); <span class="hljs-comment">// positi</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">System.out.println(byteBuffer); <span class="hljs-comment">// java.nio.HeapByteBuffer[pos=0 lim=5 cap=8]</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<p>문자열 "hello"를 다 쓴 상태의 바이트 버퍼가 (position=5, limit=8, capacity=8)이라면, <code>flip()</code>을 한 번 호출했을 때 버퍼 상태는 (position=0, limit=5, capacity=8)로 바뀝니다.
+이제 0부터 <code>limit</code>까지 <code>get()</code>으로 읽기만 하면, 방금 쓴 데이터 전체를 처음부터 끝까지 깔끔하게 꺼낼 수 있습니다.</p>
+<hr>
+<h3 id="bytebuffer-clear-vs-compact" class="post-heading post-heading__h3"><code>ByteBuffer</code>: <code>clear()</code> vs <code>compact()</code></h3>
+<p><code>clear()</code>, <code>compact()</code> 는 모두 “버퍼에서 한 번 읽은 뒤, 다시 그 버퍼에 쓰고 싶을 때” 사용하는 메서드입니다.
+이전 데이터를 전부 버릴지, 안 읽은 데이터만 살려둘지에 따라 어떤 메서드를 사용할지 결정하시면 됩니다.</p>
+<ul>
+<li>이전 내용 전부 필요 없고, 그냥 처음부터 새로 쓰고 싶다 → clear().</li>
+<li>아직 안 읽은 데이터는 남겨두고, 그 뒤에 이어서 쓰고 싶다 → compact()</li>
+</ul>
+<hr>
+<h4 id="clear-처음부터-다시-써볼까-" class="post-heading post-heading__h4"><code>clear()</code>: 처음부터 다시 써볼까 ?</h4>
+<p><code>clear()</code> 는 메서드 이름 그대로, <strong>“지금 버퍼에 뭐가 있든 다 처리 끝난 걸로 치고, 처음부터 새로 쓸 준비를 하자”</strong> 라는 상황에서 사용하는 메서드입니다.
+내부 바이트 배열의 값은 그대로 두고, <code>position</code>을 0으로, <code>limit</code>을 <code>capacity</code>와 같게 바꾸어 전체 구간을 새로 덮어쓸 수 있는 상태로 만들어 줍니다.</p>
+<ul>
+<li><strong><code>clear()</code> 예제</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">byte</span>[] bytes = <span class="hljs-string">"hello"</span>.getBytes(StandardCharsets.UTF_8);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">8</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4">buffer.put(bytes);   <span class="hljs-comment">// [h][e][l][l][o][_][_][_]</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">buffer.flip();       <span class="hljs-comment">// 읽기 모드 전환</span></span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+<span class="code-line numbered-code-line" data-line-number="7"><span class="hljs-comment">// 데이터 전부 읽기</span></span>
+<span class="code-line numbered-code-line" data-line-number="8"><span class="hljs-keyword">while</span> (buffer.hasRemaining()) {</span>
+<span class="code-line numbered-code-line" data-line-number="9">  System.out.print((<span class="hljs-type">char</span>) buffer.get());</span>
+<span class="code-line numbered-code-line" data-line-number="10">}</span>
+<span class="code-line numbered-code-line" data-line-number="11">System.out.println();                  <span class="hljs-comment">// hello</span></span>
+<span class="code-line numbered-code-line" data-line-number="12"></span>
+<span class="code-line numbered-code-line" data-line-number="13">System.out.println(buffer);            <span class="hljs-comment">// pos=5 lim=5 cap=8 (다 읽은 상태)</span></span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15"><span class="hljs-comment">// 이전 내용은 더 이상 안 중요, 처음부터 새로 쓰고 싶을 때</span></span>
+<span class="code-line numbered-code-line" data-line-number="16">buffer.clear();                        <span class="hljs-comment">// pos=0 lim=8 cap=8</span></span>
+<span class="code-line numbered-code-line" data-line-number="17"></span>
+<span class="code-line numbered-code-line" data-line-number="18">buffer.put(<span class="hljs-string">"WORLD"</span>.getBytes());</span>
+<span class="code-line numbered-code-line" data-line-number="19">buffer.flip();</span>
+<span class="code-line numbered-code-line" data-line-number="20"></span>
+<span class="code-line numbered-code-line" data-line-number="21"><span class="hljs-keyword">while</span> (buffer.hasRemaining()) {</span>
+<span class="code-line numbered-code-line" data-line-number="22">    System.out.print((<span class="hljs-type">char</span>) buffer.get()); <span class="hljs-comment">// WORLD</span></span>
+<span class="code-line numbered-code-line" data-line-number="23">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>실제로는 <code>clear()</code>가 배열을 0으로 지우지는 않고, <strong>“여기 있는 값 전부 덮어써도 된다”</strong> 고 상태만 초기화한다고 보면 됩니다.
+그래서 <strong>이전 데이터에 전혀 미련 없고, 새 데이터를 받을거야</strong> 하는 상황에 사용하는 것이 좋습니다.</p>
+<hr>
+<h4 id="compact-이어서-써볼까-" class="post-heading post-heading__h4"><code>compact()</code>: 이어서 써볼까 ?</h4>
+<p><code>compact()</code> 는 일부 데이터를 읽고 난 후, 아직 안 읽은 데이터는 살려두고 그 뒤에 이어서 써보고 싶을 때 사용하는 메서드입니다.
+<code>position</code>부터 <code>limit</code>까지 남아 있는(안 읽은) 데이터만 버퍼 맨 앞으로 복사하고, 그 바로 뒤에 이어서 <code>put()</code> 할 수 있도록 <code>position</code>을 옮긴 뒤 <code>limit</code>을 <code>capacity</code>로 변경합니다.</p>
+<ul>
+<li><strong><code>compact()</code> 예제</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">byte</span>[] bytes = <span class="hljs-string">"hello"</span>.getBytes(StandardCharsets.UTF_8);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">8</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4">buffer.put(bytes);   <span class="hljs-comment">// [h][e][l][l][o][_][_][_]</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">buffer.flip();       <span class="hljs-comment">// 읽기 모드 전환 (pos=0, lim=5)</span></span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+<span class="code-line numbered-code-line" data-line-number="7"><span class="hljs-comment">// 일부만 읽기</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">buffer.get();        <span class="hljs-comment">// 'h'</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">buffer.get();        <span class="hljs-comment">// 'e'</span></span>
+<span class="code-line numbered-code-line" data-line-number="10"><span class="hljs-comment">// 현재: pos=2, lim=5 (남은 데이터: "llo")</span></span>
+<span class="code-line numbered-code-line" data-line-number="11"></span>
+<span class="code-line numbered-code-line" data-line-number="12"><span class="hljs-comment">// 안 읽은 데이터는 살려두고 뒤에 이어서 쓰고 싶다</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">buffer.compact();    <span class="hljs-comment">// "llo"를 0~2로 당김 (pos=3, lim=8)</span></span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15"><span class="hljs-comment">// 뒤에 새 데이터 이어쓰기</span></span>
+<span class="code-line numbered-code-line" data-line-number="16">buffer.put(<span class="hljs-string">"!!"</span>.getBytes()); <span class="hljs-comment">// [l][l][o][!][!][_][_][_]</span></span>
+<span class="code-line numbered-code-line" data-line-number="17">buffer.flip();               <span class="hljs-comment">// 읽기 모드 (pos=0, lim=5)</span></span>
+<span class="code-line numbered-code-line" data-line-number="18"></span>
+<span class="code-line numbered-code-line" data-line-number="19"><span class="hljs-keyword">while</span> (buffer.hasRemaining()) {</span>
+<span class="code-line numbered-code-line" data-line-number="20">  System.out.print((<span class="hljs-type">char</span>) buffer.get()); <span class="hljs-comment">// llo!!</span></span>
+<span class="code-line numbered-code-line" data-line-number="21">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<p><code>compact()</code>는 배열을 0으로 지우지는 않고, <strong>“앞에서부터 안 읽은 데이터는 살려두고, 그 뒤로는 전부 덮어써도 된다”</strong> 고 버퍼 상태만 재정리한다고 보면 됩니다.
+그래서 앞부분은 이미 읽어 처리했고, 남은 데이터에 새 데이터를 이어 붙여서 계속 쓰고 싶은 상황에서 사용하는 것이 좋습니다.</p></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%8B%A8%EB%B0%A9%ED%96%A5%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%20%EB%8C%80%EC%8B%A0%20%EC%96%91%EB%B0%A9%ED%96%A5%20%EC%B1%84%EB%84%90%EB%A1%9C" data-discover="true"><span class="connector">├</span><span>Java NIO: 단방향 스트림 대신 양방향 채널로</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20java.io%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%A5%BC%20%EB%84%98%EC%9D%80%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%AA%A8%EB%8D%B8" data-discover="true"><span class="connector">├</span><span>Java NIO: java.io의 한계를 넘은 새로운 모델</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%ED%8C%8C%EC%9D%BC%20%ED%99%95%EC%9E%A5%EC%9E%90%20%EC%B0%A8%EC%9D%B4" data-discover="true"><span class="connector">├</span><span>자바스크립트 파일 확장자 차이</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/Ubuntu%20%20%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%20NodeJS%20%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>Ubuntu  환경에서 NodeJS  설치하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%25B0%2594%25EC%259D%25B4%25ED%258A%25B8%2520%25EB%25B2%2584%25ED%258D%25BC%25EB%25A1%259C%2520%25EB%25B2%2584%25ED%258D%25BC%2520%25EC%2583%2581%25ED%2583%259C%2520%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EB%B0%94%EC%9D%B4%ED%8A%B8+%EB%B2%84%ED%8D%BC%28ByteBuffer%29+%EC%9D%98+position%2Flimit%2Fcapacity%EC%99%80+flip%2Fclear%2Fcompact+%EB%8F%99%EC%9E%91%EC%9D%84+%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C%2C+%EB%B2%84%ED%8D%BC%EA%B0%80+%EC%9D%BD%EA%B8%B0%2F%EC%93%B0%EA%B8%B0+%EB%AA%A8%EB%93%9C%EB%A5%BC+%EC%96%B4%EB%96%BB%EA%B2%8C+%EC%98%A4%EA%B0%80%EB%A9%B0+%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC+%EB%8B%A4%EB%A3%A8%EB%8A%94%EC%A7%80+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%25B0%2594%25EC%259D%25B4%25ED%258A%25B8%2520%25EB%25B2%2584%25ED%258D%25BC%25EB%25A1%259C%2520%25EB%25B2%2584%25ED%258D%25BC%2520%25EC%2583%2581%25ED%2583%259C%2520%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%25B0%2594%25EC%259D%25B4%25ED%258A%25B8%2520%25EB%25B2%2584%25ED%258D%25BC%25EB%25A1%259C%2520%25EB%25B2%2584%25ED%258D%25BC%2520%25EC%2583%2581%25ED%2583%259C%2520%25EA%25B4%2580%25EB%25A6%25AC%25ED%2595%2598%25EA%25B8%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#bytebuffer-생성-위치에-따른-차이" class="toc__item active" style="padding-left: 12px;">`ByteBuffer`: 생성 위치에 따른 차이.</a><a href="#bytebuffer-생성-방법" class="toc__item" style="padding-left: 12px;">`ByteBuffer`: 생성 방법</a><a href="#allocateint-capatiy" class="toc__item" style="padding-left: 26px;">allocate(int capatiy)</a><a href="#allocatedirectint-capatiy" class="toc__item" style="padding-left: 26px;">allocateDirect(int capatiy)</a><a href="#wrapbyte-array" class="toc__item" style="padding-left: 26px;">wrap(byte[] array)</a><a href="#wrapbyte-array-주의점" class="toc__item" style="padding-left: 40px;">`wrap(byte[] array)` 주의점</a><a href="#bytebuffer-다뤄보기" class="toc__item" style="padding-left: 12px;">`ByteBuffer`: 다뤄보기</a><a href="#bytebuffer-capacity" class="toc__item" style="padding-left: 26px;">`ByteBuffer`: `capacity`</a><a href="#bytebuffer-position" class="toc__item" style="padding-left: 26px;">`ByteBuffer`: `position`</a><a href="#position-데이터-쓰기" class="toc__item" style="padding-left: 40px;">`position`: 데이터 쓰기</a><a href="#position--데이터-읽기" class="toc__item" style="padding-left: 40px;">`position`:  데이터 읽기</a><a href="#bytebuffer-limit" class="toc__item" style="padding-left: 26px;">`ByteBuffer`: limit</a><a href="#bytebuffer-flip" class="toc__item" style="padding-left: 26px;">`ByteBuffer`: `flip()`</a><a href="#bytebuffer-clear-vs-compact" class="toc__item" style="padding-left: 26px;">`ByteBuffer`: `clear()` vs `compact()`</a><a href="#clear-처음부터-다시-써볼까-" class="toc__item" style="padding-left: 40px;">`clear()`: 처음부터 다시 써볼까 ?</a><a href="#compact-이어서-써볼까-" class="toc__item" style="padding-left: 40px;">`compact()`: 이어서 써볼까 ?</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/언어/자바/NIO</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

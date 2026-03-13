@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="MSA에서 필요한 서비스 디스커버리, 설정 관리, API 게이트웨이, 메시징 같은 분산 시스템 문제를 Spring Cloud 기반으로 어떻게 풀 수 있는지 정리한 글입니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 클라우드/Spring Cloud: MSA 아키텍처 구현을 위한 솔루션"><meta property="og:type" content="article"><meta property="og:title" content="Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 - bak-libra26"><meta property="og:description" content="MSA에서 필요한 서비스 디스커버리, 설정 관리, API 게이트웨이, 메시징 같은 분산 시스템 문제를 Spring Cloud 기반으로 어떻게 풀 수 있는지 정리한 글입니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 클라우드/Spring Cloud: MSA 아키텍처 구현을 위한 솔루션"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-28T15:18:21.000Z"><meta property="article:modified_time" content="2026-02-28T15:18:21.000Z"><meta property="article:tag" content="자바"><meta property="article:tag" content="스프링부트"><meta property="article:tag" content="스프링 클라우드"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 - bak-libra26"><meta name="twitter:description" content="MSA에서 필요한 서비스 디스커버리, 설정 관리, API 게이트웨이, 메시징 같은 분산 시스템 문제를 Spring Cloud 기반으로 어떻게 풀 수 있는지 정리한 글입니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 - bak-libra26","description":"MSA에서 필요한 서비스 디스커버리, 설정 관리, API 게이트웨이, 메시징 같은 분산 시스템 문제를 Spring Cloud 기반으로 어떻게 풀 수 있는지 정리한 글입니다.","url":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 클라우드/Spring Cloud: MSA 아키텍처 구현을 위한 솔루션","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"자바, 스프링부트, 스프링 클라우드","datePublished":"2026-02-28T15:18:21.000Z","dateModified":"2026-02-28T15:18:21.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 클라우드/Spring Cloud: MSA 아키텍처 구현을 위한 솔루션"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 클라우드/Spring Cloud: MSA 아키텍처 구현을 위한 솔루션"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/스프링/스프링 클라우드</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"Spring Cloud: MSA 아키텍처 구현을 위한 솔루션.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드/스프링" data-discover="true">스프링</a></span><span><span class="sep">/</span><span class="current">스프링 클라우드</span></span></nav><header class="post-meta"><h1 class="post-detail__title">Spring Cloud: MSA 아키텍처 구현을 위한 솔루션</h1><div class="post-detail__tags"><span class="tag tag--primary">자바</span><span class="tag">스프링부트</span><span class="tag">스프링 클라우드</span></div><div class="post-detail__meta"><span>2026-03-01</span><span class="sep">·</span><span>3 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 스프링 클라우드</span><span class="count">(2/2)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/Spring%20Cloud%3A%20%EB%AA%A8%EB%86%80%EB%A6%AC%ED%8B%B1%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%99%80%20MSA%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>Spring Cloud: 모놀리틱 아키텍처와 MSA 아키텍처</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/Spring%20Cloud%3A%20MSA%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%20%EA%B5%AC%ED%98%84%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="num">2.</span><span class="current-marker">→</span><span>Spring Cloud: MSA 아키텍처 구현을 위한 솔루션 (현재)</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/Spring%20Cloud%3A%20%EB%AA%A8%EB%86%80%EB%A6%AC%ED%8B%B1%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%99%80%20MSA%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98" data-discover="true">← prev</a><span class="disabled">next →</span></div></nav><main class="detail-body"><blockquote>
+<p><strong>이 글에서 모놀리틱 아키텍처(<code>Monolithic Architecture</code>)와 마이크로 서비스 아키텍처(<code>MSA; Micro Service Architecture</code>)가 무엇이고 어떠한 특징을 가지는지 정리했습니다.</strong></p>
+</blockquote>
+<h2 id="spring-cloud-너는-누구니-" class="post-heading post-heading__h2">Spring Cloud: 너는 누구니 ?</h2>
+<p>Spring Cloud는 스프링 애플리케이션에서 분산 시스템(<code>Distributed System</code>)에 자주 등장하는 구성 관리, 서비스 검색, 마이크로 프록시 등의 기능을 빠르게 구현할 수 있도록 도와주는 솔루션입니다.
+특히 MSA 처럼 서비스를 여러 개로 쪼갰을 때 공통적으로 필요해지는 인프라 기능들을 라이브러리 형태로 추상화해 제공합니다.</p>
+<hr>
+<h3 id="spring-cloud-msa-에서-생기는-문제" class="post-heading post-heading__h3">Spring Cloud: MSA 에서 생기는 문제</h3>
+<p>모놀리틱 구조의 애플리케이션을 MSA 구조로 분리하면 서비스를 독립적으로 배포·확장할 수 있는 유연성을 얻는 대신, 인프라 레벨에서 새로운 문제들이 아래와 같이 등장합니다.</p>
+<ol>
+<li>
+<p><strong>독립적인 서비스의 동적인 서비스 주소</strong></p>
+<p>각 서비스가 독립적으로 동작하고, 계속 생겼다가 사라지는 환경에서 서비스 주소(<code>IP:PORT</code>)가 고정돼 있지 않아 <strong>어떤 프로세스가 어디에 떠 있는지 찾아주는 서비스 디스커버리와 로드 밸런싱 이 필요</strong> 합니다.</p>
+</li>
+<li>
+<p><strong>각 서비스의 독립적인 설정 파일</strong></p>
+<p>모놀리틱 애플리케이션에서는 하나의 설정만 관리하면 되지만, <strong>MSA는 서비스 수만큼 설정 파일이 생겨 관리가 어렵습니다.</strong></p>
+<p>이를 중앙에서 통합 관리하지 않으면 설정 상태와 버전을 파악하기 어렵고, 환경별 설정이 뒤섞이는 문제가 발생합니다.</p>
+</li>
+<li>
+<p><strong>클라이언트의 서비스 접근 지점 분산</strong></p>
+<p>서비스 주소가 자주 바뀌는 환경에서 클라이언트가 <strong>각 엔드포인트를 직접 바라보면 주소 변경에 취약하고, 인증·인가 같은 공통 기능을 서비스마다 중복 구현</strong>해야 합니다.</p>
+<p>그래서 <strong>API 게이트웨이 하나로 진입점을 고정</strong>하고, <strong>내부 라우팅과 서비스 디스커버리를 함께 맡기는 패턴을 많이 사용</strong>합니다.</p>
+</li>
+<li>
+<p><strong>네트워크 장애와 부분 실패에 대한 대응</strong></p>
+<p>모놀리틱에서는 메서드 호출로 끝나던 통신이 <strong>MSA에서는 네트워크 호출로 바뀌면서, 일부 서비스 장애가 연쇄 장애로 번지기 쉽습니다.</strong></p>
+<p>그래서 <strong>타임아웃·재시도·서킷 브레이커 같은 회복 패턴</strong>과, <strong>분산된 로그·메트릭·트레이스를 한곳에서 모아 보는 관측 체계가 필수</strong>가 됩니다.</p>
+</li>
+</ol>
+<hr>
+<h3 id="spring-cloud-msa-아키텍처-구조-미리보기" class="post-heading post-heading__h3">Spring Cloud: MSA 아키텍처 구조 미리보기</h3>
+<blockquote>
+<p>아래 이미지는 Gemini Nano Banana2 로 생성하였습니다.</p>
+</blockquote>
+<p><img alt="스프링 클라우드: MSA 아키텍처 미리보기" loading="lazy" decoding="async" src="/images/posts/개발/백엔드/스프링/스프링 클라우드/spring_cloud_msa_architecture_preview.png" style="cursor: zoom-in;"></p>
+<hr>
+<ul>
+<li>
+<p><strong>API Gateway</strong></p>
+<p>클라이언트는 여러 <strong>서비스를 직접 호출하지 않고, API Gateway 를 호출</strong>합니다.</p>
+<p>Gateway는 인증·인가, 로깅, 라우팅 같은 공통 기능을 처리한 뒤, 요청 URL·HTTP 메서드·헤더 등의 라우팅 규칙에 따라 적절한 마이크로서비스로 요청을 전달합니다.</p>
+</li>
+<li>
+<p><strong>Service Discovery (Eureka)</strong></p>
+<p>각 마이크로서비스는 자신의 인스턴스 정보를 Eureka에 등록하고, 다른 서비스는 Eureka를 통해 대상 서비스의 위치를 조회함으로써,
+서비스 주소가 자주 바뀌는 환경에서도, <strong>개별 서비스가 서로의 IP·포트에 직접 의존하지 않기 때문에 서비스 간 결합도를 낮출 수 있습니다.</strong></p>
+</li>
+<li>
+<p><strong>Config Server</strong></p>
+<p>여러 <strong>서비스의 설정을 Git이나 파일 시스템 같은 외부 저장소 한 곳에서 관리</strong>하고, 서비스는 <strong>부팅 시점에 Config Server에서 이를 읽어 적용</strong>합니다.</p>
+<p>공통 설정과 서비스별 설정을 분리해 재사용할 수 있고, <code>/actuator/refresh</code> 같은 기능을 이용하면 코드 배포 없이도 런타임에 설정을 변경·반영할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>Message Broker(Kafka/RabbitMQ)</strong></p>
+<p>주문 생성, 결제 완료와 같은 이벤트를 메시지 브로커를 통해 발행·구독하게 하면 <strong>서비스 간 통신 일부를 비동기 이벤트 기반으로 처리</strong>할 수 있습니다.</p>
+<p>이 방식은 서비스 간 결합도를 낮추고, 소비 서비스의 처리 속도에 맞춰 메시지를 버퍼링할 수 있어 트래픽 급증이나 일시적인 장애에도 더 유연하게 대응하게 해 줍니다</p>
+</li>
+</ul>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25ED%2581%25B4%25EB%259D%25BC%25EC%259A%25B0%25EB%2593%259C%2FSpring%2520Cloud%253A%2520MSA%2520%25EC%2595%2584%25ED%2582%25A4%25ED%2585%258D%25EC%25B2%2598%2520%25EA%25B5%25AC%25ED%2598%2584%25EC%259D%2584%2520%25EC%259C%2584%25ED%2595%259C%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=MSA%EC%97%90%EC%84%9C+%ED%95%84%EC%9A%94%ED%95%9C+%EC%84%9C%EB%B9%84%EC%8A%A4+%EB%94%94%EC%8A%A4%EC%BB%A4%EB%B2%84%EB%A6%AC%2C+%EC%84%A4%EC%A0%95+%EA%B4%80%EB%A6%AC%2C+API+%EA%B2%8C%EC%9D%B4%ED%8A%B8%EC%9B%A8%EC%9D%B4%2C+%EB%A9%94%EC%8B%9C%EC%A7%95+%EA%B0%99%EC%9D%80+%EB%B6%84%EC%82%B0+%EC%8B%9C%EC%8A%A4%ED%85%9C+%EB%AC%B8%EC%A0%9C%EB%A5%BC+Spring+Cloud+%EA%B8%B0%EB%B0%98%EC%9C%BC%EB%A1%9C+%EC%96%B4%EB%96%BB%EA%B2%8C+%ED%92%80+%EC%88%98+%EC%9E%88%EB%8A%94%EC%A7%80+%EC%A0%95%EB%A6%AC%ED%95%9C+%EA%B8%80%EC%9E%85%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25ED%2581%25B4%25EB%259D%25BC%25EC%259A%25B0%25EB%2593%259C%2FSpring%2520Cloud%253A%2520MSA%2520%25EC%2595%2584%25ED%2582%25A4%25ED%2585%258D%25EC%25B2%2598%2520%25EA%25B5%25AC%25ED%2598%2584%25EC%259D%2584%2520%25EC%259C%2584%25ED%2595%259C%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25ED%2581%25B4%25EB%259D%25BC%25EC%259A%25B0%25EB%2593%259C%2FSpring%2520Cloud%253A%2520MSA%2520%25EC%2595%2584%25ED%2582%25A4%25ED%2585%258D%25EC%25B2%2598%2520%25EA%25B5%25AC%25ED%2598%2584%25EC%259D%2584%2520%25EC%259C%2584%25ED%2595%259C%2520%25EC%2586%2594%25EB%25A3%25A8%25EC%2585%2598" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#spring-cloud-너는-누구니-" class="toc__item active" style="padding-left: 12px;">Spring Cloud: 너는 누구니 ?</a><a href="#spring-cloud-msa-에서-생기는-문제" class="toc__item" style="padding-left: 26px;">Spring Cloud: MSA 에서 생기는 문제</a><a href="#spring-cloud-msa-아키텍처-구조-미리보기" class="toc__item" style="padding-left: 26px;">Spring Cloud: MSA 아키텍처 구조 미리보기</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/스프링/스프링 클라우드</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

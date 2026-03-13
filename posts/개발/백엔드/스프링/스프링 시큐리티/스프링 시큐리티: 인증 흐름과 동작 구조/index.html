@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>스프링 시큐리티: 인증 흐름과 동작 구조 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="스프링 시큐리티가 HTTP 요청을 필터 체인에서 어떻게 인증하고, Authentication을 SecurityContext(세션·ThreadLocal)에 저장해 컨트롤러에서 재사용하는지 흐름 위주로 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 인증 흐름과 동작 구조"><meta property="og:type" content="article"><meta property="og:title" content="스프링 시큐리티: 인증 흐름과 동작 구조 - bak-libra26"><meta property="og:description" content="스프링 시큐리티가 HTTP 요청을 필터 체인에서 어떻게 인증하고, Authentication을 SecurityContext(세션·ThreadLocal)에 저장해 컨트롤러에서 재사용하는지 흐름 위주로 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 인증 흐름과 동작 구조"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-03-02T15:09:52.000Z"><meta property="article:modified_time" content="2026-03-02T15:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="스프링 시큐리티: 인증 흐름과 동작 구조 - bak-libra26"><meta name="twitter:description" content="스프링 시큐리티가 HTTP 요청을 필터 체인에서 어떻게 인증하고, Authentication을 SecurityContext(세션·ThreadLocal)에 저장해 컨트롤러에서 재사용하는지 흐름 위주로 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"스프링 시큐리티: 인증 흐름과 동작 구조 - bak-libra26","description":"스프링 시큐리티가 HTTP 요청을 필터 체인에서 어떻게 인증하고, Authentication을 SecurityContext(세션·ThreadLocal)에 저장해 컨트롤러에서 재사용하는지 흐름 위주로 정리했습니다.","url":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 인증 흐름과 동작 구조","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-03-02T15:09:52.000Z","dateModified":"2026-03-02T15:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 인증 흐름과 동작 구조"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"스프링 시큐리티: 인증 흐름과 동작 구조 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: 인증 흐름과 동작 구조"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"스프링 시큐리티: 인증 흐름과 동작 구조.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드/스프링" data-discover="true">스프링</a></span><span><span class="sep">/</span><span class="current">스프링 시큐리티</span></span></nav><header class="post-meta"><h1 class="post-detail__title">스프링 시큐리티: 인증 흐름과 동작 구조</h1><div class="post-detail__meta"><span>2026-03-03</span><span class="sep">·</span><span>7 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 스프링 시큐리티</span><span class="count">(3/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%B3%B4%EC%95%88%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="num">3.</span><span class="current-marker">→</span><span>스프링 시큐리티: 인증 흐름과 동작 구조 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="num">4.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">5.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 “서블릿 기반 웹 애플리케이션 + 세션 기반 인증” 환경에서, 폼 로그인 또는 HTTP Basic을 사용하는 가장 전형적인 스프링 시큐리티 구성을 기준으로 설명합니다.</p>
+</blockquote>
+<h2 id="스프링-시큐리티-인증은-어떻게-이루어질까-" class="post-heading post-heading__h2">스프링 시큐리티: 인증은 어떻게 이루어질까 ?</h2>
+<p>스프링 시큐리티는 애플리케이션의 인증, 인가, CSRF 방어 같은 보안 작업들을 일관된 추상화로 제공합니다.</p>
+<p>스프링 시큐리티가 제공하는 인증 과정은, 큰 흐름으로 보면 아래와 같이 “요청 → 필터 체인 → Authentication 생성·검증 → SecurityContext 저장” 단계로 추상화할 수 있습니다.</p>
+<ul>
+<li><strong>인증 흐름 한눈에 보기</strong>
+<img alt="spring-security-authentication-architecture" loading="lazy" decoding="async" src="/images/posts/개발/백엔드/스프링/스프링 시큐리티/spring-security-authentication-architecture.png" style="cursor: zoom-in;"></li>
+</ul>
+<p>위 그림의 단계들을 차례대로 따라가면서, 요청이 필터 체인을 지나 Authentication을 만들고 검증한 뒤 SecurityContext에 저장되기까지의 흐름을 살펴보겠습니다.</p>
+<hr>
+<h3 id="요청과-필터-체인-진입" class="post-heading post-heading__h3">요청과 필터 체인 진입</h3>
+<p>스프링과 스프링 시큐리티를 사용해 만든 애플리케이션으로 들어오는 모든 요청은 먼저 톰캣과 같은 서블릿 컨테이너의 필터 체인을 거칩니다.</p>
+<p>FilterChainProxy는 애플리케이션에 구성된 여러 SecurityFilterChain 중에서 요청 URL과 매칭되는 체인을 고르고, 그 안에서 설정된 인증 방식(httpBasic, formLogin, 커스텀 JWT 필터 등)에 따라 해당 인증 필터가 요청을 가로채 실제 인증 과정을 수행합니다.
+어떤 인증 방식을 사용할지는 스프링 시큐리티 설정에 따라 달라지고, 이 설정은 우리가 직접 구성할 수 있습니다.</p>
+<p>아래처럼 SecurityFilterChain을 설정하면, 각 메서드 호출이 내부적으로 대응되는 인증 필터를 필터 체인에 추가하게 됩니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta">@Bean</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">SecurityFilterChain <span class="hljs-title function_">securityFilterChain</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception {</span>
+<span class="code-line numbered-code-line" data-line-number="3">    http</span>
+<span class="code-line numbered-code-line" data-line-number="4">        .httpBasic()          <span class="hljs-comment">// HTTP Basic 인증</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">        .and()</span>
+<span class="code-line numbered-code-line" data-line-number="6">        .formLogin();          <span class="hljs-comment">// 폼 로그인 인증</span></span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">    <span class="hljs-keyword">return</span> http.build();</span>
+<span class="code-line numbered-code-line" data-line-number="9">}</span>
+</code></pre></figure>
+<hr>
+<h4 id="그렇다면-어떤-필터가-선택될까-" class="post-heading post-heading__h4">그렇다면 어떤 필터가 선택될까 ?</h4>
+<p>어떤 인증 방식을 사용할지는 결국 우리가 어떻게 스프링 시큐리티를 설정했는지에 따라 결정됩니다.
+예를 들어 위와 같이 SecurityFilterChain을 설정하면 httpBasic()과 formLogin() 호출에 대응하는 HTTP Basic 인증 필터와 폼 로그인 인증 필터가 필터 체인에 함께 등록됩니다.</p>
+<p>HTTP Basic과 폼 로그인 기능은 기본적으로 활성화되며, 각 필터는 아래 표와 같이 요청의 헤더와 URL, HTTP 메서드 정보를 보고 “이 요청을 내가 처리해야 할지” 여부를 먼저 판단하며 "내 요청이다"라고 판단되면, 필터는 해당 인증 방식에 맞게 요청에서 자격 증명을 추출해 Authentication 객체를 생성합니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>필터 클래스</th><th>담당 인증 방식</th><th>“내 요청이다”라고 판단하는 기준</th></tr></thead><tbody><tr><td>BasicAuthenticationFilter</td><td>HTTP Basic</td><td>Authorization 헤더가 존재하고 값이 Basic ... 형식인지 확인</td></tr><tr><td>UsernamePasswordAuthenticationFilter</td><td>Form Login</td><td>HTTP 메서드가 POST이고, URL이 loginProcessingUrl(기본 /login)과 일치</td></tr></tbody></table>
+<hr>
+<h4 id="authentication-생성과-인증-위임" class="post-heading post-heading__h4">Authentication 생성과 인증 위임</h4>
+<p>스프링 시큐리티의 핵심 인터페이스 중 하나인 Authentication은 <strong>현재 사용자가 누구인지와 그 사용자가 가진 권한 정보를 담는 스프링 시큐리티의 핵심 인터페이스</strong>입니다.
+이 객체는 아래와 같이 인증·인가에 쓰이는 핵심 정보를 한 번에 담고 있고, 이후 AuthenticationManager에게 전달되어 인증 과정에 사용됩니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>필드 / 메서드</th><th>의미</th></tr></thead><tbody><tr><td>principal</td><td>인증된 사용자 정보(아이디, UserDetails 등)를 담는 주체 객체.</td></tr><tr><td>credentials</td><td>자격 증명 값(비밀번호, 토큰 문자열 등), 보통 인증이 끝나면 지워진다.</td></tr><tr><td>authorities</td><td>사용자가 가진 권한 목록(ROLE_USER, ROLE_ADMIN 등)을 나타내는 컬렉션.</td></tr><tr><td>authenticated</td><td>현재 Authentication이 인증을 마친 상태인지 여부를 나타내는 플래그.</td></tr><tr><td>details</td><td>원격 IP, 세션 ID 등 부가적인 요청 정보를 담는 필드.</td></tr></tbody></table>
+<hr>
+<h3 id="어떤-방식으로-값을-검증할까-" class="post-heading post-heading__h3">어떤 방식으로 값을 검증할까 ?</h3>
+<p>필터가 요청을 가로채 자격 증명으로 Authentication을 만들고, 그 검증을 AuthenticationManager에게 요청하는데,
+이 때 AuthenticationManager는 전달받은 Authentication 을 데이터베이스 조회·OAuth2 서버 통신·remember-me 토큰 검증 등 알맞은 방식으로 처리할 수 있는 AuthenticationProvider 를 찾아 값 검증 작업을 위임합니다</p>
+<hr>
+<h4 id="대표적인-authenticationprovider" class="post-heading post-heading__h4">대표적인 AuthenticationProvider</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>종류</th><th>용도</th></tr></thead><tbody><tr><td>DaoAuthenticationProvider</td><td>UsernamePasswordAuthenticationToken을 받아 아이디·비밀번호를 검증.</td></tr><tr><td>AnonymousAuthenticationProvider</td><td>AnonymousAuthenticationToken을 처리해 인증되지 않은 사용자를 “익명 사용자”로 취급.</td></tr><tr><td>RememberMeAuthenticationProvider</td><td>remember-me 토큰으로 자동 로그인을 처리.</td></tr><tr><td>OAuth2LoginAuthenticationProvider</td><td>OAuth2/OIDC 로그인 응답을 검증하고 외부 서버 사용자 정보로 Authentication을 생성.</td></tr></tbody></table>
+<hr>
+<h3 id="어떤-provider로-검증할까-" class="post-heading post-heading__h3">어떤 Provider로 검증할까 ?</h3>
+<blockquote>
+<p>인증 방식이 <strong>HTTP Basic</strong> 또는 <strong>폼 로그인</strong>인 것으로 가정하고 작성하였습니다.</p>
+</blockquote>
+<p><strong>AuthenticationProvider</strong> 는 기본적으로 <strong><code>username</code> 과 일치하는 사용자가 존재하는지와 <code>password</code> 가 일치하는지를 확인</strong>합니다.
+구체적으로는 <strong><code>UserDetailsService</code> 로 사용자 정보를 조회</strong>하고, <strong>조회된 사용자 정보의 비밀번호를 <code>PasswordEncoder</code> 를 통해 입력 값과 비교</strong>합니다.</p>
+<hr>
+<h4 id="유저-정보-조회하기" class="post-heading post-heading__h4">유저 정보 조회하기</h4>
+<p>DaoAuthenticationProvider는 아이디·비밀번호 기반 로그인을 처리할 때 유저 조회를 위해 UserDetailsService 인터페이스 구현체를 사용하며, 이때 사용할 username 값으로 UsernamePasswordAuthenticationToken의 principal 을 사용합니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserDetailsService</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    UserDetails <span class="hljs-title function_">loadUserByUsername</span><span class="hljs-params">(String username)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException;</span>
+<span class="code-line numbered-code-line" data-line-number="3">}</span>
+</code></pre></figure>
+<p>UserDetailsService 구현체는 전달받은 principal 으로 데이터베이스에서 사용자를 조회하고, 일치하는 사용자가 없으면 예외를 던져 인증을 실패로 처리합니다.
+만약 사용자를 찾은 경우, 그 정보를 기반으로 UserDetails와 권한 정보(authorities)를 만들어 반환합니다.</p>
+<hr>
+<ul>
+<li>
+<p><strong>여러가지 <code>UserDetailsService</code> 인터페이스 구현체</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>구현/패턴</th><th>설명</th></tr></thead><tbody><tr><td>InMemoryUserDetailsManager</td><td>사용자 목록을 메모리에 저장해서 인증에 사용하는 구현체.</td></tr><tr><td>JdbcUserDetailsManager</td><td>JDBC로 데이터베이스에서 사용자 정보를 읽어오는 구현체.</td></tr><tr><td>ReactiveUserDetailsService</td><td>WebFlux 환경에서 사용하는 리액티브 버전 인터페이스</td></tr></tbody></table>
+</li>
+</ul>
+<hr>
+<h4 id="패스워드-일치-여부-판단하기" class="post-heading post-heading__h4">패스워드 일치 여부 판단하기</h4>
+<p>DaoAuthenticationProvider는 아이디·비밀번호 기반 로그인을 처리할 때 비밀번호 검증을 위해 PasswordEncoder 인터페이스 구현체를 사용합니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">PasswordEncoder</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    String <span class="hljs-title function_">encode</span><span class="hljs-params">(CharSequence rawPassword)</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-type">boolean</span> <span class="hljs-title function_">matches</span><span class="hljs-params">(CharSequence rawPassword, String encodedPassword)</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="4">}</span>
+</code></pre></figure>
+<p>조회된 UserDetails에 저장된 비밀번호와 사용자가 입력한 비밀번호는 matches()로 비교합니다.
+값이 일치하지 않는 경우에는 BadCredentialsException을 던져 인증을 실패로 처리합니다.</p>
+<hr>
+<ul>
+<li>
+<p><strong>여러가지 <code>PasswordEncoder</code> 인터페이스 구현체</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>구현체</th><th>특징 / 용도</th></tr></thead><tbody><tr><td>NoOpPasswordEncoder</td><td>암호화 없이 평문을 그대로 저장·비교하는 구현체, 테스트용으로만 사용 권장.</td></tr><tr><td>BCryptPasswordEncoder</td><td>BCrypt 해시 알고리즘 사용, 기본적으로 가장 많이 권장되는 구현체.</td></tr><tr><td>Pbkdf2PasswordEncoder</td><td>PBKDF2 기반 해시 사용, 반복 횟수 조절로 연산 비용 튜닝 가능.</td></tr><tr><td>SCryptPasswordEncoder</td><td>scrypt 알고리즘 사용, 메모리·연산 비용을 높여 공격 난이도 증가.</td></tr></tbody></table>
+</li>
+</ul>
+<hr>
+<h4 id="검증에-성공했다면-" class="post-heading post-heading__h4">검증에 성공했다면 ?</h4>
+<p>AuthenticationProvider가 자격 증명을 검증했다면, 인증이 완료된 상태를 나타내기 위해 Authentication 객체의 authenticated 플래그를 true로 설정한 뒤 반환해야 합니다.</p>
+<ul>
+<li>
+<p><strong>검증을 마친 뒤 <code>Authentication</code> 반환하기</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthenticationProviderImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">AuthenticationProvider</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">public</span> Authentication <span class="hljs-title function_">authenticate</span><span class="hljs-params">(Authentication authentication)</span> <span class="hljs-keyword">throws</span> AuthenticationException {</span>
+<span class="code-line numbered-code-line" data-line-number="4">        ....</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UsernamePasswordAuthenticationToken</span>(</span>
+<span class="code-line numbered-code-line" data-line-number="7">            userDetails,</span>
+<span class="code-line numbered-code-line" data-line-number="8">            <span class="hljs-literal">null</span>,</span>
+<span class="code-line numbered-code-line" data-line-number="9">            userDetails.getAuthorities()</span>
+<span class="code-line numbered-code-line" data-line-number="10">        );</span>
+<span class="code-line numbered-code-line" data-line-number="11">    }</span>
+<span class="code-line numbered-code-line" data-line-number="12">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>검증 완료(authenticated = true)된 Authentication 생성하기</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-title function_">UsernamePasswordAuthenticationToken</span><span class="hljs-params">(Object principal, Object credentials,</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-params">        Collection&lt;? extends GrantedAuthority&gt; authorities)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-built_in">super</span>(authorities);</span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-built_in">this</span>.principal = principal;</span>
+<span class="code-line numbered-code-line" data-line-number="5">    <span class="hljs-built_in">this</span>.credentials = credentials;</span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-built_in">super</span>.setAuthenticated(<span class="hljs-literal">true</span>); </span>
+<span class="code-line numbered-code-line" data-line-number="7">}</span>
+</code></pre></figure>
+<p>위 생성자를 보면, 내부에서 super.setAuthenticated(true)를 호출하여 authenticated 값을 true로 설정하기 때문에,
+이 코드를 통해 검증이 완료된(<code>authenticated</code> = <code>true</code>) UsernamePasswordAuthenticationToken 인스턴스가 생성됩니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="인증-정보를-저장하고-사용하자" class="post-heading post-heading__h3">인증 정보를 저장하고 사용하자.</h3>
+<h4 id="인증-정보는-어디에-저장되지-" class="post-heading post-heading__h4">인증 정보는 어디에 저장되지 ?</h4>
+<p>AuthenticationProvider가 인증을 마친 뒤 반환한 Authentication 객체는 SecurityContext에 저장되고, 이후 요청에서도 “이 사용자가 누구인지”를 식별하기 위한 기준 정보로 사용됩니다.</p>
+<p>세션 기반 환경에서는 SecurityContextPersistenceFilter가 응답이 완료되는 시점에 이 SecurityContext를 HTTP 세션에 저장해 두고, 브라우저는 이후 요청마다 JSESSIONID 쿠키를 함께 보내 동일한 세션을 다시 사용할 수 있게 됩니다.</p>
+<hr>
+<h4 id="사용자의-인증-여부를-어떻게-식별하지-" class="post-heading post-heading__h4">사용자의 인증 여부를 어떻게 식별하지 ?</h4>
+<p>브라우저는 로그인 이후 요청마다 로그인 성공 응답으로 서버로부터 받은 JSESSIONID 쿠키를 함께 보내줍니다.
+이 때 스프링 시큐리티의 SecurityContextPersistenceFilter는 이 JSESSIONID에 해당하는 HTTP 세션에서 SecurityContext를 꺼내 SecurityContextHolder에 넣어 줍니다.</p>
+<p>스프링 MVC는 하나의 요청에 하나의 스레드를 할당하는 구조이기 때문에, 스프링 시큐리티는 기본적으로 SecurityContextHolder를 ThreadLocal 기반으로 구현해 “현재 요청을 처리하는 스레드에만 보이는 인증 정보”를 안전하게 유지합니다.</p>
+<hr>
+<h4 id="인증-정보를-어떻게-재사용하지-" class="post-heading post-heading__h4">인증 정보를 어떻게 재사용하지 ?</h4>
+<ul>
+<li>
+<p><strong>어노테이션 으로 재사용하기</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-comment">// 컨트롤러 메서드에서 현재 사용자 이름 사용</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-meta">@GetMapping("/me")</span></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">me</span>(<span class="hljs-params hljs-meta">@AuthenticationPrincipal</span> UserDetails user) {</span>
+<span class="code-line numbered-code-line" data-line-number="4">  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + user.getUsername();</span>
+<span class="code-line numbered-code-line" data-line-number="5">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>직접 꺼내 쓰기</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta">@GetMapping("/me")</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">me</span><span class="hljs-params">()</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-type">Authentication</span> <span class="hljs-variable">authentication</span> <span class="hljs-operator">=</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">    SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="code-line numbered-code-line" data-line-number="5">    </span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-type">UserDetails</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> (UserDetails) authentication.getPrincipal();</span>
+<span class="code-line numbered-code-line" data-line-number="7">    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + user.getUsername();</span>
+<span class="code-line numbered-code-line" data-line-number="8">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%B3%B4%EC%95%88%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%259D%25B8%25EC%25A6%259D%2520%25ED%259D%2590%25EB%25A6%2584%25EA%25B3%25BC%2520%25EB%258F%2599%25EC%259E%2591%2520%25EA%25B5%25AC%25EC%25A1%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EA%B0%80+HTTP+%EC%9A%94%EC%B2%AD%EC%9D%84+%ED%95%84%ED%84%B0+%EC%B2%B4%EC%9D%B8%EC%97%90%EC%84%9C+%EC%96%B4%EB%96%BB%EA%B2%8C+%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B3%A0%2C+Authentication%EC%9D%84+SecurityContext%28%EC%84%B8%EC%85%98%C2%B7ThreadLocal%29%EC%97%90+%EC%A0%80%EC%9E%A5%ED%95%B4+%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%97%90%EC%84%9C+%EC%9E%AC%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EC%A7%80+%ED%9D%90%EB%A6%84+%EC%9C%84%EC%A3%BC%EB%A1%9C+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%259D%25B8%25EC%25A6%259D%2520%25ED%259D%2590%25EB%25A6%2584%25EA%25B3%25BC%2520%25EB%258F%2599%25EC%259E%2591%2520%25EA%25B5%25AC%25EC%25A1%25B0&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520%25EC%259D%25B8%25EC%25A6%259D%2520%25ED%259D%2590%25EB%25A6%2584%25EA%25B3%25BC%2520%25EB%258F%2599%25EC%259E%2591%2520%25EA%25B5%25AC%25EC%25A1%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#스프링-시큐리티-인증은-어떻게-이루어질까-" class="toc__item active" style="padding-left: 12px;">스프링 시큐리티: 인증은 어떻게 이루어질까 ?</a><a href="#요청과-필터-체인-진입" class="toc__item" style="padding-left: 26px;">요청과 필터 체인 진입</a><a href="#그렇다면-어떤-필터가-선택될까-" class="toc__item" style="padding-left: 40px;">그렇다면 어떤 필터가 선택될까 ?</a><a href="#authentication-생성과-인증-위임" class="toc__item" style="padding-left: 40px;">Authentication 생성과 인증 위임</a><a href="#어떤-방식으로-값을-검증할까-" class="toc__item" style="padding-left: 26px;">어떤 방식으로 값을 검증할까 ?</a><a href="#대표적인-authenticationprovider" class="toc__item" style="padding-left: 40px;">대표적인 AuthenticationProvider</a><a href="#어떤-provider로-검증할까-" class="toc__item" style="padding-left: 26px;">어떤 Provider로 검증할까 ?</a><a href="#유저-정보-조회하기" class="toc__item" style="padding-left: 40px;">유저 정보 조회하기</a><a href="#패스워드-일치-여부-판단하기" class="toc__item" style="padding-left: 40px;">패스워드 일치 여부 판단하기</a><a href="#검증에-성공했다면-" class="toc__item" style="padding-left: 40px;">검증에 성공했다면 ?</a><a href="#인증-정보를-저장하고-사용하자" class="toc__item" style="padding-left: 26px;">인증 정보를 저장하고 사용하자.</a><a href="#인증-정보는-어디에-저장되지-" class="toc__item" style="padding-left: 40px;">인증 정보는 어디에 저장되지 ?</a><a href="#사용자의-인증-여부를-어떻게-식별하지-" class="toc__item" style="padding-left: 40px;">사용자의 인증 여부를 어떻게 식별하지 ?</a><a href="#인증-정보를-어떻게-재사용하지-" class="toc__item" style="padding-left: 40px;">인증 정보를 어떻게 재사용하지 ?</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

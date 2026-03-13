@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>플러터 MacOS CodeSign 에러 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="플러터 M1 Mac에 &quot;CodeSign Fail&quot; 빌드 실패"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/크로스플랫폼/다트/플러터/플러터 MacOS CodeSign 에러"><meta property="og:type" content="article"><meta property="og:title" content="플러터 MacOS CodeSign 에러 - bak-libra26"><meta property="og:description" content="플러터 M1 Mac에 &quot;CodeSign Fail&quot; 빌드 실패"><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/크로스플랫폼/다트/플러터/플러터 MacOS CodeSign 에러"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-01-08T23:09:52.000Z"><meta property="article:modified_time" content="2026-01-08T23:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="플러터 MacOS CodeSign 에러 - bak-libra26"><meta name="twitter:description" content="플러터 M1 Mac에 &quot;CodeSign Fail&quot; 빌드 실패"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 74%;"></div></div><span class="loading-progress-pct">74%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"플러터 MacOS CodeSign 에러 - bak-libra26","description":"플러터 M1 Mac에 \"CodeSign Fail\" 빌드 실패","url":"https://bak-libra26.co.kr/posts/개발/크로스플랫폼/다트/플러터/플러터 MacOS CodeSign 에러","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-01-08T23:09:52.000Z","dateModified":"2026-01-08T23:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/크로스플랫폼/다트/플러터/플러터 MacOS CodeSign 에러"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"플러터 MacOS CodeSign 에러 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/크로스플랫폼/다트/플러터/플러터 MacOS CodeSign 에러"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/크로스플랫폼/다트/플러터</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"플러터 MacOS CodeSign 에러.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/크로스플랫폼" data-discover="true">크로스플랫폼</a></span><span><span class="sep">/</span><a href="/posts/개발/크로스플랫폼/다트" data-discover="true">다트</a></span><span><span class="sep">/</span><span class="current">플러터</span></span></nav><header class="post-meta"><h1 class="post-detail__title">플러터 MacOS CodeSign 에러</h1><div class="post-detail__meta"><span>2026-01-09</span><span class="sep">·</span><span>2 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 플러터</span><span class="count">(1/2)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%81%AC%EB%A1%9C%EC%8A%A4%ED%94%8C%EB%9E%AB%ED%8F%BC/%EB%8B%A4%ED%8A%B8/%ED%94%8C%EB%9F%AC%ED%84%B0/%ED%94%8C%EB%9F%AC%ED%84%B0%20MacOS%20CodeSign%20%EC%97%90%EB%9F%AC" data-discover="true"><span class="num">1.</span><span class="current-marker">→</span><span>플러터 MacOS CodeSign 에러 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%81%AC%EB%A1%9C%EC%8A%A4%ED%94%8C%EB%9E%AB%ED%8F%BC/%EB%8B%A4%ED%8A%B8/%ED%94%8C%EB%9F%AC%ED%84%B0/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%9D%B4%EB%A6%84%20%EB%B3%80%EA%B2%BD%20%EB%B0%A9%EB%B2%95" data-discover="true"><span class="num">2.</span><span style="min-width: 16px;"></span><span>어플리케이션 이름 변경 방법</span></a></div><div class="series-nav__footer"><span class="disabled">← prev</span><a href="/posts/%EA%B0%9C%EB%B0%9C/%ED%81%AC%EB%A1%9C%EC%8A%A4%ED%94%8C%EB%9E%AB%ED%8F%BC/%EB%8B%A4%ED%8A%B8/%ED%94%8C%EB%9F%AC%ED%84%B0/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%9D%B4%EB%A6%84%20%EB%B3%80%EA%B2%BD%20%EB%B0%A9%EB%B2%95" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글은 M1 Mac 환경에서 Flutter macOS 앱 빌드 중 CodeSign Failed 오류가 발생할 때의 원인 분석과 해결 방법을 정리한 것입니다.</p>
+</blockquote>
+<hr>
+<h2 id="문제-현상" class="post-heading post-heading__h2">문제 현상</h2>
+<p>macOS 환경에서 Flutter 프로젝트를 빌드할 때 다음과 같은 오류가 발생했습니다:</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta prompt_">$ </span><span class="bash">flutter run -d macos</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">Launching lib/main.dart on macOS in debug mode...</span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-meta prompt_">/Users/$</span>{username}/Documents/.../<span class="bash hljs-variable">${project_name}</span>.app: resource fork, Finder information, or similar detritus not allowed</span>
+<span class="code-line numbered-code-line" data-line-number="4">Command CodeSign failed with a nonzero exit code</span>
+<span class="code-line numbered-code-line" data-line-number="5">** BUILD FAILED **</span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+<span class="code-line numbered-code-line" data-line-number="7">Building macOS application...</span>
+<span class="code-line numbered-code-line" data-line-number="8">Error: Build process failed</span>
+</code></pre></figure>
+<p>반면, <code>flutter run -d chrome</code> 명령에서는 정상적으로 실행되었습니다.</p>
+<hr>
+<h2 id="원인-분석" class="post-heading post-heading__h2">원인 분석</h2>
+<p>이 오류는 **CodeSign 과정에서 macOS의 확장 속성(extended attributes)**이 포함되어 코드 서명이 거부되는 문제로,
+macOS에서 <strong>iCloud Drive 동기화가 활성화된 폴더</strong>(<code>~/Documents</code>, <code>~/Desktop</code> 등)에 프로젝트가 위치한 경우 발생하는 것으로 보입니다.</p>
+<ol>
+<li><strong>iCloud 동기화 과정</strong>에서 파일에 <code>com.apple.ResourceFork</code>, <code>com.apple.metadata:_kMDItemUserTags</code> 등의 확장 속성이 자동 추가됨</li>
+<li><strong>Flutter 빌드</strong> 중 생성되는 바이너리(.app 파일)에도 해당 속성이 복사됨</li>
+<li><strong>CodeSign</strong>이 보안상의 이유로 이러한 메타데이터를 포함한 파일의 서명을 거부</li>
+</ol>
+<p>즉, <strong>iCloud 동기화 폴더</strong> 자체가 파일에 불필요한 메타데이터를 자동으로 부여하기 때문에 발생하는 문제입니다.</p>
+<hr>
+<h2 id="해결-방법" class="post-heading post-heading__h2">해결 방법</h2>
+<p>저는 프로젝트를 iCloud 동기화할 필요가 없었기 때문에 동기화되지 않는 경로에 프로젝트를 두는 방식으로 문제를 해결하였습니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">SHELL</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-shell"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta prompt_"># </span><span class="bash">예시: 별도 개발용 폴더 생성 후 이동</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">mkdir -p ~/dev</span>
+<span class="code-line numbered-code-line" data-line-number="3">cd ~/dev</span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-meta prompt_"></span></span>
+<span class="code-line numbered-code-line" data-line-number="5"><span class="hljs-meta prompt_"># </span><span class="bash">프로젝트 생성</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">flutter create my_app</span>
+<span class="code-line numbered-code-line" data-line-number="7"><span class="hljs-meta prompt_"></span></span>
+<span class="code-line numbered-code-line" data-line-number="8"><span class="hljs-meta prompt_"># </span><span class="bash">macOS 빌드 실행</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">cd my_app</span>
+<span class="code-line numbered-code-line" data-line-number="10">flutter run -d macos</span>
+</code></pre></figure>
+<ul>
+<li>주의: 피해야 할 폴더
+<ol>
+<li><code>~/Documents</code> → 동기화 대상</li>
+<li><code>~/Desktop</code> → 동기화 대상</li>
+<li><code>~/Downloads</code> → 환경에 따라 동기화 가능 대상</li>
+</ol>
+</li>
+</ul>
+<p>위 경로들은 iCloud와 자동으로 동기화되는 경우가 많으므로, 개발 프로젝트를 두지 않는 것이 좋을 것 같고, Finder에서 파일 옆에 ☁️ 구름 아이콘이 보이면 iCloud 동기화 중이니 주의해야할 것 같습니다.</p></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%81%AC%EB%A1%9C%EC%8A%A4%ED%94%8C%EB%9E%AB%ED%8F%BC/%EB%8B%A4%ED%8A%B8/%ED%94%8C%EB%9F%AC%ED%84%B0/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%9D%B4%EB%A6%84%20%EB%B3%80%EA%B2%BD%20%EB%B0%A9%EB%B2%95" data-discover="true"><span class="connector">└</span><span>어플리케이션 이름 변경 방법</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2581%25AC%25EB%25A1%259C%25EC%258A%25A4%25ED%2594%258C%25EB%259E%25AB%25ED%258F%25BC%2F%25EB%258B%25A4%25ED%258A%25B8%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520MacOS%2520CodeSign%2520%25EC%2597%2590%25EB%259F%25AC&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%ED%94%8C%EB%9F%AC%ED%84%B0+M1+Mac%EC%97%90+%22CodeSign+Fail%22+%EB%B9%8C%EB%93%9C+%EC%8B%A4%ED%8C%A8&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2581%25AC%25EB%25A1%259C%25EC%258A%25A4%25ED%2594%258C%25EB%259E%25AB%25ED%258F%25BC%2F%25EB%258B%25A4%25ED%258A%25B8%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520MacOS%2520CodeSign%2520%25EC%2597%2590%25EB%259F%25AC&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2581%25AC%25EB%25A1%259C%25EC%258A%25A4%25ED%2594%258C%25EB%259E%25AB%25ED%258F%25BC%2F%25EB%258B%25A4%25ED%258A%25B8%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2F%25ED%2594%258C%25EB%259F%25AC%25ED%2584%25B0%2520MacOS%2520CodeSign%2520%25EC%2597%2590%25EB%259F%25AC" loading="lazy" style=""></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#문제-현상" class="toc__item active" style="padding-left: 12px;">문제 현상</a><a href="#원인-분석" class="toc__item" style="padding-left: 12px;">원인 분석</a><a href="#해결-방법" class="toc__item" style="padding-left: 12px;">해결 방법</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/크로스플랫폼/다트/플러터</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

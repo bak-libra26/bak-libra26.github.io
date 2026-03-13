@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="레빗엠큐, 메세지 지속성과 생명주기 관리 방법"><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)"><meta property="og:type" content="article"><meta property="og:title" content="메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) - bak-libra26"><meta property="og:description" content="레빗엠큐, 메세지 지속성과 생명주기 관리 방법"><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2025-08-21T10:14:27.000Z"><meta property="article:modified_time" content="2025-08-21T10:15:22.000Z"><meta property="article:tag" content="RabbitMQ"><meta property="article:tag" content="TTL"><meta property="article:tag" content="AutoDelete"><meta property="article:tag" content="Durable"><meta property="article:tag" content="Persistent"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) - bak-libra26"><meta name="twitter:description" content="레빗엠큐, 메세지 지속성과 생명주기 관리 방법"><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) - bak-libra26","description":"레빗엠큐, 메세지 지속성과 생명주기 관리 방법","url":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"RabbitMQ, TTL, AutoDelete, Durable, Persistent","datePublished":"2025-08-21T10:14:27.000Z","dateModified":"2025-08-21T10:15:22.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/메세지큐/레빗엠큐/메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/메세지큐/레빗엠큐</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete).md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/메세지큐" data-discover="true">메세지큐</a></span><span><span class="sep">/</span><span class="current">레빗엠큐</span></span></nav><header class="post-meta"><h1 class="post-detail__title">메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete)</h1><div class="post-detail__tags"><span class="tag tag--primary">RabbitMQ</span><span class="tag">TTL</span><span class="tag">AutoDelete</span><span class="tag">Durable</span><span class="tag">Persistent</span></div><div class="post-detail__meta"><span>2025-08-21</span><span class="sep">·</span><span>7 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 레빗엠큐</span><span class="count">(4/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%95%20%ED%81%90%EC%9D%98%20%20%EA%B0%9C%EB%85%90%EA%B3%BC%20%EA%B8%B0%EB%B3%B8%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>메시징 큐의  개념과 기본 구조</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20Exchange%20%ED%83%80%EC%9E%85%EA%B3%BC%20%EB%9D%BC%EC%9A%B0%ED%8C%85%20%EB%B0%A9%EC%8B%9D" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>여러가지 Exchange 타입과 라우팅 방식</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%8B%A0%EB%A2%B0%EC%84%B1%20%EB%B3%B4%EC%9E%A5%EC%9D%84%20%EC%9C%84%ED%95%9C%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(ACK%2C%20NACK)" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>메시지 신뢰성 보장을 위한 확인 메커니즘(ACK, NACK)</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%A7%80%EC%86%8D%EC%84%B1%EA%B3%BC%20%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0%20%EA%B4%80%EB%A6%AC(Durable%2C%20Persistent%2C%20TTL%2C%20Auto-delete)" data-discover="true"><span class="num">4.</span><span class="current-marker">→</span><span>메시지 지속성과 생명주기 관리(Durable, Persistent, TTL, Auto-delete) (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EA%B3%A0%EA%B8%89%20%ED%81%90%20%EA%B8%B0%EB%8A%A5(DLX%2C%20%EB%94%9C%EB%A0%88%EC%9D%B4%20%ED%81%90%2C%20%EC%9A%B0%EC%84%A0%20%EC%88%9C%EC%9C%84%20%ED%81%90)" data-discover="true"><span class="num">5.</span><span style="min-width: 16px;"></span><span>고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%B0%9C%ED%96%89%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%2C%20%EA%B2%8C%EC%8B%9C%EC%9E%90%ED%99%95%EC%9D%B8)" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>발행 확인 메커니즘(트랜잭션, 게시자확인)</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%8B%A0%EB%A2%B0%EC%84%B1%20%EB%B3%B4%EC%9E%A5%EC%9D%84%20%EC%9C%84%ED%95%9C%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(ACK%2C%20NACK)" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EA%B3%A0%EA%B8%89%20%ED%81%90%20%EA%B8%B0%EB%8A%A5(DLX%2C%20%EB%94%9C%EB%A0%88%EC%9D%B4%20%ED%81%90%2C%20%EC%9A%B0%EC%84%A0%20%EC%88%9C%EC%9C%84%20%ED%81%90)" data-discover="true">next →</a></div></nav><main class="detail-body"><h1 id="메시지-지속성" class="post-heading post-heading__h1">메시지 지속성</h1>
+<blockquote>
+<p>메세지 지속성이란 RabbitMQ 에서 메세지가 브로커 재시작이나 장애 상황에서도 손실되지 않고 보존되는 것을 의미함.</p>
+</blockquote>
+<h2 id="메시지-지속성의-중요성" class="post-heading post-heading__h2">메시지 지속성의 중요성</h2>
+<p>메세지 큐 시스템에서 메세지의 지속성이 중요한 이유는 무엇일까. 결제, 예약과 같이 신뢰성이 중요한 비즈니스에서 하드웨어 또는 네트워크 장애, 혹은 브로커 재시작 등의 이슈로 인한 메세지 손실은 비즈니스에 치명적으로 작용한다.</p>
+<p>그렇기 때문에 결제, 예약과 같이 신뢰성이 중요한 메세지는 하드웨어 또는 네트워크 장애, 혹은 브로커 재시작 등의 작업을 수행하더라도 메세지가 손실되지 않도록 보장되어야 한다.</p>
+<p>메세지 지속성을 보장하면 장애 발생 시에도 메세지가 디스크에 안전하게 저장되어 복구가 가능하며, 서비스 중단이나 데이터 손실로 인한 피해를 최소화할 수 있다.</p>
+<p>또한, 메세지의 중요도에 따라 적절한 지속성 정책을 적용함으로써 시스템 자원을 효율적으로 사용할 수 있고, 불필요한 데이터 저장을 방지할 수 있다.</p>
+<h2 id="durable-과-persistent" class="post-heading post-heading__h2">Durable 과 Persistent</h2>
+<h3 id="durable-큐익스체인지-지속성" class="post-heading post-heading__h3">Durable (큐/익스체인지 지속성)</h3>
+<p>Durable 속성은 큐/익스체인지 지속성을 의미한다. Durable 속성이 참인 큐/익스체인지는 브로커 재시작이나 장애 상황에서도 사라지지 않는다. 기본적으로 큐/익스체인지의 Durable 속성은 거짓(false)로 설정되어 있는데</p>
+<p>이러한 큐/익스체인지는 메세지 브로커를 재시작하는 경우에는 큐/익스체인지의 메세지가 사라진다. 따라서 큐/익스체인지의 메세지가 손실되지 않도록 하기 위해서는 Durable 속성을 참(true)으로 설정해야 한다.</p>
+<ul>
+<li>
+<p>익스체인지 생성 메서드</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1">/**</span>
+<span class="code-line numbered-code-line" data-line-number="2">* 익스체인지를 선언합니다.</span>
+<span class="code-line numbered-code-line" data-line-number="3">*</span>
+<span class="code-line numbered-code-line" data-line-number="4">* <span class="hljs-comment hljs-doctag">@param</span> exchange 익스체인지 이름</span>
+<span class="code-line numbered-code-line" data-line-number="5">* <span class="hljs-comment hljs-doctag">@param</span> type 익스체인지 타입 (예: "direct", "fanout", "topic", "headers")</span>
+<span class="code-line numbered-code-line" data-line-number="6">* <span class="hljs-comment hljs-doctag">@param</span> durable true로 설정하면 브로커 재시작 시에도 익스체인지가 유지됩니다.</span>
+<span class="code-line numbered-code-line" data-line-number="7">*/</span>
+<span class="code-line numbered-code-line" data-line-number="8">exchangeDeclare(String exchange, String type, <span class="hljs-type">boolean</span> durable)</span>
+</code></pre></figure>
+</li>
+<li>
+<p>큐 생성 메서드</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1">/**</span>
+<span class="code-line numbered-code-line" data-line-number="2">* 큐를 선언합니다.</span>
+<span class="code-line numbered-code-line" data-line-number="3">*</span>
+<span class="code-line numbered-code-line" data-line-number="4">* <span class="hljs-comment hljs-doctag">@param</span> queue 큐 이름</span>
+<span class="code-line numbered-code-line" data-line-number="5">* <span class="hljs-comment hljs-doctag">@param</span> durable true로 설정하면 브로커 재시작 시에도 큐가 유지됩니다.</span>
+<span class="code-line numbered-code-line" data-line-number="6">* <span class="hljs-comment hljs-doctag">@param</span> exclusive true로 설정하면 해당 커넥션에서만 큐를 사용할 수 있습니다.</span>
+<span class="code-line numbered-code-line" data-line-number="7">* <span class="hljs-comment hljs-doctag">@param</span> autoDelete true로 설정하면 사용이 끝난 큐가 자동으로 삭제됩니다.</span>
+<span class="code-line numbered-code-line" data-line-number="8">* <span class="hljs-comment hljs-doctag">@param</span> arguments 기타 큐 옵션(예: TTL 등)</span>
+<span class="code-line numbered-code-line" data-line-number="9">*/</span>
+<span class="code-line numbered-code-line" data-line-number="10">queueDeclare(String queue, <span class="hljs-type">boolean</span> durable, <span class="hljs-type">boolean</span> exclusive, <span class="hljs-type">boolean</span> autoDelete, Map&lt;String, Object&gt; arguments)</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>큐와 익스체인지 생성 시 durable 속성을 참으로 설정한 경우 브로커 재시작이나 장애 상황에서도 큐/익스체인지의 메세지가 사라지지 않는다.</p>
+<h3 id="persistent-메시지-지속성" class="post-heading post-heading__h3">Persistent (메시지 지속성)</h3>
+<p>Persistent 속성은 메시지 지속성을 의미한다. Persistent 속성이 참인 메시지는 브로커 재시작이나 장애 상황에서도 사라지지 않는다.</p>
+<p>기본적으로 메시지의 Persistent 속성은 거짓(false)로 설정되어 있기 때문에 메세지는 메모리 내에만 저장되고 브로커 재시작이나 장애 상황에서 사라진다. 따라서 메세지가 손실되지 않도록 하기 위해서는 Persistent 속성을 참(true)으로 설정해야 한다.</p>
+<ul>
+<li>
+<p>메시지 전송 메서드</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1">	/**</span>
+<span class="code-line numbered-code-line" data-line-number="2">	* 메시지를 전송합니다.</span>
+<span class="code-line numbered-code-line" data-line-number="3">	*</span>
+<span class="code-line numbered-code-line" data-line-number="4">	* <span class="hljs-comment hljs-doctag">@param</span> exchange 메시지를 보낼 익스체인지 이름</span>
+<span class="code-line numbered-code-line" data-line-number="5">	* <span class="hljs-comment hljs-doctag">@param</span> routingKey 라우팅 키</span>
+<span class="code-line numbered-code-line" data-line-number="6">	* <span class="hljs-comment hljs-doctag">@param</span> props 메시지 속성 (예: Persistent 여부 등)</span>
+<span class="code-line numbered-code-line" data-line-number="7">	* <span class="hljs-comment hljs-doctag">@param</span> body 전송할 메시지 본문 (byte 배열)</span>
+<span class="code-line numbered-code-line" data-line-number="8">	*/</span>
+<span class="code-line numbered-code-line" data-line-number="9">	basicPublish(String exchange, String routingKey, BasicProperties props, <span class="hljs-type">byte</span>[] body)</span>
+</code></pre></figure>
+</li>
+<li>
+<p>메시지 발행 시 Persistent 속성 추가</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> com.rabbitmq.client.AMQP;</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-comment">// 방법 1</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">AMQP.<span class="hljs-type">BasicProperties</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMQP</span>.BasicProperties.Builder()</span>
+<span class="code-line numbered-code-line" data-line-number="5">.deliveryMode(MessageProperties.PERSISTENT_TEXT_PLAIN.getDeliveryMode())</span>
+<span class="code-line numbered-code-line" data-line-number="6">.build();</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">channel.basicPublish(<span class="hljs-string">"my_exchange"</span>, <span class="hljs-string">"my_routing_key"</span>, props, <span class="hljs-string">"Hello, RabbitMQ!"</span>.getBytes(<span class="hljs-string">"UTF-8"</span>));</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10"><span class="hljs-comment">// 방법 2</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">channel.basicPublish(</span>
+<span class="code-line numbered-code-line" data-line-number="12">	<span class="hljs-string">""</span>, <span class="hljs-comment">// 익스체인지 이름 (기본 익스체인지)</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">	<span class="hljs-string">"task_queue"</span>, <span class="hljs-comment">// 큐 이름</span></span>
+<span class="code-line numbered-code-line" data-line-number="14">	MessageProperties.PERSISTENT_TEXT_PLAIN, <span class="hljs-comment">// Persistent 속성 적용</span></span>
+<span class="code-line numbered-code-line" data-line-number="15">	message.getBytes(<span class="hljs-string">"UTF-8"</span>) <span class="hljs-comment">// 메시지 본문</span></span>
+<span class="code-line numbered-code-line" data-line-number="16">);</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위의 예시처럼 메시지 발행 시 Persistent 속성을 적용하려면 AMQP.BasicProperties 인자에 메시지 속성을 명시적으로 추가해야 한다. 만약 AMQP.BasicProperties에 null을 전달하면 메시지는 기본적으로 비지속성(persistent=false)으로 처리되어 메모리에만 저장되고, 브로커 재시작이나 장애 발생 시 사라진다. 반면, deliveryMode를 MessageProperties.PERSISTENT_TEXT_PLAIN(2)로 설정하면 메시지가 디스크에 저장되어 장애 상황에서도 안전하게 보존된다.</p>
+<h3 id="durable과-persistent의-관계-및-설정-가이드" class="post-heading post-heading__h3">Durable과 Persistent의 관계 및 설정 가이드</h3>
+<p>Durable(내구성)과 Persistent(지속성)는 메시지의 신뢰성과 보존에 중요한 역할을 합니다. 각각의 조합에 따라 메시지의 보존 방식이 달라지므로, 아래 표를 참고하여 상황에 맞게 설정해야 합니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Durable</th><th>Persistent</th><th>동작 및 설명</th></tr></thead><tbody><tr><td>true</td><td>true</td><td>큐와 메시지 모두 디스크에 저장됨. 브로커 재시작/장애 시에도 메시지가 안전하게 보존됨. (가장 안전)</td></tr><tr><td>true</td><td>false</td><td>큐는 디스크에 저장되나, 메시지는 메모리에만 존재. 장애 시 메시지는 유실될 수 있음.</td></tr><tr><td>false</td><td>true</td><td>메시지는 디스크에 저장되나, 큐가 비내구성이므로 브로커 재시작 시 큐와 메시지 모두 사라짐.</td></tr><tr><td>false</td><td>false</td><td>큐와 메시지 모두 메모리에만 존재. 장애나 재시작 시 모두 유실됨.</td></tr></tbody></table>
+<blockquote>
+<p><strong>정리:</strong>
+메시지의 신뢰성을 보장하려면 큐와 메시지 모두 Durable과 Persistent를 true로 설정해야 합니다. 한쪽만 true여도 장애 상황에서 메시지 유실이 발생할 수 있으니, 서비스의 중요도에 따라 적절히 선택하세요.</p>
+</blockquote>
+<h2 id="ttl-time-to-live" class="post-heading post-heading__h2">TTL (Time To Live)</h2>
+<p>RabbitMQ에서 TTL(Time To Live)은 메시지 또는 큐에 저장된 데이터의 유효 기간을 제한하는 기능이다. TTL은 크게 두 가지 방식으로 설정할 수 있다.</p>
+<hr>
+<h3 id="큐-ttl-queue-ttl" class="post-heading post-heading__h3">큐 TTL (Queue TTL)</h3>
+<p>큐에 TTL을 설정하면, 해당 큐에 들어오는 <strong>모든 메시지</strong>가 지정한 시간(밀리초) 동안만 큐에 머물 수 있습니다. TTL이 지난 메시지는 자동으로 삭제된다.</p>
+<ul>
+<li>큐 자체 TTL 설정
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> java.util.HashMap;</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-keyword">import</span> java.util.Map;</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-comment">// 큐에 TTL 30초(30000ms) 설정</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">Map&lt;String, Object&gt; args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();</span>
+<span class="code-line numbered-code-line" data-line-number="6">args.put(<span class="hljs-string">"x-message-ttl"</span>, <span class="hljs-number">30000</span>); <span class="hljs-comment">// 30초</span></span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">channel.queueDeclare(</span>
+<span class="code-line numbered-code-line" data-line-number="9">	<span class="hljs-string">"my_queue"</span>, <span class="hljs-comment">// 큐 이름</span></span>
+<span class="code-line numbered-code-line" data-line-number="10">	<span class="hljs-literal">true</span>, <span class="hljs-comment">// durable</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">	<span class="hljs-literal">false</span>, <span class="hljs-comment">// exclusive</span></span>
+<span class="code-line numbered-code-line" data-line-number="12">	<span class="hljs-literal">false</span>, <span class="hljs-comment">// autoDelete</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">	args <span class="hljs-comment">// arguments (TTL 포함)</span></span>
+<span class="code-line numbered-code-line" data-line-number="14">);</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위와 같이 <code>x-message-ttl</code> 파라미터를 큐 선언 시 arguments에 추가하면, 해당 큐에 들어오는 모든 메시지는 30초가 지나면 자동으로 삭제된다. 만약 개별 메세지의 TTL 을 설정하고 싶은 경우에는 메시지 발행 시 <code>expiration</code> 속성에 값을 지정하면 된다.</p>
+<hr>
+<h3 id="메시지-ttl-message-ttl" class="post-heading post-heading__h3">메시지 TTL (Message TTL)</h3>
+<p>메시지 단위로 TTL을 설정하면, 각 메시지마다 개별적으로 유효 기간을 지정할 수 있다. 메시지 TTL은 메시지 발행 시 <code>expiration</code> 속성에 값을 지정하여 설정할 수 있다.</p>
+<ul>
+<li>메시지 발행 시 TTL 설정
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> com.rabbitmq.client.AMQP;</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-keyword">import</span> com.rabbitmq.client.MessageProperties;</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"></span>
+<span class="code-line numbered-code-line" data-line-number="5">AMQP.<span class="hljs-type">BasicProperties</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMQP</span>.BasicProperties.Builder()</span>
+<span class="code-line numbered-code-line" data-line-number="6">.deliveryMode(MessageProperties.PERSISTENT_TEXT_PLAIN.getDeliveryMode())</span>
+<span class="code-line numbered-code-line" data-line-number="7">.expiration(<span class="hljs-string">"10000"</span>) <span class="hljs-comment">// 10초 후 자동 삭제</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">.build();</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">channel.basicPublish(<span class="hljs-string">""</span>, <span class="hljs-string">"task_queue"</span>, props, <span class="hljs-string">"Hello, RabbitMQ!"</span>.getBytes(<span class="hljs-string">"UTF-8"</span>));</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>위와 같이 메시지 발행 시 <code>expiration</code> 속성을 지정하면, 해당 메시지는 10초가 지나면 자동으로 삭제된다.
+만약 AMQP.BasicProperties에 null을 전달하면 메시지의 expiration 속성 값은 0으로 설정되어 메시지는 자동으로 삭제되지 않는다.</p>
+<hr>
+<h3 id="ttltime-to-live-요약" class="post-heading post-heading__h3">TTL(Time To Live) 요약</h3>
+<ul>
+<li><strong>큐 TTL</strong>: 큐에 들어오는 모든 메시지에 동일한 TTL이 적용된다.</li>
+<li><strong>메시지 TTL</strong>: 각 메시지마다 개별적으로 TTL을 지정할 수 있다.</li>
+</ul>
+<h4 id="큐-ttl과-메시지-ttl을-모두-설정한-경우" class="post-heading post-heading__h4">큐 TTL과 메시지 TTL을 모두 설정한 경우</h4>
+<p>두 TTL 중 <strong>더 짧은 값</strong>이 우선 적용되어, 해당 시간이 지나면 메시지가 삭제된다.</p>
+<ul>
+<li>큐 TTL이 더 짧으면: 큐 TTL이 만료되어 메시지가 삭제되고, 메시지 TTL은 무시된다.</li>
+<li>메시지 TTL이 더 짧으면: 메시지 TTL이 만료되어 메시지가 삭제되고, 큐 TTL은 무시된다.</li>
+</ul>
+<p>따라서, 메시지 TTL을 활용하려면 큐 TTL을 메시지 TTL보다 길게 설정하는 것이 좋다.</p>
+<hr>
+<h2 id="auto-delete자동-삭제" class="post-heading post-heading__h2">Auto-delete(자동 삭제)</h2>
+<p>Auto-delete(자동 삭제)는 큐(queue)나 익스체인지(exchange)가 더 이상 사용되지 않을 때 자동으로 삭제되는 기능으로 Auto-Delete 속성을 설정하면 마지막으로 연결된 소비자(consumer) 또는 프로듀서(producer)가 연결을 끊으면 해당 큐나 익스체인지가 삭제도록 설정할 수 있다.</p>
+<ul>
+<li>큐 자체에 <code>autoDelete=true</code>로 설정하면, 큐에 연결된 모든 소비자가 연결을 해제했을 때 큐가 자동으로 삭제된다.</li>
+<li>익스체인지 자체에 <code>autoDelete=true</code>로 설정하면, 바인딩된 모든 큐가 해제되었을 때 익스체인지가 자동으로 삭제된다.</li>
+</ul>
+<p>이 기능은 임시로 사용하는 큐나 익스체인지에 적합하며, 불필요한 리소스 점유를 방지할 수 있으나 서비스 중에 큐가 예기치 않게 삭제될 수 있으므로, 중요한 데이터 처리가 필요한 경우에는 <code>autoDelete=false</code>로 설정하는 것이 안전하다.</p>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%B0%9C%ED%96%89%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%2C%20%EA%B2%8C%EC%8B%9C%EC%9E%90%ED%99%95%EC%9D%B8)" data-discover="true"><span class="connector">├</span><span>발행 확인 메커니즘(트랜잭션, 게시자확인)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EA%B3%A0%EA%B8%89%20%ED%81%90%20%EA%B8%B0%EB%8A%A5(DLX%2C%20%EB%94%9C%EB%A0%88%EC%9D%B4%20%ED%81%90%2C%20%EC%9A%B0%EC%84%A0%20%EC%88%9C%EC%9C%84%20%ED%81%90)" data-discover="true"><span class="connector">├</span><span>고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%80%20%EC%8B%A0%EB%A2%B0%EC%84%B1%20%EB%B3%B4%EC%9E%A5%EC%9D%84%20%EC%9C%84%ED%95%9C%20%ED%99%95%EC%9D%B8%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98(ACK%2C%20NACK)" data-discover="true"><span class="connector">├</span><span>메시지 신뢰성 보장을 위한 확인 메커니즘(ACK, NACK)</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20Exchange%20%ED%83%80%EC%9E%85%EA%B3%BC%20%EB%9D%BC%EC%9A%B0%ED%8C%85%20%EB%B0%A9%EC%8B%9D" data-discover="true"><span class="connector">├</span><span>여러가지 Exchange 타입과 라우팅 방식</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%A9%94%EC%84%B8%EC%A7%80%ED%81%90/%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90/%EB%A9%94%EC%8B%9C%EC%A7%95%20%ED%81%90%EC%9D%98%20%20%EA%B0%9C%EB%85%90%EA%B3%BC%20%EA%B8%B0%EB%B3%B8%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">└</span><span>메시징 큐의  개념과 기본 구조</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EB%25A9%2594%25EC%258B%259C%25EC%25A7%2580%2520%25EC%25A7%2580%25EC%2586%258D%25EC%2584%25B1%25EA%25B3%25BC%2520%25EC%2583%259D%25EB%25AA%2585%25EC%25A3%25BC%25EA%25B8%25B0%2520%25EA%25B4%2580%25EB%25A6%25AC%28Durable%252C%2520Persistent%252C%2520TTL%252C%2520Auto-delete%29&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EB%A0%88%EB%B9%97%EC%97%A0%ED%81%90%2C+%EB%A9%94%EC%84%B8%EC%A7%80+%EC%A7%80%EC%86%8D%EC%84%B1%EA%B3%BC+%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0+%EA%B4%80%EB%A6%AC+%EB%B0%A9%EB%B2%95&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EB%25A9%2594%25EC%258B%259C%25EC%25A7%2580%2520%25EC%25A7%2580%25EC%2586%258D%25EC%2584%25B1%25EA%25B3%25BC%2520%25EC%2583%259D%25EB%25AA%2585%25EC%25A3%25BC%25EA%25B8%25B0%2520%25EA%25B4%2580%25EB%25A6%25AC%28Durable%252C%2520Persistent%252C%2520TTL%252C%2520Auto-delete%29&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25A9%2594%25EC%2584%25B8%25EC%25A7%2580%25ED%2581%2590%2F%25EB%25A0%2588%25EB%25B9%2597%25EC%2597%25A0%25ED%2581%2590%2F%25EB%25A9%2594%25EC%258B%259C%25EC%25A7%2580%2520%25EC%25A7%2580%25EC%2586%258D%25EC%2584%25B1%25EA%25B3%25BC%2520%25EC%2583%259D%25EB%25AA%2585%25EC%25A3%25BC%25EA%25B8%25B0%2520%25EA%25B4%2580%25EB%25A6%25AC%28Durable%252C%2520Persistent%252C%2520TTL%252C%2520Auto-delete%29" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#메시지-지속성의-중요성" class="toc__item active" style="padding-left: 12px;">메시지 지속성의 중요성</a><a href="#durable-과-persistent" class="toc__item" style="padding-left: 12px;">Durable 과 Persistent</a><a href="#durable-큐익스체인지-지속성" class="toc__item" style="padding-left: 26px;">Durable (큐/익스체인지 지속성)</a><a href="#persistent-메시지-지속성" class="toc__item" style="padding-left: 26px;">Persistent (메시지 지속성)</a><a href="#durable과-persistent의-관계-및-설정-가이드" class="toc__item" style="padding-left: 26px;">Durable과 Persistent의 관계 및 설정 가이드</a><a href="#ttl-time-to-live" class="toc__item" style="padding-left: 12px;">TTL (Time To Live)</a><a href="#큐-ttl-queue-ttl" class="toc__item" style="padding-left: 26px;">큐 TTL (Queue TTL)</a><a href="#메시지-ttl-message-ttl" class="toc__item" style="padding-left: 26px;">메시지 TTL (Message TTL)</a><a href="#ttltime-to-live-요약" class="toc__item" style="padding-left: 26px;">TTL(Time To Live) 요약</a><a href="#큐-ttl과-메시지-ttl을-모두-설정한-경우" class="toc__item" style="padding-left: 40px;">큐 TTL과 메시지 TTL을 모두 설정한 경우</a><a href="#auto-delete자동-삭제" class="toc__item" style="padding-left: 12px;">Auto-delete(자동 삭제)</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/메세지큐/레빗엠큐</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

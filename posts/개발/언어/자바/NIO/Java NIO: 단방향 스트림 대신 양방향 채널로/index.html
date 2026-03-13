@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>Java NIO: 단방향 스트림 대신 양방향 채널로 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="채널(FileChannel, SocketChannel)을 사용해 파일 I/O와 소켓 I/O를 처리하는 기본 패턴, 스트림 기반 java.io와의 차이를 정리했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 단방향 스트림 대신 양방향 채널로"><meta property="og:type" content="article"><meta property="og:title" content="Java NIO: 단방향 스트림 대신 양방향 채널로 - bak-libra26"><meta property="og:description" content="채널(FileChannel, SocketChannel)을 사용해 파일 I/O와 소켓 I/O를 처리하는 기본 패턴, 스트림 기반 java.io와의 차이를 정리했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 단방향 스트림 대신 양방향 채널로"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-03T21:28:56.000Z"><meta property="article:modified_time" content="2026-02-03T21:28:56.000Z"><meta property="article:tag" content="Java"><meta property="article:tag" content="JavaNIO"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Java NIO: 단방향 스트림 대신 양방향 채널로 - bak-libra26"><meta name="twitter:description" content="채널(FileChannel, SocketChannel)을 사용해 파일 I/O와 소켓 I/O를 처리하는 기본 패턴, 스트림 기반 java.io와의 차이를 정리했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 72%;"></div></div><span class="loading-progress-pct">72%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java NIO: 단방향 스트림 대신 양방향 채널로 - bak-libra26","description":"채널(FileChannel, SocketChannel)을 사용해 파일 I/O와 소켓 I/O를 처리하는 기본 패턴, 스트림 기반 java.io와의 차이를 정리했습니다.","url":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 단방향 스트림 대신 양방향 채널로","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"Java, JavaNIO","datePublished":"2026-02-03T21:28:56.000Z","dateModified":"2026-02-03T21:28:56.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 단방향 스트림 대신 양방향 채널로"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"Java NIO: 단방향 스트림 대신 양방향 채널로 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/언어/자바/NIO/Java NIO: 단방향 스트림 대신 양방향 채널로"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/언어/자바/NIO</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"Java NIO: 단방향 스트림 대신 양방향 채널로.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/언어" data-discover="true">언어</a></span><span><span class="sep">/</span><a href="/posts/개발/언어/자바" data-discover="true">자바</a></span><span><span class="sep">/</span><span class="current">NIO</span></span></nav><header class="post-meta"><h1 class="post-detail__title">Java NIO: 단방향 스트림 대신 양방향 채널로</h1><div class="post-detail__tags"><span class="tag tag--primary">Java</span><span class="tag">JavaNIO</span></div><div class="post-detail__meta"><span>2026-02-04</span><span class="sep">·</span><span>4 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· NIO</span><span class="count">(3/3)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20java.io%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%A5%BC%20%EB%84%98%EC%9D%80%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%AA%A8%EB%8D%B8" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>Java NIO: java.io의 한계를 넘은 새로운 모델</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%B0%94%EC%9D%B4%ED%8A%B8%20%EB%B2%84%ED%8D%BC%EB%A1%9C%20%EB%B2%84%ED%8D%BC%20%EC%83%81%ED%83%9C%20%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>Java NIO: 바이트 버퍼로 버퍼 상태 관리하기</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%8B%A8%EB%B0%A9%ED%96%A5%20%EC%8A%A4%ED%8A%B8%EB%A6%BC%20%EB%8C%80%EC%8B%A0%20%EC%96%91%EB%B0%A9%ED%96%A5%20%EC%B1%84%EB%84%90%EB%A1%9C" data-discover="true"><span class="num">3.</span><span class="current-marker">→</span><span>Java NIO: 단방향 스트림 대신 양방향 채널로 (현재)</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%B0%94%EC%9D%B4%ED%8A%B8%20%EB%B2%84%ED%8D%BC%EB%A1%9C%20%EB%B2%84%ED%8D%BC%20%EC%83%81%ED%83%9C%20%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0" data-discover="true">← prev</a><span class="disabled">next →</span></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 JDK 1.4 에 도입된 <strong>java.nio</strong> 의 <strong>채널(<code>Channel</code>)</strong> 이 무엇인지, 어떻게 사용하는지 간단하게 정리했습니다.</p>
+</blockquote>
+<hr>
+<h1 id="javanio-채널channel" class="post-heading post-heading__h1"><code>java.nio</code>: 채널(<code>Channel</code>)</h1>
+<p>채널(<code>Channel</code>)은 파일이나 소켓에서 데이터를 읽고 쓰기 위해 사용하는 입·출력 통로입니다
+스트림과 달리 채널은 읽고 쓰는 작업을 모두 지원하며, 바이트 버퍼(<code>ByteBuffer</code>) 를 통해서만 데이터를 주고받습니다.</p>
+<ul>
+<li><strong>스트림(<code>Stream</code>) 특징</strong>
+<ul>
+<li><code>java.io</code> 에서 데이터가 흐르는 단방향 통로</li>
+<li>동기 방식만 지원한다.</li>
+</ul>
+</li>
+<li><strong>채널(<code>Channel</code>) 특징</strong>
+<ul>
+<li><code>java.nio</code> 에서 데이터가 흐르는 양방향 통로</li>
+<li>동기/비동기 방식을 모두 지원한다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>바이트 버퍼 관련해서 정리한 글을 보고싶으시다면 <a href="https://bak-libra26.co.kr/posts/%EA%B0%9C%EB%B0%9C/%EC%9E%90%EB%B0%94/NIO/Java_NIO:_%EB%B0%94%EC%9D%B4%ED%8A%B8_%EB%B2%84%ED%8D%BC%EB%A1%9C_%EB%B2%84%ED%8D%BC_%EC%83%81%ED%83%9C_%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0">보러가기</a> 를 눌러주세요</p>
+</blockquote>
+<hr>
+<h2 id="channel-여러가지-채널" class="post-heading post-heading__h2"><code>Channel</code>: 여러가지 채널</h2>
+<p>채널 구현체는 여러 가지가 있는데, 어떤 대상에 I/O 할지에 따라 알맞은 구현체를 선택하면 됩니다.
+파일은 <code>FileChannel</code>, TCP 서버는 <code>ServerSocketChannel</code>, TCP 클라이언트는 <code>SocketChannel</code>, UDP 통신은 <code>DatagramChannel</code>을 사용합니다.
+상황에 맞게 사용할 채널을 고르고, 그 채널과 <code>ByteBuffer</code>를 어떻게 함께 쓰는지만 익히면 됩니다.
+제가 자주 사용하는 채널에 대한 정보를 아래에 표로 정리해봤습니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>채널 종류</th><th>사용하는 상황</th><th>설명</th></tr></thead><tbody><tr><td>FileChannel</td><td>파일 I/O</td><td>파일에서 데이터를 읽고 쓸 때 사용하는 채널</td></tr><tr><td>SocketChannel</td><td>TCP 클라이언트 소켓</td><td>서버와 TCP 로 데이터를 주고받는 채널</td></tr><tr><td>ServerSocketChannel</td><td>TCP 서버 소켓</td><td>클라이언트의 TCP 연결을 받아들이는 채널</td></tr></tbody></table>
+<hr>
+<h3 id="filechannel-파일을-다룰때는-" class="post-heading post-heading__h3"><code>FileChannel</code>: 파일을 다룰때는 ?</h3>
+<p>파일을 다룰 때는 <code>java.nio.channels.FileChannel</code> 을 사용합니다.</p>
+<hr>
+<h4 id="filechannel-파일을-읽어보자" class="post-heading post-heading__h4"><code>FileChannel</code>: 파일을 읽어보자</h4>
+<ul>
+<li>
+<p><code>FileChannel</code>: 파일 읽기 예제</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">"example.txt"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-comment">// 1. 채널 열기 (읽기 전용)</span></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-keyword">try</span> (<span class="hljs-type">FileChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> FileChannel.open(path, StandardOpenOption.READ)) {</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">    <span class="hljs-comment">// 2. 채널 → 버퍼로 읽기</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">    <span class="hljs-type">int</span> <span class="hljs-variable">readBytes</span> <span class="hljs-operator">=</span> channel.read(buffer);</span>
+<span class="code-line numbered-code-line" data-line-number="10">    System.out.println(<span class="hljs-string">"read bytes = "</span> + readBytes);</span>
+<span class="code-line numbered-code-line" data-line-number="11"></span>
+<span class="code-line numbered-code-line" data-line-number="12">    <span class="hljs-comment">// 3. 읽기 모드로 전환</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">    buffer.flip();</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">    <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[buffer.remaining()];</span>
+<span class="code-line numbered-code-line" data-line-number="16">    buffer.get(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="17"></span>
+<span class="code-line numbered-code-line" data-line-number="18">    <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="19">    System.out.println(content);</span>
+<span class="code-line numbered-code-line" data-line-number="20">}</span>
+</code></pre></figure>
+<p><code>FileChannel.open(Path path, OpenOption... options)</code> 을 사용해서 경로(<code>Path</code>) 에 해당하는 파일에 채널을 만듭니다.
+이후 <code>channel.read(ByteBuffer buffer)</code> 로 파일 내용을 채널에서 버퍼로 읽어오고, 애플리케이션은 이렇게 채워진 바이트 버퍼를 꺼내서 문자열로 바꾸거나 파싱해서 사용합니다.</p>
+<blockquote>
+<p><code>FileChannel.open(Path path, OpenOption... options)</code> 에서 <code>OpenOption... options</code> 는 <code>OpenOption</code> 을 0개 이상 넘길 수 있는 가변 매개변수를 의미합니다.</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h4 id="filechannel-파일에-데이터를-써보자" class="post-heading post-heading__h4"><code>FileChannel</code>: 파일에 데이터를 써보자.</h4>
+<ul>
+<li>
+<p><code>FileChannel</code>: 파일에 데이터 쓰기 예제</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">"example-write.txt"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-string">"Hello FileChannel!"</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(data.getBytes());</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6"><span class="hljs-comment">// 1. 채널 열기 (파일 없으면 만들고, 있으면 덮어쓰기)</span></span>
+<span class="code-line numbered-code-line" data-line-number="7"><span class="hljs-keyword">try</span> (<span class="hljs-type">FileChannel</span> <span class="hljs-variable">channel</span> <span class="hljs-operator">=</span> FileChannel.open(</span>
+<span class="code-line numbered-code-line" data-line-number="8">        path,</span>
+<span class="code-line numbered-code-line" data-line-number="9">        StandardOpenOption.CREATE,</span>
+<span class="code-line numbered-code-line" data-line-number="10">        StandardOpenOption.WRITE</span>
+<span class="code-line numbered-code-line" data-line-number="11">)) {</span>
+<span class="code-line numbered-code-line" data-line-number="12">    <span class="hljs-comment">// 2. 버퍼 → 채널로 쓰기</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">    <span class="hljs-keyword">while</span> (buffer.hasRemaining()) {</span>
+<span class="code-line numbered-code-line" data-line-number="14">        channel.write(buffer);</span>
+<span class="code-line numbered-code-line" data-line-number="15">    }</span>
+<span class="code-line numbered-code-line" data-line-number="16">}</span>
+</code></pre></figure>
+<p>파일에 작성할 문자열을 먼저 <code>ByteBuffer</code>에 담은 후, <code>FileChannel</code>을 열고 <code>FileChannel.write(ByteBuffer buffer)</code> 메서드를 통해 버퍼에 있는 데이터를 파일로 흘려보냅니다. 이 과정을 통해 애플리케이션 → 버퍼 → 채널 → 파일 순서로 데이터가 이동하게됩니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="files-를-통해-이-모든-과정을-손쉽게" class="post-heading post-heading__h3"><code>Files</code> 를 통해 이 모든 과정을 손쉽게</h3>
+<p>개인적으로는 파일을 읽거나 파일에 데이터를 쓰는 간단한 작업은 파일 채널(<code>FileChannel</code>) 이 아니라 <code>Files</code> 에 정의된 <code>Files.readAllBytes()</code>, <code>Files.write()</code> 과 같은 유틸리티 메서드를 사용합니다.
+<code>Files</code> 안에 정의되어있는 유틸리티 메서드들은 내부적으로 <code>FileChannelImpl</code> 을 사용해서 이 과정을 쉽게 처리할 수 있도록 도와줍니다.</p>
+<hr>
+<h3 id="serversocketchannel-tcp-서버에는-" class="post-heading post-heading__h3"><code>ServerSocketChannel</code>: TCP 서버에는 ?</h3>
+<p><code>ServerSocketChannel</code>은 TCP 서버를 만들 때 사용하는 채널입니다. <code>ServerSocketChannel.open()</code> 으로 채널을 만들고 <code>bind(int port)</code> 로 포트를 열어 주면, TCP 서버는 해당 포트로 들어오는 클라이언트 접속을 받을 준비가 됩니다.</p>
+<p>별도 설정(<code>configureBlocking(boolean block)</code>)을 해주지 않는다면 서버는 동기 방식으로 동작하기 때문에 클라이언트가 접속할 때까지 <code>accept()</code> 라인에서 블로킹되어 기다립니다.</p>
+<p>연결이 들어오면 <code>accept()</code> 가 그 클라이언트와 통신할 <code>SocketChannel</code> 하나를 만들어 반환하는데 이후 해당 <code>SocketChannel</code> 을 통해 데이터를 주고받게 됩니다.</p>
+<ul>
+<li>
+<p><code>ServerSocketChannel</code> 사용 예제</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServerSocketChannelDemo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">( String[] args )</span> <span class="hljs-keyword">throws</span> IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="3">      <span class="hljs-keyword">try</span> (<span class="hljs-type">ServerSocketChannel</span> <span class="hljs-variable">serverChannel</span> <span class="hljs-operator">=</span> ServerSocketChannel.open()) {</span>
+<span class="code-line numbered-code-line" data-line-number="4">          serverChannel.bind(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(<span class="hljs-number">8081</span>));</span>
+<span class="code-line numbered-code-line" data-line-number="5">          System.out.println(<span class="hljs-string">"listening on port "</span> + <span class="hljs-number">8081</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="6"></span>
+<span class="code-line numbered-code-line" data-line-number="7">          <span class="hljs-keyword">try</span> (<span class="hljs-type">SocketChannel</span> <span class="hljs-variable">socketChannel</span> <span class="hljs-operator">=</span> serverChannel.accept()) {</span>
+<span class="code-line numbered-code-line" data-line-number="8">              System.out.println(<span class="hljs-string">"connected from "</span> + socketChannel.getRemoteAddress());</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">              <span class="hljs-comment">// 연결 후, 진행될 작업들 ..</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">          }</span>
+<span class="code-line numbered-code-line" data-line-number="12">      }</span>
+<span class="code-line numbered-code-line" data-line-number="13">    }</span>
+<span class="code-line numbered-code-line" data-line-number="14">}</span>
+</code></pre></figure>
+<p>만약 <code>configureBlocking(false)</code> 와 셀렉터(<code>Selector</code>)를 함께 사용하면 하나의 쓰레드에서 여러 클라이언트 채널을 번갈아가며 처리하는 TCP 서버를 만들 수 있습니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="socketchannel-tcp-클라이언트에는-" class="post-heading post-heading__h3"><code>SocketChannel</code>: TCP 클라이언트에는 ?</h3>
+<p><code>SocketChannel</code>은 TCP 클라이언트를 만들 때 쓰는 채널로 <code>SocketChannel.open(new InetSocketAddress("localhost", 8081))</code> 처럼 서버 주소를 넣어 호출하면 해당 서버로 연결을 시도합니다.</p>
+<p>TCP 서버와 연결된 이후에는 해당 <code>SocketChannel</code> 을 통해 데이터를 주고받는데, 이 때 바이트 버퍼(<code>ByteBuffer</code>) 의 <code>read(ByteBuffer buffer)</code>, <code>write(ByteBuffer buffer)</code> 메서드를 사용합니다.</p>
+<ul>
+<li><code>SocketChannel</code> 사용 예제
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SocketChannelClientDemo</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="3">        <span class="hljs-type">InetSocketAddress</span> <span class="hljs-variable">address</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InetSocketAddress</span>(<span class="hljs-string">"localhost"</span>, <span class="hljs-number">8081</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="4"></span>
+<span class="code-line numbered-code-line" data-line-number="5">        <span class="hljs-keyword">try</span> (<span class="hljs-type">SocketChannel</span> <span class="hljs-variable">socketChannel</span> <span class="hljs-operator">=</span> SocketChannel.open(address)) {</span>
+<span class="code-line numbered-code-line" data-line-number="6">            System.out.println(<span class="hljs-string">"connected to "</span> + address);</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">            <span class="hljs-comment">// 서버로 메시지 보내기</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">            <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">"Hello from client!"</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="10">            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">writeBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.wrap(message.getBytes());</span>
+<span class="code-line numbered-code-line" data-line-number="11">            <span class="hljs-keyword">while</span> (writeBuffer.hasRemaining()) {</span>
+<span class="code-line numbered-code-line" data-line-number="12">                socketChannel.write(writeBuffer);</span>
+<span class="code-line numbered-code-line" data-line-number="13">            }</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">            <span class="hljs-comment">// 에코 응답 읽기</span></span>
+<span class="code-line numbered-code-line" data-line-number="16">            <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">readBuffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="17">            <span class="hljs-type">int</span> <span class="hljs-variable">read</span> <span class="hljs-operator">=</span> socketChannel.read(readBuffer);</span>
+<span class="code-line numbered-code-line" data-line-number="18">            <span class="hljs-keyword">if</span> (read &gt; <span class="hljs-number">0</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="19">                readBuffer.flip();</span>
+<span class="code-line numbered-code-line" data-line-number="20">                <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[readBuffer.remaining()];</span>
+<span class="code-line numbered-code-line" data-line-number="21">                readBuffer.get(bytes);</span>
+<span class="code-line numbered-code-line" data-line-number="22">                System.out.println(<span class="hljs-string">"echo from server = "</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(bytes));</span>
+<span class="code-line numbered-code-line" data-line-number="23">            }</span>
+<span class="code-line numbered-code-line" data-line-number="24">        }</span>
+<span class="code-line numbered-code-line" data-line-number="25">    }</span>
+<span class="code-line numbered-code-line" data-line-number="26">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20%EB%B0%94%EC%9D%B4%ED%8A%B8%20%EB%B2%84%ED%8D%BC%EB%A1%9C%20%EB%B2%84%ED%8D%BC%20%EC%83%81%ED%83%9C%20%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>Java NIO: 바이트 버퍼로 버퍼 상태 관리하기</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94/NIO/Java%20NIO%3A%20java.io%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%A5%BC%20%EB%84%98%EC%9D%80%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EB%AA%A8%EB%8D%B8" data-discover="true"><span class="connector">├</span><span>Java NIO: java.io의 한계를 넘은 새로운 모델</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%ED%8C%8C%EC%9D%BC%20%ED%99%95%EC%9E%A5%EC%9E%90%20%EC%B0%A8%EC%9D%B4" data-discover="true"><span class="connector">├</span><span>자바스크립트 파일 확장자 차이</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EC%96%B8%EC%96%B4/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/Ubuntu%20%20%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%20NodeJS%20%20%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>Ubuntu  환경에서 NodeJS  설치하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%258B%25A8%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%258A%25A4%25ED%258A%25B8%25EB%25A6%25BC%2520%25EB%258C%2580%25EC%258B%25A0%2520%25EC%2596%2591%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%25B1%2584%25EB%2584%2590%25EB%25A1%259C&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%B1%84%EB%84%90%28FileChannel%2C+SocketChannel%29%EC%9D%84+%EC%82%AC%EC%9A%A9%ED%95%B4+%ED%8C%8C%EC%9D%BC+I%2FO%EC%99%80+%EC%86%8C%EC%BC%93+I%2FO%EB%A5%BC+%EC%B2%98%EB%A6%AC%ED%95%98%EB%8A%94+%EA%B8%B0%EB%B3%B8+%ED%8C%A8%ED%84%B4%2C+%EC%8A%A4%ED%8A%B8%EB%A6%BC+%EA%B8%B0%EB%B0%98+java.io%EC%99%80%EC%9D%98+%EC%B0%A8%EC%9D%B4%EB%A5%BC+%EC%A0%95%EB%A6%AC%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%258B%25A8%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%258A%25A4%25ED%258A%25B8%25EB%25A6%25BC%2520%25EB%258C%2580%25EC%258B%25A0%2520%25EC%2596%2591%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%25B1%2584%25EB%2584%2590%25EB%25A1%259C&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EC%2596%25B8%25EC%2596%25B4%2F%25EC%259E%2590%25EB%25B0%2594%2FNIO%2FJava%2520NIO%253A%2520%25EB%258B%25A8%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%258A%25A4%25ED%258A%25B8%25EB%25A6%25BC%2520%25EB%258C%2580%25EC%258B%25A0%2520%25EC%2596%2591%25EB%25B0%25A9%25ED%2596%25A5%2520%25EC%25B1%2584%25EB%2584%2590%25EB%25A1%259C" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#channel-여러가지-채널" class="toc__item active" style="padding-left: 12px;">`Channel`: 여러가지 채널</a><a href="#filechannel-파일을-다룰때는-" class="toc__item" style="padding-left: 26px;">`FileChannel`: 파일을 다룰때는 ?</a><a href="#filechannel-파일을-읽어보자" class="toc__item" style="padding-left: 40px;">`FileChannel`: 파일을 읽어보자</a><a href="#filechannel-파일에-데이터를-써보자" class="toc__item" style="padding-left: 40px;">`FileChannel`: 파일에 데이터를 써보자.</a><a href="#files-를-통해-이-모든-과정을-손쉽게" class="toc__item" style="padding-left: 26px;">`Files` 를 통해 이 모든 과정을 손쉽게</a><a href="#serversocketchannel-tcp-서버에는-" class="toc__item" style="padding-left: 26px;">`ServerSocketChannel`: TCP 서버에는 ?</a><a href="#socketchannel-tcp-클라이언트에는-" class="toc__item" style="padding-left: 26px;">`SocketChannel`: TCP 클라이언트에는 ?</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/언어/자바/NIO</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>HTML: 자바스크립트 추가하기 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="HTML 의 인라인, 내부, 외부 스타일이 무엇인지, 어떻게 사용하는지 알아보자."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/프론트엔드/HTML/HTML: 자바스크립트 추가하기"><meta property="og:type" content="article"><meta property="og:title" content="HTML: 자바스크립트 추가하기 - bak-libra26"><meta property="og:description" content="HTML 의 인라인, 내부, 외부 스타일이 무엇인지, 어떻게 사용하는지 알아보자."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/프론트엔드/HTML/HTML: 자바스크립트 추가하기"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-10T21:09:52.000Z"><meta property="article:modified_time" content="2026-02-10T22:38:52.000Z"><meta property="article:tag" content="HTML CSS 적용하기"><meta property="article:tag" content="HTML Cascading Style Sheet 적용하기"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="HTML: 자바스크립트 추가하기 - bak-libra26"><meta name="twitter:description" content="HTML 의 인라인, 내부, 외부 스타일이 무엇인지, 어떻게 사용하는지 알아보자."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 74%;"></div></div><span class="loading-progress-pct">74%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HTML: 자바스크립트 추가하기 - bak-libra26","description":"HTML 의 인라인, 내부, 외부 스타일이 무엇인지, 어떻게 사용하는지 알아보자.","url":"https://bak-libra26.co.kr/posts/개발/프론트엔드/HTML/HTML: 자바스크립트 추가하기","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"HTML CSS 적용하기, HTML Cascading Style Sheet 적용하기","datePublished":"2026-02-10T21:09:52.000Z","dateModified":"2026-02-10T22:38:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/프론트엔드/HTML/HTML: 자바스크립트 추가하기"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"HTML: 자바스크립트 추가하기 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/프론트엔드/HTML/HTML: 자바스크립트 추가하기"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/프론트엔드/HTML</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"HTML: 자바스크립트 추가하기.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/프론트엔드" data-discover="true">프론트엔드</a></span><span><span class="sep">/</span><span class="current">HTML</span></span></nav><header class="post-meta"><h1 class="post-detail__title">HTML: 자바스크립트 추가하기</h1><div class="post-detail__tags"><span class="tag tag--primary">HTML CSS 적용하기</span><span class="tag">HTML Cascading Style Sheet 적용하기</span></div><div class="post-detail__meta"><span>2026-02-11</span><span class="sep">·</span><span>3 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· HTML</span><span class="count">(10/12)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%A0%84%EC%97%AD%20%EC%86%8D%EC%84%B1" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>HTML: 전역 속성</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%ED%85%8D%EC%8A%A4%ED%8A%B8%20%EA%B4%80%EB%A0%A8%20%ED%83%9C%EA%B7%B8" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>HTML: 텍스트 관련 태그</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EA%B7%B8%EB%A3%B9%ED%95%91%20%ED%85%8D%EC%8A%A4%ED%8A%B8" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>HTML: 그룹핑 텍스트</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EA%B5%AC%EC%A1%B0%EC%99%80%20%ED%95%84%EC%88%98%20%ED%83%9C%EA%B7%B8" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>HTML: 구조와 필수 태그</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%97%AC%EB%9F%AC%EA%B0%80%EC%A7%80%20%EB%AA%A9%EB%A1%9D" data-discover="true"><span class="num">5.</span><span class="check">✓</span><span>HTML: 여러가지 목록</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%9E%84%EB%B2%A0%EB%94%94%EB%93%9C%20%EB%AF%B8%EB%94%94%EC%96%B4" data-discover="true"><span class="num">6.</span><span class="check">✓</span><span>HTML: 임베디드 미디어</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%ED%85%8C%EC%9D%B4%EB%B8%94%20%ED%83%9C%EA%B7%B8" data-discover="true"><span class="num">7.</span><span class="check">✓</span><span>HTML: 테이블 태그</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%8B%9C%EB%A7%A8%ED%8B%B1%20%EB%A7%88%ED%81%AC%EC%97%85" data-discover="true"><span class="num">8.</span><span class="check">✓</span><span>HTML: 시맨틱 마크업</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%9D%B8%ED%92%8B%2C%20%EC%82%AC%EC%9A%A9%EC%9E%90%EC%97%90%EA%B2%8C%20%EC%9E%85%EB%A0%A5%EC%9D%84%20%EB%B0%9B%EC%9E%90" data-discover="true"><span class="num">9.</span><span class="check">✓</span><span>HTML: 인풋, 사용자에게 입력을 받자</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">10.</span><span class="current-marker">→</span><span>HTML: 자바스크립트 추가하기 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%ED%8F%BC%2C%20%EC%9E%85%EB%A0%A5%20%ED%95%84%EB%93%9C%EB%A5%BC%20%EB%AC%B6%EC%96%B4%20%EC%84%9C%EB%B2%84%EB%A1%9C%20%EC%A0%84%EB%8B%AC%ED%95%98%EC%9E%90" data-discover="true"><span class="num">11.</span><span style="min-width: 16px;"></span><span>HTML: 폼, 입력 필드를 묶어 서버로 전달하자</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8" data-discover="true"><span class="num">12.</span><span style="min-width: 16px;"></span><span>HTML: 메타 태그</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%9D%B8%ED%92%8B%2C%20%EC%82%AC%EC%9A%A9%EC%9E%90%EC%97%90%EA%B2%8C%20%EC%9E%85%EB%A0%A5%EC%9D%84%20%EB%B0%9B%EC%9E%90" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%ED%8F%BC%2C%20%EC%9E%85%EB%A0%A5%20%ED%95%84%EB%93%9C%EB%A5%BC%20%EB%AC%B6%EC%96%B4%20%EC%84%9C%EB%B2%84%EB%A1%9C%20%EC%A0%84%EB%8B%AC%ED%95%98%EC%9E%90" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 HTML에 자바스크립트를 포함하는 세 가지 방식(인라인, 내부, 외부)과 <script> 태그의 위치, defer/async 속성까지 함께 정리합니다</script>
+</p></blockquote>
+<hr>
+<h1 id="html-자바스크립트-추가하기" class="post-heading post-heading__h1">HTML: 자바스크립트 추가하기</h1>
+<p>HTML과 CSS만으로 만들어진 웹 페이지는 사용자가 보게 되는 내용이 고정된 정적인 페이지지만
+자바스크립트(JavaScript)를 추가하면 웹 페이지를 동적인 페이지로 만들 수 있습니다.
+이번엔 HTML 안에 자바스크립트를 추가하는 인라인(Inline), 내부(Internal), 외부(Extenal) 방식이 무엇인지 정리해보겠습니다.</p>
+<hr>
+<h2 id="html-인라인-자바스크립트" class="post-heading post-heading__h2">HTML: 인라인 자바스크립트</h2>
+<p>인라인 자바스크립트는 <strong>HTML 태그의 속성 안에 직접 자바스크립트 코드를 작성하는 방식</strong>으로,
+주로 <code>onclick</code>, <code>onchange</code> 같은 이벤트 핸들러 속성에 간단하게 코드를 넣을 때 사용합니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">button</span> <span class="hljs-tag hljs-attr">onclick</span>=<span class="hljs-tag hljs-string">"alert('버튼을 클릭했습니다!')"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">  클릭</span>
+<span class="code-line numbered-code-line" data-line-number="3">&lt;/<span class="hljs-tag hljs-name">button</span>&gt;</span>
+</code></pre></figure>
+<p>간단하게 코드를 작성해서 동작을 테스트할 때 사용하나 HTML 과 CSS, 자바스크립트가 섞여 코드가 길어지면 읽기도 힘들고 수정 및 확장이 어려워지기 때문에 주의해서 사용해야합니다.</p>
+<hr>
+<h2 id="html-내부-자바스크립트" class="post-heading post-heading__h2">HTML: 내부 자바스크립트</h2>
+<p>내부 자바스크립트는 HTML 파일 안에 <code>&lt;script&gt;</code> 태그를 <code>&lt;head&gt;</code>나 <code>&lt;body&gt;</code> 안에 추가하고 안에 <strong>자바스크립트 코드를 작성하는 방식</strong>으로
+자바스크립트 코드를 HTML 파일 한 쪽에 모아서 관리할 수 있습니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;!DOCTYPE <span class="hljs-meta hljs-keyword">html</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">&lt;<span class="hljs-tag hljs-name">html</span> <span class="hljs-tag hljs-attr">lang</span>=<span class="hljs-tag hljs-string">"ko"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="3">  &lt;<span class="hljs-tag hljs-name">head</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">    &lt;<span class="hljs-tag hljs-name">meta</span> <span class="hljs-tag hljs-attr">charset</span>=<span class="hljs-tag hljs-string">"UTF-8"</span> /&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="5">    &lt;<span class="hljs-tag hljs-name">title</span>&gt;내부 자바스크립트&lt;/<span class="hljs-tag hljs-name">title</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6">  &lt;/<span class="hljs-tag hljs-name">head</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="7">  &lt;<span class="hljs-tag hljs-name">body</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="8">    &lt;<span class="hljs-tag hljs-name">button</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"btn"</span>&gt;클릭&lt;/<span class="hljs-tag hljs-name">button</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">    &lt;<span class="hljs-tag hljs-name">script</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="11">      <span class="javascript hljs-keyword">const</span> button = <span class="javascript hljs-variable language_">document</span>.<span class="javascript hljs-title function_">getElementById</span>(<span class="javascript hljs-string">"btn"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="12"></span>
+<span class="code-line numbered-code-line" data-line-number="13">      button.<span class="javascript hljs-title function_">addEventListener</span>(<span class="javascript hljs-string">"click"</span>, <span class="javascript hljs-function">() =&gt;</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="14">        <span class="javascript hljs-title function_">alert</span>(<span class="javascript hljs-string">"버튼을 클릭했습니다!"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="15">      });</span>
+<span class="code-line numbered-code-line" data-line-number="16">    &lt;/<span class="hljs-tag hljs-name">script</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="17">  &lt;/<span class="hljs-tag hljs-name">body</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="18">&lt;/<span class="hljs-tag hljs-name">html</span>&gt;</span>
+</code></pre></figure>
+<p>HTML 파일마다 자바스크립트 코드가 존재할 수 있기 때문에 HTML 파일이 많아지면 관리가 어렵고 코드 재사용하기가 어렵습니다.</p>
+<hr>
+<h2 id="html-외부-자바스크립트" class="post-heading post-heading__h2">HTML: 외부 자바스크립트</h2>
+<p>외부 자바스크립트는 자바스크립트 코드를 <strong>별도의 <code>.js</code> 파일로 분리</strong>하고 HTML에서 <code>&lt;script src="..."&gt;</code>로 불러오는 방식입니다.</p>
+<ul>
+<li>
+<p><strong><code>/scripts/main.js</code>:</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVASCRIPT</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-javascript"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">const</span> button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"btn"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-keyword">const</span> counter = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"count"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="3"></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"click"</span>, <span class="hljs-function">() =&gt;</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="7">  count += <span class="hljs-number">1</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="8">  counter.<span class="hljs-property">textContent</span> = count;</span>
+<span class="code-line numbered-code-line" data-line-number="9">});</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong><code>/index.html</code>:</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;!DOCTYPE <span class="hljs-meta hljs-keyword">html</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">&lt;<span class="hljs-tag hljs-name">html</span> <span class="hljs-tag hljs-attr">lang</span>=<span class="hljs-tag hljs-string">"ko"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="3">  &lt;<span class="hljs-tag hljs-name">head</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">    &lt;<span class="hljs-tag hljs-name">meta</span> <span class="hljs-tag hljs-attr">charset</span>=<span class="hljs-tag hljs-string">"UTF-8"</span> /&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="5">    &lt;<span class="hljs-tag hljs-name">title</span>&gt;외부 자바스크립트&lt;/<span class="hljs-tag hljs-name">title</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6">  &lt;/<span class="hljs-tag hljs-name">head</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="7">  &lt;<span class="hljs-tag hljs-name">body</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="8">    &lt;<span class="hljs-tag hljs-name">button</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"btn"</span>&gt;클릭&lt;/<span class="hljs-tag hljs-name">button</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9">    &lt;<span class="hljs-tag hljs-name">p</span>&gt;클릭 횟수: &lt;<span class="hljs-tag hljs-name">span</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"count"</span>&gt;0&lt;/<span class="hljs-tag hljs-name">span</span>&gt;&lt;/<span class="hljs-tag hljs-name">p</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="10"></span>
+<span class="code-line numbered-code-line" data-line-number="11">    &lt;<span class="hljs-tag hljs-name">script</span> <span class="hljs-tag hljs-attr">src</span>=<span class="hljs-tag hljs-string">"./scripts/main.js"</span>&gt;&lt;/<span class="hljs-tag hljs-name">script</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="12">  &lt;/<span class="hljs-tag hljs-name">body</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="13">&lt;/<span class="hljs-tag hljs-name">html</span>&gt;</span>
+</code></pre></figure>
+</li>
+</ul>
+<p>이 방식은 HTML과 스크립트가 분리되어 읽기 쉽고 수정 및 확장에 용이하며 자바스크립트 코드를 재사용하기 쉬우나 파일이 많아지면 번거로울 수 있습니다.</p>
+<hr>
+<h2 id="html-script-태그는-어디에-" class="post-heading post-heading__h2">HTML: <code>&lt;script&gt;</code> 태그는 어디에 ?</h2>
+<p>일반적으로 <code>&lt;script&gt;</code> 태그는 <code>&lt;head&gt;</code> 에도, <code>&lt;body&gt;</code> 에도 둘 수 있으나, <code>&lt;body&gt;</code> 안에 넣을 떄는 <code>&lt;body&gt;</code> 맨 아래에 넣는 경우가 많습니다.</p>
+<hr>
+<h3 id="html--위치-별-실행-순서head-안-html-파싱-전-스크립트를-실행한다body-맨-아래-dom-요소들이-모두-생성된-후-스크립트를-실행한다" class="post-heading post-heading__h3">HTML: <script> 위치 별 실행 순서</script>
+<ul>
+<li><strong><code>&lt;head&gt;</code> 안</strong>: HTML 파싱 전, 스크립트를 실행한다.</li>
+<li><strong><code>&lt;body&gt;</code> 맨 아래</strong>: DOM 요소들이 모두 생성된 후, 스크립트를 실행한다.</li>
+</ul>
+<hr>
+</h3><h3 id="html-html5-속성을-활용한-스크립트-로딩-방식-제어" class="post-heading post-heading__h3">HTML: <code>HTML5</code> 속성을 활용한 스크립트 로딩 방식 제어</h3>
+<p>HTML5 의 <code>defer</code>, <code>async</code> 와 같이 속성을 통해서 스크립트 로딩 방식을 제어할 수 있으나, <strong>이는 모두 src가 있는 외부 자바스크립트 방식을 사용했을 때만 유효</strong>합니다.</p>
+<ul>
+<li>
+<p><strong><code>defer</code></strong>: HTML 파싱과 스크립트 다운로드를 병렬로 진행한 뒤, 파싱이 끝난 후 문서에 작성된 순서대로 스크립트를 실행한다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">script</span> <span class="hljs-tag hljs-attr">defer</span> <span class="hljs-tag hljs-attr">src</span>=<span class="hljs-tag hljs-string">"main.js"</span>&gt;&lt;/<span class="hljs-tag hljs-name">script</span>&gt;</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong><code>async</code></strong>: 스크립트를 HTML 파싱과 병렬로 다운로드하고, 다운로드가 끝나는 즉시 실행해서 실행 순서가 보장되지 않는다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">script</span> <span class="hljs-tag hljs-attr">async</span> <span class="hljs-tag hljs-attr">src</span>=<span class="hljs-tag hljs-string">"analytics.js"</span>&gt;&lt;/<span class="hljs-tag hljs-name">script</span>&gt;</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h2 id="html-언제-어떤-방식을-쓰면-좋을까" class="post-heading post-heading__h2">HTML: 언제 어떤 방식을 쓰면 좋을까?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>방식</th><th>위치</th><th>특징</th></tr></thead><tbody><tr><td>인라인</td><td>태그의 이벤트 속성 안</td><td>가장 단순하지만 HTML과 JS가 섞여 유지보수에 불리하다.</td></tr><tr><td>내부</td><td><code>&lt;script&gt;</code> 태그 안</td><td>파일 하나에서 빠르게 작성·테스트 가능하다.</td></tr><tr><td>외부</td><td>별도 <code>.js</code> 파일</td><td>재사용성과 유지보수, 성능(캐싱)에 유리하다.</td></tr></tbody></table>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/CSS/CSS%3A%20%EC%9E%91%EC%84%B1%20%EA%B7%9C%EC%B9%99%EA%B3%BC%20%EA%B8%B0%EB%B3%B8%20%EC%85%80%EB%A0%89%ED%84%B0" data-discover="true"><span class="connector">├</span><span>CSS: 작성 규칙과 기본 셀렉터</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/CSS/CSS%3A%20%EC%BA%90%EC%8A%A4%EC%BC%80%EC%9D%B4%EB%94%A9%20%EA%B7%9C%EC%B9%99%EA%B3%BC%20%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84" data-discover="true"><span class="connector">├</span><span>CSS: 캐스케이딩 규칙과 우선순위</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8" data-discover="true"><span class="connector">├</span><span>HTML: 메타 태그</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/CSS/CSS%3A%20%EC%9D%B8%EB%9D%BC%EC%9D%B8%C2%B7%EB%82%B4%EB%B6%80%C2%B7%EC%99%B8%EB%B6%80%20%EC%8A%A4%ED%83%80%EC%9D%BC" data-discover="true"><span class="connector">├</span><span>CSS: 인라인·내부·외부 스타일</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/HTML/HTML%3A%20%EC%8B%9C%EB%A7%A8%ED%8B%B1%20%EB%A7%88%ED%81%AC%EC%97%85" data-discover="true"><span class="connector">└</span><span>HTML: 시맨틱 마크업</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2594%2584%25EB%25A1%25A0%25ED%258A%25B8%25EC%2597%2594%25EB%2593%259C%2FHTML%2FHTML%253A%2520%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=HTML+%EC%9D%98+%EC%9D%B8%EB%9D%BC%EC%9D%B8%2C+%EB%82%B4%EB%B6%80%2C+%EC%99%B8%EB%B6%80+%EC%8A%A4%ED%83%80%EC%9D%BC%EC%9D%B4+%EB%AC%B4%EC%97%87%EC%9D%B8%EC%A7%80%2C+%EC%96%B4%EB%96%BB%EA%B2%8C+%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EC%A7%80+%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2594%2584%25EB%25A1%25A0%25ED%258A%25B8%25EC%2597%2594%25EB%2593%259C%2FHTML%2FHTML%253A%2520%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25ED%2594%2584%25EB%25A1%25A0%25ED%258A%25B8%25EC%2597%2594%25EB%2593%259C%2FHTML%2FHTML%253A%2520%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#html-인라인-자바스크립트" class="toc__item active" style="padding-left: 12px;">HTML: 인라인 자바스크립트</a><a href="#html-내부-자바스크립트" class="toc__item" style="padding-left: 12px;">HTML: 내부 자바스크립트</a><a href="#html-외부-자바스크립트" class="toc__item" style="padding-left: 12px;">HTML: 외부 자바스크립트</a><a href="#html-script-태그는-어디에-" class="toc__item" style="padding-left: 12px;">HTML: `&lt;script&gt;` 태그는 어디에 ?</a><a href="#html-script-위치-별-실행-순서" class="toc__item" style="padding-left: 26px;">HTML: &lt;script&gt; 위치 별 실행 순서</a><a href="#html-html5-속성을-활용한-스크립트-로딩-방식-제어" class="toc__item" style="padding-left: 26px;">HTML: `HTML5` 속성을 활용한 스크립트 로딩 방식 제어</a><a href="#html-언제-어떤-방식을-쓰면-좋을까" class="toc__item" style="padding-left: 12px;">HTML: 언제 어떤 방식을 쓰면 좋을까?</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/프론트엔드/HTML</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

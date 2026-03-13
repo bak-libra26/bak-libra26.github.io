@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="스프링 시큐리티에서 CSRF 보호가 왜 필요한지, 세션·쿠키를 전제로 토큰이 언제 생성되고 어떻게 검증되는지, 그리고 REST API·SPA 환경에서 csrf().disable()과 CookieCsrfTokenRepository를 언제 어떻게 써야 하는지를 정리한 글입니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까"><meta property="og:type" content="article"><meta property="og:title" content="스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 - bak-libra26"><meta property="og:description" content="스프링 시큐리티에서 CSRF 보호가 왜 필요한지, 세션·쿠키를 전제로 토큰이 언제 생성되고 어떻게 검증되는지, 그리고 REST API·SPA 환경에서 csrf().disable()과 CookieCsrfTokenRepository를 언제 어떻게 써야 하는지를 정리한 글입니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-03-03T20:09:52.000Z"><meta property="article:modified_time" content="2026-03-03T22:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 - bak-libra26"><meta name="twitter:description" content="스프링 시큐리티에서 CSRF 보호가 왜 필요한지, 세션·쿠키를 전제로 토큰이 언제 생성되고 어떻게 검증되는지, 그리고 REST API·SPA 환경에서 csrf().disable()과 CookieCsrfTokenRepository를 언제 어떻게 써야 하는지를 정리한 글입니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 - bak-libra26","description":"스프링 시큐리티에서 CSRF 보호가 왜 필요한지, 세션·쿠키를 전제로 토큰이 언제 생성되고 어떻게 검증되는지, 그리고 REST API·SPA 환경에서 csrf().disable()과 CookieCsrfTokenRepository를 언제 어떻게 써야 하는지를 정리한 글입니다.","url":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-03-03T20:09:52.000Z","dateModified":"2026-03-03T22:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 - bak-libra26","item":"https://bak-libra26.co.kr/posts/개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/개발" data-discover="true">개발</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드" data-discover="true">백엔드</a></span><span><span class="sep">/</span><a href="/posts/개발/백엔드/스프링" data-discover="true">스프링</a></span><span><span class="sep">/</span><span class="current">스프링 시큐리티</span></span></nav><header class="post-meta"><h1 class="post-detail__title">스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까</h1><div class="post-detail__meta"><span>2026-03-04</span><span class="sep">·</span><span>9 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 스프링 시큐리티</span><span class="count">(5/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%B3%B4%EC%95%88%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a><a class="series-nav__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="num">4.</span><span class="check">✓</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a><a class="series-nav__item active" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CSRF%20%EB%B3%B4%ED%98%B8%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">5.</span><span class="current-marker">→</span><span>스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까 (현재)</span></a><a class="series-nav__item future" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></div><div class="series-nav__footer"><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true">← prev</a><a href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글에서는 세션·쿠키가 어떻게 동작하는지부터, CSRF가 왜 발생하는지, 그리고 스프링 시큐리티가 CSRF 토큰을 이용해 이를 어떻게 막는지 정리합니다.</p>
+</blockquote>
+<h2 id="csrfcross-site-request-forgery란-무엇인가" class="post-heading post-heading__h2">CSRF(Cross-Site Request Forgery)란 무엇인가</h2>
+<p>CSRF(Cross-Site Request Forgery)는 로그인 후 만들어진 세션과 쿠키를 악용해서 사용자가 의도하지 않은 요청을 대신 보내게 만드는 공격으로,
+웹 애플리케이션이 세션 방식을 사용할 때 브라우저가 해당 도메인의 쿠키를 요청마다 자동으로 전송하는 특성을 악용한 "요청 위조 공격"입니다.</p>
+<hr>
+<h3 id="세션쿠키는-어떻게-만들어지는가" class="post-heading post-heading__h3">세션·쿠키는 어떻게 만들어지는가</h3>
+<ul>
+<li>
+<p><strong>HttpSession 직접 사용</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta">@PostMapping</span></span>
+<span class="code-line numbered-code-line" data-line-number="2"><span class="hljs-keyword">public</span> ResponseEntity&lt;String&gt; <span class="hljs-title function_">handleLoginRequest</span><span class="hljs-params">(</span></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-params">    HttpServletRequest request</span></span>
+<span class="code-line numbered-code-line" data-line-number="4"><span class="hljs-params">)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="5">    <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();</span>
+<span class="code-line numbered-code-line" data-line-number="6">    session.setAttribute(<span class="hljs-string">"username"</span>, <span class="hljs-string">"SIM JUNGHUN"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="7"></span>
+<span class="code-line numbered-code-line" data-line-number="8">    <span class="hljs-keyword">return</span> ResponseEntity.ok(<span class="hljs-string">"ok"</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="9">}</span>
+</code></pre></figure>
+<p>스프링과 같은 서블릿 기반 웹 애플리케이션에서는 HttpServletRequest.getSession()이 호출되는 시점에 서블릿 컨테이너(톰캣)가 세션을 생성하고, 세션 ID(JSESSIONID)를 만들며 이를 Set-Cookie 헤더로 브라우저에 내려보냅니다.</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>Spring Security 를 통한 HttpSession 사용</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityContextPersistenceFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">GenericFilterBean</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    </span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, FilterChain chain)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="4">        ...</span>
+<span class="code-line numbered-code-line" data-line-number="5">        </span>
+<span class="code-line numbered-code-line" data-line-number="6">        <span class="hljs-type">HttpSession</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> request.getSession();</span>
+<span class="code-line numbered-code-line" data-line-number="7">        </span>
+<span class="code-line numbered-code-line" data-line-number="8">    }</span>
+<span class="code-line numbered-code-line" data-line-number="9">    </span>
+<span class="code-line numbered-code-line" data-line-number="10">}</span>
+</code></pre></figure>
+<p>스프링 시큐리티는 이런 작업을 SecurityContextPersistenceFilter.doFilter() 안에서 수행하며, 여기서 request.getSession()으로 세션을 준비하고 그 안에 SPRING_SECURITY_CONTEXT 키로 SecurityContext를 보관합니다.</p>
+<p>톰캣과 같은 서블릿 컨테이너가 생성된 세션의 세션 ID(JSESSIONID)를 Set-Cookie 헤더에 담아 응답으로 내려보내면, 브라우저는 이 값을 해당 도메인의 쿠키로 저장하게 됩니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="만들어진-쿠키는-어떻게-전송되는가" class="post-heading post-heading__h3">만들어진 쿠키는 어떻게 전송되는가</h3>
+<p>브라우저는</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>속성</th><th>전송 규칙 요약</th></tr></thead><tbody><tr><td><strong>Domain</strong></td><td>요청 호스트가 Domain과 domain-match일 때 전송.</td></tr><tr><td><strong>Path</strong></td><td>요청 경로가 Path로 시작(하위 경로 포함)할 때 전송.</td></tr><tr><td><strong>Secure</strong></td><td>HTTPS 같은 보안 채널에서만 전송.</td></tr><tr><td><strong>SameSite</strong></td><td>same-site / cross-site 여부에 따라 전송 제한, CSRF 완화용.</td></tr></tbody></table>
+<p>한 번 발급된 JSESSIONID 쿠키를 비롯한 여러 종류의 쿠키는 위 조건을 만족하는 경우에 브라우저가 이후 요청마다 함께 전송됩니다.</p>
+<hr>
+<h3 id="왜-csrf-보호가-필요한가" class="post-heading post-heading__h3">왜 CSRF 보호가 필요한가</h3>
+<p>CSRF 공격을 위해서 <em>공격자는 지금까지 본 세션·쿠키, 브라우저 특성을 그대로 활용</em> 합니다.</p>
+<ol>
+<li><strong>사용자의 브라우저에는 이미 <code>bank.com</code> 의 세션 쿠키(JSESSIONID 등)가 있다.</strong></li>
+<li><strong>브라우저는 <code>bank.com</code> 으로 향하는 요청에 이 세션 쿠키를 자동으로 붙여 보낸다.</strong></li>
+<li><strong>악성 사이트(devil.com)는 HTML 폼, 이미지 태그, 스크립트(fetch 등)를 이용해 <code>https://bank.com/...</code>으로 향하는 요청을 만들 수 있다.</strong></li>
+</ol>
+<p>만약 사용자가 bank.com에 로그인한 상태에서 다른 탭으로 devil.com(악성 사이트)에 접속했고
+devil.com 페이지에서 아래처럼 <code>https://bank.com/transfer</code> 로 돈을 보내는 폼을 몰래 만들어 자동으로 전송하게 만든 경우.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">form</span> <span class="hljs-tag hljs-attr">action</span>=<span class="hljs-tag hljs-string">"https://bank.com/transfer"</span> <span class="hljs-tag hljs-attr">method</span>=<span class="hljs-tag hljs-string">"POST"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">  &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"hidden"</span> <span class="hljs-tag hljs-attr">name</span>=<span class="hljs-tag hljs-string">"to"</span> <span class="hljs-tag hljs-attr">value</span>=<span class="hljs-tag hljs-string">"attacker-account"</span> /&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="3">  &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"hidden"</span> <span class="hljs-tag hljs-attr">name</span>=<span class="hljs-tag hljs-string">"amount"</span> <span class="hljs-tag hljs-attr">value</span>=<span class="hljs-tag hljs-string">"1000000"</span> /&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">&lt;/<span class="hljs-tag hljs-name">form</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="5">&lt;<span class="hljs-tag hljs-name">script</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6">  <span class="javascript hljs-variable language_">document</span>.<span class="javascript hljs-property">forms</span></span>
+<span class="code-line numbered-code-line" data-line-number="7">&lt;/<span class="hljs-tag hljs-name">script</span>&gt;</span>
+</code></pre></figure>
+<p>브라우저 입장에서 보면 “요청 주소가 bank.com이네?” 정도만 확인하고, 앞에서 본 규칙(Domain, Path, Secure, SameSite)에 맞는 bank.com의 쿠키들(JSESSIONID 포함)을 자동으로 Cookie 헤더에 붙여 보내게 됩니다.</p>
+<p>서버는 이 요청을 공격자가 보냈는지, 실제 사용자가 보냈는지를 구분할 수 없어, 사용자가 의도하지도 않은 송금·비밀번호 변경·게시글 삭제 같은 민감한 작업도 그대로 처리해 버릴 수 있습니다.</p>
+<p>이 빈틈을 막기 위해, “이 요청이 정말 내가 렌더링한 화면에서 사용자가 직접 보낸 것인지”를 한 번 더 확인해 주는 신호, 즉 CSRF 토큰이 필요합니다.</p>
+<hr>
+<h2 id="스프링-시큐리티의-csrf-기본-동작" class="post-heading post-heading__h2">스프링 시큐리티의 CSRF 기본 동작</h2>
+<blockquote>
+<p>이 글에서는 폼 기반 전통적인 MVC 웹 앱(Thymeleaf, JSP)**이고, http.csrf() 기본 설정을 쓰는 경우를 전제로 합니다.</p>
+</blockquote>
+<p>스프링 시큐리티는 CSRF 공격을 막기 위해 서버에서 임의의 CSRF 토큰을 만들고, 렌더링 엔진(Thymeleaf, JSP 등)이 폼(&lt;form&gt;)으로 요청을 보낼 때 이 토큰을 함께 보내도록 한 뒤, 서버에서 이 토큰을 검증하는 방식으로 문제를 해결합니다.</p>
+<hr>
+<h3 id="csrf-아키텍처-한눈에-보기" class="post-heading post-heading__h3">CSRF 아키텍처 한눈에 보기</h3>
+<p><img alt="spring-security-csrf-architecture" loading="lazy" decoding="async" src="/images/posts/개발/백엔드/스프링/스프링 시큐리티/spring-security-csrf-architecture.png" style="cursor: zoom-in;"></p>
+<hr>
+<p>기본적으로 http.csrf()로 스프링 시큐리티의 CSRF 보호 기능을 활성화하면, 요청은 위 그림과 같은 흐름으로 처리되며, SecurityFilterChain에 등록된 CsrfFilter는 요청의 HTTP 메서드에 따라 다른 방식으로 동작합니다.</p>
+<ul>
+<li><strong>Safe/Unsafe 를 판단하는 CSRF RequetsMatcher 구현체</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DefaultRequiresCsrfMatcher</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">RequestMatcher</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3">        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> HashSet&lt;String&gt; allowedMethods = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;(Arrays.asList(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"HEAD"</span>, <span class="hljs-string">"TRACE"</span>, <span class="hljs-string">"OPTIONS"</span>));</span>
+<span class="code-line numbered-code-line" data-line-number="4"></span>
+<span class="code-line numbered-code-line" data-line-number="5">        <span class="hljs-meta">@Override</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">        <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">matches</span><span class="hljs-params">(HttpServletRequest request)</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="7">            <span class="hljs-keyword">return</span> !<span class="hljs-built_in">this</span>.allowedMethods.contains(request.getMethod());</span>
+<span class="code-line numbered-code-line" data-line-number="8">        }</span>
+<span class="code-line numbered-code-line" data-line-number="9"></span>
+<span class="code-line numbered-code-line" data-line-number="10">        <span class="hljs-meta">@Override</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">        <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="12">            <span class="hljs-keyword">return</span> <span class="hljs-string">"CsrfNotRequired "</span> + <span class="hljs-built_in">this</span>.allowedMethods;</span>
+<span class="code-line numbered-code-line" data-line-number="13">        }</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">    }</span>
+<span class="code-line numbered-code-line" data-line-number="16">}</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>Safe HTTP 메서드 (GET, HEAD, OPTIONS, TRACE, ...)</strong></p>
+<p>서버 상태를 바꾸지 않는다고 가정하고, CSRF 토큰 검사는 건너뜁니다.</p>
+</li>
+<li>
+<p><strong>Unsafe HTTP 메서드 (POST, PUT, PATCH, DELETE, ...)</strong></p>
+<p>서버 상태를 변경할 수 있기 때문에, 요청에 CSRF 토큰이 함께 왔는지, 그리고 그 값이 서버에 저장된 토큰과 일치하는지 확인한 뒤에만 처리를 계속합니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="언제-csrf-토큰이-만들어지는가" class="post-heading post-heading__h3">언제 CSRF 토큰이 만들어지는가</h3>
+<blockquote>
+<p>Spring Security 5와 6에서 CSRF 토큰을 다루는 방식에 약간 차이가 있으나, 이 글에서는 Spring Security 6 기준으로 설명하며,
+기본값인 HttpSessionCsrfTokenRepository를 사용해, 서버 세션에 CSRF 토큰을 저장하는 전통적인 MVC 웹 애플리케이션(Thymeleaf, JSP)을 전제로 합니다.</p>
+</blockquote>
+<p><strong>Spring Security 6</strong>에서는 필요할 때까지 <strong>CSRF 토큰 생성을 미루는(deferred) 방식</strong>을 사용합니다.
+여기서 “필요할 때까지 미룬다”는 것은, 뷰 렌더링 과정에서 <code>_csrf</code> 속성에 실제로 접근하는 시점에 CsrfTokenRepository에서 토큰을 생성·조회한다는 뜻입니다.</p>
+<p>사용자가 GET으로 페이지를 처음 요청하면, CsrfFilter는 내부에서 CsrfTokenRepository를 통해 이 세션에서 사용할 CSRF 토큰을 준비하고,
+이를 HttpServletRequest의 <code>_csrf</code> 속성에 넣어 Thymeleaf 같은 렌더링 엔진이 토큰 값을 꺼내 hidden 필드로 렌더링할 수 있도록 제공합니다.</p>
+<ul>
+<li>
+<p><strong><code>_csrf</code> 사용 예시 (Thymeleaf 기반 송금 폼)</strong></p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">form</span> <span class="hljs-tag hljs-attr">action</span>=<span class="hljs-tag hljs-string">"https://bank.com/transfer"</span> <span class="hljs-tag hljs-attr">method</span>=<span class="hljs-tag hljs-string">"post"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">    &lt;<span class="hljs-tag hljs-name">label</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="3">        받는 사람 계좌:</span>
+<span class="code-line numbered-code-line" data-line-number="4">        &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"text"</span> <span class="hljs-tag hljs-attr">name</span>=<span class="hljs-tag hljs-string">"to"</span>/&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="5">    &lt;/<span class="hljs-tag hljs-name">label</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6">    &lt;<span class="hljs-tag hljs-name">label</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="7">        금액:</span>
+<span class="code-line numbered-code-line" data-line-number="8">        &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"number"</span> <span class="hljs-tag hljs-attr">name</span>=<span class="hljs-tag hljs-string">"amount"</span>/&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9">    &lt;/<span class="hljs-tag hljs-name">label</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="10"></span>
+<span class="code-line numbered-code-line" data-line-number="11">    &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"hidden"</span></span>
+<span class="code-line numbered-code-line" data-line-number="12">           <span class="hljs-tag hljs-attr">name</span>=<span class="hljs-tag hljs-string">"${_csrf.parameterName}"</span></span>
+<span class="code-line numbered-code-line" data-line-number="13">           <span class="hljs-tag hljs-attr">value</span>=<span class="hljs-tag hljs-string">"${_csrf.token}"</span>/&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">    &lt;<span class="hljs-tag hljs-name">input</span> <span class="hljs-tag hljs-attr">type</span>=<span class="hljs-tag hljs-string">"submit"</span> <span class="hljs-tag hljs-attr">value</span>=<span class="hljs-tag hljs-string">"송금하기"</span>/&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="16">&lt;/<span class="hljs-tag hljs-name">form</span>&gt;</span>
+</code></pre></figure>
+<p>예를 들어, 사용자가 인터넷 뱅킹 화면에서 송금 폼을 제출할 때는 위와 같이 CSRF 토큰이 hidden 필드로 함께 전송됩니다</p>
+<p>이 hidden 필드는 사용자가 실제로 bank.com에서 연 화면에서만 올바른 값으로 채워질 수 있기 때문에, 서버는 토큰의 존재 여부와 값 일치를 검사해서 악성 사이트(devil.com)에서 위조한 요청을 쉽게 걸러낼 수 있습니다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="어떻게-csrf-토큰을-검증하는가" class="post-heading post-heading__h3">어떻게 CSRF 토큰을 검증하는가</h3>
+<p>CSRF 토큰 검증은 SecurityFilterChain 안의 <code>CsrfFilter</code>에서 이루어지며, 기본적으로 아래와 같이 동작합니다.</p>
+<ol>
+<li>
+<p><strong>CSRF 검사가 필요한 요청인지 확인한다.</strong></p>
+<ul>
+<li><code>CsrfFilter</code>는 먼저 HTTP 메서드를 보고 이 요청이 CSRF 보호 대상인지 확인합니다.</li>
+<li>기본 설정에서는 POST, PUT, PATCH, DELETE 같은 <strong>Unsafe 메서드</strong>만 CSRF 검사를 수행합니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>서버에 저장된 CSRF 토큰 로드</strong></p>
+<ul>
+<li>보호 대상 요청이면, <code>CsrfFilter</code>는 <code>CsrfTokenRepository</code>에서 이 세션에 저장된 CSRF 토큰을 조회합니다.</li>
+<li>이 글에서는 기본값인 <code>HttpSessionCsrfTokenRepository</code>를 사용하므로, 서버 세션(HttpSession)에 저장된 토큰 값을 꺼내 온다고 이해하면 됩니다.</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CsrfFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">OncePerRequestFilter</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    ...</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-meta">@Override</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilterInternal</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">            <span class="hljs-keyword">throws</span> ServletException, IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="6">        <span class="hljs-type">DeferredCsrfToken</span> <span class="hljs-variable">deferredCsrfToken</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.tokenRepository.loadDeferredToken(request, response);</span>
+<span class="code-line numbered-code-line" data-line-number="7">        ...</span>
+<span class="code-line numbered-code-line" data-line-number="8">        <span class="hljs-type">CsrfToken</span> <span class="hljs-variable">csrfToken</span> <span class="hljs-operator">=</span> deferredCsrfToken.get(); <span class="hljs-comment">// 서버에 저장된 토큰 로드     </span></span>
+<span class="code-line numbered-code-line" data-line-number="9">    }</span>
+<span class="code-line numbered-code-line" data-line-number="10">}</span>
+</code></pre></figure>
+</li>
+<li>
+<p><strong>클라이언트가 보낸 CSRF 토큰 추출</strong></p>
+<ul>
+<li>이어서 <code>CsrfTokenRequestHandler</code>가 HTTP 요청에서 실제로 넘어온 토큰 값을 읽어옵니다.</li>
+<li>이 값은 폼 필드(<code>_csrf</code> 파라미터)나 헤더(<code>X-CSRF-TOKEN</code> 등)에 들어 있으며, 앞에서 본 송금 폼의 hidden 필드에 있던 값이 바로 여기로 전달됩니다.</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CsrfFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">OncePerRequestFilter</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    ...</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-meta">@Override</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilterInternal</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">            <span class="hljs-keyword">throws</span> ServletException, IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="6">        ...</span>
+<span class="code-line numbered-code-line" data-line-number="7">        <span class="hljs-type">String</span> <span class="hljs-variable">actualToken</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.requestHandler.resolveCsrfTokenValue(request, csrfToken); <span class="hljs-comment">// 클라이언트가 전송한 CSRF 토큰 추출 </span></span>
+<span class="code-line numbered-code-line" data-line-number="8">    }</span>
+<span class="code-line numbered-code-line" data-line-number="9">}</span>
+</code></pre></figure>
+<ol start="4">
+<li>
+<p><strong>두 토큰을 비교해 일치 여부 검사</strong></p>
+<ul>
+<li>서버에 저장된 토큰 값과, 클라이언트가 보낸 토큰 값이 모두 존재하고 서로 일치하면 CSRF 검증을 통과하고, 필터 체인이 계속 진행됩니다.</li>
+<li>토큰이 없거나 값이 다르면 <code>AccessDeniedException</code>이 발생하고, 기본 설정에서는 403 Forbidden 응답을 반환하여 해당 요청을 차단합니다.</li>
+</ul>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CsrfFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">OncePerRequestFilter</span> {</span>
+<span class="code-line numbered-code-line" data-line-number="2">    ...</span>
+<span class="code-line numbered-code-line" data-line-number="3">    <span class="hljs-meta">@Override</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilterInternal</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">            <span class="hljs-keyword">throws</span> ServletException, IOException {</span>
+<span class="code-line numbered-code-line" data-line-number="6">        ...</span>
+<span class="code-line numbered-code-line" data-line-number="7">        <span class="hljs-keyword">if</span> (!equalsConstantTime(csrfToken.getToken(), actualToken)) {</span>
+<span class="code-line numbered-code-line" data-line-number="8">         </span>
+<span class="code-line numbered-code-line" data-line-number="9">            <span class="hljs-comment">// 일치하지 않는 경우, accessDeniedHandler 를 호출해 차단한다.</span></span>
+<span class="code-line numbered-code-line" data-line-number="10">            <span class="hljs-built_in">this</span>.accessDeniedHandler.handle(request, response, exception);</span>
+<span class="code-line numbered-code-line" data-line-number="11">            <span class="hljs-keyword">return</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="12">        }</span>
+<span class="code-line numbered-code-line" data-line-number="13"></span>
+<span class="code-line numbered-code-line" data-line-number="14">        <span class="hljs-comment">// 일치하는 경우, 요청을 이후 필터로 넘긴다. </span></span>
+<span class="code-line numbered-code-line" data-line-number="15">        filterChain.doFilter(request, response);</span>
+<span class="code-line numbered-code-line" data-line-number="16">    }</span>
+<span class="code-line numbered-code-line" data-line-number="17">}</span>
+</code></pre></figure>
+<p>Spring Security는 두 토큰을 비교할 때 equalsConstantTime을 사용해, 문자열이 얼마나 일치하는지에 따라 비교 시간이 달라지는 것을 막음으로써 타이밍 공격으로 토큰 값을 유추하는 가능성을 줄입니다.</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="devilcom-폼에서는-왜-이-토큰을-맞출-수-없는가" class="post-heading post-heading__h3">"devil.com" 폼에서는 왜 이 토큰을 맞출 수 없는가</h3>
+<p>사용자가 bank.com에 접속해 송금 폼을 열면, 서버는 이 세션만을 위해 생성한 CSRF 토큰을 세션에 저장하고, 동시에 뷰 렌더링 시 <code>_csrf</code> 속성을 통해 hidden 필드에 심어 둡니다.
+bank.com이 렌더링한 HTML 안에서만 이 값을 알 수 있어 자바스크립트로 쿠키에 직접 접근하지 않는 한, 외부 사이트에서는 이 값을 읽어올 수 없습니다.</p>
+<p>반면, devil.com은 오직 "사용자가 이미 가진 bank.com 세션 쿠키"에만 의존해서 <a href="https://bank.com/transfer%EB%A1%9C">https://bank.com/transfer로</a> POST 요청을 보낼 수 있을 뿐, 현재 세션의 CSRF 토큰 값을 알 수 없습니다.
+결국 devil.com에서 보낸 위조 요청은 세션 쿠키(JSESSIONID)는 유효하더라도, CSRF 토큰 값이 없거나 틀렸기 때문에 CsrfFilter에서 <code>403 Forbidden</code>으로 차단됩니다.</p>
+<blockquote>
+<p>(참고) 최근 브라우저들은 기본 SameSite=Lax 정책으로, 단순 폼 제출과 같은 일부 cross-site 요청에 쿠키 전송 자체를 제한해 CSRF 위험을 어느 정도 줄여 줍니다.
+다만 SameSite 설정만으로는 모든 케이스에 대해 안전하다고 할 수 없으며, 레거시 브라우저도 고려해야 하기에 Spring Security의 CSRF 토큰 검증은 여전히 중요하게 사용됩니다.</p>
+</blockquote>
+<hr>
+<h2 id="rest-apispa에서의-csrf-처리-방법" class="post-heading post-heading__h2">REST API·SPA에서의 CSRF 처리 방법</h2>
+<p>지금까지 살펴본 동작은 <strong>기본값인 HttpSessionCsrfTokenRepository를 사용하는, 서버 세션 기반(MVC + 폼) CSRF 처리 방식</strong>입니다.</p>
+<p>SPA(React, Vue 등)에서는 대부분 JWT 같은 토큰 기반 인증을 사용합니다.
+이때 토큰을 Authorization: Bearer ... 헤더처럼 클라이언트 코드가 직접 붙여 보내는 구조라면, 브라우저가 자동으로 자격 증명을 전송하지 않기 때문에 전통적인 CSRF 공격을 상대적으로 덜 의식해도 됩니다.</p>
+<blockquote>
+<p>Spring Security 공식 문서에서는 완전한 토큰 기반 REST API 의 경우, <code>http.csrf().disable()</code>을 선택지로 고려할 수 있다고 안내합니다.</p>
+</blockquote>
+<p>하지만 SPA에서 세션 쿠키나 HttpOnly 액세스 토큰 쿠키처럼 브라우저가 자동으로 전송하는 쿠키 기반 인증을 사용하는 경우,
+여전히 CSRF 공격에 노출될 수 있으므로 CookieCsrfTokenRepository를 사용하도록 설정하여 CSRF 토큰을 쿠키(XSRF-TOKEN)로 내려보내고,
+프론트엔드에서 이 값을 읽어 X-XSRF-TOKEN 같은 헤더로 다시 보내도록 구성하는 방식이 많이 사용됩니다.</p>
+<hr>
+<h3 id="쿠키-기반-인증-방식-사용하기" class="post-heading post-heading__h3">쿠키 기반 인증 방식 사용하기</h3>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVA</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-java"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-meta">@Bean</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">SecurityFilterChain <span class="hljs-title function_">securityFilterChain</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception {</span>
+<span class="code-line numbered-code-line" data-line-number="3">    http</span>
+<span class="code-line numbered-code-line" data-line-number="4">        .csrf(csrf -&gt; csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())</span>
+<span class="code-line numbered-code-line" data-line-number="5">        );</span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-keyword">return</span> http.build();</span>
+<span class="code-line numbered-code-line" data-line-number="7">}</span>
+</code></pre></figure>
+<p>CookieCsrfTokenRepository.withHttpOnlyFalse()로 바꾸면, 같은 CsrfFilter 코드 안에서 tokenRepository 구현체만 CookieCsrfTokenRepository로 교체되어, 세션 대신 쿠키(XSRF-TOKEN)에 저장된 토큰 값과 헤더(X-XSRF-TOKEN)로 넘어온 값을 비교하는 쿠키 기반 방식으로 동작하게 됩니다.</p>
+<p>결국 <strong>“서버가 기억하고 있는 토큰 값과, 클라이언트가 보낸 토큰 값을 비교해서 일치하면 통과시키고, 다르면 403으로 막는다”</strong> 는 큰 구조 자체는 그대로 유지됩니다.</p></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20CORS%EB%8A%94%20%EC%99%9C%20%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0%2C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20JWT(JSON%20Web%20Token)%EB%8A%94%20%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0%2C%20%EC%99%9C%20%EC%93%B0%EB%8A%94%EA%B0%80" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%20%ED%9D%90%EB%A6%84%EA%B3%BC%20%EB%8F%99%EC%9E%91%20%EA%B5%AC%EC%A1%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증 흐름과 동작 구조</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%9D%B8%EC%A6%9D%C2%B7%EC%9D%B8%EA%B0%80%EC%99%80%20%EC%84%B8%EC%85%98%20vs%20%ED%86%A0%ED%81%B0" data-discover="true"><span class="connector">├</span><span>스프링 시큐리티: 인증·인가와 세션 vs 토큰</span></a></li><li><a class="related-posts__item" href="/posts/%EA%B0%9C%EB%B0%9C/%EB%B0%B1%EC%97%94%EB%93%9C/%EC%8A%A4%ED%94%84%EB%A7%81/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%3A%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%B3%B4%EC%95%88%20%EC%86%94%EB%A3%A8%EC%85%98" data-discover="true"><span class="connector">└</span><span>스프링 시큐리티: 스프링 애플리케이션 보안 솔루션</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520CSRF%2520%25EB%25B3%25B4%25ED%2598%25B8%25EB%258A%2594%2520%25EC%2599%259C%2520%25ED%2595%2584%25EC%259A%2594%25ED%2595%2598%25EA%25B3%25A0%252C%2520%25EC%2596%25B4%25EB%2596%25BB%25EA%25B2%258C%2520%25EB%258F%2599%25EC%259E%2591%25ED%2595%25A0%25EA%25B9%258C&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EC%97%90%EC%84%9C+CSRF+%EB%B3%B4%ED%98%B8%EA%B0%80+%EC%99%9C+%ED%95%84%EC%9A%94%ED%95%9C%EC%A7%80%2C+%EC%84%B8%EC%85%98%C2%B7%EC%BF%A0%ED%82%A4%EB%A5%BC+%EC%A0%84%EC%A0%9C%EB%A1%9C+%ED%86%A0%ED%81%B0%EC%9D%B4+%EC%96%B8%EC%A0%9C+%EC%83%9D%EC%84%B1%EB%90%98%EA%B3%A0+%EC%96%B4%EB%96%BB%EA%B2%8C+%EA%B2%80%EC%A6%9D%EB%90%98%EB%8A%94%EC%A7%80%2C+%EA%B7%B8%EB%A6%AC%EA%B3%A0+REST+API%C2%B7SPA+%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C+csrf%28%29.disable%28%29%EA%B3%BC+CookieCsrfTokenRepository%EB%A5%BC+%EC%96%B8%EC%A0%9C+%EC%96%B4%EB%96%BB%EA%B2%8C+%EC%8D%A8%EC%95%BC+%ED%95%98%EB%8A%94%EC%A7%80%EB%A5%BC+%EC%A0%95%EB%A6%AC%ED%95%9C+%EA%B8%80%EC%9E%85%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520CSRF%2520%25EB%25B3%25B4%25ED%2598%25B8%25EB%258A%2594%2520%25EC%2599%259C%2520%25ED%2595%2584%25EC%259A%2594%25ED%2595%2598%25EA%25B3%25A0%252C%2520%25EC%2596%25B4%25EB%2596%25BB%25EA%25B2%258C%2520%25EB%258F%2599%25EC%259E%2591%25ED%2595%25A0%25EA%25B9%258C&amp;term=posts%2F%25EA%25B0%259C%25EB%25B0%259C%2F%25EB%25B0%25B1%25EC%2597%2594%25EB%2593%259C%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%2F%25EC%258A%25A4%25ED%2594%2584%25EB%25A7%2581%2520%25EC%258B%259C%25ED%2581%2590%25EB%25A6%25AC%25ED%258B%25B0%253A%2520CSRF%2520%25EB%25B3%25B4%25ED%2598%25B8%25EB%258A%2594%2520%25EC%2599%259C%2520%25ED%2595%2584%25EC%259A%2594%25ED%2595%2598%25EA%25B3%25A0%252C%2520%25EC%2596%25B4%25EB%2596%25BB%25EA%25B2%258C%2520%25EB%258F%2599%25EC%259E%2591%25ED%2595%25A0%25EA%25B9%258C" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#csrfcross-site-request-forgery란-무엇인가" class="toc__item active" style="padding-left: 12px;">CSRF(Cross-Site Request Forgery)란 무엇인가</a><a href="#세션쿠키는-어떻게-만들어지는가" class="toc__item" style="padding-left: 26px;">세션·쿠키는 어떻게 만들어지는가</a><a href="#만들어진-쿠키는-어떻게-전송되는가" class="toc__item" style="padding-left: 26px;">만들어진 쿠키는 어떻게 전송되는가</a><a href="#왜-csrf-보호가-필요한가" class="toc__item" style="padding-left: 26px;">왜 CSRF 보호가 필요한가</a><a href="#스프링-시큐리티의-csrf-기본-동작" class="toc__item" style="padding-left: 12px;">스프링 시큐리티의 CSRF 기본 동작</a><a href="#csrf-아키텍처-한눈에-보기" class="toc__item" style="padding-left: 26px;">CSRF 아키텍처 한눈에 보기</a><a href="#언제-csrf-토큰이-만들어지는가" class="toc__item" style="padding-left: 26px;">언제 CSRF 토큰이 만들어지는가</a><a href="#어떻게-csrf-토큰을-검증하는가" class="toc__item" style="padding-left: 26px;">어떻게 CSRF 토큰을 검증하는가</a><a href="#devilcom-폼에서는-왜-이-토큰을-맞출-수-없는가" class="toc__item" style="padding-left: 26px;">"devil.com" 폼에서는 왜 이 토큰을 맞출 수 없는가</a><a href="#rest-apispa에서의-csrf-처리-방법" class="toc__item" style="padding-left: 12px;">REST API·SPA에서의 CSRF 처리 방법</a><a href="#쿠키-기반-인증-방식-사용하기" class="toc__item" style="padding-left: 26px;">쿠키 기반 인증 방식 사용하기</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/개발/백엔드/스프링/스프링 시큐리티</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>

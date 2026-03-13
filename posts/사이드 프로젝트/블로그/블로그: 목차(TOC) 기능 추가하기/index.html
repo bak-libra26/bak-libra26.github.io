@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="ko" data-theme="github-light"><head><link id="giscus-css" rel="stylesheet" href="https://giscus.app/default.css">
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+
+  <link rel="canonical" href="https://bak-libra26.co.kr/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="sim.junghun RSS" href="https://bak-libra26.co.kr/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="sim.junghun Atom" href="https://bak-libra26.co.kr/atom.xml">
+
+  <!-- Default OG -->
+  <meta property="og:site_name" content="sim.junghun — 개발 블로그">
+  <meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- SPA redirect for GitHub Pages -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+
+  <!-- AdSense -->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945417625760085" crossorigin="anonymous"></script>
+
+  <script type="module" crossorigin="" src="/assets/index-BO5ZeGmg.js"></script>
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-react-D2kupECk.js">
+  <link rel="modulepreload" crossorigin="" href="/assets/vendor-markdown-CLfPX4qs.js">
+  <link rel="stylesheet" crossorigin="" href="/assets/index-BiIXt7I-.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsResolver-BMuWErOh.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/PostsPage-CflEOTh4.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/SeoHelper-Bp8Bh1M3.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/href-util-CEPWT0Zm.js"><link rel="stylesheet" crossorigin="" href="/assets/PostsPage-C0BsmGSl.css"><link rel="stylesheet" crossorigin="" href="/assets/PostsResolver-TFLvx_bZ.css"><title>블로그: 목차(TOC) 기능 추가하기 - bak-libra26</title><meta name="author" content="sim.junghun"><meta name="description" content="블로그 글 상세 페이지에 사이드바 목차(TOC; Table Of Contents) 를 직접 붙인 과정 정리한 글입니다. 마크다운 본문에서 Heading(h2 ~ h4) 를 추출한 후, 목차를 만들어 목차 텍스트를 클릭하면 해당 헤딩 위치로 이동할 수 있도록 했습니다."><meta name="theme-color" content="#0A0A0F"><link rel="canonical" href="https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기"><meta property="og:type" content="article"><meta property="og:title" content="블로그: 목차(TOC) 기능 추가하기 - bak-libra26"><meta property="og:description" content="블로그 글 상세 페이지에 사이드바 목차(TOC; Table Of Contents) 를 직접 붙인 과정 정리한 글입니다. 마크다운 본문에서 Heading(h2 ~ h4) 를 추출한 후, 목차를 만들어 목차 텍스트를 클릭하면 해당 헤딩 위치로 이동할 수 있도록 했습니다."><meta property="og:url" content="https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기"><meta property="og:site_name" content="sim.junghun"><meta property="og:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-02-16T15:09:52.000Z"><meta property="article:modified_time" content="2026-02-16T15:09:52.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="블로그: 목차(TOC) 기능 추가하기 - bak-libra26"><meta name="twitter:description" content="블로그 글 상세 페이지에 사이드바 목차(TOC; Table Of Contents) 를 직접 붙인 과정 정리한 글입니다. 마크다운 본문에서 Heading(h2 ~ h4) 를 추출한 후, 목차를 만들어 목차 텍스트를 클릭하면 해당 헤딩 위치로 이동할 수 있도록 했습니다."><meta name="twitter:image" content="https://bak-libra26.co.kr/images/og-default.png"><meta name="prerender-status" content="200" />
+</head>
+
+<body>
+  <div id="root"><div class="loading-overlay"><div class="tf loading-terminal"><div class="tf-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="tf-title">apt-get install blog</span></div><div class="tf-body"><div><span class="prompt-dollar">$</span> sudo apt-get install sim.junghun-blog</div><div class="step-line"><span class="dim">Reading package lists...</span></div><div class="step-line"><span class="ok">Get:1</span> <span class="pkg">blog-core</span> <span class="dim">(2.0.0)</span></div><div class="step-line"><span class="ok">Get:2</span> <span class="pkg">terminal-vibes</span> <span class="dim">(1.3.7)</span></div><div class="step-line"><span class="dim">Building dependency tree...</span></div><div class="step-line"><span class="dim">Unpacking</span> <span class="pkg">sim.junghun-blog</span> <span class="dim">...</span></div><div class="loading-progress-row"><div class="loading-progress-bar"><div class="fill" style="width: 73%;"></div></div><span class="loading-progress-pct">73%</span></div><div><span class="prompt-dollar">$</span> <span class="cursor-block"></span></div></div></div></div><div id="wrap"><a href="#main-content" class="skip-link">Skip to content</a><header class="header"><div class="header-inner"><div class="header-left"><a class="header-logo" href="/" data-discover="true">sim<span class="accent">.</span>junghun</a><nav><ul class="header-nav"><li><a data-active="false" href="/" data-discover="true">home</a></li><li><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a></li><li><a data-active="false" href="/about" data-discover="true">about</a></li></ul></nav></div><div class="header-right"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div><button class="header-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">☰</button></div></div></header><nav id="mobile-nav" class="header-drawer"><a data-active="false" href="/" data-discover="true">home</a><a data-active="true" aria-current="page" href="/posts" data-discover="true">posts</a><a data-active="false" href="/about" data-discover="true">about</a><div class="header-drawer__theme"><div class="theme-dropdown"><span class="theme-label">Theme:</span><button class="theme-dropdown__trigger" aria-label="Change theme"><span>GitHub Light</span><span class="theme-dropdown__arrow">▾</span></button></div></div></nav><main id="main-content" class="main"><div class="container"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"블로그: 목차(TOC) 기능 추가하기 - bak-libra26","description":"블로그 글 상세 페이지에 사이드바 목차(TOC; Table Of Contents) 를 직접 붙인 과정 정리한 글입니다. 마크다운 본문에서 Heading(h2 ~ h4) 를 추출한 후, 목차를 만들어 목차 텍스트를 클릭하면 해당 헤딩 위치로 이동할 수 있도록 했습니다.","url":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기","image":"https://bak-libra26.co.kr/images/og-default.png","inLanguage":"ko","keywords":"","datePublished":"2026-02-16T15:09:52.000Z","dateModified":"2026-02-16T15:09:52.000Z","author":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"publisher":{"@type":"Person","name":"sim.junghun","url":"https://bak-libra26.co.kr"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bak-libra26.co.kr"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://bak-libra26.co.kr/posts"},{"@type":"ListItem","position":3,"name":"블로그: 목차(TOC) 기능 추가하기 - bak-libra26","item":"https://bak-libra26.co.kr/posts/사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기"}]}</script><article class="post-detail"><section class="post-detail__article"><div class="prompt" style="margin-bottom: 20px;"><span class="path">~/posts/사이드 프로젝트/블로그</span><span class="dollar">$</span><span class="cmd">cat</span><span class="args">"블로그: 목차(TOC) 기능 추가하기.md"</span></div><nav class="detail-breadcrumb"><span><a href="/posts/사이드 프로젝트" data-discover="true">사이드 프로젝트</a></span><span><span class="sep">/</span><span class="current">블로그</span></span></nav><header class="post-meta"><h1 class="post-detail__title">블로그: 목차(TOC) 기능 추가하기</h1><div class="post-detail__meta"><span>2026-02-17</span><span class="sep">·</span><span>4 min read</span></div></header><hr class="dashed-divider" style="margin-top: 0px;"><nav class="series-nav"><button type="button" class="series-nav__header" aria-expanded="true"><div><span class="label">SERIES</span><span class="title">· 블로그</span><span class="count">(4/6)</span></div><span class="arrow">▾</span></button><div class="series-nav__list"><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20GISCUS%20%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%EB%8C%93%EA%B8%80%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">1.</span><span class="check">✓</span><span>블로그: GISCUS 를 통한 댓글 기능 구현하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%20%ED%8C%8C%EC%9D%BC%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%ED%8F%AC%EC%8A%A4%ED%8C%85%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">2.</span><span class="check">✓</span><span>블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기</span></a><a class="series-nav__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">3.</span><span class="check">✓</span><span>블로그: 마크다운을 HTML로 변환하기</span></a><a class="series-nav__item active" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%AA%A9%EC%B0%A8(TOC)%20%EA%B8%B0%EB%8A%A5%20%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">4.</span><span class="current-marker">→</span><span>블로그: 목차(TOC) 기능 추가하기 (현재)</span></a><a class="series-nav__item future" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">5.</span><span style="min-width: 16px;"></span><span>블로그: 메타 태그 최적화하기</span></a><a class="series-nav__item future" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EA%B9%83%ED%97%88%EB%B8%8C%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="num">6.</span><span style="min-width: 16px;"></span><span>블로그: 깃허브 페이지 배포하기</span></a></div><div class="series-nav__footer"><a href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0" data-discover="true">← prev</a><a href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true">next →</a></div></nav><main class="detail-body"><blockquote>
+<p>이 글은 블로그 글을 읽을 때 상단·사이드에 보이는 목차(TOC) 영역을 직접 구현하는 과정을 정리한 글입니다.</p>
+</blockquote>
+<h2 id="목차란-무엇인가" class="post-heading post-heading__h2">목차란 무엇인가?</h2>
+<p>소제목(h2 ~ h4)이 많은 긴 글에서는 <strong>목차(TOC)</strong> 가 있느냐 없느냐에 따라 읽기 경험이 상당한 차이가 생기게 됩니다.
+목차는 어떤 내용들이 있는지, 지금 내가 글의 어디쯤에 있는지를 한눈에 볼 수 있게하고 원하는 섹션으로 바로 이동했다가 다시 돌아오게 해주기 때문에
+글이 더 읽기 편해지고, 블로그 자체도 조금 더 완성된 느낌을 줄 수 있습니다.</p>
+<hr>
+<h3 id="기본-원리" class="post-heading post-heading__h3">기본 원리</h3>
+<p>목차를 구현하는 가장 기본적인 방법은 <code>a</code> 태그의 <code>href</code> 속성으로 <code>h1 ~ h5</code> 같은 제목 태그의 <code>id</code>를 연결하는 것입니다.
+이렇게 연결해 두면 사용자가 링크를 클릭했을 때 브라우저가 자동으로 해당 제목 위치로 스크롤을 이동합니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">&lt;<span class="hljs-tag hljs-name">h2</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"intro"</span>&gt;intro&lt;/<span class="hljs-tag hljs-name">h2</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="2">&lt;<span class="hljs-tag hljs-name">a</span> <span class="hljs-tag hljs-attr">href</span>=<span class="hljs-tag hljs-string">"#intro"</span>&gt;intro로 가기&lt;/<span class="hljs-tag hljs-name">a</span>&gt;</span>
+</code></pre></figure>
+<p>이 글에서도 목차를 만들 때 같은 원리를 사용하는데 이를 위해서 마크다운에서 제목들을 뽑아 <code>id</code>를 만들고, 그 <code>id</code>에 맞춰 <code>a</code> 태그의 <code>href</code>를 설정합니다.</p>
+<hr>
+<h2 id="블로그-상세보기-페이지에-목차-만들기" class="post-heading post-heading__h2">블로그: 상세보기 페이지에 목차 만들기</h2>
+<blockquote>
+<p>중요! 목차가 제대로 동작하려면, 마크다운을 HTML로 변환할 때 각 <code>Heading</code>에 고유한 <code>id</code>를 설정해야 합니다.</p>
+</blockquote>
+<p>이 글에서는 이미 변환된 HTML에 <code>id</code>가 들어가 있다는 것을 전제로 목차를 구현합니다.
+아직 마크다운을 HTML로 변환하지 않았거나, <code>id</code> 값을 추가하는 방법을 모르신다면 먼저 <a href="https://bak-libra26.co.kr/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8:%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0">블로그: 마크다운을HTML로 변환하기</a> 글을 보고 와주세요.</p>
+<ul>
+<li><strong><code>id</code> 속성이 설정된 HTML 파일</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">HTML</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-html"><span class="code-line numbered-code-line" data-line-number="1">...</span>
+<span class="code-line numbered-code-line" data-line-number="2">&lt;<span class="hljs-tag hljs-name">body</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="3">   &lt;<span class="hljs-tag hljs-name">h2</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"목차toc란-무엇인가"</span> <span class="hljs-tag hljs-attr">class</span>=<span class="hljs-tag hljs-string">"post-heading post-heading__h2"</span>&gt;목차(TOC)란 무엇인가?&lt;/<span class="hljs-tag hljs-name">h2</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="4">   ...</span>
+<span class="code-line numbered-code-line" data-line-number="5">   &lt;<span class="hljs-tag hljs-name">h3</span> <span class="hljs-tag hljs-attr">id</span>=<span class="hljs-tag hljs-string">"목차toc-기본-원리"</span> <span class="hljs-tag hljs-attr">class</span>=<span class="hljs-tag hljs-string">"post-heading post-heading__h3"</span>&gt;목차(TOC) 기본 원리&lt;/<span class="hljs-tag hljs-name">h3</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="6">    ...</span>
+<span class="code-line numbered-code-line" data-line-number="7">&lt;/<span class="hljs-tag hljs-name">body</span>&gt;</span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="목차-컴포넌트-구성하기" class="post-heading post-heading__h3">목차: 컴포넌트 구성하기</h3>
+<p>이 글에서는 <code>&lt;article&gt;</code> 안에 본문을 담을 <code>&lt;section&gt;</code>과 사이드바를 위한 <code>&lt;aside&gt;</code> 를 분리하고, 사이드바(<code>&lt;aside&gt;</code>)에 목차를 배치하는 구조로 구현했습니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSX</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-jsx"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactMarkdown</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react-markdown"</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-keyword">const</span> <span class="hljs-title function_">PostDetailPage</span> = () =&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-keyword">const</span> post = ...</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-keyword">return</span> (</span>
+<span class="code-line numbered-code-line" data-line-number="7">        <span class="xml hljs-tag">&lt;&gt;</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">            &lt;<span class="xml hljs-tag hljs-name">article</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9">                </span>
+<span class="code-line numbered-code-line" data-line-number="10">                {/* 글 본문 */}</span>
+<span class="code-line numbered-code-line" data-line-number="11">                &lt;<span class="xml hljs-tag hljs-name">section</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="12">                    ...</span>
+<span class="code-line numbered-code-line" data-line-number="13">                &lt;/<span class="xml hljs-tag hljs-name">section</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">                {/* 사이드바: TOC 구현부 */}</span>
+<span class="code-line numbered-code-line" data-line-number="16">                &lt;<span class="xml hljs-tag hljs-name">aside</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="17">                    ...</span>
+<span class="code-line numbered-code-line" data-line-number="18">                &lt;/<span class="xml hljs-tag hljs-name">aside</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="19"></span>
+<span class="code-line numbered-code-line" data-line-number="20">            &lt;/<span class="xml hljs-tag hljs-name">article</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="21">        <span class="xml hljs-tag">&lt;/&gt;</span></span>
+<span class="code-line numbered-code-line" data-line-number="22">    )</span>
+<span class="code-line numbered-code-line" data-line-number="23">}</span>
+</code></pre></figure>
+<hr>
+<h3 id="목차-데이터-추출하기" class="post-heading post-heading__h3">목차: 데이터 추출하기</h3>
+<p>목차에는 글 본문에 있는 <code>h2 ~ h4</code> 헤딩 텍스트가 그대로 들어가게 했습니다.
+그래서 마크다운을 파싱하던 <code>MarkdownUtil</code>에 <code>toc</code> 메서드를 하나 추가하고 글을 불러올 때 글 본문의 헤딩 텍스트를 추출했습니다</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JAVASCRIPT</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-javascript"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> <span class="hljs-title class_">MarkdownUtil</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"./markdown-util"</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MarkdownUtil</span> = {</span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-title function_">toc</span>(<span class="hljs-params">{post}</span>) {</span>
+<span class="code-line numbered-code-line" data-line-number="5">       <span class="hljs-keyword">const</span> content = post.<span class="hljs-property">content</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="6">   </span>
+<span class="code-line numbered-code-line" data-line-number="7">       <span class="hljs-keyword">const</span> toc = [];</span>
+<span class="code-line numbered-code-line" data-line-number="8">       </span>
+<span class="code-line numbered-code-line" data-line-number="9">       <span class="hljs-comment">// 정규식을 통한 Heading 추출</span></span>
+<span class="code-line numbered-code-line" data-line-number="10">       <span class="hljs-keyword">const</span> matches = content.<span class="hljs-title function_">matchAll</span>(<span class="hljs-regexp">/^(#{2,5})\s+(.*)$/gm</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="11">   </span>
+<span class="code-line numbered-code-line" data-line-number="12">       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> match <span class="hljs-keyword">of</span> matches) {</span>
+<span class="code-line numbered-code-line" data-line-number="13">           <span class="hljs-keyword">const</span> hashes = match[<span class="hljs-number">1</span>];      <span class="hljs-comment">// hashes: "###"</span></span>
+<span class="code-line numbered-code-line" data-line-number="14">           <span class="hljs-keyword">const</span> level = hashes.<span class="hljs-property">length</span>;  <span class="hljs-comment">// level: 3</span></span>
+<span class="code-line numbered-code-line" data-line-number="15">           <span class="hljs-keyword">const</span> fullText = match[<span class="hljs-number">2</span>];    <span class="hljs-comment">// fullText: "[제목](#anchor)" 또는 "제목"</span></span>
+<span class="code-line numbered-code-line" data-line-number="16">   </span>
+<span class="code-line numbered-code-line" data-line-number="17">           <span class="hljs-keyword">const</span> linkMatch = fullText.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/^\[(.*?)\]\(.*?\)$/</span>);</span>
+<span class="code-line numbered-code-line" data-line-number="18">           <span class="hljs-keyword">const</span> text = linkMatch ? linkMatch[<span class="hljs-number">1</span>] : fullText.<span class="hljs-title function_">trim</span>();</span>
+<span class="code-line numbered-code-line" data-line-number="19">   </span>
+<span class="code-line numbered-code-line" data-line-number="20">           <span class="hljs-comment">// Heading 태그 `id` 에 들어갈 값  </span></span>
+<span class="code-line numbered-code-line" data-line-number="21">           <span class="hljs-keyword">const</span> slug = slugger.<span class="hljs-title function_">slug</span>(text);</span>
+<span class="code-line numbered-code-line" data-line-number="22">   </span>
+<span class="code-line numbered-code-line" data-line-number="23">           toc.<span class="hljs-title function_">push</span>({level, text, slug});</span>
+<span class="code-line numbered-code-line" data-line-number="24">       }</span>
+<span class="code-line numbered-code-line" data-line-number="25">   </span>
+<span class="code-line numbered-code-line" data-line-number="26">       <span class="hljs-keyword">return</span> toc;</span>
+<span class="code-line numbered-code-line" data-line-number="27">   }</span>
+<span class="code-line numbered-code-line" data-line-number="28">}</span>
+</code></pre></figure>
+<p><code>MarkdownUtil.toc()</code>로 글 본문에서 헤딩에 대한 데이터를 <code>{ level, text, slug }</code> 형태로 추출했습니다.
+이후 컴포넌트에서는 데이터를 받아서 <code>&lt;a href={#${slug}}&gt;{text}&lt;/a&gt;</code> 형태로 목차를 렌더링했습니다.</p>
+<ul>
+<li><strong>추출 데이터 예시</strong>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSON</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-json"><span class="code-line numbered-code-line" data-line-number="1">const toc = <span class="hljs-punctuation">[</span></span>
+<span class="code-line numbered-code-line" data-line-number="2">   <span class="hljs-punctuation">{</span></span>
+<span class="code-line numbered-code-line" data-line-number="3">      <span class="hljs-attr">"level"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="4">      <span class="hljs-attr">"text"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"목차(TOC)란 무엇인가?"</span></span>
+<span class="code-line numbered-code-line" data-line-number="5">      <span class="hljs-attr">"slug"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"목차toc란-무엇인가"</span></span>
+<span class="code-line numbered-code-line" data-line-number="6">   <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="7">   <span class="hljs-punctuation">{</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">      <span class="hljs-attr">"level"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="9">      <span class="hljs-attr">"text"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"목차(toc) 기본 원리"</span></span>
+<span class="code-line numbered-code-line" data-line-number="10">      <span class="hljs-attr">"slug"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"목차toc-기본-원리"</span></span>
+<span class="code-line numbered-code-line" data-line-number="11">   <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></span>
+<span class="code-line numbered-code-line" data-line-number="12">   ...</span>
+<span class="code-line numbered-code-line" data-line-number="13"><span class="hljs-punctuation">]</span></span>
+</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h3 id="목차-데이터-활용하기" class="post-heading post-heading__h3">목차: 데이터 활용하기</h3>
+<p>목차를 만들기위해 <code>PostDetailToc</code> 라는 컴포넌트를 만들었고 내부에서 <code>MarkdownUtil.toc()</code>로 <code>{ level, text, slug }</code> 형태로 만든 데이터를 사용했습니다.</p>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSX</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-jsx"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">const</span> <span class="hljs-title function_">PostDetailToc</span> = (<span class="hljs-params">{ post }</span>) =&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="2">   <span class="hljs-keyword">const</span> toc = <span class="hljs-title class_">MarkdownUtil</span>.<span class="hljs-title function_">toc</span>({<span class="hljs-attr">post</span>: post});</span>
+<span class="code-line numbered-code-line" data-line-number="3">   ...</span>
+<span class="code-line numbered-code-line" data-line-number="4">   </span>
+<span class="code-line numbered-code-line" data-line-number="5">   <span class="hljs-keyword">return</span> (</span>
+<span class="code-line numbered-code-line" data-line-number="6">           &lt;<span class="xml hljs-tag hljs-name">aside</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">"toc"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="7">              &lt;<span class="xml hljs-tag hljs-name">div</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">"toc__title"</span>&gt;이 글의 목차&lt;/<span class="xml hljs-tag hljs-name">div</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="8">              &lt;<span class="xml hljs-tag hljs-name">nav</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">"toc__nav"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9">                 &lt;<span class="xml hljs-tag hljs-name">ol</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">"toc__list"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="10">                    {</span>
+<span class="code-line numbered-code-line" data-line-number="11">                       toc.map((item, index) =&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="12">                          const { level, text, slug } = item;</span>
+<span class="code-line numbered-code-line" data-line-number="13"></span>
+<span class="code-line numbered-code-line" data-line-number="14">                          return (</span>
+<span class="code-line numbered-code-line" data-line-number="15">                                  &lt;<span class="xml hljs-tag hljs-name">li</span> <span class="xml hljs-tag hljs-attr">key</span>=<span class="xml hljs-tag hljs-string">{slug}</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">toc__item</span> <span class="xml hljs-tag hljs-attr">toc__item--h</span>${<span class="xml hljs-tag hljs-attr">level</span>}`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="16">                                     &lt;<span class="xml hljs-tag hljs-name">a</span> <span class="xml hljs-tag hljs-attr">href</span>=<span class="xml hljs-tag hljs-string">{</span>`#${<span class="xml hljs-tag hljs-attr">slug</span>}`} <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">"toc__link"</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="17">                                        {text}</span>
+<span class="code-line numbered-code-line" data-line-number="18">                                     &lt;/<span class="xml hljs-tag hljs-name">a</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="19">                                  &lt;/<span class="xml hljs-tag hljs-name">li</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="20">                          );</span>
+<span class="code-line numbered-code-line" data-line-number="21">                       })</span>
+<span class="code-line numbered-code-line" data-line-number="22">                    }</span>
+<span class="code-line numbered-code-line" data-line-number="23">                 &lt;/<span class="xml hljs-tag hljs-name">ol</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="24">              &lt;/<span class="xml hljs-tag hljs-name">nav</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="25">           &lt;/<span class="xml hljs-tag hljs-name">aside</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="26">   );</span>
+<span class="code-line numbered-code-line" data-line-number="27">};</span>
+</code></pre></figure>
+<p>만약 적절한 <code>slug</code> 값을 <code>href</code> 에 할당하면, 이걸 클릭 했을 때 해당 <code>Heading</code>으로 화면이 이동합니다.
+저는 목차를 좀 더 예쁘게 만들기위해서 <code>toc__item--h2</code>, <code>toc__item--h3</code>와 같이 레벨별로 다른 클래스명을 부여해줬습니다.</p>
+<hr>
+<h3 id="목차-마무리" class="post-heading post-heading__h3">목차: 마무리</h3>
+<figure class="post-detail__code"><figcaption class="post-detail__code-header"><span class="post-detail__code-language">JSX</span></figcaption><pre class="post-detail__code-block hljs"><code class="hljs language-jsx"><span class="code-line numbered-code-line" data-line-number="1"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactMarkdown</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"react-markdown"</span>;</span>
+<span class="code-line numbered-code-line" data-line-number="2"></span>
+<span class="code-line numbered-code-line" data-line-number="3"><span class="hljs-keyword">const</span> <span class="hljs-title function_">PostDetailPage</span> = () =&gt; {</span>
+<span class="code-line numbered-code-line" data-line-number="4">    <span class="hljs-keyword">const</span> post = ...</span>
+<span class="code-line numbered-code-line" data-line-number="5"></span>
+<span class="code-line numbered-code-line" data-line-number="6">    <span class="hljs-keyword">return</span> (</span>
+<span class="code-line numbered-code-line" data-line-number="7">        <span class="xml hljs-tag">&lt;&gt;</span></span>
+<span class="code-line numbered-code-line" data-line-number="8">            &lt;<span class="xml hljs-tag hljs-name">article</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="9">                </span>
+<span class="code-line numbered-code-line" data-line-number="10">                {/* 글 본문 */}</span>
+<span class="code-line numbered-code-line" data-line-number="11">                &lt;<span class="xml hljs-tag hljs-name">section</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="12">                    ...</span>
+<span class="code-line numbered-code-line" data-line-number="13">                &lt;/<span class="xml hljs-tag hljs-name">section</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="14"></span>
+<span class="code-line numbered-code-line" data-line-number="15">                {/* 사이드바: TOC 구현부 */}</span>
+<span class="code-line numbered-code-line" data-line-number="16">                &lt;<span class="xml hljs-tag hljs-name">aside</span> <span class="xml hljs-tag hljs-attr">className</span>=<span class="xml hljs-tag hljs-string">{</span>`<span class="xml hljs-tag hljs-attr">...</span>`}&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="17">                    &lt;<span class="xml hljs-tag hljs-name">PostDetailToc</span> <span class="xml hljs-tag hljs-attr">post</span>=<span class="xml hljs-tag hljs-string">{post}</span> /&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="18">                &lt;/<span class="xml hljs-tag hljs-name">aside</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="19"></span>
+<span class="code-line numbered-code-line" data-line-number="20">            &lt;/<span class="xml hljs-tag hljs-name">article</span>&gt;</span>
+<span class="code-line numbered-code-line" data-line-number="21">        <span class="xml hljs-tag">&lt;/&gt;</span></span>
+<span class="code-line numbered-code-line" data-line-number="22">    )</span>
+<span class="code-line numbered-code-line" data-line-number="23">}</span>
+</code></pre></figure>
+<p>이렇게 구성하면 별도의 수작업 없이 자동으로 목차를 생성하고 사이드바에 표시되는 구조를 만들 수 있습니다</p>
+<hr></main><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="7492590861" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div><section class="related-posts"><div class="related-posts__title">related posts</div><ul class="related-posts__list"><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EA%B9%83%ED%97%88%EB%B8%8C%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 깃허브 페이지 배포하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A9%94%ED%83%80%20%ED%83%9C%EA%B7%B8%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 메타 태그 최적화하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%EC%9D%84%20HTML%EB%A1%9C%20%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 마크다운을 HTML로 변환하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%20%ED%8C%8C%EC%9D%BC%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%ED%8F%AC%EC%8A%A4%ED%8C%85%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">├</span><span>블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기</span></a></li><li><a class="related-posts__item" href="/posts/%EC%82%AC%EC%9D%B4%EB%93%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EB%B8%94%EB%A1%9C%EA%B7%B8%3A%20GISCUS%20%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%EB%8C%93%EA%B8%80%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" data-discover="true"><span class="connector">└</span><span>블로그: GISCUS 를 통한 댓글 기능 구현하기</span></a></li></ul></section><div style="width: 100%; margin-top: 4rem;"><section><script src="https://giscus.app/client.js" async="" crossorigin="anonymous" data-repo="bak-libra26/bak-libra26.github.io-comments" data-repo-id="R_kgDOQ2hXqw" data-category="General" data-category-id="DIC_kwDOQ2hXq84C0v_o" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="ko" data-loading="lazy"></script><div class="giscus"><iframe class="giscus-frame giscus-frame--loading" title="Comments" scrolling="no" allow="clipboard-write" src="https://giscus.app/ko/widget?origin=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EB%25AA%25A9%25EC%25B0%25A8%28TOC%29%2520%25EA%25B8%25B0%25EB%258A%25A5%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0&amp;session=&amp;theme=transparent_dark&amp;reactionsEnabled=1&amp;emitMetadata=0&amp;inputPosition=top&amp;repo=bak-libra26%2Fbak-libra26.github.io-comments&amp;repoId=R_kgDOQ2hXqw&amp;category=General&amp;categoryId=DIC_kwDOQ2hXq84C0v_o&amp;strict=0&amp;description=%EB%B8%94%EB%A1%9C%EA%B7%B8+%EA%B8%80+%EC%83%81%EC%84%B8+%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90+%EC%82%AC%EC%9D%B4%EB%93%9C%EB%B0%94+%EB%AA%A9%EC%B0%A8%28TOC%3B+Table+Of+Contents%29+%EB%A5%BC+%EC%A7%81%EC%A0%91+%EB%B6%99%EC%9D%B8+%EA%B3%BC%EC%A0%95+%EC%A0%95%EB%A6%AC%ED%95%9C+%EA%B8%80%EC%9E%85%EB%8B%88%EB%8B%A4.+%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4+%EB%B3%B8%EB%AC%B8%EC%97%90%EC%84%9C+Heading%28h2+%7E+h4%29+%EB%A5%BC+%EC%B6%94%EC%B6%9C%ED%95%9C+%ED%9B%84%2C+%EB%AA%A9%EC%B0%A8%EB%A5%BC+%EB%A7%8C%EB%93%A4%EC%96%B4+%EB%AA%A9%EC%B0%A8+%ED%85%8D%EC%8A%A4%ED%8A%B8%EB%A5%BC+%ED%81%B4%EB%A6%AD%ED%95%98%EB%A9%B4+%ED%95%B4%EB%8B%B9+%ED%97%A4%EB%94%A9+%EC%9C%84%EC%B9%98%EB%A1%9C+%EC%9D%B4%EB%8F%99%ED%95%A0+%EC%88%98+%EC%9E%88%EB%8F%84%EB%A1%9D+%ED%96%88%EC%8A%B5%EB%8B%88%EB%8B%A4.&amp;backLink=http%3A%2F%2Flocalhost%3A45678%2Fposts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EB%25AA%25A9%25EC%25B0%25A8%28TOC%29%2520%25EA%25B8%25B0%25EB%258A%25A5%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0&amp;term=posts%2F%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%2520%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%2F%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8%253A%2520%25EB%25AA%25A9%25EC%25B0%25A8%28TOC%29%2520%25EA%25B8%25B0%25EB%258A%25A5%2520%25EC%25B6%2594%25EA%25B0%2580%25ED%2595%2598%25EA%25B8%25B0" loading="lazy" style="opacity: 0;"></iframe></div></section></div></section><aside class="post-detail__sidebar"><aside class="post-detail__toc"><div class="toc__title">on this page</div><nav class="toc__list"><a href="#목차란-무엇인가" class="toc__item active" style="padding-left: 12px;">목차란 무엇인가?</a><a href="#기본-원리" class="toc__item" style="padding-left: 26px;">기본 원리</a><a href="#블로그-상세보기-페이지에-목차-만들기" class="toc__item" style="padding-left: 12px;">블로그: 상세보기 페이지에 목차 만들기</a><a href="#목차-컴포넌트-구성하기" class="toc__item" style="padding-left: 26px;">목차: 컴포넌트 구성하기</a><a href="#목차-데이터-추출하기" class="toc__item" style="padding-left: 26px;">목차: 데이터 추출하기</a><a href="#목차-데이터-활용하기" class="toc__item" style="padding-left: 26px;">목차: 데이터 활용하기</a><a href="#목차-마무리" class="toc__item" style="padding-left: 26px;">목차: 마무리</a></nav></aside></aside></article></div><div class="inline-promo"><div class="adsense-wrap"><ins class="adsbygoogle" data-ad-client="ca-pub-8945417625760085" data-ad-slot="1102442335" data-ad-format="auto" data-full-width-responsive="true" style="display: block;"></ins></div></div></main><footer class="site-footer"><div class="site-footer__divider">────────────────────────────────────────</div><div>© 2026 sim.junghun<span>·</span><a href="https://github.com/bak-libra26" target="_blank" rel="noopener noreferrer">github</a><span>·</span><a href="mailto:bak-libra26@gmail.com">email</a></div></footer><div class="wsh    terminal-window" style="display: none;"><div class="wsh-titlebar"><div class="traffic-lights"><span class="dot r" title="닫기"></span><span class="dot y" title="최소화"></span><span class="dot g" title="전체화면"></span></div><span class="wsh-title">sim.junghun — terminal</span><span class="close-hint">esc</span></div><div class="wsh-content"><div class="terminal-body"><div class="tl"><span class="t-dim">sim.junghun terminal v5.0 (bash)</span></div><div class="tl"><span class="t-dim">cd posts | about 으로 페이지 이동. "help"를 입력하세요.</span></div><div class="tl"></div><div class="terminal-input-line"><span class="prompt-path">/posts/사이드 프로젝트/블로그</span><span class="prompt-symbol">$</span><input placeholder="Type a command..." spellcheck="false" autocomplete="off" autocapitalize="off" type="text"></div></div><div class="terminal-footer"><span>Tab: autocomplete</span><span>↑↓: history</span><span>Ctrl+A/E: start/end</span><span>Ctrl+W: word</span><span>Ctrl+U: line</span></div></div><div class="wsh-resize-handle"></div></div><div class="shortcut-bar"><div class="sc-item" role="button" tabindex="0" aria-label="Open terminal (⌘J)"><kbd>⌘</kbd><kbd>J</kbd><span>terminal</span></div><div class="divider"></div><div class="sc-item" role="button" tabindex="0" aria-label="Show shortcuts (?)"><kbd>?</kbd><span>shortcuts</span></div><div class="divider"></div><div class="sc-item sc-window  sc-minimized" role="button" tabindex="0" title="sim.junghun — terminal"><span class="sc-icon">&gt;_</span><span class="sc-win-title">sim.junghun — terminal</span></div></div></div></div>
+
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-82NTHKNYRE"></script></body></html>
