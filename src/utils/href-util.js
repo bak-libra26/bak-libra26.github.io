@@ -1,27 +1,16 @@
 const HrefUtil = {
-    get({baseUrl, searchParams}) {
-        const query = searchParams && searchParams.toString();
-        return query ? `${baseUrl}?${query}` : baseUrl;
-    },
-
-    getPostsHref({
-        page, category, subcategory
-    }) {
-        const baseUrl = '/posts';
-        const searchParams = new URLSearchParams();
-
-        if (page) searchParams.set('page', String(page));
-        if (category) searchParams.set('category', category);
-        if (subcategory) searchParams.set('subcategory', subcategory);
-
-        return HrefUtil.get({baseUrl: baseUrl, searchParams: searchParams});
-    },
-
-    getPostDetailHref({path}) {
-        const baseUrl = '/posts/' + path;
-
-        return HrefUtil.get({baseUrl: baseUrl});
+  getPostsHref({ page, category, subcategory }) {
+    let href = '/posts';
+    if (category && category !== '전체') {
+      href += '/' + encodeURIComponent(category);
+      if (subcategory) href += '/' + encodeURIComponent(subcategory);
     }
+    return page > 1 ? `${href}?page=${page}` : href;
+  },
+
+  getPostDetailHref({ path }) {
+    return '/posts/' + path.split('/').map(encodeURIComponent).join('/');
+  },
 };
 
 export default HrefUtil;

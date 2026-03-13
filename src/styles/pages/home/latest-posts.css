@@ -27,7 +27,15 @@
     list-style: none;
 }
 
-/* 모바일 전용 (예: 767px 이하만) */
+/* ── Tablet ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .latest-posts__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
     .latest-posts__grid {
         display: flex;

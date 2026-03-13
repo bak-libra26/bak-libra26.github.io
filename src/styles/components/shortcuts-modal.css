@@ -1,0 +1,108 @@
+.shortcuts-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-shortcuts);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: backdropIn 0.15s ease;
+}
+
+.shortcuts-panel {
+  width: 480px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: termSlideIn 0.2s ease;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.shortcuts-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shortcuts-header h3 {
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--text);
+}
+
+.shortcuts-header .close-hint {
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.shortcuts-body {
+  padding: 16px 20px;
+}
+
+.shortcuts-group {
+  margin-bottom: 16px;
+}
+
+.shortcuts-group:last-child {
+  margin-bottom: 0;
+}
+
+.shortcuts-group-title {
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.sc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+}
+
+.sc-row .sc-label {
+  color: var(--text-secondary);
+}
+
+.sc-row .sc-keys {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.sc-row kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text);
+  min-width: 24px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .shortcuts-panel {
+    width: calc(100% - 32px);
+  }
+}

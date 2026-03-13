@@ -1,0 +1,20 @@
+backend:
+  - Java
+  - Spring Boot
+  - Spring Security
+  - Kotlin
+  - JPA
+  - Netty
+
+infra:
+  - Docker
+  - Kubernetes
+  - Jenkins
+  - RabbitMQ
+  - Redis
+
+frontend:
+  - React
+  - JavaScript
+  - HTML/CSS
+  - Flutter

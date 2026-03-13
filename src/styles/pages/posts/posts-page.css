@@ -1,18 +1,203 @@
-@import "posts-hero.css";
-@import "posts-sidebar.css";
-@import "posts-contents.css";
+/* ═══════════════════════════════════════
+   Posts — sidebar + terminal log panel
+   ═══════════════════════════════════════ */
 
 .posts-layout {
-    display: flex;
-
-    margin: 36px 0px;
-    padding-top: 24px;
-    width: 100%;
-    height: 100%;
-
-    border-top: 1px solid var(--color-border);
-    align-items: start;
-
-    overflow: hidden;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
 }
 
+/* ── Panel ── */
+.posts-panel {
+  min-width: 0;
+}
+
+/* ── Search (prompt-style standalone box) ── */
+.posts-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  transition: border-color var(--transition);
+}
+
+.posts-search:focus-within {
+  border-color: var(--green);
+}
+
+.posts-search .path { color: var(--blue); font-size: var(--font-size-sm); }
+.posts-search .dollar { color: var(--text-muted); font-size: var(--font-size-sm); }
+.posts-search .cmd { color: var(--green); font-size: var(--font-size-sm); }
+
+.posts-search__input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.posts-search input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  caret-color: var(--green);
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 1;
+}
+
+.posts-search input::placeholder {
+  color: transparent;
+}
+
+.posts-search__ghost {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  pointer-events: none;
+  white-space: pre;
+}
+
+.posts-search input:not(:placeholder-shown) ~ .posts-search__ghost {
+  color: transparent;
+}
+
+.posts-search .cursor-blink {
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .posts-search .cursor-blink { animation: none !important; }
+}
+
+/* ── Sort ── */
+.posts-sort {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.posts-sort select {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  outline: none;
+  margin-left: 8px;
+}
+
+.posts-sort select:focus {
+  border-color: var(--green);
+}
+
+/* ── List — fixed min-height so pagination stays stable ── */
+.pp-list {
+  min-height: 400px;
+}
+
+.pp-empty {
+  padding: 32px 24px;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Pagination ── */
+.pp-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 24px;
+  border-top: 1px dashed var(--border);
+  height: 44px;
+}
+
+.pp-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+
+.pp-page:hover {
+  background: var(--green-dim);
+  color: var(--text);
+}
+
+.pp-page.pp-active {
+  background: var(--green);
+  color: var(--bg);
+}
+
+.pp-nav {
+  padding: 0 10px;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.pp-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* ── Tablet ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .posts-layout {
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 24px 16px 48px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .posts-layout {
+    grid-template-columns: 1fr;
+    padding: 24px 16px 48px;
+    gap: 0;
+  }
+
+  /* Prevent iOS auto-zoom on input focus */
+  .posts-search input {
+    font-size: 16px;
+  }
+
+  .pp-pagination {
+    padding: 8px 16px;
+    justify-content: center;
+  }
+}

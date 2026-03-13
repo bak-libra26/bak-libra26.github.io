@@ -1,0 +1,90 @@
+/* ===== TERMINAL FRAME ===== */
+.tf {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ── Title bar ── */
+.tf-bar {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tf-bar .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tf-bar .dot.r { background: var(--red); }
+.tf-bar .dot.y { background: var(--yellow); }
+.tf-bar .dot.g { background: var(--green); }
+
+.tf-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+}
+
+/* ── Body ── */
+.tf-body {
+  padding: 24px;
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  line-height: 1.9;
+}
+
+/* ── Shared prompt/output primitives ── */
+.prompt-line {
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  line-height: 1.9;
+}
+
+.prompt-path { color: var(--blue); }
+.prompt-dollar { color: var(--text-muted); }
+.prompt-cmd { color: var(--green); }
+
+.output-box {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-left: 2px solid var(--green);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  line-height: 1.8;
+}
+
+.dashed-divider {
+  border-bottom: 1px dashed var(--border);
+  margin: 32px 0;
+}
+
+/* ── Cursor block (reusable) ── */
+.cursor-block {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--green);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .tf-body {
+    padding: 16px;
+  }
+
+  .output-box {
+    padding: 16px;
+  }
+}

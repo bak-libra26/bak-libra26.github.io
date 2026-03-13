@@ -1,0 +1,192 @@
+/* ===== highlight.js theme — synced to blog CSS custom properties ===== */
+
+/* Base: inherits from .post-detail__code-block */
+.hljs {
+  background: transparent;
+  color: var(--text);
+}
+
+/* ── Default token mapping (Dracula-compatible) ── */
+:root,
+[data-theme="dracula"] {
+  --hljs-keyword: #ff79c6;
+  --hljs-string: #f1fa8c;
+  --hljs-number: #bd93f9;
+  --hljs-literal: #bd93f9;
+  --hljs-type: #8be9fd;
+  --hljs-built-in: #8be9fd;
+  --hljs-function: #50fa7b;
+  --hljs-title: #50fa7b;
+  --hljs-attr: #50fa7b;
+  --hljs-variable: #f8f8f2;
+  --hljs-comment: #6272a4;
+  --hljs-meta: #6272a4;
+  --hljs-tag: #ff79c6;
+  --hljs-name: #ff79c6;
+  --hljs-selector: #50fa7b;
+  --hljs-property: #66d9ef;
+  --hljs-operator: #ff79c6;
+  --hljs-punctuation: #f8f8f2;
+  --hljs-addition: #50fa7b;
+  --hljs-deletion: #ff5555;
+}
+
+/* ── Nord ── */
+[data-theme="nord"] {
+  --hljs-keyword: #81a1c1;
+  --hljs-string: #a3be8c;
+  --hljs-number: #b48ead;
+  --hljs-literal: #81a1c1;
+  --hljs-type: #8fbcbb;
+  --hljs-built-in: #8fbcbb;
+  --hljs-function: #88c0d0;
+  --hljs-title: #88c0d0;
+  --hljs-attr: #8fbcbb;
+  --hljs-variable: #d8dee9;
+  --hljs-comment: #616e88;
+  --hljs-meta: #5e81ac;
+  --hljs-tag: #81a1c1;
+  --hljs-name: #81a1c1;
+  --hljs-selector: #a3be8c;
+  --hljs-property: #88c0d0;
+  --hljs-operator: #81a1c1;
+  --hljs-punctuation: #eceff4;
+  --hljs-addition: #a3be8c;
+  --hljs-deletion: #bf616a;
+}
+
+/* ── Tokyo Night ── */
+[data-theme="tokyo-night"] {
+  --hljs-keyword: #bb9af7;
+  --hljs-string: #9ece6a;
+  --hljs-number: #ff9e64;
+  --hljs-literal: #ff9e64;
+  --hljs-type: #2ac3de;
+  --hljs-built-in: #7dcfff;
+  --hljs-function: #7aa2f7;
+  --hljs-title: #7aa2f7;
+  --hljs-attr: #73daca;
+  --hljs-variable: #c0caf5;
+  --hljs-comment: #565f89;
+  --hljs-meta: #565f89;
+  --hljs-tag: #f7768e;
+  --hljs-name: #f7768e;
+  --hljs-selector: #9ece6a;
+  --hljs-property: #7dcfff;
+  --hljs-operator: #89ddff;
+  --hljs-punctuation: #a9b1d6;
+  --hljs-addition: #9ece6a;
+  --hljs-deletion: #f7768e;
+}
+
+/* ── GitHub Light ── */
+[data-theme="github-light"] {
+  --hljs-keyword: #cf222e;
+  --hljs-string: #0a3069;
+  --hljs-number: #0550ae;
+  --hljs-literal: #0550ae;
+  --hljs-type: #953800;
+  --hljs-built-in: #953800;
+  --hljs-function: #8250df;
+  --hljs-title: #8250df;
+  --hljs-attr: #116329;
+  --hljs-variable: #24292f;
+  --hljs-comment: #6e7781;
+  --hljs-meta: #6e7781;
+  --hljs-tag: #116329;
+  --hljs-name: #116329;
+  --hljs-selector: #1a7f37;
+  --hljs-property: #0550ae;
+  --hljs-operator: #cf222e;
+  --hljs-punctuation: #24292f;
+  --hljs-addition: #1a7f37;
+  --hljs-deletion: #cf222e;
+}
+
+/* ── Catppuccin Latte ── */
+[data-theme="catppuccin-latte"] {
+  --hljs-keyword: #8839ef;
+  --hljs-string: #40a02b;
+  --hljs-number: #fe640b;
+  --hljs-literal: #fe640b;
+  --hljs-type: #df8e1d;
+  --hljs-built-in: #df8e1d;
+  --hljs-function: #1e66f5;
+  --hljs-title: #1e66f5;
+  --hljs-attr: #179299;
+  --hljs-variable: #4c4f69;
+  --hljs-comment: #9ca0b0;
+  --hljs-meta: #9ca0b0;
+  --hljs-tag: #d20f39;
+  --hljs-name: #d20f39;
+  --hljs-selector: #40a02b;
+  --hljs-property: #04a5e5;
+  --hljs-operator: #8839ef;
+  --hljs-punctuation: #4c4f69;
+  --hljs-addition: #40a02b;
+  --hljs-deletion: #d20f39;
+}
+
+/* ── Token → class mapping ── */
+.hljs-keyword,
+.hljs-selector-tag { color: var(--hljs-keyword); }
+
+.hljs-string,
+.hljs-doctag,
+.hljs-template-variable,
+.hljs-template-tag { color: var(--hljs-string); }
+
+.hljs-number { color: var(--hljs-number); }
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet { color: var(--hljs-literal); }
+
+.hljs-type,
+.hljs-class .hljs-title { color: var(--hljs-type); }
+
+.hljs-built_in { color: var(--hljs-built-in); }
+
+.hljs-function .hljs-title,
+.hljs-title.function_,
+.hljs-title { color: var(--hljs-title); }
+
+.hljs-attr { color: var(--hljs-attr); }
+
+.hljs-variable,
+.hljs-params { color: var(--hljs-variable); }
+
+.hljs-comment { color: var(--hljs-comment); font-style: italic; }
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string { color: var(--hljs-meta); }
+
+.hljs-tag { color: var(--hljs-tag); }
+.hljs-name { color: var(--hljs-name); }
+
+.hljs-selector-id,
+.hljs-selector-class { color: var(--hljs-selector); }
+
+.hljs-property { color: var(--hljs-property); }
+.hljs-operator { color: var(--hljs-operator); }
+.hljs-punctuation { color: var(--hljs-punctuation); }
+
+.hljs-addition { color: var(--hljs-addition); background: rgba(80,250,123,0.1); }
+.hljs-deletion { color: var(--hljs-deletion); background: rgba(255,85,85,0.1); }
+
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+
+.hljs-link { color: var(--hljs-built-in); text-decoration: underline; }
+.hljs-regexp { color: var(--hljs-string); }
+.hljs-section { color: var(--hljs-title); font-weight: 700; }
+.hljs-subst { color: var(--hljs-variable); }
+
+/* Line numbers from rehype-highlight-code-lines */
+.code-line-number {
+  color: var(--text-muted);
+  opacity: 0.5;
+  user-select: none;
+  margin-right: 16px;
+}

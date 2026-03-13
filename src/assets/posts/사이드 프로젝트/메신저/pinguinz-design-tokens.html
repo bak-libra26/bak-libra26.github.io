@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pinguinz — Design System Gallery</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    /* ── BACKGROUND SCALE ── */
+    --bg-deep:      #0d0f14;
+    --bg-base:      #13151a;
+    --bg-surface:   #1a1d24;
+    --bg-elevated:  #21252f;
+    --bg-overlay:   #272b36;
+    --bg-hover:     #2d3140;
+
+    /* ── BORDER SCALE ── */
+    --border-subtle:  #1e2130;
+    --border-default: #252838;
+    --border-strong:  #343849;
+
+    /* ── FOREGROUND SCALE ── */
+    --fg-base:    #e2e4ef;
+    --fg-muted:   #8b90a8;
+    --fg-subtle:  #555b72;
+    --fg-on-accent: #ffffff;
+
+    /* ── ACCENT — Aurora Indigo ── */
+    --accent-9:   #7c6df7;
+    --accent-8:   #6a5be8;
+    --accent-7:   #5849d6;
+    --accent-3:   #1e1d3a;
+    --accent-2:   #17162e;
+
+    /* ── AURORA SECONDARY ── */
+    --aurora-teal:  #4ecdc4;
+    --aurora-teal-subtle: #0d2826;
+
+    /* ── SEMANTIC ── */
+    --color-danger:       #f07070;
+    --color-danger-subtle: #2a1515;
+    --color-warning:      #f0b840;
+    --color-warning-subtle: #261f0a;
+    --color-success:      #4ecdc4;
+    --color-success-subtle: #0d2826;
+    --color-info:         #6cb4ee;
+    --color-info-subtle:  #0f1e2e;
+
+    /* ── RADIUS ── */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    /* ── SPACING (4px base) ── */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* ── TYPOGRAPHY ── */
+    --font-ui:   'DM Sans', 'Pretendard', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+
+    --text-2xs:  10px;
+    --text-xs:   11px;
+    --text-sm:   13px;
+    --text-base: 15px;
+    --text-md:   17px;
+    --text-lg:   20px;
+    --text-xl:   24px;
+    --text-2xl:  32px;
+
+    --leading-tight:  1.3;
+    --leading-normal: 1.5;
+    --leading-loose:  1.7;
+
+    /* ── SHADOW ── */
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg:  0 8px 32px rgba(0,0,0,0.6);
+    --shadow-accent: 0 0 0 3px rgba(124,109,247,0.25);
+
+    /* ── MOTION ── */
+    --duration-fast:   80ms;
+    --duration-base:   150ms;
+    --duration-slow:   250ms;
+    --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ── Z-INDEX ── */
+    --z-base:    0;
+    --z-raised:  10;
+    --z-overlay: 100;
+    --z-modal:   200;
+    --z-toast:   300;
+    --z-top:     400;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--fg-base);
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+
+  /* ── Layout ── */
+  .gallery-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar Nav ── */
+  .sidebar {
+    background: var(--bg-base);
+    border-right: 1px solid var(--border-default);
+    padding: var(--space-6) 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+
+  .sidebar-logo {
+    width: 32px; height: 32px;
+    background: var(--accent-3);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .sidebar-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--fg-base);
+    letter-spacing: -0.2px;
+  }
+  .sidebar-subtitle {
+    font-size: var(--text-2xs);
+    color: var(--fg-subtle);
+    font-family: var(--font-mono);
+    margin-top: 1px;
+  }
+
+  .nav-group { margin-bottom: var(--space-5); }
+  .nav-group-label {
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-subtle);
+    padding: 0 var(--space-5);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    text-decoration: none;
+  }
+  .nav-item:hover { color: var(--fg-base); background: var(--bg-surface); }
+  .nav-item.active { color: var(--fg-base); background: var(--accent-3); }
+
+  /* ── Main Content ── */
+  .main {
+    padding: var(--space-10) var(--space-12);
+    max-width: 960px;
+    overflow-y: auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .page-header h1 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: var(--space-2);
+  }
+  .page-header p {
+    font-size: var(--text-md);
+    color: var(--fg-muted);
+    line-height: var(--leading-loose);
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: var(--space-16);
+    scroll-margin-top: var(--space-8);
+  }
+
+  .section-title {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: var(--space-5);
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  .section-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    margin-bottom: var(--space-6);
+    line-height: var(--leading-loose);
+  }
+
+  /* ── Color Swatches ── */
+  .swatch-group { display: flex; flex-direction: column; gap: var(--space-1); }
+
+  .swatch-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+  .swatch-row:hover { background: var(--bg-surface); }
+
+  .swatch {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+
+  .swatch-info { flex: 1; }
+  .swatch-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-base);
+  }
+  .swatch-desc {
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+    margin-top: 1px;
+  }
+  .swatch-hex {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    background: var(--bg-elevated);
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+  }
+  .swatch-hex:hover { background: var(--bg-hover); color: var(--fg-muted); }
+
+  /* ── Component Cards ── */
+  .component-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .component-grid.single { grid-template-columns: 1fr; }
+
+  .component-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .card-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--accent-9);
+    background: var(--accent-3);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+  }
+  .card-body { padding: var(--space-5); }
+
+  /* ── Buttons ── */
+  .btn-group { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+  .btn-group + .btn-group { margin-top: var(--space-3); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-primary { background: var(--accent-9); color: var(--fg-on-accent); }
+  .btn-primary:hover { background: var(--accent-8); }
+
+  .btn-secondary { background: var(--bg-elevated); color: var(--fg-base); border: 1px solid var(--border-default); }
+  .btn-secondary:hover { background: var(--bg-hover); }
+
+  .btn-ghost { background: transparent; color: var(--fg-muted); }
+  .btn-ghost:hover { background: var(--bg-elevated); color: var(--fg-base); }
+
+  .btn-danger { background: var(--color-danger-subtle); color: var(--color-danger); border: 1px solid rgba(240,112,112,0.15); }
+  .btn-danger:hover { background: rgba(240,112,112,0.12); }
+
+  .btn-success { background: var(--color-success-subtle); color: var(--color-success); border: 1px solid rgba(78,205,196,0.15); }
+
+  .btn-sm { padding: 4px 10px; font-size: var(--text-xs); }
+  .btn-lg { padding: 10px 22px; font-size: var(--text-base); }
+
+  .btn-icon {
+    width: 32px; height: 32px;
+    padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--fg-muted);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--duration-fast);
+  }
+  .btn-icon:hover { background: var(--bg-elevated); color: var(--fg-base); }
+
+  .btn:disabled, .btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── Input ── */
+  .input-group { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .field { display: flex; flex-direction: column; gap: var(--space-1); }
+  .field-label {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--fg-muted);
+  }
+  .field-hint {
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+  }
+
+  .input {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--fg-base);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    padding: 8px 12px;
+    width: 100%;
+    outline: none;
+    transition: border-color var(--duration-base), box-shadow var(--duration-base);
+  }
+  .input::placeholder { color: var(--fg-subtle); }
+  .input:focus { border-color: var(--accent-9); box-shadow: var(--shadow-accent); }
+  .input.error { border-color: var(--color-danger); box-shadow: 0 0 0 3px rgba(240,112,112,0.15); }
+  .input:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .input-with-icon {
+    position: relative;
+  }
+  .input-with-icon .input { padding-left: 36px; }
+  .input-with-icon .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--fg-subtle);
+    font-size: 14px;
+  }
+
+  textarea.input {
+    resize: vertical;
+    min-height: 80px;
+    line-height: var(--leading-normal);
+  }
+
+  /* ── Toggle / Switch ── */
+  .toggle-group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--fg-base);
+  }
+
+  .toggle {
+    width: 40px; height: 22px;
+    background: var(--bg-hover);
+    border-radius: var(--radius-full);
+    position: relative;
+    cursor: pointer;
+    transition: background var(--duration-base);
+    flex-shrink: 0;
+  }
+  .toggle::after {
+    content: '';
+    width: 16px; height: 16px;
+    background: var(--fg-muted);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px; left: 3px;
+    transition: all var(--duration-base) var(--ease-out);
+  }
+  .toggle.on { background: var(--accent-9); }
+  .toggle.on::after { left: 21px; background: white; }
+
+  /* ── Checkbox ── */
+  .check-group { display: flex; flex-direction: column; gap: var(--space-2); }
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--fg-base);
+    cursor: pointer;
+  }
+  .checkbox {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-xs);
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--duration-fast);
+    flex-shrink: 0;
+    font-size: 11px;
+    color: transparent;
+  }
+  .checkbox.checked {
+    background: var(--accent-9);
+    border-color: var(--accent-9);
+    color: white;
+  }
+
+  /* ── Tab ── */
+  .tab-demo {
+    display: flex;
+    border-bottom: 1px solid var(--border-default);
+    gap: 2px;
+  }
+  .tab {
+    padding: 8px 14px;
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all var(--duration-fast);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .tab:hover { color: var(--fg-base); background: var(--bg-elevated); }
+  .tab.active { color: var(--fg-base); border-bottom-color: var(--accent-9); background: var(--bg-elevated); }
+  .tab-badge {
+    font-size: var(--text-2xs);
+    background: var(--accent-3);
+    color: var(--accent-9);
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+  }
+
+  /* ── Badges ── */
+  .badge-group { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 500;
+  }
+  .badge-accent { background: var(--accent-3); color: var(--accent-9); }
+  .badge-teal { background: var(--aurora-teal-subtle); color: var(--aurora-teal); }
+  .badge-danger { background: var(--color-danger-subtle); color: var(--color-danger); }
+  .badge-warning { background: var(--color-warning-subtle); color: var(--color-warning); }
+  .badge-info { background: var(--color-info-subtle); color: var(--color-info); }
+  .badge-neutral { background: var(--bg-hover); color: var(--fg-muted); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── Avatar ── */
+  .avatar-group { display: flex; gap: var(--space-4); align-items: flex-end; flex-wrap: wrap; }
+
+  .avatar {
+    border-radius: var(--radius-full);
+    background: var(--accent-3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .avatar-xs { width: 24px; height: 24px; font-size: 12px; }
+  .avatar-sm { width: 32px; height: 32px; font-size: 16px; }
+  .avatar-md { width: 40px; height: 40px; font-size: 20px; }
+  .avatar-lg { width: 56px; height: 56px; font-size: 28px; }
+
+  .avatar-status {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-surface);
+    bottom: -1px; right: -1px;
+  }
+  .status-online { background: var(--color-success); }
+  .status-away { background: var(--color-warning); }
+  .status-dnd { background: var(--color-danger); }
+  .status-offline { background: var(--fg-subtle); }
+
+  .avatar-stack {
+    display: flex;
+  }
+  .avatar-stack .avatar { margin-left: -8px; border: 2px solid var(--bg-surface); }
+  .avatar-stack .avatar:first-child { margin-left: 0; }
+  .avatar-stack .avatar-more {
+    background: var(--bg-hover);
+    color: var(--fg-muted);
+    font-size: var(--text-xs);
+    font-weight: 500;
+  }
+
+  /* ── Message Bubble ── */
+  .message-demo { display: flex; flex-direction: column; gap: var(--space-1); }
+
+  .message {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast);
+  }
+  .message:hover { background: var(--bg-elevated); }
+  .msg-body { flex: 1; min-width: 0; }
+  .msg-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: 2px;
+  }
+  .msg-name { font-size: var(--text-sm); font-weight: 600; color: var(--fg-base); }
+  .msg-time { font-size: var(--text-xs); color: var(--fg-subtle); }
+  .msg-text { font-size: var(--text-sm); color: var(--fg-base); line-height: var(--leading-loose); }
+  .msg-compact .msg-text { margin-top: -2px; }
+  .msg-reactions {
+    display: flex;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+  }
+  .reaction {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+  }
+  .reaction:hover { border-color: var(--accent-9); background: var(--accent-3); }
+  .reaction.mine { border-color: var(--accent-9); background: var(--accent-3); }
+  .reaction-count { color: var(--fg-muted); font-size: var(--text-2xs); }
+
+  /* ── Toast ── */
+  .toast-group { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-md);
+    font-size: var(--text-sm);
+  }
+  .toast-icon { font-size: 16px; flex-shrink: 0; }
+  .toast-content { flex: 1; }
+  .toast-close {
+    color: var(--fg-subtle);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+    transition: color var(--duration-fast);
+  }
+  .toast-close:hover { color: var(--fg-base); }
+  .toast-success { border-left: 3px solid var(--color-success); }
+  .toast-error { border-left: 3px solid var(--color-danger); }
+  .toast-warning { border-left: 3px solid var(--color-warning); }
+  .toast-info { border-left: 3px solid var(--color-info); }
+
+  /* ── Tooltip ── */
+  .tooltip-demo { display: flex; gap: var(--space-8); align-items: center; justify-content: center; padding: var(--space-6) 0; }
+  .tooltip-target {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px 14px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    cursor: default;
+  }
+  .tooltip-bubble {
+    position: absolute;
+    padding: 5px 10px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    color: var(--fg-base);
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+    pointer-events: none;
+  }
+  .tooltip-bubble::after {
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    transform: rotate(45deg);
+  }
+  .tooltip-top .tooltip-bubble {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .tooltip-top .tooltip-bubble::after {
+    bottom: -4px;
+    left: 50%;
+    margin-left: -3px;
+    border-top: none;
+    border-left: none;
+  }
+  .tooltip-bottom .tooltip-bubble {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .tooltip-bottom .tooltip-bubble::after {
+    top: -4px;
+    left: 50%;
+    margin-left: -3px;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  /* ── Dropdown / Select ── */
+  .dropdown-demo { position: relative; width: 240px; }
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    color: var(--fg-base);
+    cursor: pointer;
+    width: 100%;
+  }
+  .dropdown-arrow { color: var(--fg-subtle); font-size: 12px; }
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-1);
+    z-index: 10;
+  }
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 7px var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--fg-base);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+  }
+  .dropdown-item:hover { background: var(--accent-3); }
+  .dropdown-item.selected { color: var(--accent-9); }
+  .dropdown-item .check-mark { margin-left: auto; color: var(--accent-9); font-size: 13px; }
+  .dropdown-divider { height: 1px; background: var(--border-subtle); margin: var(--space-1) 0; }
+
+  /* ── Modal ── */
+  .modal-preview {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .modal-title { font-size: var(--text-md); font-weight: 600; }
+  .modal-close { color: var(--fg-subtle); cursor: pointer; font-size: 18px; transition: color var(--duration-fast); }
+  .modal-close:hover { color: var(--fg-base); }
+  .modal-body { padding: var(--space-5); }
+  .modal-body p { font-size: var(--text-sm); color: var(--fg-muted); line-height: var(--leading-loose); }
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--border-default);
+  }
+
+  /* ── Command Palette ── */
+  .cmd-demo {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .cmd-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .cmd-icon { color: var(--fg-subtle); font-size: 14px; }
+  .cmd-input {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    color: var(--fg-base);
+    flex: 1;
+  }
+  .cmd-input::placeholder { color: var(--fg-subtle); }
+  .cmd-list { padding: var(--space-2); }
+  .cmd-group-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    padding: var(--space-2) var(--space-3);
+  }
+  .cmd-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px var(--space-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+  }
+  .cmd-item:hover, .cmd-item.active { background: var(--accent-3); }
+  .cmd-item-left { display: flex; align-items: center; gap: var(--space-3); }
+  .cmd-item-icon { color: var(--fg-subtle); font-size: 13px; width: 16px; text-align: center; }
+  .cmd-item-name { font-size: var(--text-sm); color: var(--fg-base); }
+  .cmd-item-kbd {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--fg-subtle);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* ── Sidebar Item (Chat Room) ── */
+  .room-list { display: flex; flex-direction: column; gap: 1px; }
+  .room-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+  }
+  .room-item:hover { background: var(--bg-hover); }
+  .room-item.active { background: var(--accent-3); }
+  .room-info { flex: 1; min-width: 0; }
+  .room-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-base);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .room-preview {
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1px;
+  }
+  .room-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+  .room-time { font-size: var(--text-2xs); color: var(--fg-subtle); }
+  .room-unread {
+    width: 18px; height: 18px;
+    background: var(--accent-9);
+    color: white;
+    border-radius: 50%;
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Context Menu ── */
+  .context-menu {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-1);
+    width: 200px;
+  }
+  .ctx-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 6px var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--fg-base);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+  }
+  .ctx-item:hover { background: var(--accent-3); }
+  .ctx-item.danger { color: var(--color-danger); }
+  .ctx-item.danger:hover { background: var(--color-danger-subtle); }
+  .ctx-icon { width: 16px; text-align: center; font-size: 13px; color: var(--fg-subtle); }
+  .ctx-item.danger .ctx-icon { color: var(--color-danger); }
+  .ctx-kbd { margin-left: auto; font-size: var(--text-2xs); color: var(--fg-subtle); font-family: var(--font-mono); }
+  .ctx-divider { height: 1px; background: var(--border-subtle); margin: var(--space-1) 0; }
+
+  /* ── Skeleton Loading ── */
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-hover) 50%, var(--bg-elevated) 75%);
+    background-size: 400px 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+  }
+  .skeleton-text { height: 14px; margin-bottom: 8px; }
+  .skeleton-text:last-child { width: 60%; }
+  .skeleton-avatar { width: 32px; height: 32px; border-radius: 50%; }
+  .skeleton-btn { width: 80px; height: 32px; }
+
+  /* ── Typography Preview ── */
+  .type-scale { display: flex; flex-direction: column; gap: var(--space-3); }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .type-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    width: 90px;
+    flex-shrink: 0;
+  }
+  .type-sample { color: var(--fg-base); }
+
+  /* ── Radius preview ── */
+  .radius-grid {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .radius-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .radius-box {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+  }
+  .radius-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--fg-subtle);
+    text-align: center;
+  }
+
+  /* ── Spacing preview ── */
+  .spacing-grid { display: flex; flex-direction: column; gap: var(--space-2); }
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .spacing-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    width: 80px;
+    flex-shrink: 0;
+  }
+  .spacing-bar {
+    height: 20px;
+    background: var(--accent-3);
+    border: 1px solid rgba(124,109,247,0.2);
+    border-radius: var(--radius-xs);
+  }
+  .spacing-val {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+  }
+
+  /* ── Token table ── */
+  .token-table { width: 100%; border-collapse: collapse; }
+  .token-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    font-weight: 400;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border-default);
+    letter-spacing: 0.05em;
+  }
+  .token-table td {
+    padding: 6px var(--space-3);
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: middle;
+  }
+  .token-table tr:last-child td { border-bottom: none; }
+  .token-name { font-family: var(--font-mono); color: var(--accent-9); font-size: var(--text-xs); }
+  .token-val { font-family: var(--font-mono); color: var(--fg-muted); font-size: var(--text-xs); }
+  .token-desc { color: var(--fg-muted); }
+
+  /* ── File Attachment ── */
+  .attachment {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    max-width: 320px;
+    cursor: pointer;
+    transition: border-color var(--duration-fast);
+  }
+  .attachment:hover { border-color: var(--accent-9); }
+  .attachment-icon {
+    width: 40px; height: 40px;
+    background: var(--accent-3);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .attachment-info { flex: 1; min-width: 0; }
+  .attachment-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-base);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .attachment-meta {
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+    margin-top: 1px;
+  }
+
+  /* ── Empty State ── */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+  }
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+    opacity: 0.6;
+  }
+  .empty-title {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--fg-base);
+    margin-bottom: var(--space-2);
+  }
+  .empty-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    max-width: 280px;
+    line-height: var(--leading-loose);
+  }
+
+  /* ── Kbd ── */
+  .kbd {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--fg-muted);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 1px 0 var(--border-default);
+  }
+
+  /* ── Divider ── */
+  .divider-group { display: flex; flex-direction: column; gap: var(--space-6); }
+  .divider {
+    height: 1px;
+    background: var(--border-default);
+  }
+  .divider-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+  }
+  .divider-label::before,
+  .divider-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-default);
+  }
+
+  /* ── Progress ── */
+  .progress-group { display: flex; flex-direction: column; gap: var(--space-4); }
+  .progress-bar {
+    height: 6px;
+    background: var(--bg-hover);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width var(--duration-slow) var(--ease-out);
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  /* ── Utility ── */
+  .flex { display: flex; }
+  .gap-2 { gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .mt-3 { margin-top: var(--space-3); }
+  .mt-4 { margin-top: var(--space-4); }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+</style>
+</head>
+<body>
+<div class="gallery-layout">
+
+  <!-- ─── Sidebar Navigation ─── -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🐧</div>
+      <div>
+        <div class="sidebar-title">pinguinz</div>
+        <div class="sidebar-subtitle">design system v0.1</div>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Foundation</div>
+      <a class="nav-item active" href="#colors">◆ Colors</a>
+      <a class="nav-item" href="#typography">◆ Typography</a>
+      <a class="nav-item" href="#spacing">◆ Spacing</a>
+      <a class="nav-item" href="#radius">◆ Radius</a>
+      <a class="nav-item" href="#shadows">◆ Shadows & Motion</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Components</div>
+      <a class="nav-item" href="#buttons">◇ Buttons</a>
+      <a class="nav-item" href="#inputs">◇ Inputs</a>
+      <a class="nav-item" href="#toggles">◇ Toggle & Checkbox</a>
+      <a class="nav-item" href="#tabs">◇ Tabs</a>
+      <a class="nav-item" href="#badges">◇ Badges & Status</a>
+      <a class="nav-item" href="#avatars">◇ Avatars</a>
+      <a class="nav-item" href="#dropdown">◇ Dropdown</a>
+      <a class="nav-item" href="#tooltips">◇ Tooltips</a>
+      <a class="nav-item" href="#toast">◇ Toast</a>
+      <a class="nav-item" href="#progress">◇ Progress</a>
+      <a class="nav-item" href="#dividers">◇ Dividers & Kbd</a>
+      <a class="nav-item" href="#skeleton">◇ Skeleton</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Patterns</div>
+      <a class="nav-item" href="#messages">▤ Message Stream</a>
+      <a class="nav-item" href="#rooms">▤ Room List</a>
+      <a class="nav-item" href="#cmd-palette">▤ Command Palette</a>
+      <a class="nav-item" href="#context-menu">▤ Context Menu</a>
+      <a class="nav-item" href="#modal">▤ Modal</a>
+      <a class="nav-item" href="#attachments">▤ Attachments</a>
+      <a class="nav-item" href="#empty">▤ Empty State</a>
+    </div>
+  </nav>
+
+  <!-- ─── Main Content ─── -->
+  <main class="main">
+
+    <div class="page-header">
+      <h1>pinguinz Design System</h1>
+      <p>Aurora Night 테마 기반의 디자인 토큰과 컴포넌트 갤러리.<br>Dark-first · Minimal · Open-source Friendly</p>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!--  FOUNDATION                              -->
+    <!-- ════════════════════════════════════════ -->
+
+    <!-- Colors -->
+    <div class="section" id="colors">
+      <div class="section-title">Colors</div>
+      <div class="section-desc">6단계 배경 스케일, 3단계 전경 스케일, Aurora Indigo 강조색, 시맨틱 컬러로 구성. 모든 색상은 CSS 변수로 관리합니다.</div>
+
+      <h3 style="font-size:var(--text-sm); color:var(--fg-muted); margin-bottom:var(--space-3); margin-top:var(--space-6);">Background Scale</h3>
+      <div class="swatch-group">
+        <div class="swatch-row"><div class="swatch" style="background:#0d0f14;"></div><div class="swatch-info"><div class="swatch-name">bg-deep</div><div class="swatch-desc">앱 최하단, 윈도우 배경</div></div><div class="swatch-hex">#0d0f14</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#13151a;"></div><div class="swatch-info"><div class="swatch-name">bg-base</div><div class="swatch-desc">앱 메인 배경 (기준색)</div></div><div class="swatch-hex">#13151a</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#1a1d24;"></div><div class="swatch-info"><div class="swatch-name">bg-surface</div><div class="swatch-desc">사이드바, 패널</div></div><div class="swatch-hex">#1a1d24</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#21252f;"></div><div class="swatch-info"><div class="swatch-name">bg-elevated</div><div class="swatch-desc">카드, 인풋, 탭바</div></div><div class="swatch-hex">#21252f</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#272b36;"></div><div class="swatch-info"><div class="swatch-name">bg-overlay</div><div class="swatch-desc">커맨드 팔레트, 모달</div></div><div class="swatch-hex">#272b36</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#2d3140;"></div><div class="swatch-info"><div class="swatch-name">bg-hover</div><div class="swatch-desc">호버 상태</div></div><div class="swatch-hex">#2d3140</div></div>
+      </div>
+
+      <h3 style="font-size:var(--text-sm); color:var(--fg-muted); margin-bottom:var(--space-3); margin-top:var(--space-6);">Foreground Scale</h3>
+      <div class="swatch-group">
+        <div class="swatch-row"><div class="swatch" style="background:#e2e4ef; border-color:rgba(0,0,0,0.1);"></div><div class="swatch-info"><div class="swatch-name">fg-base</div><div class="swatch-desc">본문 텍스트</div></div><div class="swatch-hex">#e2e4ef</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#8b90a8;"></div><div class="swatch-info"><div class="swatch-name">fg-muted</div><div class="swatch-desc">보조 텍스트, 타임스탬프</div></div><div class="swatch-hex">#8b90a8</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#555b72;"></div><div class="swatch-info"><div class="swatch-name">fg-subtle</div><div class="swatch-desc">플레이스홀더, 비활성</div></div><div class="swatch-hex">#555b72</div></div>
+      </div>
+
+      <h3 style="font-size:var(--text-sm); color:var(--fg-muted); margin-bottom:var(--space-3); margin-top:var(--space-6);">Accent — Aurora Indigo</h3>
+      <div class="swatch-group">
+        <div class="swatch-row"><div class="swatch" style="background:#7c6df7;"></div><div class="swatch-info"><div class="swatch-name">accent-9 (Primary)</div><div class="swatch-desc">버튼, 링크, 배지, 포커스 링</div></div><div class="swatch-hex">#7c6df7</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6a5be8;"></div><div class="swatch-info"><div class="swatch-name">accent-8 (Hover)</div><div class="swatch-desc">강조 버튼 호버</div></div><div class="swatch-hex">#6a5be8</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#5849d6;"></div><div class="swatch-info"><div class="swatch-name">accent-7 (Active)</div><div class="swatch-desc">강조 버튼 클릭</div></div><div class="swatch-hex">#5849d6</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#1e1d3a;"></div><div class="swatch-info"><div class="swatch-name">accent-3 (Subtle bg)</div><div class="swatch-desc">선택 항목 배경</div></div><div class="swatch-hex">#1e1d3a</div></div>
+      </div>
+
+      <h3 style="font-size:var(--text-sm); color:var(--fg-muted); margin-bottom:var(--space-3); margin-top:var(--space-6);">Semantic</h3>
+      <div class="swatch-group">
+        <div class="swatch-row"><div class="swatch" style="background:#4ecdc4;"></div><div class="swatch-info"><div class="swatch-name">success / aurora-teal</div><div class="swatch-desc">온라인, 성공, 포인트</div></div><div class="swatch-hex">#4ecdc4</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#f07070;"></div><div class="swatch-info"><div class="swatch-name">danger</div><div class="swatch-desc">에러, 삭제</div></div><div class="swatch-hex">#f07070</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#f0b840;"></div><div class="swatch-info"><div class="swatch-name">warning</div><div class="swatch-desc">경고, 자리비움</div></div><div class="swatch-hex">#f0b840</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6cb4ee;"></div><div class="swatch-info"><div class="swatch-name">info</div><div class="swatch-desc">정보, 링크</div></div><div class="swatch-hex">#6cb4ee</div></div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="section" id="typography">
+      <div class="section-title">Typography</div>
+      <div class="section-desc">UI: DM Sans + Pretendard (fallback). Mono: IBM Plex Mono. 한글 본문은 Pretendard, 코드/라벨은 모노스페이스.</div>
+
+      <div class="type-scale">
+        <div class="type-row"><span class="type-label">text-2xl / 32</span><span class="type-sample" style="font-size:32px;font-weight:700;letter-spacing:-0.5px;">pinguinz</span></div>
+        <div class="type-row"><span class="type-label">text-xl / 24</span><span class="type-sample" style="font-size:24px;font-weight:600;letter-spacing:-0.4px;">페이지 헤딩</span></div>
+        <div class="type-row"><span class="type-label">text-lg / 20</span><span class="type-sample" style="font-size:20px;font-weight:600;">모달 제목, 룸 이름</span></div>
+        <div class="type-row"><span class="type-label">text-md / 17</span><span class="type-sample" style="font-size:17px;font-weight:500;">패널 헤더</span></div>
+        <div class="type-row"><span class="type-label">text-base / 15</span><span class="type-sample" style="font-size:15px;">메시지 본문 텍스트입니다.</span></div>
+        <div class="type-row"><span class="type-label">text-sm / 13</span><span class="type-sample" style="font-size:13px;color:var(--fg-muted);">사이드바 항목, 탭 이름, 보조 텍스트</span></div>
+        <div class="type-row"><span class="type-label">text-xs / 11</span><span class="type-sample" style="font-size:11px;color:var(--fg-subtle);">타임스탬프, 카운터, 라벨</span></div>
+        <div class="type-row"><span class="type-label">text-2xs / 10</span><span class="type-sample" style="font-size:10px;color:var(--fg-subtle);font-family:var(--font-mono);">MONO LABEL · KBD</span></div>
+      </div>
+
+      <div style="margin-top:var(--space-6);">
+        <div class="component-grid">
+          <div class="component-card">
+            <div class="card-header"><span class="card-label">Font: UI</span><span class="card-tag">DM Sans</span></div>
+            <div class="card-body">
+              <div style="font-size:var(--text-base);line-height:var(--leading-loose);color:var(--fg-muted);">The quick brown fox jumps over the lazy dog.<br>다람쥐 헌 쳇바퀴에 타고파.</div>
+            </div>
+          </div>
+          <div class="component-card">
+            <div class="card-header"><span class="card-label">Font: Mono</span><span class="card-tag">IBM Plex Mono</span></div>
+            <div class="card-body">
+              <div style="font-family:var(--font-mono);font-size:var(--text-sm);line-height:var(--leading-loose);color:var(--fg-muted);">const msg = "hello";<br>console.log(msg); // hello</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacing -->
+    <div class="section" id="spacing">
+      <div class="section-title">Spacing</div>
+      <div class="section-desc">4px 기반 스페이싱 스케일. 컴포넌트 간격, 패딩에 일관되게 사용합니다.</div>
+
+      <div class="spacing-grid">
+        <div class="spacing-row"><span class="spacing-label">--space-1</span><div class="spacing-bar" style="width:4px;"></div><span class="spacing-val">4px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-2</span><div class="spacing-bar" style="width:8px;"></div><span class="spacing-val">8px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-3</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-val">12px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-4</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-val">16px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-5</span><div class="spacing-bar" style="width:20px;"></div><span class="spacing-val">20px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-6</span><div class="spacing-bar" style="width:24px;"></div><span class="spacing-val">24px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-8</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-val">32px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-10</span><div class="spacing-bar" style="width:40px;"></div><span class="spacing-val">40px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-12</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-val">48px</span></div>
+        <div class="spacing-row"><span class="spacing-label">--space-16</span><div class="spacing-bar" style="width:64px;"></div><span class="spacing-val">64px</span></div>
+      </div>
+    </div>
+
+    <!-- Radius -->
+    <div class="section" id="radius">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-grid">
+        <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">xs<br>4px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">sm<br>6px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:10px;"></div><div class="radius-label">md<br>10px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:14px;"></div><div class="radius-label">lg<br>14px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:20px;"></div><div class="radius-label">xl<br>20px</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:9999px; width:90px; height:36px;"></div><div class="radius-label">full<br>9999px</div></div>
+      </div>
+    </div>
+
+    <!-- Shadows & Motion -->
+    <div class="section" id="shadows">
+      <div class="section-title">Shadows & Motion</div>
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Shadows</span></div>
+          <div class="card-body" style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+            <div style="width:100px;height:60px;background:var(--bg-elevated);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--fg-subtle);">sm</div>
+            <div style="width:100px;height:60px;background:var(--bg-elevated);border-radius:var(--radius-md);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--fg-subtle);">md</div>
+            <div style="width:100px;height:60px;background:var(--bg-elevated);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--fg-subtle);">lg</div>
+            <div style="width:100px;height:60px;background:var(--bg-elevated);border-radius:var(--radius-md);box-shadow:var(--shadow-accent);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);color:var(--accent-9);">accent</div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Motion</span></div>
+          <div class="card-body">
+            <table class="token-table">
+              <tbody>
+                <tr><td class="token-name">--duration-fast</td><td class="token-val">80ms</td><td class="token-desc">호버, 버튼</td></tr>
+                <tr><td class="token-name">--duration-base</td><td class="token-val">150ms</td><td class="token-desc">포커스, 전환</td></tr>
+                <tr><td class="token-name">--duration-slow</td><td class="token-val">250ms</td><td class="token-desc">모달, 패널</td></tr>
+                <tr><td class="token-name">--ease-out</td><td class="token-val" style="font-size:9px;">0.16,1,0.3,1</td><td class="token-desc">기본 이징</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!--  COMPONENTS                              -->
+    <!-- ════════════════════════════════════════ -->
+
+    <!-- Buttons -->
+    <div class="section" id="buttons">
+      <div class="section-title">Buttons</div>
+      <div class="section-desc">Primary(강조), Secondary(보조), Ghost(최소), Danger(위험), Success(확인). 3가지 사이즈와 아이콘 버튼을 지원합니다.</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Variants</span></div>
+        <div class="card-body">
+          <div class="btn-group">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-danger">Danger</button>
+            <button class="btn btn-success">Success</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Default</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary" disabled>Disabled</button>
+            <button class="btn btn-secondary" disabled>Disabled</button>
+            <button class="btn-icon">⚙</button>
+            <button class="btn-icon">✎</button>
+            <button class="btn-icon">✕</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary">📎 파일 첨부</button>
+            <button class="btn btn-secondary">↗ 공유하기</button>
+            <button class="btn btn-ghost">+ 추가</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="section" id="inputs">
+      <div class="section-title">Inputs</div>
+      <div class="section-desc">텍스트 입력, 검색, 에러 상태, 비활성 상태를 포함합니다.</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Text Input</span></div>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="field">
+                <label class="field-label">닉네임</label>
+                <input class="input" placeholder="닉네임을 입력하세요" />
+              </div>
+              <div class="field">
+                <label class="field-label">이메일</label>
+                <input class="input error" value="invalid@" />
+                <span class="field-hint" style="color:var(--color-danger);">올바른 이메일 형식이 아닙니다.</span>
+              </div>
+              <div class="field">
+                <label class="field-label">비밀번호</label>
+                <input class="input" type="password" value="password123" disabled />
+                <span class="field-hint">비활성 상태</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Search & Textarea</span></div>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="input-with-icon">
+                <span class="input-icon">⌕</span>
+                <input class="input" placeholder="채팅방 검색..." />
+              </div>
+              <textarea class="input" placeholder="메시지를 입력하세요...&#10;Shift+Enter로 줄바꿈"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle & Checkbox -->
+    <div class="section" id="toggles">
+      <div class="section-title">Toggle & Checkbox</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Toggle Switch</span></div>
+          <div class="card-body">
+            <div class="toggle-group">
+              <div class="toggle-row"><div class="toggle on" onclick="this.classList.toggle('on')"></div> 알림 활성화</div>
+              <div class="toggle-row"><div class="toggle" onclick="this.classList.toggle('on')"></div> 다크 모드</div>
+              <div class="toggle-row"><div class="toggle on" onclick="this.classList.toggle('on')"></div> 온라인 상태 표시</div>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Checkbox</span></div>
+          <div class="card-body">
+            <div class="check-group">
+              <div class="check-row" onclick="this.querySelector('.checkbox').classList.toggle('checked')"><div class="checkbox checked">✓</div> 전체 동의</div>
+              <div class="check-row" onclick="this.querySelector('.checkbox').classList.toggle('checked')"><div class="checkbox checked">✓</div> 이용약관 (필수)</div>
+              <div class="check-row" onclick="this.querySelector('.checkbox').classList.toggle('checked')"><div class="checkbox">✓</div> 마케팅 수신 (선택)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="section" id="tabs">
+      <div class="section-title">Tabs</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Tab Bar</span></div>
+        <div class="card-body">
+          <div class="tab-demo" style="margin-bottom:var(--space-4);">
+            <div class="tab active">🐧 general</div>
+            <div class="tab">dev-ops <span class="tab-badge">3</span></div>
+            <div class="tab">design</div>
+            <div class="tab">random</div>
+          </div>
+          <div class="tab-demo">
+            <div class="tab">전체</div>
+            <div class="tab active">읽지 않음 <span class="tab-badge">12</span></div>
+            <div class="tab">멘션</div>
+            <div class="tab">스레드</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges & Status -->
+    <div class="section" id="badges">
+      <div class="section-title">Badges & Status</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Badge Variants</span></div>
+        <div class="card-body">
+          <div class="badge-group" style="margin-bottom:var(--space-4);">
+            <span class="badge badge-accent"><span class="dot" style="background:var(--accent-9);"></span>Active</span>
+            <span class="badge badge-teal"><span class="dot" style="background:var(--aurora-teal);"></span>Online</span>
+            <span class="badge badge-warning"><span class="dot" style="background:var(--color-warning);"></span>Away</span>
+            <span class="badge badge-danger"><span class="dot" style="background:var(--color-danger);"></span>Offline</span>
+            <span class="badge badge-info"><span class="dot" style="background:var(--color-info);"></span>Info</span>
+            <span class="badge badge-neutral">Archived</span>
+          </div>
+          <div class="badge-group">
+            <span class="badge badge-accent">v0.1.0</span>
+            <span class="badge badge-teal">Stable</span>
+            <span class="badge badge-warning">Beta</span>
+            <span class="badge badge-danger">Breaking</span>
+            <span class="badge badge-neutral">Deprecated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatars -->
+    <div class="section" id="avatars">
+      <div class="section-title">Avatars</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Sizes & Status</span></div>
+          <div class="card-body">
+            <div class="avatar-group" style="margin-bottom:var(--space-5);">
+              <div style="text-align:center;">
+                <div class="avatar avatar-xs" style="margin:0 auto;">🐧</div>
+                <div style="font-size:var(--text-2xs);color:var(--fg-subtle);margin-top:4px;">xs / 24</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="avatar avatar-sm" style="margin:0 auto;">🐧</div>
+                <div style="font-size:var(--text-2xs);color:var(--fg-subtle);margin-top:4px;">sm / 32</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="avatar avatar-md" style="margin:0 auto;">🐧</div>
+                <div style="font-size:var(--text-2xs);color:var(--fg-subtle);margin-top:4px;">md / 40</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="avatar avatar-lg" style="margin:0 auto;">🐧</div>
+                <div style="font-size:var(--text-2xs);color:var(--fg-subtle);margin-top:4px;">lg / 56</div>
+              </div>
+            </div>
+            <div class="avatar-group">
+              <div class="avatar avatar-sm">🐧<div class="avatar-status status-online"></div></div>
+              <div class="avatar avatar-sm" style="background:var(--aurora-teal-subtle);">🌙<div class="avatar-status status-away"></div></div>
+              <div class="avatar avatar-sm" style="background:var(--color-danger-subtle);">🔥<div class="avatar-status status-dnd"></div></div>
+              <div class="avatar avatar-sm" style="background:var(--bg-hover);">👤<div class="avatar-status status-offline"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Avatar Stack</span></div>
+          <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-5);">
+            <div class="avatar-stack">
+              <div class="avatar avatar-sm">🐧</div>
+              <div class="avatar avatar-sm" style="background:var(--aurora-teal-subtle);">🌙</div>
+              <div class="avatar avatar-sm" style="background:var(--color-warning-subtle);">🔥</div>
+              <div class="avatar avatar-sm avatar-more">+5</div>
+            </div>
+            <div style="font-size:var(--text-xs);color:var(--fg-subtle);">참여자가 많을 때 겹쳐서 표시</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown -->
+    <div class="section" id="dropdown">
+      <div class="section-title">Dropdown</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Select Dropdown</span></div>
+        <div class="card-body" style="min-height:240px;">
+          <div class="dropdown-demo">
+            <div class="dropdown-trigger">
+              <span>상태 변경</span>
+              <span class="dropdown-arrow">▾</span>
+            </div>
+            <div class="dropdown-menu">
+              <div class="dropdown-item selected"><span class="dot status-online"></span> 온라인 <span class="check-mark">✓</span></div>
+              <div class="dropdown-item"><span class="dot status-away"></span> 자리비움</div>
+              <div class="dropdown-item"><span class="dot status-dnd"></span> 방해금지</div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item"><span class="dot status-offline"></span> 오프라인으로 표시</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tooltips -->
+    <div class="section" id="tooltips">
+      <div class="section-title">Tooltips</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Positions</span></div>
+        <div class="card-body">
+          <div class="tooltip-demo">
+            <div class="tooltip-target tooltip-top">
+              위쪽 Tooltip
+              <div class="tooltip-bubble">단축키: ⌘K</div>
+            </div>
+            <div class="tooltip-target tooltip-bottom">
+              아래쪽 Tooltip
+              <div class="tooltip-bubble">Ctrl+Shift+P</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="section" id="toast">
+      <div class="section-title">Toast Notifications</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Variants</span></div>
+        <div class="card-body">
+          <div class="toast-group">
+            <div class="toast toast-success"><span class="toast-icon">✓</span><span class="toast-content">메시지가 전송되었습니다.</span><span class="toast-close">✕</span></div>
+            <div class="toast toast-error"><span class="toast-icon">✕</span><span class="toast-content">연결이 끊어졌습니다. 재시도 중...</span><span class="toast-close">✕</span></div>
+            <div class="toast toast-warning"><span class="toast-icon">⚠</span><span class="toast-content">세션이 10분 후 만료됩니다.</span><span class="toast-close">✕</span></div>
+            <div class="toast toast-info"><span class="toast-icon">ⓘ</span><span class="toast-content">pinguinz v0.2.0 업데이트가 있습니다.</span><span class="toast-close">✕</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="section" id="progress">
+      <div class="section-title">Progress</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Progress Bars</span></div>
+        <div class="card-body">
+          <div class="progress-group">
+            <div>
+              <div class="progress-label"><span>파일 업로드</span><span>73%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:73%;background:var(--accent-9);"></div></div>
+            </div>
+            <div>
+              <div class="progress-label"><span>저장공간</span><span>92%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:92%;background:var(--color-warning);"></div></div>
+            </div>
+            <div>
+              <div class="progress-label"><span>다운로드 완료</span><span>100%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--color-success);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dividers & Kbd -->
+    <div class="section" id="dividers">
+      <div class="section-title">Dividers & Keyboard</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Dividers</span></div>
+          <div class="card-body">
+            <div class="divider-group">
+              <div class="divider"></div>
+              <div class="divider-label">2026년 3월 12일 수요일</div>
+              <div class="divider-label" style="color:var(--color-danger);">읽지 않은 메시지</div>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Keyboard Shortcuts</span></div>
+          <div class="card-body" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+            <span class="kbd">⌘</span>
+            <span class="kbd">K</span>
+            <span class="kbd">Shift</span>
+            <span class="kbd">Enter</span>
+            <span class="kbd">Esc</span>
+            <span class="kbd">Tab</span>
+            <span class="kbd">↑</span>
+            <span class="kbd">↓</span>
+            <span class="kbd">⌘⇧P</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skeleton Loading -->
+    <div class="section" id="skeleton">
+      <div class="section-title">Skeleton Loading</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Message Skeleton</span></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+            <div style="display:flex;gap:var(--space-3);align-items:flex-start;">
+              <div class="skeleton skeleton-avatar"></div>
+              <div style="flex:1;">
+                <div class="skeleton skeleton-text" style="width:120px;"></div>
+                <div class="skeleton skeleton-text" style="width:85%;"></div>
+                <div class="skeleton skeleton-text" style="width:60%;"></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:var(--space-3);align-items:flex-start;">
+              <div class="skeleton skeleton-avatar"></div>
+              <div style="flex:1;">
+                <div class="skeleton skeleton-text" style="width:100px;"></div>
+                <div class="skeleton skeleton-text" style="width:70%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!--  PATTERNS                                -->
+    <!-- ════════════════════════════════════════ -->
+
+    <!-- Message Stream -->
+    <div class="section" id="messages">
+      <div class="section-title">Message Stream</div>
+      <div class="section-desc">메시지, 연속 메시지(compact), 리액션, 첨부파일이 포함된 실제 채팅 흐름.</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">Chat Thread</span><span class="card-tag"># general</span></div>
+        <div class="card-body">
+          <div class="message-demo">
+            <div class="message">
+              <div class="avatar avatar-sm">🐧</div>
+              <div class="msg-body">
+                <div class="msg-header"><span class="msg-name">pingu</span><span class="msg-time">오후 3:42</span></div>
+                <div class="msg-text">안녕하세요! pinguinz에 오신 걸 환영합니다</div>
+                <div class="msg-reactions">
+                  <span class="reaction mine">👋 <span class="reaction-count">3</span></span>
+                  <span class="reaction">🎉 <span class="reaction-count">2</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="message">
+              <div class="avatar avatar-sm" style="background:var(--aurora-teal-subtle);">🌙</div>
+              <div class="msg-body">
+                <div class="msg-header"><span class="msg-name">aurora</span><span class="msg-time">오후 3:43</span></div>
+                <div class="msg-text">디자인 시스템 정리 잘 되어있네요. 컬러 토큰 구조가 깔끔합니다!</div>
+              </div>
+            </div>
+            <div class="message msg-compact">
+              <div class="avatar avatar-sm" style="visibility:hidden;">🌙</div>
+              <div class="msg-body">
+                <div class="msg-text" style="color:var(--fg-muted);font-size:var(--text-xs);margin-bottom:2px;">오후 3:44</div>
+                <div class="msg-text">연속 메시지는 아바타 없이 compact하게 표시됩니다.</div>
+              </div>
+            </div>
+            <div style="padding:0 var(--space-3);">
+              <div class="divider-label" style="color:var(--color-danger);font-size:var(--text-xs);">새 메시지</div>
+            </div>
+            <div class="message">
+              <div class="avatar avatar-sm" style="background:var(--color-warning-subtle);">🔥</div>
+              <div class="msg-body">
+                <div class="msg-header"><span class="msg-name">devbot</span><span class="msg-time">오후 4:01</span><span class="badge badge-accent" style="font-size:9px;padding:1px 6px;">BOT</span></div>
+                <div class="msg-text">CI/CD 파이프라인 완료: <span style="color:var(--color-success);">✓ 빌드 성공</span> (2m 14s)</div>
+                <div style="margin-top:var(--space-2);">
+                  <div class="attachment">
+                    <div class="attachment-icon">📄</div>
+                    <div class="attachment-info">
+                      <div class="attachment-name">build-report-2026-03-12.log</div>
+                      <div class="attachment-meta">12.4 KB · LOG</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room List -->
+    <div class="section" id="rooms">
+      <div class="section-title">Room List</div>
+
+      <div class="component-card" style="max-width:320px;">
+        <div class="card-header"><span class="card-label">Sidebar Rooms</span></div>
+        <div class="card-body" style="padding:var(--space-2);">
+          <div class="room-list">
+            <div class="room-item active">
+              <div class="avatar avatar-sm">🐧</div>
+              <div class="room-info">
+                <div class="room-name"># general</div>
+                <div class="room-preview">pingu: 안녕하세요!</div>
+              </div>
+              <div class="room-meta">
+                <span class="room-time">3:42</span>
+              </div>
+            </div>
+            <div class="room-item">
+              <div class="avatar avatar-sm" style="background:var(--aurora-teal-subtle);">💻</div>
+              <div class="room-info">
+                <div class="room-name"># dev-ops</div>
+                <div class="room-preview">devbot: CI/CD 파이프라인 완료</div>
+              </div>
+              <div class="room-meta">
+                <span class="room-time">4:01</span>
+                <span class="room-unread">3</span>
+              </div>
+            </div>
+            <div class="room-item">
+              <div class="avatar avatar-sm" style="background:var(--color-warning-subtle);">🎨</div>
+              <div class="room-info">
+                <div class="room-name"># design</div>
+                <div class="room-preview">aurora: 컬러 토큰 구조가 깔끔합니다</div>
+              </div>
+              <div class="room-meta">
+                <span class="room-time">어제</span>
+              </div>
+            </div>
+            <div class="room-item">
+              <div class="avatar avatar-sm" style="background:var(--bg-hover);">☕</div>
+              <div class="room-info">
+                <div class="room-name"># random</div>
+                <div class="room-preview">오늘 점심 뭐 먹을까요?</div>
+              </div>
+              <div class="room-meta">
+                <span class="room-time">월</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Command Palette -->
+    <div class="section" id="cmd-palette">
+      <div class="section-title">Command Palette</div>
+      <div class="section-desc">⌘K로 열리는 커맨드 팔레트. 채팅방 이동, 패널 조작, 설정 접근을 빠르게.</div>
+
+      <div class="cmd-demo" style="max-width:520px;">
+        <div class="cmd-input-wrap">
+          <span class="cmd-icon">⌘</span>
+          <input class="cmd-input" placeholder="명령어 또는 채팅방 검색..." />
+          <span class="kbd">Esc</span>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-group-label">채팅방</div>
+          <div class="cmd-item active">
+            <div class="cmd-item-left"><span class="cmd-item-icon">#</span><span class="cmd-item-name">general</span></div>
+            <span class="cmd-item-kbd">Enter</span>
+          </div>
+          <div class="cmd-item">
+            <div class="cmd-item-left"><span class="cmd-item-icon">#</span><span class="cmd-item-name">dev-ops</span></div>
+          </div>
+          <div class="cmd-group-label">액션</div>
+          <div class="cmd-item">
+            <div class="cmd-item-left"><span class="cmd-item-icon">⊞</span><span class="cmd-item-name">2분할 레이아웃으로 전환</span></div>
+            <span class="cmd-item-kbd">⌘2</span>
+          </div>
+          <div class="cmd-item">
+            <div class="cmd-item-left"><span class="cmd-item-icon">◐</span><span class="cmd-item-name">테마 전환</span></div>
+            <span class="cmd-item-kbd">⌘⇧T</span>
+          </div>
+          <div class="cmd-item">
+            <div class="cmd-item-left"><span class="cmd-item-icon">⚙</span><span class="cmd-item-name">설정 열기</span></div>
+            <span class="cmd-item-kbd">⌘,</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="section" id="context-menu">
+      <div class="section-title">Context Menu</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Message Actions</span></div>
+          <div class="card-body">
+            <div class="context-menu">
+              <div class="ctx-item"><span class="ctx-icon">↩</span> 답장<span class="ctx-kbd">R</span></div>
+              <div class="ctx-item"><span class="ctx-icon">📌</span> 고정</div>
+              <div class="ctx-item"><span class="ctx-icon">✎</span> 수정<span class="ctx-kbd">E</span></div>
+              <div class="ctx-item"><span class="ctx-icon">📋</span> 복사</div>
+              <div class="ctx-divider"></div>
+              <div class="ctx-item danger"><span class="ctx-icon">🗑</span> 삭제<span class="ctx-kbd">⌫</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-header"><span class="card-label">Room Actions</span></div>
+          <div class="card-body">
+            <div class="context-menu">
+              <div class="ctx-item"><span class="ctx-icon">🔇</span> 알림 끄기</div>
+              <div class="ctx-item"><span class="ctx-icon">⊞</span> 새 패널에서 열기</div>
+              <div class="ctx-item"><span class="ctx-icon">📌</span> 즐겨찾기</div>
+              <div class="ctx-divider"></div>
+              <div class="ctx-item danger"><span class="ctx-icon">🚪</span> 채팅방 나가기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="section" id="modal">
+      <div class="section-title">Modal</div>
+
+      <div class="component-grid">
+        <div class="component-card" style="background:transparent;border:none;padding:0;">
+          <div class="modal-preview">
+            <div class="modal-header">
+              <span class="modal-title">채팅방 만들기</span>
+              <span class="modal-close">✕</span>
+            </div>
+            <div class="modal-body">
+              <div class="input-group">
+                <div class="field">
+                  <label class="field-label">채팅방 이름</label>
+                  <input class="input" placeholder="예: design-review" />
+                </div>
+                <div class="field">
+                  <label class="field-label">설명 (선택)</label>
+                  <input class="input" placeholder="이 채팅방의 목적을 입력하세요" />
+                </div>
+                <div class="toggle-row" style="font-size:var(--text-sm);">
+                  <div class="toggle on"></div>
+                  비공개 채팅방
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-ghost">취소</button>
+              <button class="btn btn-primary">만들기</button>
+            </div>
+          </div>
+        </div>
+        <div class="component-card" style="background:transparent;border:none;padding:0;">
+          <div class="modal-preview">
+            <div class="modal-header">
+              <span class="modal-title">메시지 삭제</span>
+              <span class="modal-close">✕</span>
+            </div>
+            <div class="modal-body">
+              <p>이 메시지를 삭제하시겠습니까?<br>삭제된 메시지는 복구할 수 없습니다.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-ghost">취소</button>
+              <button class="btn btn-danger">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attachments -->
+    <div class="section" id="attachments">
+      <div class="section-title">File Attachments</div>
+
+      <div class="component-card">
+        <div class="card-header"><span class="card-label">File Types</span></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-3);">
+          <div class="attachment">
+            <div class="attachment-icon">📄</div>
+            <div class="attachment-info"><div class="attachment-name">프로젝트-계획서.pdf</div><div class="attachment-meta">2.4 MB · PDF</div></div>
+          </div>
+          <div class="attachment">
+            <div class="attachment-icon" style="background:var(--aurora-teal-subtle);">🖼</div>
+            <div class="attachment-info"><div class="attachment-name">wireframe-v3-final.png</div><div class="attachment-meta">847 KB · PNG</div></div>
+          </div>
+          <div class="attachment">
+            <div class="attachment-icon" style="background:var(--color-warning-subtle);">📦</div>
+            <div class="attachment-info"><div class="attachment-name">pinguinz-0.1.0.tar.gz</div><div class="attachment-meta">18.2 MB · Archive</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="section" id="empty">
+      <div class="section-title">Empty State</div>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="card-body">
+            <div class="empty-state" style="padding:var(--space-8);">
+              <div class="empty-icon">🐧</div>
+              <div class="empty-title">아직 메시지가 없습니다</div>
+              <div class="empty-desc">첫 메시지를 보내서 대화를 시작해보세요!</div>
+              <button class="btn btn-primary" style="margin-top:var(--space-4);">메시지 보내기</button>
+            </div>
+          </div>
+        </div>
+        <div class="component-card">
+          <div class="card-body">
+            <div class="empty-state" style="padding:var(--space-8);">
+              <div class="empty-icon">🔍</div>
+              <div class="empty-title">검색 결과 없음</div>
+              <div class="empty-desc">다른 키워드로 다시 검색해보세요.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Z-Index Reference -->
+    <div class="section" id="z-index">
+      <div class="section-title">Z-Index Scale</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--z-base</td><td class="token-val">0</td><td class="token-desc">기본 콘텐츠</td></tr>
+          <tr><td class="token-name">--z-raised</td><td class="token-val">10</td><td class="token-desc">호버 카드, 드롭다운 트리거</td></tr>
+          <tr><td class="token-name">--z-overlay</td><td class="token-val">100</td><td class="token-desc">드롭다운 메뉴, 팝오버</td></tr>
+          <tr><td class="token-name">--z-modal</td><td class="token-val">200</td><td class="token-desc">모달, 커맨드 팔레트</td></tr>
+          <tr><td class="token-name">--z-toast</td><td class="token-val">300</td><td class="token-desc">토스트 알림</td></tr>
+          <tr><td class="token-name">--z-top</td><td class="token-val">400</td><td class="token-desc">최상위 (글로벌 로더)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Sidebar active nav tracking
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+// Copy hex code on click
+document.querySelectorAll('.swatch-hex').forEach(el => {
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.textContent).then(() => {
+      const orig = el.textContent;
+      el.textContent = 'copied!';
+      el.style.color = 'var(--color-success)';
+      setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 1000);
+    });
+  });
+});
+
+// Scroll spy for sidebar nav
+const sections = document.querySelectorAll('.section[id]');
+const navItems = document.querySelectorAll('.nav-item[href]');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

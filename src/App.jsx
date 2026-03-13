@@ -1,27 +1,43 @@
-import {Route,Routes} from "react-router-dom";
-import Layout from "./layouts/Layout.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import PostsPage from "./pages/PostsPage.jsx";
-import PostDetailPage from "./pages/PostDetailPage.jsx";
-import useGoogleAnalytics from "./hooks/ga4/useGoogleAnalytics.jsx";
+import { lazy, Suspense, useState, useCallback } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './layouts/Layout.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
+import LoadingScreen from './components/LoadingScreen.jsx';
+import useGoogleAnalytics, { useScrollDepth, useOutboundTracking } from './hooks/ga4/useGoogleAnalytics.jsx';
+
+const HomePage = lazy(() => import('./pages/HomePage.jsx'));
+const PostsPage = lazy(() => import('./pages/PostsPage.jsx'));
+const PostsResolver = lazy(() => import('./components/PostsResolver.jsx'));
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 
 function App() {
-    useGoogleAnalytics();
+  useGoogleAnalytics();
+  useScrollDepth();
+  useOutboundTracking();
 
-    return (
+  const [showLoading, setShowLoading] = useState(true);
+
+  const handleLoadingDone = useCallback(() => {
+    setShowLoading(false);
+  }, []);
+
+  return (
+    <ErrorBoundary>
+      {showLoading && <LoadingScreen onDone={handleLoadingDone} />}
+      <Suspense fallback={<div style={{ minHeight: '100dvh', background: 'var(--bg)' }} />}>
         <Routes>
-            <Route element={<Layout />}>
-                <Route path={'/'} element={<HomePage />}/>
-
-                {/* /posts 전체 목록 페이지 */}
-                <Route path={'/posts'} element={<PostsPage />} />
-
-                {/* /posts/* 상세 페이지 */}
-                <Route path={'/posts/*'} element={<PostDetailPage />} />
-            </Route>
-
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/posts/*" element={<PostsResolver />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Routes>
-    );
+      </Suspense>
+    </ErrorBoundary>
+  );
 }
 
 export default App;

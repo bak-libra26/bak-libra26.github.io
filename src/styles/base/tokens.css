@@ -1,0 +1,108 @@
+/* ===== DESIGN TOKENS ===== */
+
+/* ── Common (non-color) tokens ── */
+:root {
+  /* Radius */
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  /* Fonts */
+  --font: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Transition */
+  --transition: 0.15s ease;
+
+  /* Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-modal: 1050;
+  --z-window-base: 10000;
+  --z-shortcuts: 11000;
+  --z-dock: 9998;
+  --z-dock-ctx: 9999;
+  --z-lightbox: 10010;
+  --z-loading: 12000;
+
+  /* Layout */
+  --header-height: 52px;
+  --container-max: 980px;
+  --shortcut-bar-height: 28px;
+
+  /* Font sizes */
+  --font-size-2xs: 11px;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 38px;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+}
+
+/* ===== THEME: Dracula (default dark) ===== */
+:root,
+[data-theme="dracula"] {
+  --bg: #282a36; --bg-secondary: #21222c; --surface: #2d2f3f; --surface-hover: #343746;
+  --text: #f8f8f2; --text-secondary: #bfbfbf; --text-muted: #8893b5;
+  --green: #50fa7b; --blue: #8be9fd; --purple: #bd93f9; --yellow: #f1fa8c;
+  --red: #ff5555; --orange: #ffb86c; --cyan: #8be9fd;
+  --border: #44475a; --border-hover: #5a5e78;
+  --green-dim: rgba(80,250,123,0.08); --blue-dim: rgba(139,233,253,0.08); --purple-dim: rgba(189,147,249,0.08);
+  color-scheme: dark;
+}
+
+/* ===== THEME: Nord (dark) ===== */
+[data-theme="nord"] {
+  --bg: #2e3440; --bg-secondary: #272c36; --surface: #3b4252; --surface-hover: #434c5e;
+  --text: #eceff4; --text-secondary: #d8dee9; --text-muted: #8d99b0;
+  --green: #a3be8c; --blue: #81a1c1; --purple: #b48ead; --yellow: #ebcb8b;
+  --red: #bf616a; --orange: #d08770; --cyan: #88c0d0;
+  --border: #434c5e; --border-hover: #5a657a;
+  --green-dim: rgba(163,190,140,0.10); --blue-dim: rgba(129,161,193,0.10); --purple-dim: rgba(180,142,173,0.10);
+  color-scheme: dark;
+}
+
+/* ===== THEME: Tokyo Night (dark) ===== */
+[data-theme="tokyo-night"] {
+  --bg: #1a1b26; --bg-secondary: #16161e; --surface: #1e2030; --surface-hover: #24283b;
+  --text: #c0caf5; --text-secondary: #a9b1d6; --text-muted: #7982ab;
+  --green: #9ece6a; --blue: #7aa2f7; --purple: #bb9af7; --yellow: #e0af68;
+  --red: #f7768e; --orange: #ff9e64; --cyan: #7dcfff;
+  --border: #292e42; --border-hover: #3b4261;
+  --green-dim: rgba(158,206,106,0.08); --blue-dim: rgba(122,162,247,0.08); --purple-dim: rgba(187,154,247,0.08);
+  color-scheme: dark;
+}
+
+/* ===== THEME: GitHub Light ===== */
+[data-theme="github-light"] {
+  --bg: #ffffff; --bg-secondary: #f6f8fa; --surface: #f6f8fa; --surface-hover: #eaeef2;
+  --text: #1f2328; --text-secondary: #656d76; --text-muted: #656d76;
+  --green: #1a7f37; --blue: #0969da; --purple: #8250df; --yellow: #9a6700;
+  --red: #cf222e; --orange: #bc4c00; --cyan: #0598bc;
+  --border: #d0d7de; --border-hover: #bbc0c5;
+  --green-dim: rgba(26,127,55,0.08); --blue-dim: rgba(9,105,218,0.08); --purple-dim: rgba(130,80,223,0.08);
+  color-scheme: light;
+}
+
+/* ===== THEME: Catppuccin Latte (light) ===== */
+[data-theme="catppuccin-latte"] {
+  --bg: #eff1f5; --bg-secondary: #e6e9ef; --surface: #dce0e8; --surface-hover: #ccd0da;
+  --text: #4c4f69; --text-secondary: #6c6f85; --text-muted: #6c6f85;
+  --green: #40a02b; --blue: #1e66f5; --purple: #8839ef; --yellow: #df8e1d;
+  --red: #d20f39; --orange: #fe640b; --cyan: #04a5e5;
+  --border: #ccd0da; --border-hover: #bcc0cc;
+  --green-dim: rgba(64,160,43,0.08); --blue-dim: rgba(30,102,245,0.08); --purple-dim: rgba(136,57,239,0.08);
+  color-scheme: light;
+}
+
+/* ===== MONO FONT GLOBAL ===== */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, input, button, textarea, select {
+  font-family: var(--font);
+}

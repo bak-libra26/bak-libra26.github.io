@@ -1,0 +1,90 @@
+/* ===== IMAGE PREVIEW WINDOW (inside WindowShell) ===== */
+
+.preview-window-shell .wsh-content {
+  overflow: hidden;
+}
+
+/* ── Toolbar ── */
+.preview-toolbar {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.preview-toolbar button {
+  font-family: var(--font);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+.preview-toolbar button:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.preview-zoom-label {
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: center;
+}
+
+.preview-fit {
+  margin-left: 4px;
+}
+
+/* ── Image body ── */
+.preview-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  min-height: 200px;
+  background: var(--surface);
+  cursor: grab;
+}
+
+.preview-body:active {
+  cursor: grabbing;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.1s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Statusbar ── */
+.preview-statusbar {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 4px 16px;
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .preview-toolbar button { padding: 4px 14px; }
+}

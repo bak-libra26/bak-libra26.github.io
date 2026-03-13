@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "1e9525e64163d8e3",
+        "id": "a7cb8b05f2fd60a2",
         "type": "tabs",
         "children": [
           {
-            "id": "4ac664d31def9aea",
+            "id": "07a255cb589755be",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "사이드 프로젝트/블로그/블로그: 메타 태그 최적화하기.md",
+                "file": "사이드 프로젝트/메신저/메신저: Swagger 문서를 인터페이스로 분리하기.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "블로그: 메타 태그 최적화하기"
+              "title": "메신저: Swagger 문서를 인터페이스로 분리하기"
             }
           }
         ]
@@ -44,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 522.5
   },
   "right": {
     "id": "5967add5d4d4d62a",
@@ -174,18 +174,40 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
-  "active": "4ac664d31def9aea",
+  "active": "07a255cb589755be",
   "lastOpenFiles": [
+    "사이드 프로젝트/메신저/메신저: Core 모듈 AutoConfiguration으로 MSA 공통 기능 자동 등록하기.md",
+    "사이드 프로젝트/메신저/메신저: @CurrentAccount 커스텀 ArgumentResolver로 인증 정보 주입하기.md",
+    "사이드 프로젝트/메신저/메신저: ResultCode 인터페이스로 API 응답 통일하기.md",
+    "사이드 프로젝트/메신저/메신저: Spring Boot AutoConfiguration 으로 공통 모듈 자동 등록하기.md",
+    "사이드 프로젝트/메신저/메신저: JWT 로 만드는 메신저 인증 플로우.md",
+    "사이드 프로젝트/메신저/메신저: Redis로 이메일 인증 Rate Limiting 구현하기 — 쿨다운과 일일 제한.md",
+    "사이드 프로젝트/메신저/메신저: Refresh Token 전략 — Redis Whitelist와 Token Rotation으로 탈취 감지하기.md",
+    "사이드 프로젝트/메신저/메신저: API Gateway 에서 x-usr 헤더 스푸핑 방어하기.md",
+    "사이드 프로젝트/메신저/메신저: API 공통 응답 구조 설계하기.md",
+    "사이드 프로젝트/메신저/DESIGN_TOKENS.md",
+    "사이드 프로젝트/메신저/LAYOUT.md",
+    "사이드 프로젝트/메신저/README.md",
+    "사이드 프로젝트/메신저/SHORTCUTS.md",
+    "사이드 프로젝트/메신저/PINGUINZ 가이드.md",
+    "개발/백엔드/스프링/스프링 시큐리티/스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까.md",
+    "사이드 프로젝트/메신저/메신저: Swagger 문서를 인터페이스로 분리하기.md",
+    "사이드 프로젝트/메신저/pinguinz-design-tokens-aurora-arctic.md",
+    "사이드 프로젝트/메신저/pinguinz-design-tokens.html",
+    "사이드 프로젝트/블로그/블로그: GISCUS 를 통한 댓글 기능 구현하기.md",
+    "사이드 프로젝트/블로그/giscus_component.png",
+    "사이드 프로젝트/블로그/discussions_checkbox.png",
     "사이드 프로젝트/블로그/블로그: 목차(TOC) 기능 추가하기.md",
+    "사이드 프로젝트/블로그/블로그: 메타 태그 최적화하기.md",
     "사이드 프로젝트/블로그/블로그 포스팅 워크플로우.png",
     "사이드 프로젝트/블로그/img.png",
     "사이드 프로젝트/블로그/블로그: 마크다운 파일로 블로그 포스팅 기능 구현하기.md",
@@ -193,27 +215,7 @@
     "사이드 프로젝트/블로그/블로그: 코드 하이라이트 기능 구현하기.md",
     "사이드 프로젝트/블로그/블로그: 코드 하이라이팅 구현하기.md",
     "사이드 프로젝트/블로그/블로그: 반응형 레이아웃 구현하기.md",
-    "사이드 프로젝트/블로그/블로그: GISCUS 를 통한 댓글 기능 구현하기.md",
     "사이드 프로젝트/블로그/블로그: GISCUS 를 통한 댓글 기능 추가하기.md",
-    "사이드 프로젝트/블로그/블로그: 마크다운 파일로 포스팅 기능 구현하기.md",
-    "사이드 프로젝트/블로그/블로그: 마크다운.md",
-    "사이드 프로젝트/블로그/블로그: 마크다운 파일로 동작하는 블로그 포스팅 기능 구현하기.md",
-    "사이드 프로젝트/블로그/블로그: 메타 태그 최적화하기.md",
-    "사이드 프로젝트/블로그/블로그: 댓글 기능 추가하기.md",
-    "사이드 프로젝트/블로그/discussions_checkbox.png",
-    "개발/메세지큐/레빗엠큐/고급 큐 기능(DLX, 딜레이 큐, 우선 순위 큐).md",
-    "사이드 프로젝트/블로그/Untitled.md",
-    "개발/메세지큐/레빗엠큐/여러가지 Exchange 타입과 라우팅 방식.md",
-    "개발/프론트엔드/자바스크립트/리액트/StrictMode Definition.md",
-    "사이드 프로젝트/개인_블로그/깃허브 페이지 댓글 구현하기.md",
-    "데브옵스/프로메테우스/SNMP 를 통한 스위치 모니터링.md",
-    "데브옵스/프로메테우스/Rabbit Exporter 설치.md",
-    "데브옵스/프로메테우스/Prometheus 설치.md",
-    "데브옵스/프로메테우스/Node Exporter 설치.md",
-    "데브옵스/젠킨스/빌드 실패, 원인은 라이브러리 캐시.md",
-    "데브옵스/젠킨스/Slack 연동 및 알림 설정.md",
-    "데브옵스/젠킨스/Publish Over SSH 플러그인 Remote Directory 설정 가이드.md",
-    "데브옵스/젠킨스/Publish Over SSH 서버 테스트 접속 실패.md",
     "개발/환경설정/깃허브 비공개 레포지토리 잔디 기여 설정 변경.png",
     "개발/환경설정/깃허브 비공개 레포지토리 잔디.png",
     "개발/백엔드/자바/리액티브/리액터, 백프레셔와 여러가지 전략 백프레셔.png"

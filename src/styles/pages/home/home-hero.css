@@ -11,14 +11,14 @@
     user-select: none;
 }
 
-.home-home__hero-kicker {
-    font-size: var(--font-size-small);
+.home-hero__kicker {
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
 }
 
 .home-hero__title {
-    font-size: 2.4rem;
-    font-weight: var(--font-weight-extra‑bold);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-extra-bold);
 
     text-align: center;
 }

@@ -1,44 +1,79 @@
-import {Link, useLocation} from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import '../styles/layout/header.css';
-import HrefUtil from "../utils/href-util.js";
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
-const navigators = [
-    { name: '홈', to: '/', path: '/' },
-    { name: '전체 글', to: HrefUtil.getPostsHref({page: 1, category: '전체'}), path: '/posts' },
-]
+const navItems = [
+  { name: 'home', to: '/', match: '/' },
+  { name: 'posts', to: '/posts', match: '/posts' },
+  { name: 'about', to: '/about', match: '/about' },
+];
 
 const Header = () => {
-    const { pathname } = useLocation();
+  const { pathname } = useLocation();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-    return (
-        <header>
-            <div className="container header-inner">
-                <p className="header__site-title">
-                    bak-libra26.
-                </p>
+  useEffect(() => { requestAnimationFrame(() => setDrawerOpen(false)); }, [pathname]);
 
-                <nav>
-                    <ol>
-                        {
-                            navigators.map((navigator) => {
-                                const path = navigator.path;
-                                return (
-                                    <li key={navigator.to}>
-                                        <Link to={navigator.to}
-                                              className='nav-link'
-                                              data-active={path == pathname}>
-                                            { navigator.name }
-                                        </Link>
-                                    </li>
-                                );
-                            })
-                        }
-                    </ol>
-                </nav>
-            </div>
-        </header>
-    )
+  const isActive = (match) => {
+    if (match === '/') return pathname === '/';
+    return pathname.startsWith(match);
+  };
+
+  return (
+    <>
+      <header className="header">
+        <div className="header-inner">
+          <div className="header-left">
+            <Link className="header-logo" to="/">
+              sim<span className="accent">.</span>junghun
+            </Link>
+            <nav>
+              <ul className="header-nav">
+                {navItems.map((item) => (
+                  <li key={item.to}>
+                    <Link to={item.to} data-active={isActive(item.match)} aria-current={isActive(item.match) ? 'page' : undefined}>
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div className="header-right">
+            <ThemeToggle />
+            <button
+              className="header-mobile-toggle"
+              onClick={() => setDrawerOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={drawerOpen}
+              aria-controls="mobile-nav"
+            >
+              {drawerOpen ? '✕' : '☰'}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <nav id="mobile-nav" className={`header-drawer${drawerOpen ? ' open' : ''}`}>
+        {navItems.map((item) => (
+          <Link
+            key={item.to}
+            to={item.to}
+            data-active={isActive(item.match)}
+            aria-current={isActive(item.match) ? 'page' : undefined}
+            onClick={() => setDrawerOpen(false)}
+          >
+            {item.name}
+          </Link>
+        ))}
+        <div className="header-drawer__theme">
+          <ThemeToggle />
+        </div>
+      </nav>
+    </>
+  );
 };
 
 export default Header;

@@ -1,0 +1,94 @@
+/* ===== POST READER WINDOW ===== */
+.post-reader-window .wsh-content {
+  overflow: hidden;
+}
+
+.post-reader-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+}
+
+/* ── Meta ── */
+.post-reader-meta {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-reader-meta h1 {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text);
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+.post-reader-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.post-reader-tags .tag {
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.post-reader-tags .tag.primary {
+  color: var(--green);
+  border-color: var(--green);
+  background: var(--green-dim);
+}
+
+.post-reader-info {
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  display: flex;
+  gap: 6px;
+}
+
+/* ── Body ── */
+.post-reader-body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ── Open in page button ── */
+.post-reader-open-btn {
+  font-size: var(--font-size-base);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 1px 8px;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.post-reader-open-btn:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .post-reader-content {
+    padding: 16px;
+  }
+
+  .post-reader-meta h1 {
+    font-size: 18px;
+  }
+}

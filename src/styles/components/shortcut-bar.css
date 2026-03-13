@@ -1,0 +1,154 @@
+.shortcut-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-dock);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+}
+
+.shortcut-bar .sc-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.shortcut-bar kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.shortcut-bar .divider {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+}
+
+/* ── Dock window items ── */
+.sc-window {
+  max-width: 140px;
+  overflow: hidden;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+.sc-window:hover {
+  background: var(--surface-hover);
+}
+
+.sc-window.sc-active {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.sc-window.sc-minimized {
+  opacity: 0.5;
+}
+
+.sc-icon {
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+.sc-win-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100px;
+}
+
+/* ── Context menu ── */
+.dock-ctx {
+  position: fixed;
+  min-width: 160px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 4px 0;
+  z-index: var(--z-dock-ctx);
+  animation: dockCtxIn 0.12s ease;
+}
+
+.dock-ctx-title {
+  padding: 6px 12px 4px;
+  font-size: var(--font-size-2xs);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+}
+
+.dock-ctx-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.dock-ctx-item {
+  display: block;
+  width: 100%;
+  padding: 5px 12px;
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  color: var(--text);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.dock-ctx-item:hover {
+  background: var(--surface-hover);
+}
+
+.dock-ctx-danger {
+  color: var(--red);
+}
+
+.dock-ctx-danger:hover {
+  background: rgba(248, 113, 113, 0.1); /* fallback */
+  background: color-mix(in srgb, var(--red) 10%, transparent);
+}
+
+@keyframes dockCtxIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-ctx { animation: none !important; }
+}
+
+@media (max-width: 768px) {
+  .shortcut-bar {
+    gap: 12px;
+    padding: 6px 12px;
+    padding-bottom: calc(6px + env(safe-area-inset-bottom));
+    font-size: 10px;
+  }
+
+  .sc-window {
+    display: none;
+  }
+}

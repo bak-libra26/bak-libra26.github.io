@@ -1,0 +1,81 @@
+/* ===== LOADING SCREEN ===== */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loading);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.loading-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-terminal {
+  width: 560px;
+}
+
+/* Override TerminalFrame body padding for loading */
+.loading-terminal .tf-body {
+  line-height: 1.9;
+}
+
+.loading-terminal .prompt-dollar { color: var(--green); }
+.loading-terminal .pkg { color: var(--text); }
+.loading-terminal .dim { color: var(--text-muted); }
+.loading-terminal .ok { color: var(--green); }
+
+.loading-terminal .step-line {
+  animation: stepFadeIn 0.15s ease;
+}
+
+@keyframes stepFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loading-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 4px;
+}
+
+.loading-progress-bar {
+  flex: 1;
+  height: 12px;
+  background: var(--bg);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.loading-progress-bar .fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 1px;
+  transition: width 0.1s linear;
+}
+
+.loading-progress-pct {
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  min-width: 36px;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-terminal .step-line { animation: none !important; }
+}
+
+@media (max-width: 768px) {
+  .loading-terminal {
+    width: 100%;
+    margin: 0 16px;
+  }
+}

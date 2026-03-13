@@ -4,36 +4,45 @@
 @import "post-detail-toc.css";
 
 .post-detail {
-    display: flex;
-    gap: 36px;
-
-    padding: var(--space-2) 0;
-    margin: var(--space-6) 0;
-}
-
-.post-detail__sidebar {
-    flex: 0 0 280px;           /* flex-grow:0, flex-shrink:0, basis:280px */
-    max-width: 222px;
-}
-
-.post-detail__main {
-    flex: 1 1 auto;
-    min-width: 0;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 720px) 180px;
+  gap: 48px;
 }
 
 .post-heading {
-    scroll-margin-top: 180px; /* 고정 헤더 높이 + 여유. 숫자는 네 레이아웃에 맞게 조절 */
+  scroll-margin-top: 80px;
 }
 
+/* ── Tablet ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .post-detail {
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 32px;
+    padding: 24px 16px 48px;
+  }
+}
 
-
-/* 모바일 전용 (예: 767px 이하만) */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-    .post-detail {
-        display: block;
-    }
+  .post-detail {
+    grid-template-columns: 1fr;
+    padding: 16px 16px 48px;
+    gap: 0;
+  }
 
-    .post-detail__toc {
-        display: none;
-    }
+  .post-detail__article {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .post-detail .prompt {
+    font-size: 12px;
+  }
+
+  .post-detail__sidebar {
+    display: none;
+  }
 }

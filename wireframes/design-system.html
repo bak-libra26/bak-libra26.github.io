@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sim.junghun — Design System Gallery</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0A0A0F; --bg-secondary: #111118; --surface: #16161F; --surface-hover: #1C1C28;
+  --text: #D4D4DC; --text-secondary: #7E7E8C; --text-muted: #3E3E4C;
+  --green: #4ADE80; --green-dim: rgba(74,222,128,0.08);
+  --blue: #60A5FA; --blue-dim: rgba(96,165,250,0.08);
+  --purple: #A78BFA; --purple-dim: rgba(167,139,250,0.08);
+  --yellow: #FBBF24; --yellow-dim: rgba(251,191,36,0.08);
+  --red: #F87171; --red-dim: rgba(248,113,113,0.08);
+  --orange: #FB923C; --orange-dim: rgba(251,146,60,0.08);
+  --cyan: #22D3EE; --cyan-dim: rgba(34,211,238,0.08);
+  --border: #1E1E2A; --border-hover: #2A2A3A;
+  --radius: 6px; --radius-lg: 10px;
+  --font: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --transition: 0.15s ease;
+}
+
+[data-theme="light"] {
+  --bg: #F8F8FA; --bg-secondary: #EEEFF2; --surface: #FFFFFF; --surface-hover: #F0F0F4;
+  --text: #1A1A2E; --text-secondary: #555566; --text-muted: #9999AA;
+  --green: #16A34A; --green-dim: rgba(22,163,74,0.08);
+  --blue: #2563EB; --blue-dim: rgba(37,99,235,0.08);
+  --purple: #7C3AED; --purple-dim: rgba(124,58,237,0.08);
+  --yellow: #CA8A04; --yellow-dim: rgba(202,138,4,0.08);
+  --red: #DC2626; --red-dim: rgba(220,38,38,0.08);
+  --orange: #EA580C; --orange-dim: rgba(234,88,12,0.08);
+  --cyan: #0891B2; --cyan-dim: rgba(8,145,178,0.08);
+  --border: #E2E2EA; --border-hover: #D0D0DC;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--green); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+/* ── Gallery Layout ── */
+.gallery {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.sidebar-brand {
+  padding: 0 16px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.sidebar-brand .logo {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.sidebar-brand .logo span { color: var(--green); }
+.sidebar-brand .sub {
+  font-family: var(--font);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+.nav-group { margin-bottom: 16px; }
+.nav-group-label {
+  font-family: var(--font);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 16px;
+  margin-bottom: 4px;
+}
+.nav-link {
+  display: block;
+  padding: 5px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.nav-link:hover { color: var(--text); background: var(--surface-hover); }
+.nav-link.active { color: var(--green); }
+
+/* ── Main ── */
+.main {
+  padding: 48px 56px;
+  max-width: 920px;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.page-title span { color: var(--green); }
+.page-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+/* ── Section ── */
+.section {
+  margin-bottom: 56px;
+  scroll-margin-top: 32px;
+}
+.section-title {
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.section-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+/* ── Color Swatches ── */
+.color-group { margin-bottom: 24px; }
+.color-group-label {
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.swatch-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+.swatch-row:hover { background: var(--surface); }
+.swatch {
+  width: 36px; height: 36px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.swatch-info { flex: 1; }
+.swatch-name { font-size: 13px; font-weight: 500; }
+.swatch-desc { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.swatch-hex {
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--surface);
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.swatch-hex:hover { color: var(--green); }
+
+/* ── Component Card ── */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.comp-grid.single { grid-template-columns: 1fr; }
+
+.comp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.comp-label {
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.comp-tag {
+  font-family: var(--font);
+  font-size: 10px;
+  color: var(--green);
+  background: var(--green-dim);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.comp-body { padding: 20px; }
+
+/* ── Theme Switch (gallery) ── */
+.theme-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+.theme-btn {
+  font-family: var(--font);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.theme-btn:hover { border-color: var(--green); color: var(--green); }
+.theme-btn.active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+
+/* ── Buttons (blog) ── */
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn-row + .btn-row { margin-top: 12px; }
+
+.btn {
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn:hover { border-color: var(--green); color: var(--green); }
+.btn.primary { background: var(--green); color: var(--bg); border-color: var(--green); }
+.btn.primary:hover { opacity: 0.9; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-icon {
+  width: 32px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-secondary); cursor: pointer; font-size: 14px;
+  transition: var(--transition);
+}
+.btn-icon:hover { border-color: var(--green); color: var(--green); }
+
+/* ── Tags / Pills ── */
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-row + .tag-row { margin-top: 12px; }
+
+.tag {
+  font-family: var(--font);
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+.tag.green { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+.tag.blue { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
+.tag.purple { border-color: var(--purple); color: var(--purple); background: var(--purple-dim); }
+.tag.yellow { border-color: var(--yellow); color: var(--yellow); background: var(--yellow-dim); }
+
+.cat-badge {
+  font-family: var(--font);
+  font-size: 11px;
+  padding: 2px 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+/* ── Navigation ── */
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 48px;
+  background: rgba(10,10,15,0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.preview-logo {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.preview-logo span { color: var(--green); }
+.preview-nav {
+  display: flex;
+  gap: 4px;
+}
+.preview-nav a {
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.preview-nav a:hover { color: var(--text); background: var(--surface-hover); }
+.preview-nav a.active { color: var(--green); }
+.preview-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+/* ── Post Table ── */
+.post-table { width: 100%; }
+.post-table-header {
+  display: grid;
+  grid-template-columns: 1fr 80px 60px;
+  padding: 8px 12px;
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+.post-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 60px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: var(--transition);
+  align-items: center;
+}
+.post-row:hover { background: var(--green-dim); }
+.post-row:hover .post-title-text { color: var(--green); }
+.post-title-cell { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.post-title-text {
+  font-size: 13px;
+  color: var(--text);
+  transition: var(--transition);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-date { font-family: var(--font); font-size: 12px; color: var(--text-muted); }
+.post-read { font-family: var(--font); font-size: 12px; color: var(--text-muted); text-align: right; }
+
+/* ── Category Sidebar ── */
+.cat-tree { list-style: none; font-size: 13px; }
+.cat-tree li { margin-bottom: 2px; }
+.cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-secondary);
+}
+.cat-item:hover { background: var(--surface-hover); color: var(--text); }
+.cat-item.active { color: var(--green); background: var(--green-dim); }
+.cat-item .count { font-family: var(--font); font-size: 11px; color: var(--text-muted); }
+.cat-item.active .count { color: var(--green); }
+.cat-children { list-style: none; padding-left: 16px; }
+
+/* ── Code Block ── */
+.code-block {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.code-lang { color: var(--yellow); }
+.code-copy { color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+.code-copy:hover { color: var(--green); }
+.code-content {
+  padding: 16px;
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+  counter-reset: line;
+}
+.code-line { display: flex; }
+.code-line::before {
+  counter-increment: line;
+  content: counter(line);
+  width: 28px;
+  text-align: right;
+  margin-right: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  user-select: none;
+}
+.kw { color: var(--purple); }
+.str { color: var(--green); }
+.type { color: var(--blue); }
+.cmt { color: var(--text-muted); font-style: italic; }
+.fn { color: var(--yellow); }
+.num { color: var(--orange); }
+.ann { color: var(--yellow); }
+
+/* ── Article Content ── */
+.article-preview { font-size: 14px; line-height: 1.8; }
+.article-preview h2 {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 24px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.article-preview h3 {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+}
+.article-preview p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.article-preview code {
+  font-family: var(--font);
+  font-size: 12px;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--green);
+}
+.article-preview blockquote {
+  border-left: 3px solid var(--green);
+  padding: 12px 16px;
+  margin: 12px 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  background: var(--green-dim);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.note-box {
+  background: var(--blue-dim);
+  border-left: 3px solid var(--blue);
+  padding: 12px 16px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.note-box .note-label {
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* ── Series Nav ── */
+.series-nav {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.series-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.series-header:hover { background: var(--surface-hover); }
+.series-header-left { display: flex; align-items: center; gap: 10px; }
+.series-badge {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-dim);
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.series-title { font-size: 14px; font-weight: 500; }
+.series-count { font-family: var(--font); font-size: 12px; color: var(--text-muted); }
+.series-list {
+  border-top: 1px solid var(--border);
+  padding: 6px 0;
+}
+.series-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.series-item:hover { background: var(--surface-hover); }
+.series-item.current { color: var(--green); background: var(--green-dim); }
+.series-num { font-family: var(--font); font-size: 11px; width: 20px; text-align: right; flex-shrink: 0; }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font);
+  font-size: 13px;
+}
+.pagination a, .pagination span {
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+.pagination a:hover { border-color: var(--border); color: var(--text); }
+.pagination .active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+.pagination .disabled { color: var(--text-muted); cursor: default; }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--text-muted);
+  align-items: center;
+}
+.breadcrumb span { cursor: pointer; transition: var(--transition); }
+.breadcrumb span:hover { color: var(--green); }
+.breadcrumb .sep { color: var(--text-muted); cursor: default; }
+
+/* ── TOC ── */
+.toc-list { list-style: none; }
+.toc-list li {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+}
+.toc-list li:hover { color: var(--text); }
+.toc-list li.active { color: var(--green); border-color: var(--green); }
+.toc-list li.depth-3 { padding-left: 24px; font-size: 12px; }
+
+/* ── Terminal ── */
+.terminal-preview {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.terminal-dots { display: flex; gap: 6px; }
+.terminal-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-dots .r { background: #FF5F57; }
+.terminal-dots .y { background: #FEBC2E; }
+.terminal-dots .g { background: #28C840; }
+.terminal-label { font-family: var(--font); font-size: 11px; color: var(--text-muted); }
+.terminal-body {
+  padding: 16px;
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.terminal-body .prompt { color: var(--green); }
+.terminal-body .cmd { color: var(--text); }
+.terminal-body .output { color: var(--text-secondary); }
+.terminal-body .dir { color: var(--blue); }
+.terminal-body .file { color: var(--text); }
+.terminal-body .err { color: var(--red); }
+.terminal-body .dim { color: var(--text-muted); }
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font);
+  font-size: 13px;
+  gap: 8px;
+}
+.terminal-input-row .prompt { color: var(--green); white-space: nowrap; }
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--green);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+
+/* ── Error Box (404) ── */
+.error-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.error-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.error-dot { width: 10px; height: 10px; border-radius: 50%; }
+.error-dot.r { background: var(--red); }
+.error-dot.y { background: var(--yellow); }
+.error-dot.g { background: var(--green); }
+.error-title { font-family: var(--font); font-size: 11px; color: var(--text-muted); margin-left: 8px; }
+.error-content {
+  padding: 20px;
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ── Loading (apt style) ── */
+.loading-content {
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+.loading-content .prompt { color: var(--green); }
+.loading-content .bold { color: var(--text); font-weight: 600; }
+.loading-content .warn { color: var(--yellow); }
+.loading-content .dim { color: var(--text-muted); }
+.progress-bar-preview {
+  width: 100%;
+  height: 16px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin: 8px 0;
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill-preview {
+  height: 100%;
+  background: var(--green);
+  border-radius: 4px;
+  width: 67%;
+}
+.progress-text-preview {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text);
+}
+
+/* ── Shortcuts ── */
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+}
+.shortcut-desc { color: var(--text-secondary); }
+.shortcut-keys { display: flex; gap: 4px; }
+.kbd {
+  font-family: var(--font);
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+/* ── Spacing visual ── */
+.spacing-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.spacing-label { font-family: var(--font); font-size: 11px; color: var(--text-muted); width: 48px; flex-shrink: 0; }
+.spacing-bar { height: 18px; background: var(--green-dim); border: 1px solid rgba(74,222,128,0.15); border-radius: 3px; }
+.spacing-val { font-family: var(--font); font-size: 11px; color: var(--text-secondary); }
+
+/* ── Radius visual ── */
+.radius-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.radius-box {
+  width: 56px; height: 56px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.radius-label { font-family: var(--font); font-size: 10px; color: var(--text-muted); text-align: center; }
+
+/* ── Token table ── */
+.token-table { width: 100%; border-collapse: collapse; }
+.token-table th {
+  text-align: left;
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+.token-table td {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.token-table tr:last-child td { border-bottom: none; }
+.token-name { font-family: var(--font); color: var(--green); font-size: 12px; }
+.token-val { font-family: var(--font); color: var(--text-muted); font-size: 12px; }
+.token-desc { color: var(--text-secondary); font-size: 13px; }
+
+/* ── Mobile Bottom Nav preview ── */
+.mobile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 56px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font);
+  font-size: 10px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.mobile-nav-item .icon { font-size: 18px; }
+.mobile-nav-item.active { color: var(--green); }
+
+/* ── Cat Pill (mobile) ── */
+.pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.cat-pill {
+  font-family: var(--font);
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.cat-pill.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+.sub-pill {
+  font-family: var(--font);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.sub-pill.active { color: var(--blue); border-color: var(--blue); }
+
+/* ── Related Card ── */
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.related-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.related-card:hover { border-color: var(--green); background: var(--surface-hover); }
+.related-card-cat { font-family: var(--font); font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.related-card-title { font-size: 13px; font-weight: 500; }
+
+/* ── Comment Placeholder ── */
+.giscus-placeholder {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="gallery">
+
+  <!-- ── Sidebar ── -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">sim<span>.</span>junghun</div>
+      <div class="sub">DESIGN SYSTEM v0.1</div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Foundation</div>
+      <a class="nav-link active" href="#colors">Colors</a>
+      <a class="nav-link" href="#typography">Typography</a>
+      <a class="nav-link" href="#spacing">Spacing & Radius</a>
+      <a class="nav-link" href="#tokens">Motion & Z-Index</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Components</div>
+      <a class="nav-link" href="#buttons">Buttons & Tags</a>
+      <a class="nav-link" href="#navigation">Navigation</a>
+      <a class="nav-link" href="#post-list">Post List</a>
+      <a class="nav-link" href="#category">Category Sidebar</a>
+      <a class="nav-link" href="#series">Series Nav</a>
+      <a class="nav-link" href="#pagination">Pagination & Breadcrumb</a>
+      <a class="nav-link" href="#code">Code Block</a>
+      <a class="nav-link" href="#article">Article Content</a>
+      <a class="nav-link" href="#toc">TOC</a>
+      <a class="nav-link" href="#shortcuts">Keyboard Shortcuts</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Patterns</div>
+      <a class="nav-link" href="#terminal">Terminal</a>
+      <a class="nav-link" href="#error">404 Error</a>
+      <a class="nav-link" href="#loading">Loading</a>
+      <a class="nav-link" href="#mobile">Mobile Components</a>
+      <a class="nav-link" href="#related">Related & Comments</a>
+    </div>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <h1 class="page-title">sim<span>.</span>junghun Design System</h1>
+    <p class="page-desc">개발자 블로그 sim.junghun의 디자인 토큰과 컴포넌트 갤러리.<br>JetBrains Mono + Inter · Dark/Light 테마 · 터미널 인터랙션</p>
+
+    <div class="theme-bar">
+      <button class="theme-btn active" onclick="setTheme('dark')">● Dark</button>
+      <button class="theme-btn" onclick="setTheme('light')">○ Light</button>
+    </div>
+
+    <!-- ═══════════════════════ FOUNDATION ═══════════════════════ -->
+
+    <!-- Colors -->
+    <div class="section" id="colors">
+      <div class="section-title">Colors</div>
+      <div class="section-desc">4단계 배경, 3단계 전경, 7색 액센트. Dark/Light 모두 동일 변수명으로 자동 전환됩니다.</div>
+
+      <div class="color-group">
+        <div class="color-group-label">Background</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--bg);"></div><div class="swatch-info"><div class="swatch-name">--bg</div><div class="swatch-desc">앱 전체 배경</div></div><div class="swatch-hex" data-dark="#0A0A0F" data-light="#F8F8FA">#0A0A0F</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--bg-secondary);"></div><div class="swatch-info"><div class="swatch-name">--bg-secondary</div><div class="swatch-desc">코드 블록, 로딩</div></div><div class="swatch-hex" data-dark="#111118" data-light="#EEEFF2">#111118</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--surface);"></div><div class="swatch-info"><div class="swatch-name">--surface</div><div class="swatch-desc">카드, 패널, 터미널</div></div><div class="swatch-hex" data-dark="#16161F" data-light="#FFFFFF">#16161F</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--surface-hover);"></div><div class="swatch-info"><div class="swatch-name">--surface-hover</div><div class="swatch-desc">호버 배경</div></div><div class="swatch-hex" data-dark="#1C1C28" data-light="#F0F0F4">#1C1C28</div></div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-label">Foreground</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--text);"></div><div class="swatch-info"><div class="swatch-name">--text</div><div class="swatch-desc">본문, 제목</div></div><div class="swatch-hex" data-dark="#D4D4DC" data-light="#1A1A2E">#D4D4DC</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--text-secondary);"></div><div class="swatch-info"><div class="swatch-name">--text-secondary</div><div class="swatch-desc">부제, 설명, 본문</div></div><div class="swatch-hex" data-dark="#7E7E8C" data-light="#555566">#7E7E8C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--text-muted);"></div><div class="swatch-info"><div class="swatch-name">--text-muted</div><div class="swatch-desc">날짜, 카운트, 비활성</div></div><div class="swatch-hex" data-dark="#3E3E4C" data-light="#9999AA">#3E3E4C</div></div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-label">Accent (Primary: Green)</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--green);"></div><div class="swatch-info"><div class="swatch-name">--green</div><div class="swatch-desc">CTA, 활성 탭, 로고 포인트, 선택 하이라이트</div></div><div class="swatch-hex" data-dark="#4ADE80" data-light="#16A34A">#4ADE80</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--green-dim);border-color:rgba(74,222,128,0.2);"></div><div class="swatch-info"><div class="swatch-name">--green-dim</div><div class="swatch-desc">활성 태그 배경, 호버 행</div></div><div class="swatch-hex">rgba(74,222,128,0.08)</div></div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-label">Accent (Secondary)</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--blue);"></div><div class="swatch-info"><div class="swatch-name">--blue</div><div class="swatch-desc">서브카테고리, 노트 박스, 타입 하이라이트</div></div><div class="swatch-hex" data-dark="#60A5FA" data-light="#2563EB">#60A5FA</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--purple);"></div><div class="swatch-info"><div class="swatch-name">--purple</div><div class="swatch-desc">코드 키워드, 태그</div></div><div class="swatch-hex" data-dark="#A78BFA" data-light="#7C3AED">#A78BFA</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--yellow);"></div><div class="swatch-info"><div class="swatch-name">--yellow</div><div class="swatch-desc">코드 함수명, 언어 라벨, 경고</div></div><div class="swatch-hex" data-dark="#FBBF24" data-light="#CA8A04">#FBBF24</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--red);"></div><div class="swatch-info"><div class="swatch-name">--red</div><div class="swatch-desc">에러, 삭제, 404</div></div><div class="swatch-hex" data-dark="#F87171" data-light="#DC2626">#F87171</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--orange);"></div><div class="swatch-info"><div class="swatch-name">--orange</div><div class="swatch-desc">코드 숫자 리터럴</div></div><div class="swatch-hex" data-dark="#FB923C" data-light="#EA580C">#FB923C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--cyan);"></div><div class="swatch-info"><div class="swatch-name">--cyan</div><div class="swatch-desc">터미널 info, 코드 타입</div></div><div class="swatch-hex" data-dark="#22D3EE" data-light="#0891B2">#22D3EE</div></div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-label">Border</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--border);"></div><div class="swatch-info"><div class="swatch-name">--border</div><div class="swatch-desc">기본 구분선</div></div><div class="swatch-hex" data-dark="#1E1E2A" data-light="#E2E2EA">#1E1E2A</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--border-hover);"></div><div class="swatch-info"><div class="swatch-name">--border-hover</div><div class="swatch-desc">호버/포커스 구분선</div></div><div class="swatch-hex" data-dark="#2A2A3A" data-light="#D0D0DC">#2A2A3A</div></div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="section" id="typography">
+      <div class="section-title">Typography</div>
+      <div class="section-desc">Mono: JetBrains Mono (로고, 라벨, 코드, 날짜, 터미널). Sans: Inter (본문, 설명, 제목).</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">JetBrains Mono</span><span class="comp-tag">--font</span></div>
+          <div class="comp-body">
+            <div style="font-family:var(--font);">
+              <div style="font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:8px;">sim<span style="color:var(--green);">.</span>junghun</div>
+              <div style="font-size:14px;color:var(--text-muted);margin-bottom:4px;">SECTION TITLE · LABEL</div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Mar 10 · 8 min read</div>
+              <div style="font-size:12px;color:var(--text-muted);">const blog = "sim.junghun";</div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Inter</span><span class="comp-tag">--font-sans</span></div>
+          <div class="comp-body">
+            <div style="font-family:var(--font-sans);">
+              <div style="font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:8px;">페이지 제목</div>
+              <div style="font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:4px;">본문 텍스트입니다. 가독성을 고려한 15px.</div>
+              <div style="font-size:13px;color:var(--text-muted);">보조 설명, 카테고리 트리</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Type Scale</span></div>
+          <div class="comp-body" style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">32px</span><span style="font-size:32px;font-weight:700;font-family:var(--font);letter-spacing:-1px;">sim.junghun</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">28px</span><span style="font-size:28px;font-weight:700;font-family:var(--font);letter-spacing:-0.5px;">Article Title</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">20px</span><span style="font-size:20px;font-weight:700;font-family:var(--font);">Section Heading (h2)</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">16px</span><span style="font-size:16px;font-weight:600;font-family:var(--font);">Sub Heading (h3)</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">15px</span><span style="font-size:15px;color:var(--text-secondary);">본문 텍스트 (sans, line-height 1.8)</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">13px</span><span style="font-size:13px;font-family:var(--font);color:var(--text-secondary);">nav · code · date · meta</span></div>
+            <div style="display:flex;align-items:baseline;gap:16px;"><span style="font-family:var(--font);font-size:11px;color:var(--text-muted);width:72px;flex-shrink:0;">11–12px</span><span style="font-size:11px;font-family:var(--font);color:var(--text-muted);">LABEL · BADGE · KBD · CATEGORY</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacing & Radius -->
+    <div class="section" id="spacing">
+      <div class="section-title">Spacing & Radius</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Radius</span></div>
+          <div class="comp-body">
+            <div class="radius-grid">
+              <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">--radius<br>6px</div></div>
+              <div class="radius-item"><div class="radius-box" style="border-radius:10px;"></div><div class="radius-label">--radius-lg<br>10px</div></div>
+              <div class="radius-item"><div class="radius-box" style="border-radius:999px;width:80px;height:32px;"></div><div class="radius-label">pill<br>999px</div></div>
+              <div class="radius-item"><div class="radius-box" style="border-radius:50%;width:40px;height:40px;"></div><div class="radius-label">circle<br>50%</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Common Spacing</span></div>
+          <div class="comp-body">
+            <div class="spacing-row"><span class="spacing-label">4px</span><div class="spacing-bar" style="width:4px;"></div><span class="spacing-val">gap (tight)</span></div>
+            <div class="spacing-row"><span class="spacing-label">8px</span><div class="spacing-bar" style="width:8px;"></div><span class="spacing-val">gap, tag spacing</span></div>
+            <div class="spacing-row"><span class="spacing-label">12px</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-val">card padding (sm)</span></div>
+            <div class="spacing-row"><span class="spacing-label">16px</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-val">section gap, padding</span></div>
+            <div class="spacing-row"><span class="spacing-label">24px</span><div class="spacing-bar" style="width:24px;"></div><span class="spacing-val">page padding, footer</span></div>
+            <div class="spacing-row"><span class="spacing-label">32px</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-val">layout gap</span></div>
+            <div class="spacing-row"><span class="spacing-label">48px</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-val">section margin</span></div>
+            <div class="spacing-row"><span class="spacing-label">80px</span><div class="spacing-bar" style="width:80px;"></div><span class="spacing-val">hero/page padding</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motion & Z-Index -->
+    <div class="section" id="tokens">
+      <div class="section-title">Motion & Z-Index</div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Transition</span></div>
+          <div class="comp-body">
+            <table class="token-table">
+              <tbody>
+                <tr><td class="token-name">--transition</td><td class="token-val">0.15s ease</td><td class="token-desc">모든 인터랙션 기본값</td></tr>
+              </tbody>
+            </table>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">단일 트랜지션 값으로 전체 UI 일관성 유지. 호버, 컬러 변경, 보더 등 모두 동일 타이밍.</p>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Z-Index</span></div>
+          <div class="comp-body">
+            <table class="token-table">
+              <tbody>
+                <tr><td class="token-name">100</td><td class="token-desc">site-header (sticky)</td></tr>
+                <tr><td class="token-name">9999</td><td class="token-desc">wf-nav (와이어프레임 전용)</td></tr>
+                <tr><td class="token-name">10000</td><td class="token-desc">terminal-overlay</td></tr>
+                <tr><td class="token-name">10001</td><td class="token-desc">shortcuts-modal</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ COMPONENTS ═══════════════════════ -->
+
+    <!-- Buttons & Tags -->
+    <div class="section" id="buttons">
+      <div class="section-title">Buttons & Tags</div>
+
+      <div class="comp-card" style="margin-bottom:16px;">
+        <div class="comp-header"><span class="comp-label">Buttons</span></div>
+        <div class="comp-body">
+          <div class="btn-row">
+            <button class="btn primary">Primary (CTA)</button>
+            <button class="btn">Default</button>
+            <button class="btn" disabled>Disabled</button>
+            <button class="btn-icon">☾</button>
+            <button class="btn-icon">⌘</button>
+          </div>
+          <div class="btn-row">
+            <button class="btn" style="font-size:11px;padding:4px 10px;">Small</button>
+            <button class="btn">Default</button>
+            <button class="btn" style="padding:10px 24px;">Large</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Tech Tags (pill)</span></div>
+          <div class="comp-body">
+            <div class="tag-row">
+              <span class="tag green">Spring Boot</span>
+              <span class="tag blue">Docker</span>
+              <span class="tag purple">Kubernetes</span>
+              <span class="tag">Java</span>
+              <span class="tag">JPA</span>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Category Badge</span></div>
+          <div class="comp-body">
+            <div class="tag-row">
+              <span class="cat-badge">개발/백엔드</span>
+              <span class="cat-badge">데브옵스</span>
+              <span class="cat-badge">사이드 프로젝트</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="section" id="navigation">
+      <div class="section-title">Navigation</div>
+
+      <div class="comp-card" style="margin-bottom:16px;">
+        <div class="comp-header"><span class="comp-label">Desktop Header</span></div>
+        <div class="comp-body" style="padding:0;">
+          <div class="preview-header">
+            <div style="display:flex;align-items:center;gap:32px;">
+              <div class="preview-logo">sim<span>.</span>junghun</div>
+              <div class="preview-nav">
+                <a class="active">posts</a>
+                <a>about</a>
+              </div>
+            </div>
+            <div class="preview-right">
+              <span style="font-family:var(--font);font-size:12px;color:var(--text-muted);">GH</span>
+              <button class="btn-icon" style="width:28px;height:28px;font-size:12px;">☾</button>
+              <div class="status-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header"><span class="comp-label">Mobile Bottom Nav</span></div>
+        <div class="comp-body" style="padding:0;">
+          <div class="mobile-nav">
+            <div class="mobile-nav-item active"><span class="icon">⌂</span>Home</div>
+            <div class="mobile-nav-item"><span class="icon">☰</span>Posts</div>
+            <div class="mobile-nav-item"><span class="icon">⌕</span>Search</div>
+            <div class="mobile-nav-item"><span class="icon">⌘</span>Terminal</div>
+            <div class="mobile-nav-item"><span class="icon">☺</span>About</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post List -->
+    <div class="section" id="post-list">
+      <div class="section-title">Post List</div>
+
+      <div class="comp-card">
+        <div class="comp-header"><span class="comp-label">Desktop — Table View</span></div>
+        <div class="comp-body" style="padding:0;">
+          <div class="post-table">
+            <div class="post-table-header"><span>Title</span><span>Date</span><span style="text-align:right;">Read</span></div>
+            <div class="post-row">
+              <div class="post-title-cell"><span class="cat-badge">스프링 시큐리티</span><span class="post-title-text">JWT 만료·재발급·로그아웃 전략</span></div>
+              <span class="post-date">Mar 10</span><span class="post-read">8 min</span>
+            </div>
+            <div class="post-row">
+              <div class="post-title-cell"><span class="cat-badge">스프링 시큐리티</span><span class="post-title-text">CORS는 왜 필요하고, 어떻게 동작할까</span></div>
+              <span class="post-date">Mar 08</span><span class="post-read">6 min</span>
+            </div>
+            <div class="post-row">
+              <div class="post-title-cell"><span class="cat-badge">데브옵스</span><span class="post-title-text">Docker 컨테이너 네트워크 완벽 가이드</span></div>
+              <span class="post-date">Mar 05</span><span class="post-read">12 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Sidebar -->
+    <div class="section" id="category">
+      <div class="section-title">Category Sidebar</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Desktop — Tree View</span></div>
+          <div class="comp-body">
+            <ul class="cat-tree">
+              <li><div class="cat-item active"><span>전체 글</span><span class="count">101</span></div></li>
+              <li>
+                <div class="cat-item"><span>▸ 개발</span><span class="count">68</span></div>
+                <ul class="cat-children">
+                  <li><div class="cat-item"><span>백엔드</span><span class="count">45</span></div></li>
+                  <li><div class="cat-item"><span>프론트엔드</span><span class="count">23</span></div></li>
+                </ul>
+              </li>
+              <li><div class="cat-item"><span>데브옵스</span><span class="count">21</span></div></li>
+              <li><div class="cat-item"><span>사이드 프로젝트</span><span class="count">12</span></div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Mobile — Pills</span></div>
+          <div class="comp-body">
+            <div class="pill-row" style="margin-bottom:12px;">
+              <span class="cat-pill active">전체</span>
+              <span class="cat-pill">개발</span>
+              <span class="cat-pill">데브옵스</span>
+              <span class="cat-pill">사이드 프로젝트</span>
+            </div>
+            <div class="pill-row">
+              <span class="sub-pill active">백엔드</span>
+              <span class="sub-pill">프론트엔드</span>
+              <span class="sub-pill">스프링</span>
+              <span class="sub-pill">JPA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series Nav -->
+    <div class="section" id="series">
+      <div class="section-title">Series Navigation</div>
+
+      <div class="comp-card">
+        <div class="comp-header"><span class="comp-label">Series (Expanded)</span></div>
+        <div class="comp-body" style="padding:12px;">
+          <div class="series-nav">
+            <div class="series-header">
+              <div class="series-header-left"><span class="series-badge">Series</span><span class="series-title">스프링 시큐리티</span></div>
+              <span class="series-count">4 / 12</span>
+            </div>
+            <div class="series-list">
+              <div class="series-item"><span class="series-num">1</span><span style="color:var(--green);font-size:11px;">✓</span><span>스프링 애플리케이션 보안 솔루션</span></div>
+              <div class="series-item"><span class="series-num">2</span><span style="color:var(--green);font-size:11px;">✓</span><span>SecurityFilterChain은 어떻게 동작할까</span></div>
+              <div class="series-item"><span class="series-num">3</span><span style="color:var(--green);font-size:11px;">✓</span><span>인증 흐름과 동작 구조</span></div>
+              <div class="series-item current"><span class="series-num" style="color:var(--green);">4</span><span style="color:var(--green);font-size:11px;">▸</span><span>JWT 인증 구현하기</span></div>
+              <div class="series-item"><span class="series-num">5</span><span style="width:16px;"></span><span style="color:var(--text-muted);">JWT 만료·재발급·로그아웃 전략</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination & Breadcrumb -->
+    <div class="section" id="pagination">
+      <div class="section-title">Pagination & Breadcrumb</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Pagination</span></div>
+          <div class="comp-body">
+            <div class="pagination">
+              <span class="disabled">‹</span>
+              <a class="active">1</a>
+              <a>2</a>
+              <a>3</a>
+              <span>…</span>
+              <a>8</a>
+              <a>›</a>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Breadcrumb</span></div>
+          <div class="comp-body">
+            <div class="breadcrumb">
+              <span>Home</span><span class="sep">/</span><span>개발</span><span class="sep">/</span><span>백엔드</span><span class="sep">/</span><span style="color:var(--text);">스프링 시큐리티</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Block -->
+    <div class="section" id="code">
+      <div class="section-title">Code Block</div>
+
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">SecurityConfig.java</span><span class="code-copy">📋 Copy</span></div>
+        <div class="code-content">
+          <div class="code-line"><span class="ann">@Configuration</span></div>
+          <div class="code-line"><span class="ann">@EnableWebSecurity</span></div>
+          <div class="code-line"><span class="kw">public class</span> <span class="type">SecurityConfig</span> {</div>
+          <div class="code-line">    <span class="ann">@Bean</span></div>
+          <div class="code-line">    <span class="kw">public</span> <span class="type">SecurityFilterChain</span> <span class="fn">filterChain</span>(<span class="type">HttpSecurity</span> http) {</div>
+          <div class="code-line">        http.<span class="fn">csrf</span>().<span class="fn">disable</span>()</div>
+          <div class="code-line">            .<span class="fn">authorizeHttpRequests</span>(auth -> auth</div>
+          <div class="code-line">                .<span class="fn">requestMatchers</span>(<span class="str">"/api/public/**"</span>).<span class="fn">permitAll</span>()</div>
+          <div class="code-line">                .<span class="fn">anyRequest</span>().<span class="fn">authenticated</span>()</div>
+          <div class="code-line">            );</div>
+          <div class="code-line">        <span class="kw">return</span> http.<span class="fn">build</span>();</div>
+          <div class="code-line">    }</div>
+          <div class="code-line">}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="section" id="article">
+      <div class="section-title">Article Content</div>
+
+      <div class="comp-card">
+        <div class="comp-header"><span class="comp-label">Content Elements</span></div>
+        <div class="comp-body">
+          <div class="article-preview">
+            <h2>SecurityFilterChain 동작 원리</h2>
+            <p>Spring Security는 서블릿 필터 체인을 기반으로 동작합니다. <code>DelegatingFilterProxy</code>가 서블릿 컨테이너와 스프링 컨텍스트를 연결하는 역할을 합니다.</p>
+            <h3>필터 체인 구조</h3>
+            <p>각 HTTP 요청은 등록된 필터를 순서대로 통과하며, 인증과 인가 과정을 거칩니다.</p>
+
+            <blockquote>Spring Security의 핵심은 "누가(Authentication) 무엇을(Authorization) 할 수 있는가"를 결정하는 것입니다.</blockquote>
+
+            <div class="note-box">
+              <div class="note-label">📘 Note</div>
+              <code>@EnableWebSecurity</code> 어노테이션을 빠뜨리면 자동 설정이 적용되어 예상과 다른 동작을 할 수 있습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="section" id="toc">
+      <div class="section-title">Table of Contents</div>
+
+      <div class="comp-card" style="max-width:220px;">
+        <div class="comp-header"><span class="comp-label">TOC Sidebar</span></div>
+        <div class="comp-body">
+          <div style="font-family:var(--font);font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">ON THIS PAGE</div>
+          <ul class="toc-list">
+            <li class="active">개요</li>
+            <li>SecurityFilterChain 동작 원리</li>
+            <li class="depth-3">필터 체인 구조</li>
+            <li class="depth-3">커스텀 필터 등록</li>
+            <li>인증 흐름</li>
+            <li>설정 예시</li>
+            <li>정리</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts -->
+    <div class="section" id="shortcuts">
+      <div class="section-title">Keyboard Shortcuts</div>
+
+      <div class="comp-card">
+        <div class="comp-header"><span class="comp-label">Shortcuts Reference</span></div>
+        <div class="comp-body">
+          <div class="shortcut-row"><span class="shortcut-desc">터미널 열기/닫기</span><span class="shortcut-keys"><span class="kbd">⌘</span><span class="kbd">K</span></span></div>
+          <div class="shortcut-row"><span class="shortcut-desc">숏컷 레퍼런스</span><span class="shortcut-keys"><span class="kbd">?</span></span></div>
+          <div class="shortcut-row"><span class="shortcut-desc">테마 전환</span><span class="shortcut-keys"><span class="kbd">⌘</span><span class="kbd">⇧</span><span class="kbd">L</span></span></div>
+          <div class="shortcut-row"><span class="shortcut-desc">닫기</span><span class="shortcut-keys"><span class="kbd">Esc</span></span></div>
+          <div class="shortcut-row"><span class="shortcut-desc">히스토리 탐색</span><span class="shortcut-keys"><span class="kbd">↑</span><span class="kbd">↓</span></span></div>
+          <div class="shortcut-row"><span class="shortcut-desc">자동완성</span><span class="shortcut-keys"><span class="kbd">Tab</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ PATTERNS ═══════════════════════ -->
+
+    <!-- Terminal -->
+    <div class="section" id="terminal">
+      <div class="section-title">Terminal</div>
+      <div class="section-desc">⌘K로 열리는 터미널 오버레이. 리눅스 명령어로 포스트를 탐색합니다. Home: /home/simjunghun</div>
+
+      <div class="terminal-preview">
+        <div class="terminal-titlebar">
+          <div class="terminal-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          <span class="terminal-label">sim.junghun — terminal</span>
+          <span class="terminal-label">Esc 닫기</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="prompt">simjunghun</span>:<span class="dir">~/posts</span>$ <span class="cmd">ls</span></div>
+          <div style="margin:4px 0;"><span class="dir">개발/</span>&nbsp;&nbsp;<span class="dir">데브옵스/</span>&nbsp;&nbsp;<span class="dir">사이드 프로젝트/</span></div>
+          <div style="margin-top:12px;"><span class="prompt">simjunghun</span>:<span class="dir">~/posts</span>$ <span class="cmd">grep JWT</span></div>
+          <div style="margin:4px 0;">
+            <div class="dim">~/posts/개발/백엔드/스프링/스프링 시큐리티/</div>
+            <div>&nbsp;&nbsp;<span class="file">스프링 시큐리티: <span style="color:var(--yellow);">JWT</span>(JSON Web Token) 인증 구현하기.md</span></div>
+            <div>&nbsp;&nbsp;<span class="file">스프링 시큐리티: <span style="color:var(--yellow);">JWT</span> 만료·재발급·로그아웃 전략.md</span></div>
+            <div style="margin-top:4px;" class="dim">found 2 results</div>
+          </div>
+          <div style="margin-top:12px;"><span class="prompt">simjunghun</span>:<span class="dir">~/posts</span>$ <span class="cmd">cd 개발/백엔드</span></div>
+          <div style="margin-top:4px;"><span class="prompt">simjunghun</span>:<span class="dir">~/posts/개발/백엔드</span>$ <span class="terminal-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 404 Error -->
+    <div class="section" id="error">
+      <div class="section-title">404 Error</div>
+
+      <div class="error-box" style="max-width:480px;">
+        <div class="error-bar">
+          <div class="error-dot r"></div><div class="error-dot y"></div><div class="error-dot g"></div>
+          <span class="error-title">sim.junghun — bash</span>
+        </div>
+        <div class="error-content">
+          <div><span style="color:var(--green);">$</span> <span>curl /undefined-page</span></div>
+          <div style="color:var(--red);margin-top:8px;">404: Page Not Found</div>
+          <div style="color:var(--text-secondary);margin-top:4px;">요청하신 페이지를 찾을 수 없습니다.</div>
+          <div style="margin-top:16px;display:flex;gap:8px;">
+            <button class="btn primary" style="font-size:12px;padding:6px 16px;">홈으로</button>
+            <button class="btn" style="font-size:12px;padding:6px 16px;">뒤로 가기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="section" id="loading">
+      <div class="section-title">Loading (apt install)</div>
+
+      <div class="error-box" style="max-width:560px;">
+        <div class="error-bar">
+          <div class="error-dot r"></div><div class="error-dot y"></div><div class="error-dot g"></div>
+          <span class="error-title">sim.junghun — loading</span>
+        </div>
+        <div style="padding:20px;">
+          <div class="loading-content">
+            <div><span class="prompt">$</span> sudo apt install sim.junghun</div>
+            <div><span class="dim">Reading package lists...</span> <span class="bold">Done</span></div>
+            <div><span class="dim">Unpacking</span> <span class="bold">posts</span> <span class="dim">(101 articles)...</span></div>
+            <div><span class="dim">Setting up</span> <span class="bold">개발</span> <span class="dim">(68)</span> <span class="bold">데브옵스</span> <span class="dim">(21)</span> <span class="bold">사이드-프로젝트</span> <span class="dim">(12)...</span></div>
+            <div class="progress-bar-preview"><div class="progress-fill-preview"></div><div class="progress-text-preview">67%</div></div>
+            <div><span class="warn">W:</span> <span class="dim">커피 없이 코딩하면 속도가 느려질 수 있습니다</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Components -->
+    <div class="section" id="mobile">
+      <div class="section-title">Mobile-Specific Components</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Post Card (Mobile)</span></div>
+          <div class="comp-body" style="padding:0;">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--transition);">
+              <div style="font-family:var(--font);font-size:10px;color:var(--green);margin-bottom:4px;">스프링 시큐리티</div>
+              <div style="font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.4;">JWT 만료·재발급·로그아웃 전략</div>
+              <div style="font-size:11px;color:var(--text-muted);font-family:var(--font);">Mar 10 · 8 min</div>
+            </div>
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;">
+              <div style="font-family:var(--font);font-size:10px;color:var(--green);margin-bottom:4px;">데브옵스</div>
+              <div style="font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.4;">Docker 컨테이너 네트워크 가이드</div>
+              <div style="font-size:11px;color:var(--text-muted);font-family:var(--font);">Mar 05 · 12 min</div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Mobile Pagination</span></div>
+          <div class="comp-body" style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+            <div style="display:flex;gap:8px;">
+              <button style="font-family:var(--font);font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);cursor:pointer;" disabled>‹</button>
+              <button style="font-family:var(--font);font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--green);background:var(--green-dim);color:var(--green);cursor:pointer;">1</button>
+              <button style="font-family:var(--font);font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);cursor:pointer;">2</button>
+              <button style="font-family:var(--font);font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);cursor:pointer;">3</button>
+              <button style="font-family:var(--font);font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);cursor:pointer;">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related & Comments -->
+    <div class="section" id="related">
+      <div class="section-title">Related Posts & Comments</div>
+
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Related Posts</span></div>
+          <div class="comp-body">
+            <div class="related-grid">
+              <div class="related-card">
+                <div class="related-card-cat">스프링 시큐리티</div>
+                <div class="related-card-title">인증 흐름과 동작 구조</div>
+              </div>
+              <div class="related-card">
+                <div class="related-card-cat">스프링 시큐리티</div>
+                <div class="related-card-title">OAuth2 로그인과 리소스 서버</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-header"><span class="comp-label">Comments (Giscus)</span></div>
+          <div class="comp-body">
+            <div class="giscus-placeholder">💬 댓글 영역 (Giscus)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Theme toggle
+function setTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(theme === 'light' ? 'Light' : 'Dark'));
+  });
+  // Update hex display
+  document.querySelectorAll('.swatch-hex[data-dark]').forEach(el => {
+    el.textContent = theme === 'light' ? el.dataset.light : el.dataset.dark;
+  });
+}
+
+// Copy hex
+document.querySelectorAll('.swatch-hex').forEach(el => {
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.textContent).then(() => {
+      const orig = el.textContent;
+      el.textContent = 'copied!';
+      el.style.color = 'var(--green)';
+      setTimeout(() => { el.textContent = orig; el.style.color = ''; }, 800);
+    });
+  });
+});
+
+// Scroll spy
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.nav-link[href]');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-15% 0px -75% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Smooth scroll
+document.querySelectorAll('.nav-link[href]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

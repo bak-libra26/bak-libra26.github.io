@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F. Illustrated Minimal - Wireframe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #FFFFFF;
+    --bg-secondary: #F8F9FC;
+    --surface: #FFFFFF;
+    --text: #1E1E2E;
+    --text-secondary: #4A4A68;
+    --text-muted: #9294A0;
+    --border: #ECEDF0;
+
+    /* Category colors */
+    --cat-backend: #6C5CE7;
+    --cat-backend-bg: #F0EEFF;
+    --cat-security: #E17055;
+    --cat-security-bg: #FFF0EC;
+    --cat-devops: #00B894;
+    --cat-devops-bg: #EDFFF9;
+    --cat-project: #0984E3;
+    --cat-project-bg: #ECF5FF;
+
+    --accent: #6C5CE7;
+    --accent-bg: #F0EEFF;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-full: 100px;
+    --font: 'Inter', 'Noto Sans KR', sans-serif;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+    --transition: 0.2s ease;
+  }
+
+  [data-theme="dark"] {
+    --bg: #16161E;
+    --bg-secondary: #1E1E2E;
+    --surface: #242436;
+    --text: #E8E8F0;
+    --text-secondary: #A0A0B8;
+    --text-muted: #5A5A72;
+    --border: #2E2E42;
+    --cat-backend-bg: #2A2640;
+    --cat-security-bg: #302020;
+    --cat-devops-bg: #1A2E28;
+    --cat-project-bg: #1A2430;
+    --accent-bg: #2A2640;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    background: var(--accent);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px;
+    font-size: 13px; font-weight: 600;
+  }
+  .page-nav a {
+    color: white; text-decoration: none;
+    padding: 5px 14px; border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+  }
+  .page-nav a:hover { background: rgba(255,255,255,0.3); }
+
+  .theme-toggle {
+    position: fixed; top: 52px; right: 16px; z-index: 9998;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 50%; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-section {
+    padding-top: 50px;
+    min-height: 100vh;
+    border-bottom: 3px dashed var(--border);
+  }
+  .page-label {
+    background: var(--accent);
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: sticky; top: 44px; z-index: 100;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  [data-theme="dark"] .header { background: rgba(22,22,30,0.9); }
+
+  .header-logo {
+    font-size: 18px; font-weight: 800;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text);
+  }
+  .header-avatar {
+    width: 36px; height: 36px;
+    background: var(--accent-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .header-nav { display: flex; gap: 6px; list-style: none; }
+  .header-nav a {
+    text-decoration: none; color: var(--text-secondary);
+    font-size: 14px; font-weight: 500;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    transition: var(--transition);
+  }
+  .header-nav a:hover { background: var(--bg-secondary); color: var(--text); }
+  .header-nav a.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== HOME: HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 72px 24px 48px;
+  }
+  .hero-illustration {
+    width: 160px; height: 160px;
+    background: var(--accent-bg);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px;
+    border: 4px solid var(--bg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+  .hero-illustration .sticker {
+    position: absolute;
+    bottom: -4px; right: -4px;
+    background: white;
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--border);
+  }
+  .hero h1 {
+    font-size: 38px; font-weight: 800;
+    line-height: 1.25; margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 17px; color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+  .hero .tag-list {
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    list-style: none;
+  }
+  .hero .tag-list li {
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 13px; font-weight: 600;
+  }
+  .tag-backend { background: var(--cat-backend-bg); color: var(--cat-backend); }
+  .tag-security { background: var(--cat-security-bg); color: var(--cat-security); }
+  .tag-devops { background: var(--cat-devops-bg); color: var(--cat-devops); }
+  .tag-project { background: var(--cat-project-bg); color: var(--cat-project); }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-size: 24px; font-weight: 800;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header a {
+    font-size: 14px; color: var(--accent);
+    text-decoration: none; font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    background: var(--accent-bg);
+    transition: var(--transition);
+  }
+  .section-header a:hover { background: var(--accent); color: white; }
+
+  /* ===== POST CARD ===== */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style: none;
+    margin-bottom: 60px;
+  }
+  .post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .post-card .card-illustration {
+    height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    position: relative;
+  }
+  .post-card .card-illustration .mini-sticker {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 20px;
+    background: white;
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .post-card .card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .post-card .badge {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 700;
+    width: fit-content;
+  }
+  .post-card h3 {
+    font-size: 16px; font-weight: 700; line-height: 1.4;
+  }
+  .post-card .summary {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .post-card .meta {
+    font-size: 12px; color: var(--text-muted);
+    margin-top: auto;
+    display: flex; gap: 10px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 48px 24px;
+    text-align: center;
+    display: flex; flex-direction: column; gap: 16px; align-items: center;
+  }
+  .footer-avatar {
+    width: 56px; height: 56px;
+    background: var(--accent-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+  }
+  .footer-links { display: flex; gap: 20px; list-style: none; }
+  .footer-links a {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .footer-links a:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
+
+  /* ===== POSTS PAGE ===== */
+  .posts-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    padding: 40px 0 60px;
+  }
+  .sidebar { position: sticky; top: 120px; align-self: start; }
+  .sidebar-profile {
+    text-align: center;
+    padding: 24px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .sidebar-profile .avatar {
+    width: 72px; height: 72px;
+    background: var(--accent-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 12px;
+  }
+  .sidebar-profile .name { font-size: 16px; font-weight: 700; }
+  .sidebar-profile .bio { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  .sidebar-categories { list-style: none; }
+  .sidebar-categories li { margin-bottom: 4px; }
+  .sidebar-categories a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .sidebar-categories a:hover { background: var(--bg-secondary); }
+  .sidebar-categories a.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .sidebar-categories .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sidebar-categories .count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .posts-main h1 { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+  .posts-main .desc { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .posts-main .grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    list-style: none;
+  }
+
+  .pagination {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 40px; list-style: none;
+  }
+  .pagination a, .pagination span {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-sm); font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .pagination a:hover { border-color: var(--accent); color: var(--accent); }
+  .pagination .active { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* ===== POST DETAIL ===== */
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 48px;
+    padding: 48px 0 80px;
+  }
+  .detail-hero {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--cat-security-bg);
+    border-radius: var(--radius);
+    margin-bottom: 36px;
+  }
+  .detail-hero .illustration { font-size: 64px; margin-bottom: 16px; }
+  .detail-hero .badge {
+    display: inline-flex; padding: 4px 14px;
+    border-radius: var(--radius-full);
+    font-size: 12px; font-weight: 700;
+    background: var(--cat-security); color: white;
+    margin-bottom: 12px;
+  }
+  .detail-hero h1 {
+    font-size: 34px; font-weight: 800;
+    line-height: 1.3; margin-bottom: 12px;
+  }
+  .detail-hero .info {
+    font-size: 14px; color: var(--text-muted);
+    display: flex; gap: 16px; justify-content: center;
+  }
+
+  .detail-body { font-size: 16px; line-height: 1.85; }
+  .detail-body h2 {
+    font-size: 24px; font-weight: 800;
+    margin: 48px 0 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .detail-body h2 .emoji { font-size: 28px; }
+  .detail-body h3 {
+    font-size: 19px; font-weight: 700;
+    margin: 32px 0 12px;
+  }
+  .detail-body p { margin-bottom: 16px; color: var(--text-secondary); }
+
+  .detail-body .code-block {
+    background: #1E1E2E;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 24px 0;
+  }
+  .code-header {
+    background: #2A2A3E;
+    padding: 10px 20px;
+    font-size: 12px; color: #8888AA;
+    display: flex; justify-content: space-between;
+  }
+  .code-body {
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; line-height: 1.7;
+    color: #D4D4E8;
+    overflow-x: auto;
+  }
+
+  .detail-body blockquote {
+    background: var(--accent-bg);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    display: flex; gap: 12px;
+    font-size: 15px;
+    border-left: 4px solid var(--accent);
+  }
+  .detail-body blockquote .icon { font-size: 24px; flex-shrink: 0; }
+
+  .detail-body .callout-cat {
+    background: var(--cat-security-bg);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .callout-cat .cat-face { font-size: 32px; }
+
+  /* TOC */
+  .toc { position: sticky; top: 120px; align-self: start; }
+  .toc-title {
+    font-size: 13px; font-weight: 700;
+    margin-bottom: 16px; color: var(--text-muted);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li {
+    margin-bottom: 8px;
+  }
+  .toc-list a {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 6px;
+    display: block;
+    transition: var(--transition);
+  }
+  .toc-list a:hover { background: var(--bg-secondary); color: var(--text); }
+  .toc-list a.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .toc-list .depth-3 a { padding-left: 24px; font-size: 12px; }
+
+  .recommend-section {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 2px solid var(--border);
+  }
+  .recommend-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 20px; }
+
+  .comments-section {
+    margin-top: 40px;
+    padding: 32px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  /* ===== 404 ===== */
+  .page-404 {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 60vh; padding: 60px 24px; text-align: center;
+  }
+  .page-404 .illustration-404 {
+    width: 200px; height: 200px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+  }
+  .page-404 h1 { font-size: 64px; font-weight: 800; color: var(--accent); }
+  .page-404 p { font-size: 17px; color: var(--text-secondary); margin: 8px 0; }
+  .page-404 .btn {
+    margin-top: 20px;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: white;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 15px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+  }
+  .page-404 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+  /* ===== LOADING ===== */
+  .loading-section {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 40vh; gap: 20px;
+  }
+  .loading-avatar {
+    width: 80px; height: 80px;
+    background: var(--accent-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+    animation: loadPulse 2s ease-in-out infinite;
+  }
+  @keyframes loadPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .loading-bar {
+    width: 200px; height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .loading-bar .fill {
+    height: 100%; width: 40%;
+    background: var(--accent);
+    border-radius: 4px;
+    animation: loadBar 1.5s ease-in-out infinite;
+  }
+  @keyframes loadBar {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+  }
+
+  @media (max-width: 768px) {
+    .posts-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .posts-main .grid-2col { grid-template-columns: 1fr; }
+    .detail-layout { grid-template-columns: 1fr; }
+    .toc { display: none; }
+    .hero h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-nav">
+  <span>F. Illustrated Minimal</span>
+  <a href="#home">Home</a>
+  <a href="#posts">Posts</a>
+  <a href="#detail">Detail</a>
+  <a href="#404">404</a>
+  <a href="#loading">Loading</a>
+</div>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<!-- ============================================ -->
+<!-- HOME -->
+<!-- ============================================ -->
+<div class="page-section" id="home">
+  <div class="page-label">HOME PAGE</div>
+
+  <div class="header">
+    <a class="header-logo" href="#">
+      <div class="header-avatar">🐱</div>
+      <span>개고양</span>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#" class="active">홈</a></li>
+        <li><a href="#">글 목록</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-illustration">
+        🐱‍💻
+        <div class="sticker">💻</div>
+      </div>
+      <h1>개발하는 고양이는<br/>개고양</h1>
+      <p class="subtitle">Backend & DevOps 기술 블로그</p>
+      <ul class="tag-list">
+        <li class="tag-backend">Spring</li>
+        <li class="tag-security">Security</li>
+        <li class="tag-devops">DevOps</li>
+        <li class="tag-project">Side Project</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2><span>🐾</span> 최신 글</h2>
+        <a href="#">전체 보기 →</a>
+      </div>
+
+      <ul class="posts-grid">
+        <li>
+          <a class="post-card" href="#">
+            <div class="card-illustration" style="background:var(--cat-security-bg)">
+              🔐
+              <span class="mini-sticker">🐱</span>
+            </div>
+            <div class="card-body">
+              <span class="badge tag-security">스프링 시큐리티</span>
+              <h3>JWT 만료·재발급·로그아웃 전략</h3>
+              <p class="summary">Access Token과 Refresh Token의 생명주기를 관리하는 실전 패턴을 알아봅니다.</p>
+              <div class="meta">
+                <span>2026.03.10</span>
+                <span>·</span>
+                <span>8분 읽기</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="post-card" href="#">
+            <div class="card-illustration" style="background:var(--cat-security-bg)">
+              🌐
+              <span class="mini-sticker">😺</span>
+            </div>
+            <div class="card-body">
+              <span class="badge tag-security">스프링 시큐리티</span>
+              <h3>CORS는 왜 필요하고, 어떻게 동작할까</h3>
+              <p class="summary">브라우저의 Same-Origin Policy와 CORS의 동작 원리를 분석합니다.</p>
+              <div class="meta">
+                <span>2026.03.08</span>
+                <span>·</span>
+                <span>6분 읽기</span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="post-card" href="#">
+            <div class="card-illustration" style="background:var(--cat-project-bg)">
+              🏗
+              <span class="mini-sticker">😸</span>
+            </div>
+            <div class="card-body">
+              <span class="badge tag-project">사이드 프로젝트</span>
+              <h3>API 공통 응답 구조 설계하기</h3>
+              <p class="summary">일관된 API 응답 포맷을 설계하고 Spring에서 구현하는 방법</p>
+              <div class="meta">
+                <span>2026.03.05</span>
+                <span>·</span>
+                <span>5분 읽기</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="footer">
+    <div class="footer-avatar">🐱</div>
+    <p style="font-weight:700;font-size:15px">개고양</p>
+    <p style="font-size:13px;color:var(--text-muted)">개발하는 고양이의 기술 블로그</p>
+    <ul class="footer-links">
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">RSS</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 개고양. All rights reserved 🐾</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- POSTS PAGE -->
+<!-- ============================================ -->
+<div class="page-section" id="posts">
+  <div class="page-label">POSTS LIST PAGE</div>
+
+  <div class="header">
+    <a class="header-logo" href="#">
+      <div class="header-avatar">🐱</div>
+      <span>개고양</span>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#">홈</a></li>
+        <li><a href="#" class="active">글 목록</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="posts-layout">
+      <aside class="sidebar">
+        <div class="sidebar-profile">
+          <div class="avatar">🐱</div>
+          <p class="name">개고양</p>
+          <p class="bio">개발하는 고양이 🐾</p>
+        </div>
+        <ul class="sidebar-categories">
+          <li>
+            <a href="#" class="active">
+              <span class="dot" style="background:var(--accent)"></span>
+              전체
+              <span class="count">24</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="dot" style="background:var(--cat-backend)"></span>
+              개발
+              <span class="count">18</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="dot" style="background:var(--cat-security)"></span>
+              스프링 시큐리티
+              <span class="count">8</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="dot" style="background:var(--cat-devops)"></span>
+              데브옵스
+              <span class="count">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="dot" style="background:var(--cat-project)"></span>
+              사이드 프로젝트
+              <span class="count">3</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="posts-main">
+        <h1>전체 글</h1>
+        <p class="desc">총 24개의 글</p>
+
+        <ul class="grid-2col">
+          <li>
+            <a class="post-card" href="#">
+              <div class="card-illustration" style="background:var(--cat-security-bg)">🔐<span class="mini-sticker">🐱</span></div>
+              <div class="card-body">
+                <span class="badge tag-security">스프링 시큐리티</span>
+                <h3>JWT 만료·재발급·로그아웃 전략</h3>
+                <div class="meta"><span>2026.03.10</span><span>·</span><span>8분</span></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="post-card" href="#">
+              <div class="card-illustration" style="background:var(--cat-security-bg)">🌐<span class="mini-sticker">😺</span></div>
+              <div class="card-body">
+                <span class="badge tag-security">스프링 시큐리티</span>
+                <h3>CORS는 왜 필요하고, 어떻게 동작할까</h3>
+                <div class="meta"><span>2026.03.08</span><span>·</span><span>6분</span></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="post-card" href="#">
+              <div class="card-illustration" style="background:var(--cat-security-bg)">🛡<span class="mini-sticker">😼</span></div>
+              <div class="card-body">
+                <span class="badge tag-security">스프링 시큐리티</span>
+                <h3>CSRF 보호는 왜 필요하고, 어떻게 동작할까</h3>
+                <div class="meta"><span>2026.03.05</span><span>·</span><span>7분</span></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="post-card" href="#">
+              <div class="card-illustration" style="background:var(--cat-project-bg)">🏗<span class="mini-sticker">😸</span></div>
+              <div class="card-body">
+                <span class="badge tag-project">사이드 프로젝트</span>
+                <h3>API 공통 응답 구조 설계하기</h3>
+                <div class="meta"><span>2026.03.03</span><span>·</span><span>5분</span></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="pagination">
+          <a href="#">←</a>
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">→</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-avatar">🐱</div>
+    <p style="font-weight:700">개고양</p>
+    <ul class="footer-links">
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">RSS</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 개고양. All rights reserved 🐾</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- POST DETAIL -->
+<!-- ============================================ -->
+<div class="page-section" id="detail">
+  <div class="page-label">POST DETAIL PAGE</div>
+
+  <div class="header">
+    <a class="header-logo" href="#">
+      <div class="header-avatar">🐱</div>
+      <span>개고양</span>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#">홈</a></li>
+        <li><a href="#" class="active">글 목록</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="detail-layout">
+      <article>
+        <div class="detail-hero" style="background:var(--cat-security-bg)">
+          <div class="illustration">🔐</div>
+          <span class="badge">스프링 시큐리티</span>
+          <h1>JWT 만료·재발급·로그아웃 전략</h1>
+          <div class="info">
+            <span>2026.03.10</span>
+            <span>·</span>
+            <span>8분 읽기</span>
+          </div>
+        </div>
+
+        <div class="detail-body">
+          <h2><span class="emoji">🤔</span> 왜 토큰 만료가 필요한가</h2>
+          <p>JWT는 서버에 상태를 저장하지 않는 stateless 인증 방식입니다. 하지만 토큰이 영원히 유효하다면 보안 위험이 커집니다.</p>
+
+          <div class="callout-cat">
+            <span class="cat-face">🐱</span>
+            <div>
+              <strong>고양이도 이해하는 포인트!</strong><br/>
+              토큰은 열쇠와 같습니다. 열쇠를 분실했을 때를 대비해 유효기간이 있어야 합니다.
+            </div>
+          </div>
+
+          <h3>Access Token vs Refresh Token</h3>
+          <p>Access Token은 짧은 수명(15분~1시간), Refresh Token은 긴 수명(7일~30일)을 가집니다.</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span>JwtTokenProvider.java</span>
+              <span>📋</span>
+            </div>
+            <pre class="code-body">@Component
+public class JwtTokenProvider {
+    private final long ACCESS_TOKEN_VALIDITY = 15 * 60 * 1000L;
+    private final long REFRESH_TOKEN_VALIDITY = 7 * 24 * 60 * 60 * 1000L;
+}</pre>
+          </div>
+
+          <h2><span class="emoji">🔄</span> 재발급 전략</h2>
+          <p>클라이언트는 Access Token이 만료되면 Refresh Token으로 새 Access Token을 발급받습니다.</p>
+
+          <blockquote>
+            <span class="icon">💡</span>
+            <span>토큰 재발급 시 Refresh Token Rotation을 적용하면 보안을 한 단계 더 강화할 수 있습니다.</span>
+          </blockquote>
+
+          <h2><span class="emoji">🚪</span> 로그아웃 처리</h2>
+          <p>JWT는 stateless이므로 서버에서 직접 토큰을 무효화할 수 없습니다. 블랙리스트 방식을 사용합니다.</p>
+        </div>
+
+        <section class="recommend-section">
+          <h2>🐾 이런 글은 어때요?</h2>
+          <ul class="grid-2col" style="list-style:none">
+            <li>
+              <a class="post-card" href="#">
+                <div class="card-illustration" style="background:var(--cat-security-bg)">🌐<span class="mini-sticker">😺</span></div>
+                <div class="card-body">
+                  <span class="badge tag-security">스프링 시큐리티</span>
+                  <h3>CORS는 왜 필요하고, 어떻게 동작할까</h3>
+                  <div class="meta"><span>2026.03.08</span></div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="post-card" href="#">
+                <div class="card-illustration" style="background:var(--cat-security-bg)">⛓<span class="mini-sticker">🐱</span></div>
+                <div class="card-body">
+                  <span class="badge tag-security">스프링 시큐리티</span>
+                  <h3>인증 흐름과 동작 구조</h3>
+                  <div class="meta"><span>2026.02.28</span></div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <div class="comments-section">
+          <p style="font-size:28px;margin-bottom:8px">💬</p>
+          <p><strong>댓글</strong> (Giscus)</p>
+          <p style="font-size:13px;margin-top:4px">GitHub 계정으로 댓글을 남길 수 있습니다</p>
+        </div>
+      </article>
+
+      <aside class="toc">
+        <p class="toc-title">📑 목차</p>
+        <ul class="toc-list">
+          <li><a href="#" class="active">왜 토큰 만료가 필요한가</a></li>
+          <li class="depth-3"><a href="#">Access Token vs Refresh Token</a></li>
+          <li><a href="#">재발급 전략</a></li>
+          <li class="depth-3"><a href="#">Refresh Token Rotation</a></li>
+          <li><a href="#">로그아웃 처리</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-avatar">🐱</div>
+    <p style="font-weight:700">개고양</p>
+    <ul class="footer-links">
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">RSS</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 개고양. All rights reserved 🐾</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 404 -->
+<!-- ============================================ -->
+<div class="page-section" id="404">
+  <div class="page-label">404 PAGE</div>
+
+  <div class="header">
+    <a class="header-logo" href="#">
+      <div class="header-avatar">🐱</div>
+      <span>개고양</span>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#">홈</a></li>
+        <li><a href="#">글 목록</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="page-404">
+    <div class="illustration-404">😿</div>
+    <h1>404</h1>
+    <p>냐옹... 이 페이지를 찾을 수 없어요</p>
+    <p style="font-size:14px;color:var(--text-muted)">고양이가 실을 따라가다 길을 잃었나 봐요 🧶</p>
+    <a class="btn" href="#">홈으로 돌아가기</a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-avatar">🐱</div>
+    <p style="font-weight:700">개고양</p>
+    <ul class="footer-links">
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">RSS</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 개고양. All rights reserved 🐾</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- LOADING -->
+<!-- ============================================ -->
+<div class="page-section" id="loading">
+  <div class="page-label">LOADING STATE</div>
+
+  <div class="header">
+    <a class="header-logo" href="#">
+      <div class="header-avatar">🐱</div>
+      <span>개고양</span>
+    </a>
+  </div>
+
+  <div class="loading-section">
+    <div class="loading-avatar">🐱</div>
+    <p style="color:var(--text-secondary);font-size:15px">글을 불러오는 중...</p>
+    <div class="loading-bar"><div class="fill"></div></div>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.querySelector('.theme-toggle');
+  if (body.getAttribute('data-theme') === 'dark') {
+    body.removeAttribute('data-theme');
+    btn.textContent = '🌙';
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️';
+  }
+}
+</script>
+
+</body>
+</html>

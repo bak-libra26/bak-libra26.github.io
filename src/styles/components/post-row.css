@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════
+   PostRow — ls -lt style with summary + tags
+   -rw-r--r--  junghun  카테고리  5min  Mar 13  제목
+   ═══════════════════════════════════════ */
+
+.post-row {
+  display: grid;
+  grid-template-columns: 88px 60px 56px 40px 56px 1fr;
+  align-items: start;
+  gap: 8px;
+  padding: 14px 12px;
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius);
+  transition: background var(--transition);
+  cursor: pointer;
+  border-bottom: 1px dashed var(--border);
+}
+
+.post-row:last-child {
+  border-bottom: none;
+}
+
+.post-row:hover {
+  background: var(--green-dim);
+}
+
+/* permissions */
+.pr-perm {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* owner */
+.pr-owner {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* category (group) */
+.pr-cat {
+  color: var(--cyan);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* size (reading time) */
+.pr-size {
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* date */
+.pr-date {
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* title cell */
+.pr-title-cell {
+  overflow: hidden;
+}
+
+/* title (filename) */
+.pr-title {
+  color: var(--text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  margin-bottom: 4px;
+  transition: color var(--transition);
+}
+
+.post-row:hover .pr-title {
+  color: var(--green);
+}
+
+/* summary */
+.pr-summary {
+  color: var(--text-muted);
+  font-size: var(--font-size-2xs);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* tags */
+.pr-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.pr-tags .tag {
+  font-size: 10px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  background: none;
+}
+
+.pr-tags .tag--primary {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .post-row {
+    grid-template-columns: 56px 1fr;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .pr-perm,
+  .pr-owner,
+  .pr-cat,
+  .pr-size {
+    display: none;
+  }
+
+  .pr-date {
+    font-size: 11px;
+  }
+
+  .pr-title {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,28 @@
+.detail-breadcrumb {
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.detail-breadcrumb .sep {
+  color: var(--border-hover);
+}
+
+.detail-breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.detail-breadcrumb a:hover {
+  color: var(--green);
+}
+
+.detail-breadcrumb .current {
+  color: var(--green);
+}

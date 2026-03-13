@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dracula">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Wireframe v2 — sim.junghun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); font-size: 13px; line-height: 1.7; color: var(--text); background: #1a1a2e; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; font-size: inherit; border: none; background: none; color: inherit; cursor: pointer; }
+input { font-family: inherit; font-size: inherit; border: none; background: none; color: inherit; outline: none; }
+
+/* ============================================================
+   THEME TOKENS (same as v2-redesign.html)
+   ============================================================ */
+[data-theme="dracula"] {
+  --bg: #282a36; --bg-secondary: #21222c; --surface: #2d2f3f; --surface-hover: #343746;
+  --text: #f8f8f2; --text-secondary: #bfbfbf; --text-muted: #6272a4;
+  --green: #50fa7b; --blue: #8be9fd; --purple: #bd93f9; --yellow: #f1fa8c;
+  --red: #ff5555; --orange: #ffb86c; --cyan: #8be9fd;
+  --border: #44475a; --border-hover: #5a5e78;
+  --green-dim: rgba(80,250,123,0.08); --blue-dim: rgba(139,233,253,0.08); --purple-dim: rgba(189,147,249,0.08);
+  color-scheme: dark;
+}
+[data-theme="nord"] {
+  --bg: #2e3440; --bg-secondary: #272c36; --surface: #3b4252; --surface-hover: #434c5e;
+  --text: #eceff4; --text-secondary: #d8dee9; --text-muted: #7b88a1;
+  --green: #a3be8c; --blue: #81a1c1; --purple: #b48ead; --yellow: #ebcb8b;
+  --red: #bf616a; --orange: #d08770; --cyan: #88c0d0;
+  --border: #434c5e; --border-hover: #5a657a;
+  --green-dim: rgba(163,190,140,0.10); --blue-dim: rgba(129,161,193,0.10); --purple-dim: rgba(180,142,173,0.10);
+  color-scheme: dark;
+}
+[data-theme="tokyo-night"] {
+  --bg: #1a1b26; --bg-secondary: #16161e; --surface: #1e2030; --surface-hover: #24283b;
+  --text: #c0caf5; --text-secondary: #a9b1d6; --text-muted: #565f89;
+  --green: #9ece6a; --blue: #7aa2f7; --purple: #bb9af7; --yellow: #e0af68;
+  --red: #f7768e; --orange: #ff9e64; --cyan: #7dcfff;
+  --border: #292e42; --border-hover: #3b4261;
+  --green-dim: rgba(158,206,106,0.08); --blue-dim: rgba(122,162,247,0.08); --purple-dim: rgba(187,154,247,0.08);
+  color-scheme: dark;
+}
+[data-theme="github-light"] {
+  --bg: #ffffff; --bg-secondary: #f6f8fa; --surface: #f6f8fa; --surface-hover: #eaeef2;
+  --text: #1f2328; --text-secondary: #656d76; --text-muted: #8b949e;
+  --green: #1a7f37; --blue: #0969da; --purple: #8250df; --yellow: #9a6700;
+  --red: #cf222e; --orange: #bc4c00; --cyan: #0598bc;
+  --border: #d0d7de; --border-hover: #bbc0c5;
+  --green-dim: rgba(26,127,55,0.08); --blue-dim: rgba(9,105,218,0.08); --purple-dim: rgba(130,80,223,0.08);
+  color-scheme: light;
+}
+[data-theme="catppuccin-latte"] {
+  --bg: #eff1f5; --bg-secondary: #e6e9ef; --surface: #dce0e8; --surface-hover: #ccd0da;
+  --text: #4c4f69; --text-secondary: #6c6f85; --text-muted: #9ca0b0;
+  --green: #40a02b; --blue: #1e66f5; --purple: #8839ef; --yellow: #df8e1d;
+  --red: #d20f39; --orange: #fe640b; --cyan: #04a5e5;
+  --border: #ccd0da; --border-hover: #bcc0cc;
+  --green-dim: rgba(64,160,43,0.08); --blue-dim: rgba(30,102,245,0.08); --purple-dim: rgba(136,57,239,0.08);
+  color-scheme: light;
+}
+:root {
+  --radius: 6px; --radius-lg: 10px;
+  --font: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition: 0.15s ease;
+}
+
+/* ============================================================
+   WIREFRAME NAV
+   ============================================================ */
+.wf-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 8px; background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+  font-size: 11px; flex-wrap: wrap;
+}
+.wf-nav .label { font-weight: 600; color: var(--text-secondary); margin-right: 8px; }
+.wf-nav button {
+  padding: 3px 8px; border-radius: 4px; color: var(--text-muted);
+  border: 1px solid var(--border); transition: all var(--transition);
+}
+.wf-nav button:hover { border-color: var(--green); color: var(--green); }
+.wf-nav button.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ============================================================
+   PHONE FRAME
+   ============================================================ */
+.phone-wrap { margin-top: 56px; padding: 24px 0; }
+.phone {
+  width: 375px; height: 812px; background: var(--bg);
+  border-radius: 40px; border: 3px solid var(--border);
+  position: relative; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 150px; height: 28px; background: #000;
+  border-radius: 0 0 18px 18px; z-index: 100;
+}
+.phone-screen {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  overflow-y: auto; overflow-x: hidden; scrollbar-width: none;
+}
+.phone-screen::-webkit-scrollbar { display: none; }
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+.page { display: none; min-height: 100%; }
+.page.active { display: flex; flex-direction: column; }
+
+/* ============================================================
+   MOBILE HEADER
+   ============================================================ */
+.m-header {
+  padding: 0 16px; height: 48px; display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid var(--border);
+  background: var(--bg); position: sticky; top: 0; z-index: 50; margin-top: 28px;
+}
+.m-logo { font-size: 14px; font-weight: 700; }
+.m-logo .acc { color: var(--green); }
+.m-hamburger {
+  width: 32px; height: 32px; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 5px; padding: 4px;
+}
+.m-hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text-secondary); border-radius: 1px; }
+
+/* ============================================================
+   SHARED COMPONENTS
+   ============================================================ */
+.prompt { font-size: 12px; margin-bottom: 8px; }
+.prompt .path { color: var(--blue); }
+.prompt .dollar { color: var(--text-muted); }
+.prompt .cmd { color: var(--green); }
+.prompt .args { color: var(--text-secondary); }
+.output-box {
+  padding: 16px; background: var(--surface);
+  border: 1px dashed var(--border); border-left: 2px solid var(--green);
+  border-radius: var(--radius); font-size: 12px;
+}
+.dashed-divider { border: none; border-bottom: 1px dashed var(--border); margin: 16px 0; }
+.section-gap { padding: 0 16px; margin-bottom: 0; }
+.tag { font-size: 10px; padding: 2px 8px; border-radius: 3px; background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border); display: inline-block; }
+.tag--primary { color: var(--green); border-color: var(--green); background: var(--green-dim); }
+.m-footer {
+  padding: 24px 16px; text-align: center; color: var(--text-muted);
+  font-size: 11px; border-top: 1px dashed var(--border); margin-top: auto;
+}
+.m-footer a { color: var(--text-secondary); }
+.m-footer span { margin: 0 6px; color: var(--border); }
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+.home-content { padding: 20px 0; flex: 1; }
+.home__stack-row { margin-bottom: 6px; display: flex; gap: 8px; align-items: baseline; }
+.home__stack-row .label { color: var(--text-muted); font-size: 11px; min-width: 70px; }
+.home__stack-row .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.home__post-row { display: flex; gap: 8px; align-items: baseline; font-size: 11px; padding: 3px 0; }
+.home__post-row .cat { color: var(--purple); min-width: 50px; }
+.home__post-row .time { color: var(--text-muted); min-width: 32px; }
+.home__post-row .date { color: var(--text-muted); min-width: 48px; }
+.home__post-row .title { color: var(--text); }
+.home__cd { margin-top: 8px; font-size: 12px; }
+.home__cd a { color: var(--green); }
+.home__links-row { display: flex; gap: 16px; font-size: 12px; padding: 2px 0; }
+.home__links-row .label { color: var(--text-muted); min-width: 60px; }
+.home__links-row .value { color: var(--blue); }
+
+/* ============================================================
+   POSTS PAGE
+   ============================================================ */
+/* Category chips (horizontal scroll) */
+.cat-chips {
+  display: flex; gap: 6px; padding: 12px 16px; overflow-x: auto;
+  border-bottom: 1px solid var(--border); scrollbar-width: none;
+}
+.cat-chips::-webkit-scrollbar { display: none; }
+.cat-chip {
+  font-size: 11px; padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--border); white-space: nowrap; color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.cat-chip.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+/* Search */
+.m-search {
+  display: flex; align-items: center; gap: 4px;
+  padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 12px;
+}
+.m-search .path { color: var(--blue); }
+.m-search .dollar { color: var(--text-muted); margin: 0 4px; }
+.m-search .cmd { color: var(--green); }
+.m-search input { flex: 1; color: var(--text); font-size: 12px; }
+.m-search input::placeholder { color: var(--text-muted); }
+/* Post row (simplified for mobile) */
+.m-post-row {
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 2px; transition: background var(--transition);
+}
+.m-post-row:hover { background: var(--surface); }
+.m-post-row .row-top { display: flex; gap: 8px; font-size: 10px; color: var(--text-muted); }
+.m-post-row .row-top .cat { color: var(--purple); }
+.m-post-row .row-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.m-post-row .row-tags { display: flex; gap: 4px; margin-top: 4px; }
+/* Pagination */
+.m-pagination {
+  display: flex; justify-content: center; gap: 6px; padding: 16px;
+}
+.m-pagination button {
+  font-size: 11px; padding: 4px 10px; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--text-secondary);
+}
+.m-pagination button.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ============================================================
+   POST DETAIL PAGE
+   ============================================================ */
+.m-detail-content { flex: 1; }
+.m-detail-prompt { padding: 12px 16px 0; font-size: 11px; }
+.m-detail-prompt .path { color: var(--blue); }
+.m-detail-prompt .dollar { color: var(--text-muted); }
+.m-detail-prompt .cmd { color: var(--green); }
+.m-detail-prompt .args { color: var(--text-secondary); }
+.m-breadcrumb { padding: 8px 16px; font-size: 10px; color: var(--text-muted); }
+.m-breadcrumb a { color: var(--text-secondary); }
+.m-breadcrumb .sep { margin: 0 4px; }
+.m-detail-title { font-size: 18px; font-weight: 700; padding: 0 16px 6px; line-height: 1.3; }
+.m-detail-tags { padding: 0 16px 6px; display: flex; gap: 4px; flex-wrap: wrap; }
+.m-detail-meta { padding: 0 16px 12px; font-size: 11px; color: var(--text-muted); }
+/* Series nav */
+.m-series {
+  margin: 0 16px 12px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.m-series-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px; background: var(--surface); font-size: 11px; color: var(--text-secondary);
+}
+.m-series-header .label { color: var(--green); font-weight: 600; }
+.m-series-list { border-top: 1px solid var(--border); }
+.m-series-item { padding: 7px 12px; font-size: 11px; color: var(--text-muted); border-bottom: 1px solid var(--border); display: flex; gap: 6px; }
+.m-series-item:last-child { border-bottom: none; }
+.m-series-item.current { color: var(--green); background: var(--green-dim); }
+.m-series-item .num { min-width: 16px; }
+.m-series-item .check { color: var(--green); }
+/* Article body */
+.m-article { padding: 0 16px 16px; }
+.m-article h2 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; }
+.m-article p { font-size: 12px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 10px; }
+.m-article pre {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px; margin: 10px 0; overflow-x: auto; font-size: 10px; line-height: 1.6;
+}
+.m-article blockquote {
+  border-left: 3px solid var(--green); padding: 8px 12px; margin: 10px 0;
+  background: var(--green-dim); border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 11px; color: var(--text-secondary);
+}
+/* Prev/Next */
+.m-prevnext { display: flex; gap: 6px; padding: 12px 16px; border-top: 1px dashed var(--border); }
+.m-prevnext a { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 11px; }
+.m-prevnext .dir { color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
+.m-prevnext .pn-title { color: var(--text); font-weight: 500; }
+/* Giscus */
+.m-giscus { padding: 16px; margin: 0 16px 16px; border: 1px dashed var(--border); border-radius: var(--radius); text-align: center; font-size: 12px; color: var(--text-muted); }
+
+/* ============================================================
+   ABOUT PAGE (man page)
+   ============================================================ */
+.about-content { flex: 1; padding: 20px 0; }
+.man-section__title { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); margin-bottom: 8px; }
+.man-section__body { padding-left: 12px; }
+.man-name { font-size: 16px; font-weight: 700; }
+.man-role { color: var(--text-secondary); }
+.man-stack-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: baseline; }
+.man-stack-row .label { color: var(--text-muted); font-size: 11px; min-width: 70px; }
+.man-stack-row .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.man-edu-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; }
+.man-edu-row .institution { font-weight: 600; font-size: 12px; }
+.man-edu-row .status { font-size: 11px; color: var(--green); }
+.man-edu-detail { font-size: 11px; color: var(--text-secondary); padding-left: 8px; }
+.man-edu-detail .award { color: var(--yellow); }
+.man-link-row { display: flex; gap: 12px; padding: 2px 0; font-size: 12px; }
+.man-link-row .label { color: var(--text-muted); min-width: 60px; }
+.man-link-row .value { color: var(--blue); }
+.man-footer { display: flex; justify-content: space-between; margin-top: 16px; padding: 0 16px; font-size: 11px; color: var(--text-muted); }
+
+/* ============================================================
+   404 PAGE
+   ============================================================ */
+.m-404 {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  padding: 0 16px; margin-top: 28px;
+}
+.m-404 .error-title { color: var(--red); font-weight: 600; margin-bottom: 8px; }
+.m-404 .error-desc { color: var(--text-secondary); font-size: 12px; margin-bottom: 16px; }
+.m-404 .nav-link { display: block; padding: 4px 0; font-size: 12px; color: var(--text-secondary); }
+.m-404 .nav-link:hover { color: var(--green); }
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+.m-loading {
+  position: absolute; inset: 0; z-index: 200; background: var(--bg);
+  display: none; align-items: center; justify-content: center; padding: 16px;
+}
+.m-loading.active { display: flex; }
+.m-loading .ld-terminal {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.m-loading .ld-bar {
+  background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+  padding: 8px 12px; display: flex; align-items: center; gap: 6px;
+}
+.m-loading .dot { width: 8px; height: 8px; border-radius: 50%; }
+.m-loading .dot.r { background: var(--red); }
+.m-loading .dot.y { background: var(--yellow); }
+.m-loading .dot.g { background: var(--green); }
+.m-loading .ld-title { flex: 1; text-align: center; font-size: 10px; color: var(--text-muted); }
+.m-loading .ld-body { padding: 16px; font-size: 11px; line-height: 1.9; }
+.m-loading .ld-prompt { color: var(--green); }
+.m-loading .ld-dim { color: var(--text-muted); }
+.m-loading .ld-ok { color: var(--green); }
+.m-loading .ld-progress-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 4px; }
+.m-loading .ld-progress-track { flex: 1; height: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+.m-loading .ld-progress-fill { height: 100%; background: var(--green); width: 0%; transition: width 0.1s linear; }
+.m-loading .ld-pct { font-size: 11px; color: var(--text-secondary); min-width: 30px; text-align: right; }
+.m-loading .ld-cursor { display: inline-block; width: 7px; height: 13px; background: var(--green); animation: blink 1s step-end infinite; vertical-align: middle; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes stepIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============================================================
+   IMAGE LIGHTBOX (mobile)
+   ============================================================ */
+.m-lightbox {
+  position: absolute; inset: 0; z-index: 300; background: rgba(0,0,0,0.9);
+  display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+}
+.m-lightbox.active { display: flex; }
+.m-lightbox .lb-esc { position: absolute; top: 36px; right: 16px; font-size: 10px; color: var(--text-muted); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; padding: 2px 6px; }
+.m-lightbox .lb-image {
+  width: calc(100% - 32px); aspect-ratio: 16/9; background: var(--surface);
+  border: 1px dashed var(--border); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 11px; text-align: center; padding: 16px;
+}
+.m-lightbox .lb-caption { font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; padding: 0 32px; }
+.m-lightbox .lb-controls {
+  display: flex; gap: 16px; align-items: center;
+  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 6px 14px;
+}
+.m-lightbox .lb-controls button { color: rgba(255,255,255,0.7); font-size: 14px; padding: 4px 8px; }
+.m-lightbox .lb-scale { color: rgba(255,255,255,0.5); font-size: 11px; }
+
+/* ============================================================
+   TERMINAL (mobile bottom-sheet with swipe)
+   ============================================================ */
+.m-terminal-backdrop {
+  position: absolute; inset: 0; z-index: 140;
+  background: rgba(0,0,0,0.4);
+  display: none;
+}
+.m-terminal-backdrop.active { display: block; }
+
+.m-terminal {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 150;
+  height: 50%; background: var(--bg); border-top: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: none; flex-direction: column; overflow: hidden;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+  transition: height 0.25s ease, border-radius 0.2s ease;
+}
+.m-terminal.active { display: flex; }
+.m-terminal.full { height: 100%; border-radius: 0; }
+.m-terminal.dragging { transition: none; }
+
+/* Drag handle area */
+.m-terminal .t-sheet-header {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 16px 6px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  cursor: grab; user-select: none;
+  touch-action: none;
+}
+.m-terminal .t-handle-bar {
+  width: 36px; height: 4px; background: var(--text-muted); border-radius: 2px; opacity: 0.5;
+  margin-bottom: 6px;
+}
+.m-terminal .t-title {
+  font-size: 11px; color: var(--text-muted); text-align: center;
+  font-family: var(--font);
+}
+
+/* Terminal body */
+.m-terminal .t-body { flex: 1; overflow-y: auto; padding: 12px; font-size: 12px; line-height: 1.7; }
+.m-terminal .t-input { display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+.m-terminal .t-input .path { color: var(--blue); }
+.m-terminal .t-input .dollar { color: var(--green); margin: 0 4px; }
+.m-terminal .t-cursor { display: inline-block; width: 7px; height: 14px; background: var(--green); animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+
+/* ============================================================
+   DRAWER
+   ============================================================ */
+.drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; }
+.drawer-overlay.active { display: block; }
+.drawer {
+  position: absolute; top: 0; right: -280px; width: 280px; height: 100%;
+  background: var(--bg); border-left: 1px solid var(--border); z-index: 201;
+  transition: right 0.3s ease; padding: 40px 0 0;
+}
+.drawer.active { right: 0; }
+.drawer-close { position: absolute; top: 36px; right: 16px; color: var(--text-secondary); font-size: 20px; padding: 4px; }
+.drawer-nav { padding: 20px 24px; }
+.drawer-nav a {
+  display: block; padding: 12px 0; font-size: 15px; font-weight: 500;
+  color: var(--text-secondary); border-bottom: 1px solid var(--border);
+}
+.drawer-theme { padding: 16px 24px; }
+.drawer-theme-title { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.drawer-theme-list { display: flex; flex-direction: column; gap: 4px; }
+.drawer-theme-item {
+  padding: 8px 12px; border-radius: var(--radius); font-size: 12px;
+  color: var(--text-secondary); display: flex; align-items: center; gap: 8px;
+}
+.drawer-theme-item.active { color: var(--green); background: var(--green-dim); }
+.drawer-theme-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     WIREFRAME NAV
+     ============================================================ -->
+<nav class="wf-nav">
+  <span class="label">Page:</span>
+  <button class="active" data-page="home">Home</button>
+  <button data-page="posts">Posts</button>
+  <button data-page="detail">Detail</button>
+  <button data-page="about">About</button>
+  <button data-page="404">404</button>
+  <button data-page="loading">Loading</button>
+  <button data-page="lightbox">Lightbox</button>
+  <button data-page="terminal">Terminal</button>
+  <span class="label" style="margin-left:12px;">Theme:</span>
+  <button data-set-theme="dracula" class="active">Dracula</button>
+  <button data-set-theme="nord">Nord</button>
+  <button data-set-theme="tokyo-night">Tokyo</button>
+  <button data-set-theme="github-light">GitHub</button>
+  <button data-set-theme="catppuccin-latte">Catppuccin</button>
+</nav>
+
+<!-- ============================================================
+     PHONE FRAME
+     ============================================================ -->
+<div class="phone-wrap">
+<div class="phone" id="phone">
+  <div class="notch"></div>
+  <div class="phone-screen">
+
+  <!-- ========== HOME ========== -->
+  <div class="page active" id="page-home">
+    <header class="m-header">
+      <div class="m-logo">sim<span class="acc">.</span>junghun</div>
+      <button class="m-hamburger" id="drawerOpen"><span></span><span></span><span></span></button>
+    </header>
+    <div class="home-content">
+      <div class="section-gap" style="padding-top:20px;">
+        <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">whoami</span></div>
+        <div class="output-box">
+          <div style="font-size:16px;font-weight:700;">sim<span style="color:var(--green)">.</span>junghun</div>
+          <div style="color:var(--text-secondary);font-size:11px;margin-top:2px;">Backend Engineer</div>
+          <div style="color:var(--text-muted);font-size:11px;margin-top:6px;">비즈니스 문제를 코드로 풀어내는 백엔드 엔지니어입니다.</div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:16px;">
+      <div class="section-gap">
+        <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">cat</span> <span class="args">stack.yml</span></div>
+        <div class="output-box">
+          <div class="home__stack-row"><span class="label">backend:</span><span class="tags"><span class="tag tag--primary">Spring</span> <span class="tag tag--primary">Java</span> <span class="tag">Kotlin</span></span></div>
+          <div class="home__stack-row"><span class="label">infra:</span><span class="tags"><span class="tag">Docker</span> <span class="tag">K8s</span> <span class="tag">Redis</span></span></div>
+          <div class="home__stack-row"><span class="label">frontend:</span><span class="tags"><span class="tag">React</span></span></div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:16px;">
+      <div class="section-gap">
+        <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">ls</span> <span class="args">-lt posts/ | head -3</span></div>
+        <div class="output-box">
+          <div class="home__post-row"><span class="cat">스프링</span><span class="time">5min</span><span class="date">Mar 13</span><span class="title">JWT 인증 구현하기</span></div>
+          <div class="home__post-row"><span class="cat">메신저</span><span class="time">8min</span><span class="date">Mar 10</span><span class="title">x-usr 헤더 스푸핑 방어</span></div>
+          <div class="home__post-row"><span class="cat">스프링</span><span class="time">6min</span><span class="date">Mar 08</span><span class="title">CORS는 왜 필요할까</span></div>
+        </div>
+        <div class="home__cd"><span class="dollar">$</span> <span class="cmd">cd</span> <a href="#">posts/</a> <span style="color:var(--text-muted)">→</span></div>
+      </div>
+      <hr class="dashed-divider" style="margin:16px;">
+      <div class="section-gap">
+        <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">cat</span> <span class="args">links.txt</span></div>
+        <div class="output-box">
+          <div class="home__links-row"><span class="label">github</span><a href="#" class="value">github.com/bak-libra26</a></div>
+          <div class="home__links-row"><span class="label">email</span><a href="#" class="value">bak-libra26@gmail.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="m-footer">&copy; sim.junghun<span>&middot;</span><a href="#">github</a><span>&middot;</span><a href="#">email</a></div>
+  </div>
+
+  <!-- ========== POSTS ========== -->
+  <div class="page" id="page-posts">
+    <header class="m-header">
+      <div class="m-logo">sim<span class="acc">.</span>junghun</div>
+      <button class="m-hamburger"><span></span><span></span><span></span></button>
+    </header>
+    <div class="cat-chips">
+      <div class="cat-chip active">전체 (42)</div>
+      <div class="cat-chip">백엔드</div>
+      <div class="cat-chip">프론트엔드</div>
+      <div class="cat-chip">인프라</div>
+      <div class="cat-chip">블로그</div>
+      <div class="cat-chip">메신저</div>
+    </div>
+    <div class="m-search">
+      <span class="path">~/posts</span><span class="dollar">$</span><span class="cmd">grep</span>
+      <input type="text" placeholder="검색어를 입력하세요...">
+    </div>
+    <div class="m-post-row"><div class="row-top"><span class="cat">스프링</span><span>5min</span><span>Mar 13</span></div><div class="row-title">스프링 시큐리티: JWT 인증 구현하기</div><div class="row-tags"><span class="tag tag--primary">spring</span><span class="tag">jwt</span></div></div>
+    <div class="m-post-row"><div class="row-top"><span class="cat">메신저</span><span>8min</span><span>Mar 10</span></div><div class="row-title">API Gateway에서 x-usr 헤더 스푸핑 방어하기</div><div class="row-tags"><span class="tag tag--primary">msa</span><span class="tag">gateway</span></div></div>
+    <div class="m-post-row"><div class="row-top"><span class="cat">스프링</span><span>6min</span><span>Mar 08</span></div><div class="row-title">CORS는 왜 필요하고, 어떻게 동작할까</div><div class="row-tags"><span class="tag tag--primary">spring</span><span class="tag">cors</span></div></div>
+    <div class="m-post-row"><div class="row-top"><span class="cat">블로그</span><span>4min</span><span>Mar 05</span></div><div class="row-title">GitHub Pages에 커스텀 도메인 연결하기</div><div class="row-tags"><span class="tag">github-pages</span></div></div>
+    <div class="m-post-row"><div class="row-top"><span class="cat">스프링</span><span>7min</span><span>Mar 03</span></div><div class="row-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</div><div class="row-tags"><span class="tag tag--primary">spring</span><span class="tag">csrf</span></div></div>
+    <div class="m-pagination">
+      <button>&lsaquo;</button>
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>&rsaquo;</button>
+    </div>
+    <div class="m-footer">&copy; sim.junghun<span>&middot;</span><a href="#">github</a><span>&middot;</span><a href="#">email</a></div>
+  </div>
+
+  <!-- ========== POST DETAIL ========== -->
+  <div class="page" id="page-detail">
+    <header class="m-header">
+      <div class="m-logo">sim<span class="acc">.</span>junghun</div>
+      <button class="m-hamburger"><span></span><span></span><span></span></button>
+    </header>
+    <div class="m-detail-content">
+      <div class="m-detail-prompt">
+        <span class="path">~/posts/개발/백엔드/스프링</span> <span class="dollar">$</span> <span class="cmd">cat</span> <span class="args">"JWT 인증.md"</span>
+      </div>
+      <div class="m-breadcrumb"><a href="#">개발</a><span class="sep">/</span><a href="#">백엔드</a><span class="sep">/</span><span style="color:var(--text)">스프링</span></div>
+      <div class="m-detail-title">스프링 시큐리티: JWT 인증 구현하기</div>
+      <div class="m-detail-tags"><span class="tag tag--primary">spring</span><span class="tag">jwt</span><span class="tag">security</span></div>
+      <div class="m-detail-meta">2024-03-13 · 5 min read</div>
+      <hr class="dashed-divider" style="margin:0 16px;">
+      <div class="m-series">
+        <div class="m-series-header"><div><span class="label">SERIES</span> · 스프링 시큐리티 <span style="color:var(--text-muted)">(3/8)</span></div><span>▾</span></div>
+        <div class="m-series-list">
+          <div class="m-series-item"><span class="num">1.</span><span class="check">✓</span> 스프링 애플리케이션 보안 솔루션</div>
+          <div class="m-series-item"><span class="num">2.</span><span class="check">✓</span> SecurityFilterChain 동작 구조</div>
+          <div class="m-series-item current"><span class="num">3.</span><span>→</span> JWT 인증 구현하기 (현재)</div>
+          <div class="m-series-item"><span class="num">4.</span><span style="min-width:14px"></span> CORS 동작 원리</div>
+          <div class="m-series-item"><span class="num">5.</span><span style="min-width:14px"></span> CSRF 보호 메커니즘</div>
+        </div>
+      </div>
+      <div class="m-article">
+        <h2>Overview</h2>
+        <p>JWT(JSON Web Token)는 당사자 간에 정보를 안전하게 전달하기 위한 토큰 기반 인증 방식입니다.</p>
+        <blockquote>세션 기반 인증과 달리 서버가 상태를 저장하지 않으므로, 수평 확장이 용이합니다.</blockquote>
+        <h2>구현</h2>
+        <pre><span style="color:var(--purple)">@Component</span>
+<span style="color:var(--purple)">public class</span> <span style="color:var(--green)">JwtTokenProvider</span> {
+    <span style="color:var(--purple)">public</span> String <span style="color:var(--blue)">generateToken</span>() {
+        <span style="color:var(--purple)">return</span> Jwts.builder()
+            .setSubject(auth.getName())
+            .compact();
+    }
+}</pre>
+      </div>
+      <hr class="dashed-divider" style="margin:0 16px;">
+      <div class="m-prevnext">
+        <a href="#"><div class="dir">← prev</div><div class="pn-title">SecurityFilterChain</div></a>
+        <a href="#"><div class="dir" style="text-align:right">next →</div><div class="pn-title" style="text-align:right">CORS 동작 원리</div></a>
+      </div>
+      <div class="m-giscus">💬 Giscus Comments<br><span style="font-size:10px">Powered by GitHub Discussions</span></div>
+    </div>
+    <div class="m-footer">&copy; sim.junghun<span>&middot;</span><a href="#">github</a><span>&middot;</span><a href="#">email</a></div>
+  </div>
+
+  <!-- ========== ABOUT (man page) ========== -->
+  <div class="page" id="page-about">
+    <header class="m-header">
+      <div class="m-logo">sim<span class="acc">.</span>junghun</div>
+      <button class="m-hamburger"><span></span><span></span><span></span></button>
+    </header>
+    <div class="about-content">
+      <div class="section-gap" style="padding-top:20px;">
+        <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">man</span> <span class="args">sim.junghun</span></div>
+        <div class="output-box">
+          <div class="man-section__title">NAME</div>
+          <div class="man-section__body"><span class="man-name">sim<span style="color:var(--green)">.</span>junghun</span> <span class="man-role">— Backend Engineer</span></div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:12px 16px;">
+      <div class="section-gap">
+        <div class="output-box">
+          <div class="man-section__title">SYNOPSIS</div>
+          <div class="man-section__body" style="font-size:11px;color:var(--text-secondary);">비즈니스 문제를 코드로 풀어내는 백엔드 엔지니어입니다.</div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:12px 16px;">
+      <div class="section-gap">
+        <div class="output-box">
+          <div class="man-section__title">STACK</div>
+          <div class="man-section__body">
+            <div class="man-stack-row"><span class="label">backend:</span><span class="tags"><span class="tag tag--primary">Java</span> <span class="tag tag--primary">Spring</span> <span class="tag">Kotlin</span></span></div>
+            <div class="man-stack-row"><span class="label">infra:</span><span class="tags"><span class="tag">Docker</span> <span class="tag">K8s</span> <span class="tag">Redis</span></span></div>
+          </div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:12px 16px;">
+      <div class="section-gap">
+        <div class="output-box">
+          <div class="man-section__title">EDUCATION</div>
+          <div class="man-section__body">
+            <div class="man-edu-row"><span class="institution">서울사이버대학교</span><span class="status">재학중</span></div>
+            <div class="man-edu-detail">컴퓨터공학과 · 2025.03 ~</div>
+            <div class="man-edu-row"><span class="institution">멀티캠퍼스</span></div>
+            <div class="man-edu-detail">데이터 사이언스 과정<br><span class="award">▸ 최우수상</span> <span class="award">▸ 우수상</span></div>
+          </div>
+        </div>
+      </div>
+      <hr class="dashed-divider" style="margin:12px 16px;">
+      <div class="section-gap">
+        <div class="output-box">
+          <div class="man-section__title">SEE ALSO</div>
+          <div class="man-section__body">
+            <div class="man-link-row"><span class="label">github</span><a href="#" class="value">github.com/bak-libra26</a></div>
+            <div class="man-link-row"><span class="label">email</span><a href="#" class="value">bak-libra26@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="man-footer"><span>sim.junghun(1)</span><span>March 2026</span></div>
+      </div>
+    </div>
+    <div class="m-footer">&copy; sim.junghun<span>&middot;</span><a href="#">github</a><span>&middot;</span><a href="#">email</a></div>
+  </div>
+
+  <!-- ========== 404 ========== -->
+  <div class="page" id="page-404">
+    <div class="m-404">
+      <div class="prompt"><span class="path">~</span> <span class="dollar">$</span> <span class="cmd">curl</span> <span class="args">/invalid-path</span></div>
+      <div class="output-box">
+        <div class="error-title">bash: 404: page not found</div>
+        <div class="error-desc">요청하신 페이지가 존재하지 않거나<br>이동되었습니다.</div>
+        <a href="#" class="nav-link"><span style="color:var(--text-muted)">$</span> <span style="color:var(--green)">cd</span> ~/home</a>
+        <a href="#" class="nav-link"><span style="color:var(--text-muted)">$</span> <span style="color:var(--green)">cd</span> ~/posts</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== LOADING SCREEN ========== -->
+  <div class="m-loading" id="mLoading">
+    <div class="ld-terminal">
+      <div class="ld-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="ld-title">apt-get install blog</span></div>
+      <div class="ld-body">
+        <div><span class="ld-prompt">$</span> sudo apt-get install sim.junghun-blog</div>
+        <div id="mLdSteps"></div>
+        <div class="ld-progress-row">
+          <div class="ld-progress-track"><div class="ld-progress-fill" id="mLdFill"></div></div>
+          <span class="ld-pct" id="mLdPct">0%</span>
+        </div>
+        <div id="mLdDone" style="display:none"><span class="ld-ok">Done.</span> <span class="ld-dim">Welcome 🚀</span></div>
+        <div><span class="ld-prompt">$</span> <span class="ld-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== IMAGE LIGHTBOX ========== -->
+  <div class="m-lightbox" id="mLightbox">
+    <span class="lb-esc">ESC</span>
+    <div class="lb-image">[ JWT Authentication Flow ]<br>pinch to zoom · drag to pan</div>
+    <div class="lb-caption">JWT 인증 흐름 다이어그램</div>
+    <div class="lb-controls">
+      <button>−</button>
+      <span class="lb-scale">100%</span>
+      <button>+</button>
+    </div>
+  </div>
+
+  <!-- ========== TERMINAL (bottom-sheet with swipe) ========== -->
+  <div class="m-terminal-backdrop" id="mTerminalBackdrop"></div>
+  <div class="m-terminal" id="mTerminal">
+    <div class="t-sheet-header" id="mTerminalHandle">
+      <div class="t-handle-bar"></div>
+      <span class="t-title">sim.junghun — bash</span>
+    </div>
+    <div class="t-body">
+      <div style="color:var(--text-muted)">Last login: Fri Mar 13 14:30</div>
+      <div><span style="color:var(--blue)">~</span> <span style="color:var(--text-muted)">$</span> whoami</div>
+      <div style="color:var(--text-secondary)">sim.junghun (Backend Engineer)</div>
+      <div style="margin-top:6px"><span style="color:var(--blue)">~</span> <span style="color:var(--text-muted)">$</span> ls posts/</div>
+      <div><span style="color:var(--blue)">개발/</span>  <span style="color:var(--blue)">사이드 프로젝트/</span></div>
+      <div class="t-input"><span class="path">~</span><span class="dollar">$</span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- ========== DRAWER ========== -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" id="drawerClose">&times;</button>
+    <div class="drawer-nav">
+      <a href="#" data-goto="home">home</a>
+      <a href="#" data-goto="posts">posts</a>
+      <a href="#" data-goto="about">about</a>
+    </div>
+    <div class="drawer-theme">
+      <div class="drawer-theme-title">Theme</div>
+      <div class="drawer-theme-list">
+        <div class="drawer-theme-item active" data-drawer-theme="dracula"><span class="drawer-theme-dot" style="background:#bd93f9"></span>Dracula</div>
+        <div class="drawer-theme-item" data-drawer-theme="nord"><span class="drawer-theme-dot" style="background:#88c0d0"></span>Nord</div>
+        <div class="drawer-theme-item" data-drawer-theme="tokyo-night"><span class="drawer-theme-dot" style="background:#bb9af7"></span>Tokyo Night</div>
+        <div class="drawer-theme-item" data-drawer-theme="github-light"><span class="drawer-theme-dot" style="background:#1a7f37"></span>GitHub Light</div>
+        <div class="drawer-theme-item" data-drawer-theme="catppuccin-latte"><span class="drawer-theme-dot" style="background:#8839ef"></span>Catppuccin</div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /phone-screen -->
+</div><!-- /phone -->
+</div><!-- /phone-wrap -->
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // --- Page switching ---
+  const pageButtons = document.querySelectorAll('.wf-nav button[data-page]');
+  const pages = {};
+  document.querySelectorAll('.page').forEach(p => { pages[p.id.replace('page-', '')] = p; });
+
+  function showPage(id) {
+    // Special overlays
+    if (id === 'loading') { runLoading(); return; }
+    if (id === 'lightbox') { document.getElementById('mLightbox').classList.toggle('active'); return; }
+    if (id === 'terminal') { toggleTerminal(); return; }
+
+    Object.values(pages).forEach(p => p.classList.remove('active'));
+    if (pages[id]) pages[id].classList.add('active');
+    pageButtons.forEach(b => b.classList.toggle('active', b.dataset.page === id));
+    document.querySelector('.phone-screen')?.scrollTo(0, 0);
+  }
+
+  pageButtons.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
+
+  // --- Theme switching ---
+  document.querySelectorAll('[data-set-theme]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.setTheme;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('phone').setAttribute('data-theme', theme);
+      document.querySelectorAll('[data-set-theme]').forEach(b => b.classList.toggle('active', b.dataset.setTheme === theme));
+      document.querySelectorAll('[data-drawer-theme]').forEach(d => d.classList.toggle('active', d.dataset.drawerTheme === theme));
+    });
+  });
+
+  // --- Drawer ---
+  const drawerOverlay = document.getElementById('drawerOverlay');
+  const drawer = document.getElementById('drawer');
+  document.getElementById('drawerOpen').addEventListener('click', () => {
+    drawerOverlay.classList.add('active');
+    drawer.classList.add('active');
+  });
+  function closeDrawer() {
+    drawerOverlay.classList.remove('active');
+    drawer.classList.remove('active');
+  }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+  document.querySelectorAll('[data-goto]').forEach(a => {
+    a.addEventListener('click', (e) => { e.preventDefault(); closeDrawer(); showPage(a.dataset.goto); });
+  });
+  document.querySelectorAll('[data-drawer-theme]').forEach(item => {
+    item.addEventListener('click', () => {
+      const theme = item.dataset.drawerTheme;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('phone').setAttribute('data-theme', theme);
+      document.querySelectorAll('[data-set-theme]').forEach(b => b.classList.toggle('active', b.dataset.setTheme === theme));
+      document.querySelectorAll('[data-drawer-theme]').forEach(d => d.classList.toggle('active', d.dataset.drawerTheme === theme));
+    });
+  });
+
+  // --- Loading animation ---
+  const M_LD_STEPS = [
+    { text: '<span class="ld-dim">Reading package lists...</span>', at: 8 },
+    { text: '<span class="ld-dim">Building dependency tree...</span>', at: 22 },
+    { text: '<span class="ld-ok">Get:1</span> <span class="ld-pkg">blog-core</span> <span class="ld-dim">(2.0.0)</span>', at: 38 },
+    { text: '<span class="ld-ok">Get:2</span> <span class="ld-pkg">terminal-vibes</span> <span class="ld-dim">(1.3.7)</span>', at: 55 },
+    { text: '<span class="ld-dim">Unpacking</span> <span class="ld-pkg">sim.junghun-blog</span> <span class="ld-dim">...</span>', at: 72 },
+    { text: '<span class="ld-ok">✓</span> <span class="ld-pkg">sim.junghun-blog</span> <span class="ld-dim">installed</span>', at: 90 },
+  ];
+
+  function mLdEase(raw) {
+    if (raw < 0.3) return raw / 0.3 * 0.45;
+    if (raw < 0.6) return 0.45 + (raw - 0.3) / 0.3 * 0.2;
+    return 0.65 + (raw - 0.6) / 0.4 * 0.35;
+  }
+
+  function runLoading() {
+    const el = document.getElementById('mLoading');
+    const fill = document.getElementById('mLdFill');
+    const pct = document.getElementById('mLdPct');
+    const stepsEl = document.getElementById('mLdSteps');
+    const doneEl = document.getElementById('mLdDone');
+    el.classList.add('active');
+    stepsEl.innerHTML = '';
+    doneEl.style.display = 'none';
+    fill.style.width = '0%';
+    pct.textContent = '0%';
+    let shown = 0;
+    const start = performance.now();
+    const DURATION = 2000;
+
+    function tick(ts) {
+      const raw = Math.min(1, (ts - start) / DURATION);
+      const p = Math.min(100, Math.round(mLdEase(raw) * 100));
+      fill.style.width = p + '%';
+      pct.textContent = p + '%';
+
+      while (shown < M_LD_STEPS.length && p >= M_LD_STEPS[shown].at) {
+        const div = document.createElement('div');
+        div.innerHTML = M_LD_STEPS[shown].text;
+        div.style.animation = 'stepIn 0.15s ease';
+        stepsEl.appendChild(div);
+        shown++;
+      }
+
+      if (p >= 100) {
+        doneEl.style.display = 'block';
+        setTimeout(() => el.classList.remove('active'), 600);
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // --- Terminal bottom-sheet with swipe ---
+  const mTerminal = document.getElementById('mTerminal');
+  const mTerminalBackdrop = document.getElementById('mTerminalBackdrop');
+  const mTerminalHandle = document.getElementById('mTerminalHandle');
+  const phoneScreen = document.querySelector('.phone-screen');
+  const SNAP_HALF = 0.5;
+  const SNAP_FULL = 1.0;
+  const DISMISS = 0.2;
+
+  function toggleTerminal() {
+    const isActive = mTerminal.classList.contains('active');
+    if (isActive) {
+      closeTerminal();
+    } else {
+      mTerminal.classList.add('active');
+      mTerminal.classList.remove('full');
+      mTerminal.style.height = '50%';
+      mTerminalBackdrop.classList.add('active');
+      phoneScreen.style.overflow = 'hidden';
+    }
+  }
+
+  function closeTerminal() {
+    mTerminal.classList.remove('active', 'full', 'dragging');
+    mTerminal.style.height = '50%';
+    mTerminalBackdrop.classList.remove('active');
+    phoneScreen.style.overflow = '';
+  }
+
+  // Backdrop tap → close
+  mTerminalBackdrop.addEventListener('click', closeTerminal);
+
+  // Swipe on handle
+  let sheetDrag = null;
+  mTerminalHandle.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const screenH = phoneScreen.offsetHeight;
+    const currentH = mTerminal.offsetHeight;
+    sheetDrag = { startY: touch.clientY, startRatio: currentH / screenH };
+    mTerminal.classList.add('dragging');
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!sheetDrag) return;
+    const screenH = phoneScreen.offsetHeight;
+    const deltaY = sheetDrag.startY - e.touches[0].clientY;
+    const newRatio = Math.min(SNAP_FULL, Math.max(0.05, sheetDrag.startRatio + deltaY / screenH));
+    mTerminal.style.height = Math.round(newRatio * 100) + '%';
+  });
+
+  document.addEventListener('touchend', () => {
+    if (!sheetDrag) return;
+    mTerminal.classList.remove('dragging');
+    const screenH = phoneScreen.offsetHeight;
+    const currentRatio = mTerminal.offsetHeight / screenH;
+
+    if (currentRatio < DISMISS) {
+      closeTerminal();
+    } else if (currentRatio < (SNAP_HALF + SNAP_FULL) / 2) {
+      mTerminal.style.height = '50%';
+      mTerminal.classList.remove('full');
+    } else {
+      mTerminal.style.height = '100%';
+      mTerminal.classList.add('full');
+    }
+    sheetDrag = null;
+  });
+
+  // Also handle mouse drag for desktop testing
+  mTerminalHandle.addEventListener('mousedown', (e) => {
+    const screenH = phoneScreen.offsetHeight;
+    const currentH = mTerminal.offsetHeight;
+    sheetDrag = { startY: e.clientY, startRatio: currentH / screenH };
+    mTerminal.classList.add('dragging');
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!sheetDrag) return;
+    const screenH = phoneScreen.offsetHeight;
+    const deltaY = sheetDrag.startY - e.clientY;
+    const newRatio = Math.min(SNAP_FULL, Math.max(0.05, sheetDrag.startRatio + deltaY / screenH));
+    mTerminal.style.height = Math.round(newRatio * 100) + '%';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!sheetDrag) return;
+    mTerminal.classList.remove('dragging');
+    const screenH = phoneScreen.offsetHeight;
+    const currentRatio = mTerminal.offsetHeight / screenH;
+
+    if (currentRatio < DISMISS) {
+      closeTerminal();
+    } else if (currentRatio < (SNAP_HALF + SNAP_FULL) / 2) {
+      mTerminal.style.height = '50%';
+      mTerminal.classList.remove('full');
+    } else {
+      mTerminal.style.height = '100%';
+      mTerminal.classList.add('full');
+    }
+    sheetDrag = null;
+  });
+
+  // --- Lightbox close on backdrop ---
+  document.getElementById('mLightbox').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
+  });
+
+})();
+</script>
+
+</body>
+</html>

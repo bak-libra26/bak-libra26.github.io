@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sim.junghun — Desktop Wireframe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0A0A0F; --bg-secondary: #111118; --surface: #16161F; --surface-hover: #1C1C28;
+  --text: #D4D4DC; --text-secondary: #7E7E8C; --text-muted: #3E3E4C;
+  --green: #4ADE80; --green-dim: rgba(74,222,128,0.08);
+  --blue: #60A5FA; --blue-dim: rgba(96,165,250,0.08);
+  --purple: #A78BFA; --purple-dim: rgba(167,139,250,0.08);
+  --yellow: #FBBF24; --red: #F87171; --orange: #FB923C; --cyan: #22D3EE;
+  --border: #1E1E2A; --border-hover: #2A2A3A;
+  --radius: 6px; --radius-lg: 10px;
+  --font: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --transition: 0.15s ease;
+}
+
+[data-theme="light"] {
+  --bg: #F8F8FA; --bg-secondary: #EEEFF2; --surface: #FFFFFF; --surface-hover: #F0F0F4;
+  --text: #1A1A2E; --text-secondary: #555566; --text-muted: #9999AA;
+  --green: #16A34A; --green-dim: rgba(22,163,74,0.08);
+  --blue: #2563EB; --blue-dim: rgba(37,99,235,0.08);
+  --purple: #7C3AED; --purple-dim: rgba(124,58,237,0.08);
+  --yellow: #CA8A04; --red: #DC2626; --orange: #EA580C; --cyan: #0891B2;
+  --border: #E2E2EA; --border-hover: #D0D0DC;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--green); color: var(--bg); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== WIREFRAME NAV ===== */
+.wf-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; padding: 8px; font-family: var(--font); font-size: 12px;
+}
+.wf-nav .wf-label { color: var(--text-muted); margin-right: 8px; font-weight: 500; }
+.wf-nav a {
+  color: var(--text-secondary); padding: 4px 12px; border-radius: 4px;
+  border: 1px solid var(--border); transition: var(--transition); cursor: pointer;
+}
+.wf-nav a:hover, .wf-nav a.active { border-color: var(--green); color: var(--green); }
+
+/* ===== PAGES ===== */
+.page { display: none; padding-top: 48px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ===== HEADER ===== */
+.site-header {
+  position: sticky; top: 48px; z-index: 100;
+  background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 100%;
+}
+[data-theme="light"] .site-header { background: rgba(248,248,250,0.85); }
+
+.header-left { display: flex; align-items: center; gap: 32px; }
+.logo {
+  font-family: var(--font); font-weight: 700; font-size: 15px;
+  color: var(--text); cursor: pointer; letter-spacing: -0.5px;
+}
+.logo span { color: var(--green); }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-family: var(--font); font-size: 13px; color: var(--text-secondary);
+  padding: 6px 12px; border-radius: var(--radius); transition: var(--transition); cursor: pointer;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface-hover); }
+.nav-links a.active { color: var(--green); }
+
+.header-right { display: flex; align-items: center; gap: 16px; }
+.social-links { display: flex; gap: 8px; }
+.social-links a {
+  color: var(--text-muted); font-size: 13px; font-family: var(--font);
+  transition: var(--transition); padding: 4px;
+}
+.social-links a:hover { color: var(--text); }
+.theme-toggle {
+  background: none; border: 1px solid var(--border); color: var(--text-secondary);
+  width: 32px; height: 32px; border-radius: var(--radius); cursor: pointer;
+  font-size: 14px; display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.theme-toggle:hover { border-color: var(--green); color: var(--green); }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 8px var(--green); animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  border-top: 1px solid var(--border); padding: 32px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 980px; margin: 0 auto; font-size: 13px; color: var(--text-muted);
+  font-family: var(--font);
+}
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--text-muted); transition: var(--transition); }
+.footer-links a:hover { color: var(--green); }
+
+/* ===== HOME PAGE ===== */
+.hero {
+  max-width: 640px; margin: 0 auto; padding: 80px 24px 60px;
+}
+.hero-greeting {
+  font-family: var(--font); font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.accent-line { width: 32px; height: 2px; background: var(--green); }
+.hero h1 {
+  font-family: var(--font); font-size: 32px; font-weight: 700;
+  line-height: 1.3; margin-bottom: 16px; letter-spacing: -1px;
+}
+.hero-bio {
+  color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 32px;
+}
+.tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tech-tag {
+  font-family: var(--font); font-size: 12px; padding: 4px 12px;
+  border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary);
+  transition: var(--transition);
+}
+.tech-tag.highlight { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+
+.recent-posts {
+  max-width: 980px; margin: 0 auto; padding: 0 24px 80px;
+}
+.section-title {
+  font-family: var(--font); font-size: 14px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+}
+
+.post-table { width: 100%; }
+.post-table-header {
+  display: grid; grid-template-columns: 1fr 100px 80px;
+  padding: 8px 12px; font-family: var(--font); font-size: 12px;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+.post-row {
+  display: grid; grid-template-columns: 1fr 100px 80px;
+  padding: 12px; border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: var(--transition); align-items: center;
+}
+.post-row:hover { background: var(--green-dim); }
+.post-row:hover .post-title-text { color: var(--green); }
+.post-title-cell { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.post-cat {
+  font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  padding: 2px 8px; background: var(--surface); border-radius: 4px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.post-title-text {
+  font-size: 14px; color: var(--text); transition: var(--transition);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.post-date { font-family: var(--font); font-size: 13px; color: var(--text-muted); }
+.post-read { font-family: var(--font); font-size: 13px; color: var(--text-muted); text-align: right; }
+
+.cmd-hint {
+  text-align: center; padding: 24px; font-family: var(--font);
+  font-size: 12px; color: var(--text-muted);
+}
+.cmd-hint kbd {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 2px 6px; border-radius: 4px; font-family: var(--font);
+}
+
+/* ===== POSTS LIST PAGE ===== */
+.posts-layout {
+  display: flex; max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; gap: 32px;
+}
+.sidebar {
+  width: 220px; flex-shrink: 0; position: sticky; top: 136px; align-self: flex-start;
+  max-height: calc(100vh - 160px); overflow-y: auto;
+}
+.sidebar-label {
+  font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+}
+.cat-tree { list-style: none; font-size: 13px; }
+.cat-tree li { margin-bottom: 2px; }
+.cat-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 8px; border-radius: var(--radius); cursor: pointer;
+  transition: var(--transition); color: var(--text-secondary);
+}
+.cat-item:hover { background: var(--surface-hover); color: var(--text); }
+.cat-item.active { color: var(--green); background: var(--green-dim); }
+.cat-item .count { font-family: var(--font); font-size: 11px; color: var(--text-muted); }
+.cat-item.active .count { color: var(--green); }
+.cat-children { list-style: none; padding-left: 16px; }
+.cat-toggle {
+  width: 16px; height: 16px; display: inline-flex; align-items: center;
+  justify-content: center; font-size: 10px; color: var(--text-muted);
+  cursor: pointer; flex-shrink: 0; margin-right: 4px; transition: var(--transition);
+}
+.cat-toggle.expanded { transform: rotate(90deg); }
+.cat-children.collapsed { display: none; }
+.cat-name-wrap { display: flex; align-items: center; gap: 2px; min-width: 0; }
+.cat-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.posts-main { flex: 1; min-width: 0; }
+.posts-header { margin-bottom: 24px; }
+.posts-header h1 { font-family: var(--font); font-size: 24px; font-weight: 700; }
+.posts-meta { font-family: var(--font); font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.pagination {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  margin-top: 32px; font-family: var(--font); font-size: 13px;
+}
+.pagination a, .pagination span {
+  padding: 6px 12px; border-radius: var(--radius); color: var(--text-secondary);
+  cursor: pointer; transition: var(--transition); border: 1px solid transparent;
+}
+.pagination a:hover { border-color: var(--border); color: var(--text); }
+.pagination .active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+.pagination .disabled { color: var(--text-muted); cursor: default; }
+
+/* ===== POST DETAIL ===== */
+.detail-layout {
+  display: flex; max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; gap: 48px;
+}
+.detail-main { flex: 1; min-width: 0; max-width: 720px; }
+.detail-toc {
+  width: 180px; flex-shrink: 0; position: sticky; top: 136px;
+  align-self: flex-start; max-height: calc(100vh - 160px); overflow-y: auto;
+}
+
+.breadcrumb {
+  display: flex; gap: 8px; font-family: var(--font); font-size: 12px;
+  color: var(--text-muted); margin-bottom: 20px; align-items: center;
+}
+.breadcrumb span { cursor: pointer; transition: var(--transition); }
+.breadcrumb span:hover { color: var(--green); }
+.breadcrumb .sep { color: var(--text-muted); }
+
+/* Series nav */
+.series-nav {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); margin-bottom: 28px; overflow: hidden;
+}
+.series-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; cursor: pointer; transition: var(--transition);
+}
+.series-header:hover { background: var(--surface-hover); }
+.series-header-left { display: flex; align-items: center; gap: 10px; }
+.series-badge {
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  color: var(--green); background: var(--green-dim); padding: 2px 8px;
+  border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.series-title { font-size: 14px; font-weight: 500; }
+.series-count { font-family: var(--font); font-size: 13px; color: var(--text-muted); }
+.series-chevron { color: var(--text-muted); transition: var(--transition); font-size: 12px; }
+.series-nav.expanded .series-chevron { transform: rotate(180deg); }
+
+.series-list {
+  display: none; border-top: 1px solid var(--border); padding: 8px 0;
+  max-height: 320px; overflow-y: auto;
+}
+.series-nav.expanded .series-list { display: block; }
+.series-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 16px; font-size: 13px; color: var(--text-secondary);
+  cursor: pointer; transition: var(--transition);
+}
+.series-item:hover { background: var(--surface-hover); }
+.series-item.current { color: var(--green); background: var(--green-dim); }
+.series-num { font-family: var(--font); font-size: 12px; width: 20px; text-align: right; flex-shrink: 0; }
+.series-check { width: 16px; text-align: center; flex-shrink: 0; font-size: 11px; }
+.series-item-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.series-footer {
+  display: none; border-top: 1px solid var(--border);
+  padding: 12px 16px; display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--text-secondary);
+}
+.series-nav.expanded .series-footer { display: flex; }
+.series-footer a {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  transition: var(--transition); max-width: 45%; color: var(--text-secondary);
+}
+.series-footer a:hover { color: var(--green); }
+.series-footer-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Article content */
+.article-title {
+  font-family: var(--font); font-size: 28px; font-weight: 700;
+  line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.article-tags { display: flex; gap: 8px; margin-bottom: 8px; }
+.article-tag {
+  font-family: var(--font); font-size: 11px; padding: 3px 10px;
+  border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary);
+}
+.article-tag.primary { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+.article-info {
+  font-family: var(--font); font-size: 13px; color: var(--text-muted); margin-bottom: 40px;
+}
+
+.article-body h2 {
+  font-family: var(--font); font-size: 20px; font-weight: 700;
+  margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.article-body h3 {
+  font-family: var(--font); font-size: 16px; font-weight: 600;
+  margin: 28px 0 12px; color: var(--text);
+}
+.article-body p {
+  color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin-bottom: 16px;
+}
+.article-body .note {
+  background: var(--blue-dim); border-left: 3px solid var(--blue);
+  padding: 14px 16px; border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 16px 0; font-size: 14px; color: var(--text-secondary);
+}
+.article-body .note-label { font-weight: 600; color: var(--blue); margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }
+.article-body blockquote {
+  border-left: 3px solid var(--green); padding: 12px 16px; margin: 16px 0;
+  color: var(--text-secondary); font-size: 14px; font-style: italic;
+  background: var(--green-dim); border-radius: 0 var(--radius) var(--radius) 0;
+}
+.article-body code {
+  font-family: var(--font); font-size: 13px; background: var(--surface);
+  padding: 2px 6px; border-radius: 4px; color: var(--green);
+}
+
+/* Code block */
+.code-block {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); margin: 20px 0; overflow: hidden;
+}
+.code-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
+  font-family: var(--font); font-size: 12px; color: var(--text-muted);
+}
+.code-lang { color: var(--yellow); }
+.code-content {
+  padding: 16px; overflow-x: auto; font-family: var(--font);
+  font-size: 13px; line-height: 1.7; counter-reset: line;
+}
+.code-line { display: flex; }
+.code-line::before {
+  counter-increment: line; content: counter(line);
+  width: 32px; text-align: right; margin-right: 16px;
+  color: var(--text-muted); flex-shrink: 0; user-select: none;
+}
+.kw { color: var(--purple); } .str { color: var(--green); }
+.type { color: var(--blue); } .cmt { color: var(--text-muted); font-style: italic; }
+.fn { color: var(--yellow); } .num { color: var(--orange); }
+
+/* TOC */
+.toc-label {
+  font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  font-size: 13px; color: var(--text-muted); padding: 4px 0;
+  cursor: pointer; transition: var(--transition);
+  border-left: 2px solid transparent; padding-left: 12px;
+}
+.toc-list li:hover { color: var(--text); }
+.toc-list li.active { color: var(--green); border-color: var(--green); }
+.toc-list li.depth-3 { padding-left: 24px; font-size: 12px; }
+
+.related-posts {
+  margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border);
+}
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;
+}
+.related-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px; cursor: pointer;
+  transition: var(--transition);
+}
+.related-card:hover { border-color: var(--green); background: var(--surface-hover); }
+.related-card-cat { font-family: var(--font); font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.related-card-title { font-size: 14px; font-weight: 500; }
+.related-card-arrow { color: var(--text-muted); margin-top: 8px; font-size: 13px; }
+
+.comments-section {
+  margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);
+}
+.giscus-placeholder {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 40px; text-align: center;
+  color: var(--text-muted); font-family: var(--font); font-size: 13px;
+}
+
+/* ===== ABOUT PAGE ===== */
+.about-content { max-width: 680px; margin: 0 auto; padding: 80px 24px; }
+.about-greeting {
+  font-family: var(--font); font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.about-content h1 {
+  font-family: var(--font); font-size: 36px; font-weight: 700; margin-bottom: 8px;
+}
+.about-role { font-family: var(--font); font-size: 16px; color: var(--green); margin-bottom: 16px; }
+.about-bio { color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin-bottom: 24px; }
+.about-links { display: flex; gap: 16px; margin-bottom: 60px; }
+.about-link {
+  font-family: var(--font); font-size: 13px; color: var(--text-secondary);
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  transition: var(--transition); cursor: pointer;
+}
+.about-link:hover { border-color: var(--green); color: var(--green); }
+
+.about-section { margin-bottom: 48px; }
+.about-section-title {
+  font-family: var(--font); font-size: 13px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.about-section-num { color: var(--green); }
+
+.core-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.core-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+}
+.core-icon { font-size: 18px; margin-bottom: 10px; }
+.core-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.core-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+.exp-block { margin-bottom: 32px; }
+.exp-company {
+  font-family: var(--font); font-size: 15px; font-weight: 600; margin-bottom: 4px;
+}
+.exp-period { font-family: var(--font); font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+.exp-project { margin-bottom: 20px; }
+.exp-project-title {
+  font-size: 14px; font-weight: 600; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.exp-project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.exp-project-tag {
+  font-family: var(--font); font-size: 11px; padding: 2px 8px;
+  background: var(--surface); border-radius: 4px; color: var(--text-muted);
+}
+.exp-list { list-style: none; padding-left: 16px; }
+.exp-list li {
+  font-size: 13px; color: var(--text-secondary); padding: 3px 0;
+  position: relative;
+}
+.exp-list li::before {
+  content: '›'; position: absolute; left: -14px; color: var(--text-muted);
+}
+
+.stack-group { margin-bottom: 16px; }
+.stack-group-label {
+  font-family: var(--font); font-size: 12px; color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-tag {
+  font-family: var(--font); font-size: 12px; padding: 4px 12px;
+  border: 1px solid var(--border); border-radius: 999px; color: var(--text-secondary);
+}
+.stack-tag.primary { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+
+.edu-item {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.edu-name { font-size: 14px; font-weight: 500; }
+.edu-detail { font-size: 13px; color: var(--text-secondary); }
+.edu-period { font-family: var(--font); font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+
+/* ===== 404 PAGE ===== */
+.page-404 {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: calc(100vh - 104px); padding: 24px;
+}
+.error-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); max-width: 480px; width: 100%; overflow: hidden;
+}
+.error-bar {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.error-dot { width: 10px; height: 10px; border-radius: 50%; }
+.error-dot.r { background: var(--red); } .error-dot.y { background: var(--yellow); } .error-dot.g { background: var(--green); }
+.error-title { font-family: var(--font); font-size: 12px; color: var(--text-muted); margin-left: 8px; }
+.error-content {
+  padding: 24px; font-family: var(--font); font-size: 13px; line-height: 1.8;
+}
+.error-prompt { color: var(--green); }
+.error-cmd { color: var(--text); }
+.error-output { color: var(--red); margin-top: 8px; }
+.error-actions { display: flex; gap: 12px; margin-top: 24px; }
+.error-btn {
+  font-family: var(--font); font-size: 13px; padding: 8px 20px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: none; color: var(--text-secondary); cursor: pointer;
+  transition: var(--transition);
+}
+.error-btn:hover { border-color: var(--green); color: var(--green); }
+.error-btn.primary { background: var(--green); color: var(--bg); border-color: var(--green); }
+.error-btn.primary:hover { opacity: 0.9; }
+
+/* ===== LOADING PAGE ===== */
+.loading-center {
+  display: flex; align-items: center; justify-content: center;
+  min-height: calc(100vh - 48px); padding: 24px;
+}
+.loading-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); max-width: 600px; width: 100%; overflow: hidden;
+}
+.loading-bar {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.loading-content {
+  padding: 24px; font-family: var(--font); font-size: 13px;
+  line-height: 1.8; color: var(--text-secondary);
+}
+.loading-content .prompt { color: var(--green); }
+.loading-content .bold { color: var(--text); font-weight: 600; }
+.loading-content .warn { color: var(--yellow); }
+.loading-content .dim { color: var(--text-muted); }
+.progress-bar {
+  width: 100%; height: 16px; background: var(--bg-secondary);
+  border-radius: 4px; margin: 12px 0; overflow: hidden; position: relative;
+}
+.progress-fill {
+  height: 100%; background: var(--green); border-radius: 4px;
+  width: 0%; transition: width 2s ease;
+}
+.progress-text {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font); font-size: 11px; color: var(--text);
+}
+.cursor-blink::after {
+  content: '█'; animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+
+/* ===== TERMINAL OVERLAY ===== */
+.terminal-overlay {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 10000; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+  align-items: flex-start; justify-content: center; padding-top: 15vh;
+}
+.terminal-overlay.active { display: flex; }
+.terminal-box {
+  width: 640px; max-height: 480px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+.terminal-titlebar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+}
+.terminal-dots { display: flex; gap: 6px; }
+.terminal-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-dots .r { background: #FF5F57; } .terminal-dots .y { background: #FEBC2E; } .terminal-dots .g { background: #28C840; }
+.terminal-title { font-family: var(--font); font-size: 12px; color: var(--text-muted); }
+.terminal-esc { font-family: var(--font); font-size: 11px; color: var(--text-muted); }
+.terminal-output {
+  flex: 1; overflow-y: auto; padding: 16px; font-family: var(--font);
+  font-size: 13px; line-height: 1.7; min-height: 200px;
+}
+.terminal-output .line { margin-bottom: 2px; }
+.terminal-output .prompt-line { color: var(--green); }
+.terminal-output .cmd { color: var(--text); }
+.terminal-output .output { color: var(--text-secondary); }
+.terminal-output .dir { color: var(--blue); }
+.terminal-output .file { color: var(--text); cursor: pointer; }
+.terminal-output .file:hover { color: var(--green); text-decoration: underline; }
+.terminal-output .error { color: var(--red); }
+.terminal-output .info { color: var(--cyan); }
+.terminal-input-line {
+  display: flex; align-items: center; padding: 12px 16px;
+  border-top: 1px solid var(--border); font-family: var(--font); font-size: 13px;
+}
+.terminal-prompt { color: var(--green); margin-right: 8px; white-space: nowrap; }
+.terminal-input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text); font-family: var(--font); font-size: 13px;
+  caret-color: var(--green);
+}
+.terminal-footer {
+  border-top: 1px solid var(--border); padding: 8px 16px;
+  font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  text-align: center;
+}
+
+/* ===== SHORTCUTS MODAL ===== */
+.shortcuts-overlay {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 10001; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center;
+}
+.shortcuts-overlay.active { display: flex; }
+.shortcuts-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); width: 480px; max-height: 80vh;
+  overflow-y: auto; padding: 24px;
+}
+.shortcuts-title {
+  font-family: var(--font); font-size: 16px; font-weight: 700;
+  margin-bottom: 20px;
+}
+.shortcuts-group { margin-bottom: 20px; }
+.shortcuts-group-label {
+  font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+}
+.shortcut-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 0; font-size: 13px;
+}
+.shortcut-desc { color: var(--text-secondary); }
+.shortcut-keys { display: flex; gap: 4px; }
+.shortcut-key {
+  font-family: var(--font); font-size: 11px; padding: 3px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* ===== BOTTOM BAR ===== */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: var(--surface); border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px; padding: 8px; font-family: var(--font); font-size: 11px;
+  color: var(--text-muted);
+}
+.bottom-bar kbd {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  padding: 1px 5px; border-radius: 3px; font-family: var(--font); font-size: 10px;
+}
+.bottom-bar span { display: flex; align-items: center; gap: 4px; }
+
+/* ===== TABLET RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .detail-toc { display: none; }
+  .posts-layout { padding: 24px 16px; }
+  .detail-layout { padding: 24px 16px; }
+  .hero { padding: 60px 16px 40px; }
+  .recent-posts { padding: 0 16px 60px; }
+  .core-cards { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr; }
+  .about-content { padding: 60px 16px; }
+  .edu-item { flex-direction: column; gap: 4px; }
+  .terminal-box { width: calc(100vw - 32px); }
+  .header-left { gap: 16px; }
+  .social-links { display: none; }
+}
+@media (max-width: 640px) {
+  .post-table-header, .post-row { grid-template-columns: 1fr 80px; }
+  .post-read { display: none; }
+  .wf-nav { flex-wrap: wrap; }
+}
+
+body { padding-bottom: 40px; }
+
+/* ===== TERMINAL ENGINE CLASSES ===== */
+.tl { margin-bottom: 2px; }
+.t-user { color: var(--green); }
+.t-path { color: var(--cyan); }
+.t-dollar { color: var(--text); }
+.t-dir { color: var(--blue); }
+.t-file { color: var(--text); }
+.t-err { color: var(--red); }
+.t-dim { color: var(--text-muted); }
+.t-out { color: var(--text-secondary); }
+.t-green { color: var(--green); }
+.t-cyan { color: var(--cyan); }
+.t-purple { color: var(--purple); }
+.t-match { background: rgba(251,191,36,0.3); color: var(--yellow); padding: 0 2px; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- Wireframe Nav -->
+<nav class="wf-nav">
+  <span class="wf-label">wireframe</span>
+  <a onclick="showPage('loading')" id="wf-loading">loading</a>
+  <a onclick="showPage('home')" id="wf-home" class="active">home</a>
+  <a onclick="showPage('posts')" id="wf-posts">posts</a>
+  <a onclick="showPage('detail')" id="wf-detail">post detail</a>
+  <a onclick="showPage('about')" id="wf-about">about</a>
+  <a onclick="showPage('404')" id="wf-404">404</a>
+</nav>
+
+<!-- ==================== LOADING PAGE ==================== -->
+<div class="page" id="page-loading">
+  <div class="loading-center">
+    <div class="loading-box">
+      <div class="loading-bar">
+        <div class="terminal-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+        <span style="font-family:var(--font);font-size:12px;color:var(--text-muted);margin-left:8px;">sim.junghun — install</span>
+      </div>
+      <div class="loading-content" id="loading-output">
+        <div><span class="prompt">$</span> <span class="bold">sudo apt install sim.junghun-blog</span></div>
+        <div class="dim" id="load-step-1" style="display:none;">Reading post lists... Done</div>
+        <div class="dim" id="load-step-2" style="display:none;">Building dependency tree... Done</div>
+        <div id="load-step-3" style="display:none;">
+          <br>The following packages will be installed:<br>
+          &nbsp;&nbsp;<span class="bold">sim.junghun-blog</span><br>
+          <span class="dim">Suggested: libcaffeine-4.0 libsleep-deprivation</span><br><br>
+          Get:1 bak-libra26.co.kr <span style="color:var(--blue)">개발/</span> 68 posts<br>
+          Get:2 bak-libra26.co.kr <span style="color:var(--blue)">데브옵스/</span> 21 posts<br>
+          Get:3 bak-libra26.co.kr <span style="color:var(--blue)">사이드-프로젝트/</span> 12 posts<br>
+          Fetched 101 posts in 0.8s
+        </div>
+        <div id="load-step-4" style="display:none;">
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div><div class="progress-text" id="progress-text">0%</div></div>
+        </div>
+        <div id="load-step-5" style="display:none;">
+          <br>Setting up sim.junghun-blog (2026.03-1) ...<br>
+          <span class="warn">W: libsleep-deprivation is not installed. 블로그 쓰느라 수면 부족 예상됨.</span>
+        </div>
+        <div id="load-step-6" style="display:none;"><br><span class="prompt">$</span> <span class="cursor-blink"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div class="page active" id="page-home">
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo" onclick="showPage('home')">sim<span>.</span>junghun</div>
+      <nav class="nav-links">
+        <a onclick="showPage('home')" class="active" data-nav="home">home</a>
+        <a onclick="showPage('posts')" data-nav="posts">posts</a>
+        <a onclick="showPage('about')" data-nav="about">about</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="social-links">
+        <a href="#">github</a>
+        <a href="#">instagram</a>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle theme">☽</button>
+      <div class="status-dot"></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-greeting">
+      <div class="accent-line"></div>
+      backend engineer
+    </div>
+    <h1>I build reliable<br>backend systems.</h1>
+    <p class="hero-bio">
+      기업 메시징 플랫폼의 백엔드를 설계·운영한 경험이 있으며, 배운 것을 정리하고 깊이 이해하기 위해 기록합니다. 안정적이고 확장 가능한 시스템을 만드는 데 관심이 있습니다.
+    </p>
+    <div class="tech-tags">
+      <span class="tech-tag highlight">Spring</span>
+      <span class="tech-tag highlight">Java</span>
+      <span class="tech-tag">WebFlux</span>
+      <span class="tech-tag">Netty</span>
+      <span class="tech-tag">Redis</span>
+      <span class="tech-tag">RabbitMQ</span>
+      <span class="tech-tag">MySQL</span>
+      <span class="tech-tag">Docker</span>
+      <span class="tech-tag">Jenkins</span>
+    </div>
+  </section>
+
+  <section class="recent-posts">
+    <div class="section-title">Recent Posts</div>
+    <div class="post-table">
+      <div class="post-table-header">
+        <span>title</span><span>date</span><span style="text-align:right">read</span>
+      </div>
+      <div class="post-row" onclick="showPage('detail')">
+        <div class="post-title-cell">
+          <span class="post-cat">시큐리티</span>
+          <span class="post-title-text">OAuth2 로그인과 리소스 서버 개념 정리</span>
+        </div>
+        <span class="post-date">Mar 12</span>
+        <span class="post-read">8 min</span>
+      </div>
+      <div class="post-row" onclick="showPage('detail')">
+        <div class="post-title-cell">
+          <span class="post-cat">시큐리티</span>
+          <span class="post-title-text">remember-me, 자동 로그인은 어떻게 동작할까</span>
+        </div>
+        <span class="post-date">Mar 11</span>
+        <span class="post-read">5 min</span>
+      </div>
+      <div class="post-row" onclick="showPage('detail')">
+        <div class="post-title-cell">
+          <span class="post-cat">시큐리티</span>
+          <span class="post-title-text">JWT 만료·재발급·로그아웃 전략</span>
+        </div>
+        <span class="post-date">Mar 10</span>
+        <span class="post-read">8 min</span>
+      </div>
+      <div class="post-row" onclick="showPage('detail')">
+        <div class="post-title-cell">
+          <span class="post-cat">시큐리티</span>
+          <span class="post-title-text">CORS는 왜 필요하고, 어떻게 동작할까</span>
+        </div>
+        <span class="post-date">Mar 08</span>
+        <span class="post-read">6 min</span>
+      </div>
+      <div class="post-row" onclick="showPage('detail')">
+        <div class="post-title-cell">
+          <span class="post-cat">시큐리티</span>
+          <span class="post-title-text">CSRF 보호는 왜 필요하고, 어떻게 동작할까</span>
+        </div>
+        <span class="post-date">Mar 05</span>
+        <span class="post-read">7 min</span>
+      </div>
+    </div>
+    <div class="cmd-hint"><kbd>Cmd</kbd> + <kbd>K</kbd> to open terminal</div>
+  </section>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 sim.junghun</span>
+    <div class="footer-links">
+      <a href="#">github</a>
+      <a href="#">instagram</a>
+      <a href="#">email</a>
+      <a href="#">rss</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================== POSTS LIST PAGE ==================== -->
+<div class="page" id="page-posts">
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo" onclick="showPage('home')">sim<span>.</span>junghun</div>
+      <nav class="nav-links">
+        <a onclick="showPage('home')" data-nav="home">home</a>
+        <a onclick="showPage('posts')" class="active" data-nav="posts">posts</a>
+        <a onclick="showPage('about')" data-nav="about">about</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="social-links"><a href="#">github</a><a href="#">instagram</a></div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☽</button>
+      <div class="status-dot"></div>
+    </div>
+  </header>
+
+  <div class="posts-layout">
+    <aside class="sidebar" id="posts-sidebar">
+      <div class="sidebar-label">CATEGORIES</div>
+      <ul class="cat-tree" id="cat-tree">
+        <!-- built by JS -->
+      </ul>
+    </aside>
+
+    <main class="posts-main">
+      <div class="posts-header">
+        <h1 id="posts-page-title">스프링 시큐리티</h1>
+        <div class="posts-meta" id="posts-page-meta">12 posts</div>
+      </div>
+      <div class="post-table" id="posts-table">
+        <div class="post-table-header">
+          <span>title</span><span>date</span><span style="text-align:right">read</span>
+        </div>
+        <!-- built by JS -->
+      </div>
+      <div class="pagination">
+        <span class="disabled">&larr;</span>
+        <a class="active">1</a>
+        <a>2</a>
+        <a>3</a>
+        <span>&rarr;</span>
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 sim.junghun</span>
+    <div class="footer-links"><a href="#">github</a><a href="#">instagram</a><a href="#">email</a><a href="#">rss</a></div>
+  </footer>
+</div>
+
+<!-- ==================== POST DETAIL PAGE ==================== -->
+<div class="page" id="page-detail">
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo" onclick="showPage('home')">sim<span>.</span>junghun</div>
+      <nav class="nav-links">
+        <a onclick="showPage('home')" data-nav="home">home</a>
+        <a onclick="showPage('posts')" data-nav="posts">posts</a>
+        <a onclick="showPage('about')" data-nav="about">about</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="social-links"><a href="#">github</a><a href="#">instagram</a></div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☽</button>
+      <div class="status-dot"></div>
+    </div>
+  </header>
+
+  <div class="detail-layout">
+    <article class="detail-main">
+      <div class="breadcrumb">
+        <span onclick="showPage('posts')">개발</span><span class="sep">/</span>
+        <span onclick="showPage('posts')">백엔드</span><span class="sep">/</span>
+        <span onclick="showPage('posts')" style="color:var(--green)">스프링 시큐리티</span>
+      </div>
+
+      <!-- Series Navigation -->
+      <div class="series-nav" id="series-nav">
+        <div class="series-header" onclick="toggleSeries()">
+          <div class="series-header-left">
+            <span class="series-badge">SERIES</span>
+            <span class="series-title">스프링 시큐리티 시리즈</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="series-count">9 / 12</span>
+            <span class="series-chevron">▼</span>
+          </div>
+        </div>
+        <div class="series-list">
+          <div class="series-item"><span class="series-num">1</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">스프링 애플리케이션 보안 솔루션</span></div>
+          <div class="series-item"><span class="series-num">2</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">SecurityFilterChain은 어떻게 동작할까</span></div>
+          <div class="series-item"><span class="series-num">3</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">인증 흐름과 동작 구조</span></div>
+          <div class="series-item"><span class="series-num">4</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">역할(Role)과 권한(Authority)</span></div>
+          <div class="series-item"><span class="series-num">5</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">인증·인가와 세션 vs 토큰</span></div>
+          <div class="series-item"><span class="series-num">6</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">JWT는 무엇이고, 왜 쓰는가</span></div>
+          <div class="series-item"><span class="series-num">7</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">JWT 인증 구현하기</span></div>
+          <div class="series-item"><span class="series-num">8</span><span class="series-check" style="color:var(--green)">✓</span><span class="series-item-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</span></div>
+          <div class="series-item current"><span class="series-num">9</span><span class="series-check" style="color:var(--green)">●</span><span class="series-item-title">JWT 만료·재발급·로그아웃 전략</span></div>
+          <div class="series-item"><span class="series-num">10</span><span class="series-check"></span><span class="series-item-title">CORS는 왜 필요하고, 어떻게 동작할까</span></div>
+          <div class="series-item"><span class="series-num">11</span><span class="series-check"></span><span class="series-item-title">remember-me, 자동 로그인은 어떻게 동작할까</span></div>
+          <div class="series-item"><span class="series-num">12</span><span class="series-check"></span><span class="series-item-title">OAuth2 로그인과 리소스 서버 개념 정리</span></div>
+        </div>
+        <div class="series-footer">
+          <a><span>&larr;</span><span class="series-footer-title">CSRF 보호는 왜 필요하고...</span></a>
+          <a style="text-align:right"><span class="series-footer-title">CORS는 왜 필요하고...</span><span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <h1 class="article-title">JWT 만료 · 재발급 · 로그아웃 전략</h1>
+      <div class="article-tags">
+        <span class="article-tag primary">spring-security</span>
+        <span class="article-tag">jwt</span>
+        <span class="article-tag">authentication</span>
+      </div>
+      <div class="article-info">2026-03-10 · 8 min read</div>
+
+      <div class="article-body">
+        <h2 id="sec-1">1. 왜 토큰 만료가 필요한가</h2>
+        <p>JWT는 서버에 상태를 저장하지 않는 stateless 토큰입니다. 그래서 한 번 발급된 토큰은 서버에서 강제로 무효화할 수 없습니다. 만약 토큰이 탈취되면 만료될 때까지 악의적인 사용이 가능합니다.</p>
+        <p>이 문제를 완화하기 위해 Access Token의 만료 시간을 짧게 설정하고, 별도의 Refresh Token을 통해 재발급하는 전략을 사용합니다.</p>
+        <div class="note">
+          <div class="note-label">NOTE</div>
+          Access Token의 일반적인 만료 시간은 15분~1시간, Refresh Token은 7일~30일 정도로 설정합니다.
+        </div>
+
+        <h3 id="sec-1-1">1-1. Access Token vs Refresh Token</h3>
+        <p>Access Token은 API 요청 시 인증에 사용되며, 짧은 수명을 가집니다. Refresh Token은 Access Token이 만료되었을 때 새로운 Access Token을 발급받는 데 사용됩니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">JwtTokenProvider.java</span>
+            <span>copy</span>
+          </div>
+          <div class="code-content">
+            <div class="code-line"><span class="kw">public class</span> <span class="type">JwtTokenProvider</span> {</div>
+            <div class="code-line"></div>
+            <div class="code-line">    <span class="kw">private static final long</span> <span class="type">ACCESS_EXPIRY</span> = <span class="num">1000</span> * <span class="num">60</span> * <span class="num">30</span>; <span class="cmt">// 30분</span></div>
+            <div class="code-line">    <span class="kw">private static final long</span> <span class="type">REFRESH_EXPIRY</span> = <span class="num">1000</span> * <span class="num">60</span> * <span class="num">60</span> * <span class="num">24</span> * <span class="num">14</span>; <span class="cmt">// 14일</span></div>
+            <div class="code-line"></div>
+            <div class="code-line">    <span class="kw">public</span> <span class="type">String</span> <span class="fn">generateAccessToken</span>(<span class="type">String</span> username) {</div>
+            <div class="code-line">        <span class="kw">return</span> <span class="type">Jwts</span>.<span class="fn">builder</span>()</div>
+            <div class="code-line">            .<span class="fn">setSubject</span>(username)</div>
+            <div class="code-line">            .<span class="fn">setIssuedAt</span>(<span class="kw">new</span> <span class="type">Date</span>())</div>
+            <div class="code-line">            .<span class="fn">setExpiration</span>(<span class="kw">new</span> <span class="type">Date</span>(<span class="type">System</span>.<span class="fn">currentTimeMillis</span>() + ACCESS_EXPIRY))</div>
+            <div class="code-line">            .<span class="fn">signWith</span>(secretKey)</div>
+            <div class="code-line">            .<span class="fn">compact</span>();</div>
+            <div class="code-line">    }</div>
+            <div class="code-line">}</div>
+          </div>
+        </div>
+
+        <h2 id="sec-2">2. 재발급 전략</h2>
+        <p>클라이언트는 Access Token이 만료되면 Refresh Token을 서버에 보내 새로운 Access Token을 발급받습니다. 이 과정에서 Refresh Token의 유효성을 검증하고, 필요시 Refresh Token도 함께 갱신합니다.</p>
+        <blockquote>Refresh Token Rotation은 Refresh Token이 사용될 때마다 새로운 Refresh Token을 발급하는 방식입니다. 이전 토큰은 즉시 무효화되어, 탈취된 토큰의 재사용을 방지할 수 있습니다.</blockquote>
+
+        <h3 id="sec-2-1">2-1. Refresh Token Rotation</h3>
+        <p>Refresh Token Rotation에서는 서버가 <code>refreshToken</code> 요청을 받으면, 새 Access Token과 함께 새 Refresh Token도 발급합니다. 이전의 Refresh Token은 블랙리스트에 등록하거나 DB에서 삭제합니다.</p>
+
+        <h2 id="sec-3">3. 로그아웃 처리</h2>
+        <p>JWT 기반 인증에서 로그아웃은 서버가 토큰을 무효화해야 하므로, 순수한 stateless 방식만으로는 불가능합니다. 대표적인 전략은 <code>Redis</code>에 토큰 블랙리스트를 관리하거나, Refresh Token을 DB에서 삭제하는 것입니다.</p>
+        <p>클라이언트 측에서도 토큰을 삭제하고, 서버 측에서는 <code>/api/auth/logout</code> 엔드포인트에서 Refresh Token을 무효화합니다.</p>
+      </div>
+
+      <div class="related-posts">
+        <div class="section-title">Related Posts</div>
+        <div class="related-grid">
+          <div class="related-card" onclick="showPage('detail')">
+            <div class="related-card-cat">스프링 시큐리티</div>
+            <div class="related-card-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</div>
+            <div class="related-card-arrow">&rarr;</div>
+          </div>
+          <div class="related-card" onclick="showPage('detail')">
+            <div class="related-card-cat">스프링 시큐리티</div>
+            <div class="related-card-title">JWT는 무엇이고, 왜 쓰는가</div>
+            <div class="related-card-arrow">&rarr;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comments-section">
+        <div class="section-title">Comments</div>
+        <div class="giscus-placeholder">
+          giscus comment widget placeholder<br>
+          <span style="font-size:11px;margin-top:8px;display:inline-block;">powered by GitHub Discussions</span>
+        </div>
+      </div>
+    </article>
+
+    <aside class="detail-toc">
+      <div class="toc-label">ON THIS PAGE</div>
+      <ul class="toc-list">
+        <li class="active" onclick="scrollToSec('sec-1')">1. 왜 토큰 만료가 필요한가</li>
+        <li class="depth-3" onclick="scrollToSec('sec-1-1')">1-1. Access Token vs Refresh Token</li>
+        <li onclick="scrollToSec('sec-2')">2. 재발급 전략</li>
+        <li class="depth-3" onclick="scrollToSec('sec-2-1')">2-1. Refresh Token Rotation</li>
+        <li onclick="scrollToSec('sec-3')">3. 로그아웃 처리</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 sim.junghun</span>
+    <div class="footer-links"><a href="#">github</a><a href="#">instagram</a><a href="#">email</a><a href="#">rss</a></div>
+  </footer>
+</div>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div class="page" id="page-about">
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo" onclick="showPage('home')">sim<span>.</span>junghun</div>
+      <nav class="nav-links">
+        <a onclick="showPage('home')" data-nav="home">home</a>
+        <a onclick="showPage('posts')" data-nav="posts">posts</a>
+        <a onclick="showPage('about')" class="active" data-nav="about">about</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="social-links"><a href="#">github</a><a href="#">instagram</a></div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☽</button>
+      <div class="status-dot"></div>
+    </div>
+  </header>
+
+  <div class="about-content">
+    <div class="about-greeting"><div class="accent-line"></div>about me</div>
+    <h1>심정훈</h1>
+    <div class="about-role">Backend Engineer · 3년 차</div>
+    <p class="about-bio">기업 메시징 플랫폼의 백엔드를 설계·운영한 경험이 있으며, 배운 것을 정리하고 깊이 이해하기 위해 기록합니다.</p>
+    <div class="about-links">
+      <a class="about-link" href="#">github</a>
+      <a class="about-link" href="#">bak.libra26@gmail.com</a>
+      <a class="about-link" href="#">bak-libra26.co.kr</a>
+    </div>
+
+    <!-- 01 Core -->
+    <div class="about-section">
+      <div class="about-section-title"><span class="about-section-num">01</span> Core</div>
+      <div class="core-cards">
+        <div class="core-card">
+          <div class="core-icon" style="color:var(--green)">◆</div>
+          <h3>MSA Architecture</h3>
+          <p>모놀리식 → Spring Boot · Spring Cloud MSA 전환 주도, 월 7천만~3억 건 메시지 안정 처리</p>
+        </div>
+        <div class="core-card">
+          <div class="core-icon" style="color:var(--blue)">◆</div>
+          <h3>Messaging Integration</h3>
+          <p>이통 3사·중계사 연동, SMS/LMS/MMS 전송 프로세스 설계, TCP/IP 클라이언트 라이브러리 개발</p>
+        </div>
+        <div class="core-card">
+          <div class="core-icon" style="color:var(--purple)">◆</div>
+          <h3>CI/CD & DevOps</h3>
+          <p>빌드·테스트·배포 파이프라인 구축 및 자동화</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 Experience -->
+    <div class="about-section">
+      <div class="about-section-title"><span class="about-section-num">02</span> Experience</div>
+      <div class="exp-block">
+        <div class="exp-company">스탠다드네트웍스 / 전송개발팀</div>
+        <div class="exp-period">2023.08 — 2025.12</div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">차세대 메시지 전송 플랫폼</div>
+          <div class="exp-project-tags">
+            <span class="exp-project-tag">Java</span><span class="exp-project-tag">Spring Boot</span>
+            <span class="exp-project-tag">Spring WebFlux</span><span class="exp-project-tag">Netty</span>
+            <span class="exp-project-tag">Redis</span><span class="exp-project-tag">RabbitMQ</span>
+            <span class="exp-project-tag">MySQL</span>
+          </div>
+          <ul class="exp-list">
+            <li>자체 프레임워크 → MSA 전환</li>
+            <li>이통 3사·중계사 연동 프로세스 설계·구현</li>
+            <li>세션 상태 감지 자동 복구</li>
+            <li>리소스 분석 → 로직 개선</li>
+            <li>메시지 처리 지연 40% 감소</li>
+          </ul>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">운영관리 페이지 개발</div>
+          <ul class="exp-list">
+            <li>통합 관리 페이지 설계·구현</li>
+            <li>스팸 필터링 관리 API</li>
+          </ul>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">DevOps 환경 구축</div>
+          <ul class="exp-list">
+            <li>Nexus + Jenkins CI 도입</li>
+            <li>CI/CD 파이프라인 구축</li>
+            <li>배포 시간 80% 단축</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 Stack -->
+    <div class="about-section">
+      <div class="about-section-title"><span class="about-section-num">03</span> Stack</div>
+      <div class="stack-group">
+        <div class="stack-group-label">Backend</div>
+        <div class="stack-tags">
+          <span class="stack-tag primary">Java</span>
+          <span class="stack-tag primary">Spring Boot</span>
+          <span class="stack-tag">Spring WebFlux</span>
+          <span class="stack-tag">Spring Data JPA</span>
+          <span class="stack-tag">MyBatis</span>
+          <span class="stack-tag">Netty</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-label">Infra & DB</div>
+        <div class="stack-tags">
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">Redis</span>
+          <span class="stack-tag">RabbitMQ</span>
+          <span class="stack-tag">Nginx</span>
+          <span class="stack-tag">Docker</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-label">DevOps</div>
+        <div class="stack-tags">
+          <span class="stack-tag">Jenkins</span>
+          <span class="stack-tag">GitHub Actions</span>
+          <span class="stack-tag">Nexus</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-label">Protocol</div>
+        <div class="stack-tags">
+          <span class="stack-tag">TCP/IP</span>
+          <span class="stack-tag">HTTP/SOAP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 Education -->
+    <div class="about-section">
+      <div class="about-section-title"><span class="about-section-num">04</span> Education</div>
+      <div class="edu-item">
+        <div><div class="edu-name">서울사이버대학교 컴퓨터공학과</div><div class="edu-detail">학사 과정</div></div>
+        <div class="edu-period">2025.03 ~ 재학중</div>
+      </div>
+      <div class="edu-item">
+        <div><div class="edu-name">멀티캠퍼스</div><div class="edu-detail">데이터 사이언스/엔지니어링 전문가 과정</div></div>
+        <div class="edu-period">2021.12 ~ 2022.05</div>
+      </div>
+      <div class="edu-item">
+        <div><div class="edu-name">KT DS</div><div class="edu-detail">Docker 컨테이너 아키텍처 · Java 프로그래밍 실무</div></div>
+        <div class="edu-period">2024</div>
+      </div>
+      <div class="edu-item">
+        <div><div class="edu-name">정보기기운용기능사</div><div class="edu-detail">한국산업인력공단</div></div>
+        <div class="edu-period">2025.04</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 sim.junghun</span>
+    <div class="footer-links"><a href="#">github</a><a href="#">instagram</a><a href="#">email</a><a href="#">rss</a></div>
+  </footer>
+</div>
+
+<!-- ==================== 404 PAGE ==================== -->
+<div class="page" id="page-404">
+  <header class="site-header">
+    <div class="header-left">
+      <div class="logo" onclick="showPage('home')">sim<span>.</span>junghun</div>
+      <nav class="nav-links">
+        <a onclick="showPage('home')" data-nav="home">home</a>
+        <a onclick="showPage('posts')" data-nav="posts">posts</a>
+        <a onclick="showPage('about')" data-nav="about">about</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="social-links"><a href="#">github</a><a href="#">instagram</a></div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">☽</button>
+      <div class="status-dot"></div>
+    </div>
+  </header>
+
+  <div class="page-404">
+    <div class="error-box">
+      <div class="error-bar">
+        <div class="error-dot r"></div><div class="error-dot y"></div><div class="error-dot g"></div>
+        <span class="error-title">sim.junghun — 404</span>
+      </div>
+      <div class="error-content">
+        <div><span class="error-prompt">$</span> <span class="error-cmd">curl -s localhost/this-page</span></div>
+        <div class="error-output" style="margin-top:12px;">
+          HTTP/1.1 404 Not Found<br>
+          Content-Type: application/json<br><br>
+          {<br>
+          &nbsp;&nbsp;"status": 404,<br>
+          &nbsp;&nbsp;"error": "Not Found",<br>
+          &nbsp;&nbsp;"message": "요청하신 페이지를 찾을 수 없습니다.",<br>
+          &nbsp;&nbsp;"path": "/this-page"<br>
+          }
+        </div>
+        <div class="error-actions">
+          <button class="error-btn primary" onclick="showPage('home')">cd ~/home</button>
+          <button class="error-btn" onclick="showPage('posts')">cd ~/posts</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TERMINAL OVERLAY ==================== -->
+<div class="terminal-overlay" id="terminal-overlay">
+  <div class="terminal-box">
+    <div class="terminal-titlebar">
+      <div class="terminal-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <span class="terminal-title">sim.junghun — terminal</span>
+      <span class="terminal-esc">Esc</span>
+    </div>
+    <div class="terminal-output" id="terminal-output"></div>
+    <div class="terminal-input-line">
+      <span class="terminal-prompt"><span id="terminal-cwd">~</span> $</span>
+      <input class="terminal-input" id="terminal-input" type="text" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="terminal-footer">Cmd+K to toggle · Esc to close</div>
+  </div>
+</div>
+
+<!-- ==================== SHORTCUTS OVERLAY ==================== -->
+<div class="shortcuts-overlay" id="shortcuts-overlay" onclick="if(event.target===this)closeShortcuts()">
+  <div class="shortcuts-box">
+    <div class="shortcuts-title">Keyboard Shortcuts</div>
+    <div class="shortcuts-group">
+      <div class="shortcuts-group-label">General</div>
+      <div class="shortcut-row"><span class="shortcut-desc">Go to home</span><div class="shortcut-keys"><span class="shortcut-key">G</span><span class="shortcut-key">H</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Go to posts</span><div class="shortcut-keys"><span class="shortcut-key">G</span><span class="shortcut-key">P</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Go to about</span><div class="shortcut-keys"><span class="shortcut-key">G</span><span class="shortcut-key">A</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Toggle theme</span><div class="shortcut-keys"><span class="shortcut-key">T</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Show shortcuts</span><div class="shortcut-keys"><span class="shortcut-key">?</span></div></div>
+    </div>
+    <div class="shortcuts-group">
+      <div class="shortcuts-group-label">Terminal</div>
+      <div class="shortcut-row"><span class="shortcut-desc">Open / close terminal</span><div class="shortcut-keys"><span class="shortcut-key">Cmd</span><span class="shortcut-key">K</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Close terminal</span><div class="shortcut-keys"><span class="shortcut-key">Esc</span></div></div>
+    </div>
+    <div class="shortcuts-group">
+      <div class="shortcuts-group-label">Commands</div>
+      <div class="shortcut-row"><span class="shortcut-desc">Previous command</span><div class="shortcut-keys"><span class="shortcut-key">↑</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Next command</span><div class="shortcut-keys"><span class="shortcut-key">↓</span></div></div>
+      <div class="shortcut-row"><span class="shortcut-desc">Autocomplete</span><div class="shortcut-keys"><span class="shortcut-key">Tab</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BOTTOM BAR ==================== -->
+<div class="bottom-bar">
+  <span><kbd>Cmd</kbd><kbd>K</kbd> Terminal</span>
+  <span><kbd>?</kbd> Shortcuts</span>
+  <span><kbd>Esc</kbd> Close</span>
+  <span><kbd>↑</kbd><kbd>↓</kbd> History</span>
+  <span><kbd>Tab</kbd> Autocomplete</span>
+</div>
+
+<script src="terminal-engine.js"></script>
+<script>
+// ==================== PAGE ROUTING ====================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.wf-nav a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  const wfLink = document.getElementById('wf-' + id);
+  if (page) page.classList.add('active');
+  if (wfLink) wfLink.classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'loading') runLoadingAnimation();
+}
+
+// ==================== THEME ====================
+function toggleTheme() {
+  const html = document.documentElement;
+  const isLight = html.getAttribute('data-theme') === 'light';
+  html.setAttribute('data-theme', isLight ? '' : 'light');
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.textContent = isLight ? '☽' : '☀';
+  });
+}
+
+// ==================== SERIES TOGGLE ====================
+function toggleSeries() {
+  document.getElementById('series-nav').classList.toggle('expanded');
+}
+
+// ==================== TOC SCROLL ====================
+function scrollToSec(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.toc-list li').forEach(li => li.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ==================== LOADING ANIMATION ====================
+function runLoadingAnimation() {
+  const steps = ['load-step-1','load-step-2','load-step-3','load-step-4','load-step-5','load-step-6'];
+  steps.forEach(s => document.getElementById(s).style.display = 'none');
+  const pf = document.getElementById('progress-fill');
+  const pt = document.getElementById('progress-text');
+  if (pf) { pf.style.transition = 'none'; pf.style.width = '0%'; }
+
+  let delay = 400;
+  steps.forEach((s, i) => {
+    setTimeout(() => {
+      document.getElementById(s).style.display = 'block';
+      if (s === 'load-step-4' && pf) {
+        setTimeout(() => {
+          pf.style.transition = 'width 2s ease';
+          pf.style.width = '100%';
+          let pct = 0;
+          const iv = setInterval(() => {
+            pct += 2;
+            if (pct > 100) { pct = 100; clearInterval(iv); }
+            if (pt) pt.textContent = pct + '%';
+          }, 40);
+        }, 50);
+      }
+    }, delay);
+    delay += (i === 2 ? 800 : i === 3 ? 2200 : 500);
+  });
+}
+
+// ==================== CATEGORY TREE ====================
+const categories = {
+  name: 'all', count: 101, children: [
+    { name: '개발', count: 68, children: [
+      { name: '백엔드', count: 26, children: [
+        { name: '스프링 시큐리티', count: 12, active: true },
+        { name: '리액티브', count: 7 },
+        { name: '스프링부트', count: 3 },
+        { name: '스프링 클라우드', count: 2 },
+        { name: '스프링 JPA', count: 1 },
+        { name: '네티', count: 1 },
+      ]},
+      { name: '메세지큐/레빗엠큐', count: 6 },
+      { name: '프론트엔드', count: 18 },
+      { name: '언어', count: 7 },
+      { name: '환경설정', count: 7 },
+      { name: '크로스플랫폼', count: 2 },
+      { name: '데이터베이스', count: 1 },
+    ]},
+    { name: '데브옵스', count: 21, children: [
+      { name: '젠킨스', count: 13 },
+      { name: '프로메테우스', count: 4 },
+      { name: '넥서스', count: 3 },
+      { name: '그라파나', count: 1 },
+    ]},
+    { name: '사이드 프로젝트', count: 12, children: [
+      { name: '블로그', count: 6 },
+      { name: '메신저', count: 5 },
+      { name: '저축했니', count: 1 },
+    ]},
+  ]
+};
+
+function buildTree(node, parent) {
+  const li = document.createElement('li');
+  const item = document.createElement('div');
+  item.className = 'cat-item' + (node.active ? ' active' : '');
+  const left = document.createElement('div');
+  left.className = 'cat-name-wrap';
+  if (node.children) {
+    const tog = document.createElement('span');
+    tog.className = 'cat-toggle expanded';
+    tog.textContent = '▸';
+    tog.onclick = (e) => {
+      e.stopPropagation();
+      const ul = li.querySelector(':scope > .cat-children');
+      if (ul) { ul.classList.toggle('collapsed'); tog.classList.toggle('expanded'); }
+    };
+    left.appendChild(tog);
+  }
+  const nameSpan = document.createElement('span');
+  nameSpan.className = 'cat-name';
+  nameSpan.textContent = node.name;
+  left.appendChild(nameSpan);
+  item.appendChild(left);
+  const countSpan = document.createElement('span');
+  countSpan.className = 'count';
+  countSpan.textContent = node.count;
+  item.appendChild(countSpan);
+  item.onclick = () => {
+    document.querySelectorAll('.cat-item').forEach(c => c.classList.remove('active'));
+    item.classList.add('active');
+  };
+  li.appendChild(item);
+  if (node.children) {
+    const ul = document.createElement('ul');
+    ul.className = 'cat-children';
+    node.children.forEach(ch => buildTree(ch, ul));
+    li.appendChild(ul);
+  }
+  parent.appendChild(li);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tree = document.getElementById('cat-tree');
+  if (tree) buildTree(categories, tree);
+  buildPostsTable();
+});
+
+// ==================== POSTS TABLE ====================
+const securityPosts = [
+  { title: '스프링 애플리케이션 보안 솔루션', date: 'Feb 20', read: '5 min', cat: '시큐리티' },
+  { title: 'SecurityFilterChain은 어떻게 동작할까', date: 'Feb 24', read: '10 min', cat: '시큐리티' },
+  { title: '인증 흐름과 동작 구조', date: 'Feb 26', read: '7 min', cat: '시큐리티' },
+  { title: '역할(Role)과 권한(Authority)', date: 'Feb 28', read: '6 min', cat: '시큐리티' },
+  { title: '인증·인가와 세션 vs 토큰', date: 'Mar 01', read: '6 min', cat: '시큐리티' },
+  { title: 'JWT는 무엇이고, 왜 쓰는가', date: 'Mar 01', read: '6 min', cat: '시큐리티' },
+  { title: 'JWT 인증 구현하기', date: 'Mar 03', read: '9 min', cat: '시큐리티' },
+  { title: 'CSRF 보호는 왜 필요하고, 어떻게 동작할까', date: 'Mar 05', read: '7 min', cat: '시큐리티' },
+  { title: 'JWT 만료·재발급·로그아웃 전략', date: 'Mar 10', read: '8 min', cat: '시큐리티' },
+  { title: 'CORS는 왜 필요하고, 어떻게 동작할까', date: 'Mar 08', read: '6 min', cat: '시큐리티' },
+  { title: 'remember-me, 자동 로그인은 어떻게 동작할까', date: 'Mar 11', read: '5 min', cat: '시큐리티' },
+  { title: 'OAuth2 로그인과 리소스 서버 개념 정리', date: 'Mar 12', read: '8 min', cat: '시큐리티' },
+];
+
+function buildPostsTable() {
+  const table = document.getElementById('posts-table');
+  if (!table) return;
+  securityPosts.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'post-row';
+    row.onclick = () => showPage('detail');
+    row.innerHTML = `
+      <div class="post-title-cell">
+        <span class="post-cat">${p.cat}</span>
+        <span class="post-title-text">${p.title}</span>
+      </div>
+      <span class="post-date">${p.date}</span>
+      <span class="post-read">${p.read}</span>
+    `;
+    table.appendChild(row);
+  });
+}
+
+// ==================== TERMINAL ====================
+const terminal = createTerminal({
+  outputEl: document.getElementById('terminal-output'),
+  inputEl:  document.getElementById('terminal-input'),
+  cwdEl:    document.getElementById('terminal-cwd'),
+  onClose:  () => toggleTerminal(),
+  onOpenPost: (path) => showPage('detail')
+});
+
+// ==================== TERMINAL TOGGLE ====================
+function toggleTerminal() {
+  const overlay = document.getElementById('terminal-overlay');
+  const isActive = overlay.classList.contains('active');
+  if (isActive) {
+    overlay.classList.remove('active');
+  } else {
+    overlay.classList.add('active');
+    document.getElementById('terminal-input').focus();
+  }
+}
+
+function closeShortcuts() {
+  document.getElementById('shortcuts-overlay').classList.remove('active');
+}
+
+// ==================== KEYBOARD EVENTS ====================
+document.addEventListener('keydown', (e) => {
+  const termOpen = document.getElementById('terminal-overlay').classList.contains('active');
+  const shortcutsOpen = document.getElementById('shortcuts-overlay').classList.contains('active');
+
+  // Cmd+K: toggle terminal
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    if (shortcutsOpen) closeShortcuts();
+    toggleTerminal();
+    return;
+  }
+
+  // Esc
+  if (e.key === 'Escape') {
+    if (termOpen) { toggleTerminal(); return; }
+    if (shortcutsOpen) { closeShortcuts(); return; }
+  }
+
+  // Terminal is open — input is handled by terminal-engine.js
+  if (termOpen) return;
+
+  // Don't handle shortcuts if user is typing
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  // ? : shortcuts
+  if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+    e.preventDefault();
+    document.getElementById('shortcuts-overlay').classList.toggle('active');
+    return;
+  }
+
+  if (shortcutsOpen) return;
+
+  // t: toggle theme
+  if (e.key === 't') { toggleTheme(); return; }
+});
+
+// Close overlays on backdrop click
+document.getElementById('terminal-overlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) toggleTerminal();
+});
+</script>
+</body>
+</html>

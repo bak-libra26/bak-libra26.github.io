@@ -1,0 +1,219 @@
+/* ===== WINDOW SHELL ===== */
+.wsh {
+  position: fixed;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: wshSlideIn 0.2s ease;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.35);
+}
+
+.wsh-active {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.wsh-fullscreen {
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  border-radius: 0;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-shortcuts) !important;
+  animation: none;
+}
+
+/* ── Titlebar (desktop) ── */
+.wsh-titlebar {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  cursor: grab;
+  user-select: none;
+}
+
+.wsh-titlebar:active { cursor: grabbing; }
+
+.wsh-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Traffic lights (desktop) ── */
+.traffic-lights {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 8px;
+}
+
+.traffic-lights .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: filter 0.15s;
+  position: relative;
+}
+
+.traffic-lights .dot:hover { filter: brightness(1.2); }
+.traffic-lights .dot.r { background: var(--red); }
+.traffic-lights .dot.y { background: var(--yellow); }
+.traffic-lights .dot.g { background: var(--green); }
+
+.traffic-lights .dot::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: var(--font-weight-bold);
+  color: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.traffic-lights:hover .dot::after { opacity: 1; }
+.traffic-lights .dot.r::after { content: '×'; font-size: 11px; }
+.traffic-lights .dot.y::after { content: '−'; font-size: 10px; }
+.traffic-lights .dot.g::after { content: '⤢'; font-size: 7px; }
+
+/* ── Content ── */
+.wsh-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Resize handle (desktop) ── */
+.wsh-resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  z-index: 10;
+}
+
+.wsh-resize-handle::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  opacity: 0.3;
+  transition: opacity 0.15s;
+}
+
+.wsh-resize-handle:hover::after { opacity: 0.7; }
+
+/* ── Desktop animation ── */
+@keyframes wshSlideIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================================
+   MOBILE BOTTOM-SHEET
+   ============================================================ */
+
+/* Backdrop overlay */
+.wsh-backdrop {
+  display: none;
+}
+
+/* Sheet header (drag handle + title) */
+.wsh-sheet-header {
+  display: none;
+}
+
+.wsh-drag-handle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Backdrop */
+  .wsh-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Bottom sheet base */
+  .wsh.wsh-mobile {
+    border: none;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.35);
+    animation: wshSlideUp 0.25s ease;
+  }
+
+  /* Hide desktop titlebar on mobile */
+  .wsh-mobile .wsh-titlebar {
+    display: none;
+  }
+
+  /* Sheet header with drag handle */
+  .wsh-sheet-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px 6px;
+    flex-shrink: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    touch-action: none;
+    user-select: none;
+  }
+
+  .wsh-drag-handle {
+    display: block;
+    width: 36px;
+    height: 4px;
+    background: var(--text-muted);
+    border-radius: 2px;
+    opacity: 0.5;
+    margin-bottom: 6px;
+  }
+
+  .wsh-sheet-header .wsh-title {
+    font-size: 11px;
+    pointer-events: none;
+  }
+
+  /* No resize handle on mobile */
+  .wsh-mobile .wsh-resize-handle {
+    display: none;
+  }
+}
+
+@keyframes wshSlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wsh,
+  .wsh.wsh-mobile { animation: none !important; }
+}

@@ -1,44 +1,59 @@
-import PostUtil from "../utils/post-util.js";
+import PostUtil from '../utils/post-util.js';
 
 const posts = PostUtil.posts;
 
+const _categoryIndex = new Map();
+const _subcategoryIndex = new Map();
+const _categories = [];
+const _subcategories = new Map();
+
+for (const post of posts) {
+  const { category, subcategory } = post;
+
+  if (!_categoryIndex.has(category)) {
+    _categoryIndex.set(category, []);
+    _categories.push(category);
+    _subcategories.set(category, []);
+  }
+  _categoryIndex.get(category).push(post);
+
+  if (subcategory) {
+    const key = `${category}/${subcategory}`;
+    if (!_subcategoryIndex.has(key)) {
+      _subcategoryIndex.set(key, []);
+      _subcategories.get(category).push(subcategory);
+    }
+    _subcategoryIndex.get(key).push(post);
+  }
+}
+
 const PostService = {
+  getCategories() {
+    return _categories;
+  },
 
-    getCategories() {
-        return [...new Set(posts.map((post) => post.category))];
-    },
+  getSubcategories({ category }) {
+    return _subcategories.get(category) || [];
+  },
 
-    getSubcategories({category}) {
-        return [
-            ...new Set(
-                this.findAllByCategory({category: category}).map((post) => post.subcategory)
-            ),
-        ];
-    },
+  findAllByCategory({ category }) {
+    return _categoryIndex.get(category) || [];
+  },
 
-    // 단일 객체가 필요할 때만
-    findByCategory(category) {
-        return posts.find((post) => post.category === category);
-    },
+  countByCategory({ category }) {
+    return (_categoryIndex.get(category) || []).length;
+  },
 
-    // 배열 전체
-    findAllByCategory({category}) {
-        return posts.filter((post) => post.category === category);
-    },
+  countByCategoryAndSubcategory({ category, subcategory }) {
+    return (_subcategoryIndex.get(`${category}/${subcategory}`) || []).length;
+  },
 
-    // 배열 전체
-    findAllByCategoryAndSubcategory({category, subcategory}) {
-        return this.findAllByCategory({category})
-                    .filter((post) => post.subcategory === subcategory);
-    },
-
-    countByCategory({category}) {
-        return this.findAllByCategory({category}).length;
-    },
-
-    countByCategoryAndSubcategory({category, subcategory}) {
-        return this.findAllByCategoryAndSubcategory({category, subcategory}).length;
-    },
+  findSeriesPosts({ post }) {
+    if (!post?.seriesKey) return [];
+    return posts
+      .filter((p) => p.seriesKey === post.seriesKey)
+      .sort((a, b) => a.createdDate - b.createdDate);
+  },
 };
 
 export default PostService;

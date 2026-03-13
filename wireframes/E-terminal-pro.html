@@ -1,0 +1,3517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E. Terminal Pro - Wireframe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0A0A0F;
+    --bg-secondary: #111118;
+    --surface: #16161F;
+    --surface-hover: #1C1C28;
+    --text: #D4D4DC;
+    --text-secondary: #7E7E8C;
+    --text-muted: #3E3E4C;
+    --green: #4ADE80;
+    --green-dim: rgba(74,222,128,0.08);
+    --blue: #60A5FA;
+    --blue-dim: rgba(96,165,250,0.08);
+    --purple: #A78BFA;
+    --purple-dim: rgba(167,139,250,0.08);
+    --yellow: #FBBF24;
+    --red: #F87171;
+    --orange: #FB923C;
+    --cyan: #22D3EE;
+    --border: #1E1E2A;
+    --border-hover: #2A2A3A;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --font: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --transition: 0.15s ease;
+  }
+
+  /* ===== LIGHT THEME ===== */
+  [data-theme="light"] {
+    --bg: #F8F8FA;
+    --bg-secondary: #EEEFF2;
+    --surface: #FFFFFF;
+    --surface-hover: #F0F0F4;
+    --text: #1A1A2E;
+    --text-secondary: #555566;
+    --text-muted: #9999AA;
+    --green: #16A34A;
+    --green-dim: rgba(22,163,74,0.08);
+    --blue: #2563EB;
+    --blue-dim: rgba(37,99,235,0.08);
+    --purple: #7C3AED;
+    --purple-dim: rgba(124,58,237,0.08);
+    --yellow: #CA8A04;
+    --red: #DC2626;
+    --orange: #EA580C;
+    --cyan: #0891B2;
+    --border: #E2E2EA;
+    --border-hover: #D0D0DC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--green); color: var(--bg); }
+
+  /* ===== WIREFRAME NAV ===== */
+  .page-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 8px;
+    font-family: var(--font);
+    font-size: 12px;
+  }
+  .page-nav .label {
+    color: var(--text-muted);
+    margin-right: 8px;
+    font-weight: 500;
+  }
+  .page-nav a {
+    color: var(--text-secondary); text-decoration: none;
+    padding: 4px 12px; border-radius: 4px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .page-nav a:hover { border-color: var(--green); color: var(--green); }
+
+  .page-section {
+    padding-top: 48px;
+    min-height: 100vh;
+  }
+  .page-label {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 14px;
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg);
+  }
+  .header-left {
+    display: flex; align-items: center; gap: 24px;
+  }
+  .header-logo {
+    font-family: var(--font);
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .header-logo .accent { color: var(--green); }
+  .header-nav { display: flex; gap: 2px; list-style: none; }
+  .header-nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: var(--transition);
+  }
+  .header-nav a:hover { color: var(--text-secondary); background: var(--surface); }
+  .header-nav a.active { color: var(--text); background: var(--surface); }
+  .header-right {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .header-social {
+    display: flex; gap: 12px;
+  }
+  .header-social a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    transition: var(--transition);
+  }
+  .header-social a:hover { color: var(--text-secondary); }
+  .status-dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+  @keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+  /* ===== HOME: HERO ===== */
+  .hero {
+    padding: 96px 0 72px;
+    max-width: 640px;
+  }
+  .hero-greeting {
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-greeting .line-accent {
+    width: 32px; height: 1px;
+    background: var(--green);
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+  .hero h1 .dim { color: var(--text-muted); font-weight: 300; }
+  .hero .bio {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .hero .stack {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .hero .stack-item {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: var(--transition);
+  }
+  .hero .stack-item:hover { border-color: var(--border-hover); }
+  .hero .stack-item.highlight { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+
+  /* ===== SECTION ===== */
+  .section-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header h2 {
+    font-family: var(--font);
+    font-size: 13px; font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+  }
+  .section-header a {
+    font-family: var(--font);
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .section-header a:hover { color: var(--blue); }
+
+  /* ===== POST TABLE ===== */
+  .posts-table {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+  .post-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 72px;
+    gap: 16px;
+    padding: 14px 24px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border);
+  }
+  .post-row:last-child { border-bottom: none; }
+  .post-row:hover { background: var(--surface); }
+  .post-row-header {
+    background: var(--surface);
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    padding: 10px 24px;
+  }
+  .post-row-header:hover { background: var(--surface); }
+  .post-row .post-info { display: flex; flex-direction: column; gap: 2px; }
+  .post-row .post-title {
+    font-size: 15px; font-weight: 500;
+    color: var(--text);
+    transition: var(--transition);
+  }
+  .post-row:hover .post-title { color: var(--green); }
+  .post-row .post-category {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--purple);
+    font-weight: 500;
+  }
+  .post-row .post-date {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+  }
+  .post-row .post-read {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 32px;
+  }
+  .footer-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-left {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .footer-left .name { color: var(--text-secondary); font-weight: 500; }
+  .footer-links {
+    display: flex; gap: 20px; list-style: none;
+  }
+  .footer-links a {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .footer-links a:hover { color: var(--text-secondary); }
+
+  /* ===== POSTS PAGE ===== */
+  .posts-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 48px 0 80px;
+  }
+  .sidebar { position: sticky; top: 108px; align-self: start; }
+  .sidebar-label {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .sidebar-tree { list-style: none; }
+  .sidebar-tree li { margin-bottom: 1px; }
+  .sidebar-tree a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .sidebar-tree a:hover { color: var(--text-secondary); background: var(--surface); }
+  .sidebar-tree a.active { color: var(--green); background: var(--green-dim); }
+  .sidebar-tree .count {
+    font-family: var(--font);
+    font-size: 11px;
+  }
+  .sidebar-tree .sub {
+    list-style: none;
+    padding-left: 16px;
+    margin-top: 1px;
+  }
+  .sidebar-tree .sub a {
+    font-size: 12px;
+    padding: 5px 12px;
+    color: var(--text-muted);
+  }
+  .sidebar-tree .tree-icon {
+    font-family: var(--font);
+    color: var(--text-muted);
+    font-size: 12px;
+    width: 16px;
+    flex-shrink: 0;
+  }
+
+  .posts-main-header {
+    margin-bottom: 32px;
+  }
+  .posts-main-header h1 {
+    font-size: 24px; font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .posts-main-header .meta {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .pagination {
+    display: flex; justify-content: center; gap: 4px;
+    margin-top: 32px; list-style: none;
+  }
+  .pagination a {
+    font-family: var(--font);
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; font-size: 13px;
+    text-decoration: none;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .pagination a:hover { border-color: var(--green); color: var(--green); }
+  .pagination .active { background: var(--green); color: var(--bg); border-color: var(--green); }
+
+  /* ===== POST DETAIL ===== */
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 56px;
+    padding: 56px 0 96px;
+  }
+  .detail-meta {
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-breadcrumb {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .detail-breadcrumb .sep { color: var(--border-hover); }
+  .detail-breadcrumb a {
+    color: var(--text-muted); text-decoration: none;
+    transition: var(--transition);
+  }
+  .detail-breadcrumb a:hover { color: var(--text-secondary); }
+  .detail-meta h1 {
+    font-size: 36px; font-weight: 700;
+    line-height: 1.3; letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .detail-meta .tags {
+    display: flex; gap: 6px;
+    margin-bottom: 12px;
+  }
+  .detail-meta .tag {
+    font-family: var(--font);
+    font-size: 11px; padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .detail-meta .tag.primary {
+    background: var(--green-dim);
+    border-color: rgba(74,222,128,0.2);
+    color: var(--green);
+  }
+  .detail-meta .info {
+    font-family: var(--font);
+    font-size: 12px; color: var(--text-muted);
+    display: flex; gap: 16px;
+  }
+
+  .detail-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+  }
+  .detail-body h2 {
+    font-size: 22px; font-weight: 600;
+    margin: 56px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .detail-body h3 {
+    font-size: 17px; font-weight: 600;
+    margin: 36px 0 12px;
+    color: var(--text);
+  }
+  .detail-body p { margin-bottom: 20px; }
+  .detail-body strong { color: var(--text); font-weight: 600; }
+
+  .detail-body code {
+    font-family: var(--font);
+    background: var(--surface);
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: var(--orange);
+    border: 1px solid var(--border);
+  }
+
+  .detail-body .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 24px 0;
+  }
+  .code-block-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .code-block-header .filename {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .code-block-header .copy-btn {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .code-block-header .copy-btn:hover { border-color: var(--border-hover); color: var(--text-secondary); }
+  .code-block-body {
+    padding: 20px 24px;
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text);
+    overflow-x: auto;
+  }
+  .code-block-body .keyword { color: var(--purple); }
+  .code-block-body .string { color: var(--green); }
+  .code-block-body .type { color: var(--blue); }
+  .code-block-body .comment { color: var(--text-muted); font-style: italic; }
+  .code-block-body .line-num {
+    color: var(--text-muted);
+    user-select: none;
+    display: inline-block;
+    width: 28px;
+    text-align: right;
+    margin-right: 20px;
+    font-size: 12px;
+  }
+
+  .detail-body blockquote {
+    border-left: 2px solid var(--green);
+    padding: 16px 24px;
+    margin: 24px 0;
+    background: var(--green-dim);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  .detail-body .note {
+    background: var(--blue-dim);
+    border-left: 2px solid var(--blue);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 24px;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .detail-body .note .note-title {
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* TOC */
+  .toc { position: sticky; top: 108px; align-self: start; }
+  .toc-label {
+    font-family: var(--font);
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .toc-list { list-style: none; border-left: 1px solid var(--border); }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list a {
+    display: block;
+    padding: 4px 0 4px 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+    border-left: 1px solid transparent;
+    margin-left: -1px;
+  }
+  .toc-list a:hover { color: var(--text-secondary); }
+  .toc-list a.active {
+    color: var(--green);
+    border-left-color: var(--green);
+  }
+  .toc-list .depth-3 a {
+    padding-left: 28px;
+    font-size: 11px;
+  }
+
+  /* Recommend */
+  .recommend-section {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .recommend-section h2 {
+    font-size: 13px; font-weight: 500;
+    font-family: var(--font);
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .recommend-list { list-style: none; }
+  .recommend-list li {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .recommend-list li:hover { border-color: var(--border-hover); background: var(--surface); }
+  .recommend-list .rec-info { display: flex; flex-direction: column; gap: 2px; }
+  .recommend-list .rec-cat {
+    font-family: var(--font);
+    font-size: 11px; color: var(--purple); font-weight: 500;
+  }
+  .recommend-list .rec-title { font-size: 14px; font-weight: 500; }
+  .recommend-list .rec-arrow { color: var(--text-muted); font-size: 14px; }
+
+  .comments-section {
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    color: var(--text-muted);
+  }
+  .comments-section .comments-title {
+    font-family: var(--font);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* ===== 404 ===== */
+  .page-404 {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 65vh; padding: 60px 24px;
+  }
+  .error-container {
+    max-width: 480px;
+    width: 100%;
+  }
+  .error-terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .error-terminal-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .error-terminal-bar .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .error-terminal-bar .dot.r { background: #F87171; }
+  .error-terminal-bar .dot.y { background: #FBBF24; }
+  .error-terminal-bar .dot.g { background: #4ADE80; }
+  .error-terminal-bar .title {
+    flex: 1; text-align: center;
+    font-family: var(--font);
+    font-size: 11px; color: var(--text-muted);
+  }
+  .error-terminal-body {
+    padding: 28px 24px;
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 2;
+  }
+  .error-terminal-body .prompt { color: var(--green); }
+  .error-terminal-body .err { color: var(--red); }
+  .error-terminal-body .dim { color: var(--text-muted); }
+  .error-terminal-body .cursor-block {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: var(--green);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .error-actions {
+    margin-top: 20px;
+    display: flex; gap: 8px;
+  }
+  .error-actions a {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+  .error-actions .primary {
+    background: var(--green);
+    color: var(--bg);
+  }
+  .error-actions .primary:hover { opacity: 0.85; }
+  .error-actions .secondary {
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .error-actions .secondary:hover { border-color: var(--border-hover); }
+
+  /* ===== LOADING (apt style) ===== */
+  .loading-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 55vh;
+    padding: 40px 24px;
+  }
+  .loading-terminal {
+    width: 560px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .loading-terminal-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .loading-terminal-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .loading-terminal-bar .dot.r { background: var(--red); }
+  .loading-terminal-bar .dot.y { background: var(--yellow); }
+  .loading-terminal-bar .dot.g { background: var(--green); }
+  .loading-terminal-bar .title {
+    flex: 1; text-align: center;
+    font-family: var(--font);
+    font-size: 11px; color: var(--text-muted);
+  }
+  .loading-terminal-body {
+    padding: 20px 24px;
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .loading-terminal-body .prompt { color: var(--green); }
+  .loading-terminal-body .pkg { color: var(--text); }
+  .loading-terminal-body .dim { color: var(--text-muted); }
+  .loading-terminal-body .ok { color: var(--green); }
+  .loading-terminal-body .blue { color: var(--blue); }
+  .loading-terminal-body .yellow { color: var(--yellow); }
+  .loading-terminal-body .cursor-block {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: var(--green);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+
+  .loading-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0 4px;
+  }
+  .loading-progress-bar {
+    flex: 1;
+    height: 12px;
+    background: var(--bg);
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .loading-progress-bar .fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 1px;
+    animation: aptProgress 3s ease-in-out infinite;
+  }
+  @keyframes aptProgress {
+    0% { width: 0%; }
+    15% { width: 12%; }
+    40% { width: 45%; }
+    65% { width: 68%; }
+    85% { width: 88%; }
+    100% { width: 100%; }
+  }
+  .loading-progress-pct {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .loading-terminal { width: 100%; }
+  }
+
+  /* ===== ABOUT PAGE ===== */
+  .about-layout {
+    max-width: 680px;
+    padding: 72px 0 96px;
+  }
+  .about-hero { margin-bottom: 56px; }
+  .about-greeting {
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .about-hero h1 {
+    font-size: 36px; font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .about-role {
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+  .about-bio {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .about-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .about-link {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 6px;
+    transition: var(--transition);
+  }
+  .about-link:hover { color: var(--text-secondary); }
+  .about-link-icon { font-size: 6px; color: var(--green); }
+
+  .about-section { margin-bottom: 48px; }
+  .about-section-header {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-section-num {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+  }
+  .about-section-header h2 {
+    font-family: var(--font);
+    font-size: 14px; font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+  }
+
+  /* Core Cards */
+  .about-cards { display: flex; flex-direction: column; gap: 10px; }
+  .about-card {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 0 12px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+  .about-card:hover { border-color: var(--border-hover); background: var(--surface); }
+  .about-card-icon {
+    font-size: 10px;
+    padding-top: 4px;
+    grid-row: 1 / 3;
+  }
+  .about-card-title {
+    font-family: var(--font);
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .about-card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Experience */
+  .exp-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .exp-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 20px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-company {
+    font-size: 16px; font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .exp-role {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .exp-period {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .exp-body { padding: 20px 24px; }
+  .exp-project { margin-bottom: 20px; }
+  .exp-project:last-child { margin-bottom: 0; }
+  .exp-project-title {
+    font-family: var(--font);
+    font-size: 13px; font-weight: 600;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .exp-project-meta {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .exp-list {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-list li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2px;
+  }
+  .exp-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  /* Stack Grid */
+  .stack-grid { display: flex; flex-direction: column; gap: 16px; }
+  .stack-group-label {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .stack-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .stack-tag {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: var(--transition);
+  }
+  .stack-tag:hover { border-color: var(--border-hover); }
+  .stack-tag.primary {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-dim);
+  }
+
+  /* Education */
+  .edu-list { display: flex; flex-direction: column; gap: 2px; }
+  .edu-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+  .edu-item:hover { background: var(--surface); }
+  .edu-info { display: flex; flex-direction: column; gap: 1px; }
+  .edu-name {
+    font-size: 14px; font-weight: 500;
+  }
+  .edu-detail {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .edu-period {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero h1 { font-size: 28px; }
+    .about-links { flex-direction: column; gap: 8px; }
+    .exp-header { flex-direction: column; gap: 4px; }
+    .edu-item { flex-direction: column; align-items: flex-start; gap: 2px; }
+  }
+
+  /* ===== TERMINAL OVERLAY ===== */
+  .terminal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12vh;
+  }
+  .terminal-backdrop.open {
+    display: flex;
+    animation: backdropIn 0.15s ease;
+  }
+  @keyframes backdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .terminal-window {
+    width: 640px;
+    max-height: 480px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: termSlideIn 0.2s ease;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+  @keyframes termSlideIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .terminal-titlebar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .terminal-titlebar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-titlebar .dot.r { background: var(--red); }
+  .terminal-titlebar .dot.y { background: var(--yellow); }
+  .terminal-titlebar .dot.g { background: var(--green); }
+  .terminal-titlebar .title {
+    flex: 1; text-align: center;
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .terminal-titlebar .close-hint {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+  .terminal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 120px;
+    max-height: 380px;
+  }
+  .terminal-body::-webkit-scrollbar { width: 4px; }
+  .terminal-body::-webkit-scrollbar-track { background: transparent; }
+  .terminal-body::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 2px; }
+
+  .term-line { white-space: pre-wrap; word-break: break-all; }
+  .term-line .prompt-path { color: var(--blue); }
+  .term-line .prompt-symbol { color: var(--green); }
+  .term-line .cmd-text { color: var(--text); }
+  .term-line .output { color: var(--text-secondary); }
+  .term-line .dir-name { color: var(--blue); font-weight: 500; }
+  .term-line .file-name { color: var(--text); }
+  .term-line .file-link {
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .term-line .file-link:hover { color: var(--green); text-decoration: underline; }
+  .term-line .err { color: var(--red); }
+  .term-line .dim { color: var(--text-muted); }
+  .term-line .green { color: var(--green); }
+  .term-line .purple { color: var(--purple); }
+  .term-line .yellow { color: var(--yellow); }
+  .term-line .cyan { color: var(--cyan); }
+  .term-line .tree-branch { color: var(--text-muted); }
+
+  .terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 4px;
+    position: relative;
+  }
+  .terminal-input-line .prompt-path {
+    color: var(--blue);
+    font-family: var(--font);
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .terminal-input-line .prompt-symbol {
+    color: var(--green);
+    font-family: var(--font);
+    font-size: 13px;
+    margin: 0 6px 0 4px;
+    flex-shrink: 0;
+  }
+  .terminal-input-line input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.7;
+    caret-color: var(--green);
+  }
+  .terminal-input-line input::placeholder {
+    color: var(--text-muted);
+    font-style: normal;
+  }
+
+  .terminal-autocomplete {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 4px 0;
+    font-family: var(--font);
+    font-size: 12px;
+    max-height: 160px;
+    overflow-y: auto;
+    display: none;
+    min-width: 200px;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .terminal-autocomplete.show { display: block; }
+  .terminal-autocomplete .ac-item {
+    padding: 4px 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .terminal-autocomplete .ac-item.active,
+  .terminal-autocomplete .ac-item:hover {
+    background: var(--surface-hover);
+    color: var(--green);
+  }
+  .terminal-autocomplete .ac-item .ac-type {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-left: 8px;
+  }
+
+  .terminal-footer {
+    border-top: 1px solid var(--border);
+    padding: 6px 16px;
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: var(--bg-secondary);
+  }
+
+  /* Terminal wireframe demo states */
+  .terminal-demo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+  .terminal-demo .terminal-titlebar { cursor: default; }
+  .terminal-demo .terminal-body {
+    max-height: none;
+    overflow: visible;
+  }
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+  }
+  .demo-grid .demo-col { display: flex; flex-direction: column; gap: 24px; }
+  .demo-label {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  /* ===== SHORTCUT BAR ===== */
+  .shortcut-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 9998;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 6px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .shortcut-bar .sc-item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .shortcut-bar kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .shortcut-bar .divider {
+    width: 1px; height: 12px;
+    background: var(--border);
+  }
+
+  /* ===== SHORTCUTS MODAL ===== */
+  .shortcuts-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .shortcuts-backdrop.open {
+    display: flex;
+    animation: backdropIn 0.15s ease;
+  }
+  .shortcuts-panel {
+    width: 480px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: termSlideIn 0.2s ease;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+  .shortcuts-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .shortcuts-header h3 {
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .shortcuts-header .close-hint {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+  .shortcuts-body {
+    padding: 16px 20px;
+  }
+  .shortcuts-group {
+    margin-bottom: 16px;
+  }
+  .shortcuts-group:last-child { margin-bottom: 0; }
+  .shortcuts-group-title {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .sc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-family: var(--font);
+    font-size: 12px;
+  }
+  .sc-row .sc-label { color: var(--text-secondary); }
+  .sc-row .sc-keys {
+    display: flex; gap: 4px; align-items: center;
+  }
+  .sc-row kbd {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text);
+    min-width: 24px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .sc-row .sc-or {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ===== THEME TOGGLE ===== */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .theme-toggle:hover { border-color: var(--border-hover); color: var(--text-secondary); }
+  .theme-toggle .icon { font-size: 14px; }
+
+  /* ===== SERIES NAV ===== */
+  .series-nav {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .series-header {
+    background: var(--surface);
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border);
+  }
+  .series-header:hover { background: var(--surface-hover); }
+  .series-header-left {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .series-badge {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green);
+    background: var(--green-dim);
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .series-title {
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+  }
+  .series-count {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .series-toggle {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: var(--transition);
+  }
+  .series-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .series-list li {
+    border-bottom: 1px solid var(--border);
+  }
+  .series-list li:last-child { border-bottom: none; }
+  .series-list a {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    transition: var(--transition);
+  }
+  .series-list a:hover { background: var(--surface); color: var(--text); }
+  .series-list .current a {
+    background: var(--green-dim);
+    color: var(--green);
+    font-weight: 500;
+  }
+  .series-list .step {
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 20px;
+    text-align: center;
+  }
+  .series-list .current .step { color: var(--green); }
+  .series-list .check {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .series-list .current .check { color: var(--green); }
+
+  .series-footer {
+    display: flex; justify-content: space-between;
+    padding: 12px 20px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .series-footer a {
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+    transition: var(--transition);
+  }
+  .series-footer a:hover { color: var(--green); }
+  .series-footer .disabled { opacity: 0.3; pointer-events: none; }
+
+  /* ===== MOBILE MOCKUP ===== */
+  .mobile-section {
+    padding: 48px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .mobile-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .mobile-col {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 12px;
+  }
+  .mobile-label {
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .phone-frame {
+    width: 375px;
+    height: 700px;
+    border: 2px solid var(--border);
+    border-radius: 32px;
+    overflow: hidden;
+    background: var(--bg);
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .phone-frame .phone-notch {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 24px;
+    background: var(--bg);
+    border-radius: 0 0 16px 16px;
+    border: 2px solid var(--border);
+    border-top: none;
+    z-index: 2;
+  }
+  .phone-frame .phone-content {
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 24px;
+  }
+  .phone-frame .phone-content::-webkit-scrollbar { width: 0; }
+
+  /* Mobile-specific overrides inside phone frame */
+  .phone-frame .m-header {
+    padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .phone-frame .m-logo {
+    font-family: var(--font);
+    font-size: 13px; font-weight: 600;
+    color: var(--text);
+  }
+  .phone-frame .m-logo .accent { color: var(--green); }
+  .phone-frame .m-menu {
+    font-family: var(--font);
+    font-size: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .phone-frame .m-section { padding: 24px 16px; }
+  .phone-frame .m-greeting {
+    font-family: var(--font);
+    font-size: 11px; color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .phone-frame .m-greeting .line { width: 20px; height: 1px; background: var(--green); }
+  .phone-frame .m-h1 {
+    font-size: 24px; font-weight: 700;
+    line-height: 1.3; letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  .phone-frame .m-h1 .dim { color: var(--text-muted); font-weight: 300; }
+  .phone-frame .m-bio {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 16px;
+  }
+  .phone-frame .m-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .phone-frame .m-tag {
+    font-family: var(--font); font-size: 11px;
+    padding: 3px 10px; border-radius: 3px;
+    border: 1px solid var(--border); color: var(--text-secondary);
+  }
+  .phone-frame .m-tag.hl { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+  .phone-frame .m-section-head {
+    font-family: var(--font); font-size: 12px; font-weight: 500;
+    color: var(--text-secondary); letter-spacing: 0.5px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .phone-frame .m-post {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .phone-frame .m-post:last-child { border-bottom: none; }
+  .phone-frame .m-post-cat {
+    font-family: var(--font);
+    font-size: 10px; color: var(--purple); font-weight: 500;
+  }
+  .phone-frame .m-post-title {
+    font-size: 14px; font-weight: 500;
+    margin: 2px 0;
+  }
+  .phone-frame .m-post-meta {
+    font-family: var(--font);
+    font-size: 11px; color: var(--text-muted);
+  }
+  .phone-frame .m-detail-title {
+    font-size: 20px; font-weight: 700;
+    line-height: 1.35; letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .phone-frame .m-detail-info {
+    font-family: var(--font); font-size: 11px;
+    color: var(--text-muted); margin-bottom: 20px;
+  }
+  .phone-frame .m-detail-body { font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
+  .phone-frame .m-detail-body h2 {
+    font-size: 17px; font-weight: 600; color: var(--text);
+    margin: 24px 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .phone-frame .m-detail-body p { margin-bottom: 12px; }
+  .phone-frame .m-breadcrumb {
+    font-family: var(--font); font-size: 11px;
+    color: var(--text-muted); margin-bottom: 12px;
+  }
+  .phone-frame .m-series {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 16px; overflow: hidden;
+  }
+  .phone-frame .m-series-head {
+    background: var(--surface); padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .phone-frame .m-series-badge {
+    font-family: var(--font); font-size: 10px; font-weight: 600;
+    color: var(--green); background: var(--green-dim);
+    padding: 1px 6px; border-radius: 2px;
+  }
+  .phone-frame .m-series-label {
+    font-size: 12px; font-weight: 500;
+    margin-left: 8px;
+  }
+  .phone-frame .m-series-count {
+    font-family: var(--font); font-size: 11px; color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .terminal-window { width: calc(100vw - 32px); }
+    .demo-grid { grid-template-columns: 1fr; padding: 24px 16px 48px; }
+    .shortcuts-panel { width: calc(100vw - 32px); }
+    .shortcut-bar { gap: 12px; padding: 6px 12px; font-size: 10px; }
+    .mobile-grid { flex-direction: column; align-items: center; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .header { padding: 0 16px; }
+    .container { padding: 0 16px; }
+    .posts-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .detail-layout { grid-template-columns: 1fr; }
+    .toc { display: none; }
+    .post-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; }
+    .post-row .post-date, .post-row .post-read { text-align: left; font-size: 11px; }
+    .hero h1 { font-size: 28px; }
+    .detail-meta h1 { font-size: 26px; }
+    .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WIREFRAME NAV -->
+<div class="page-nav">
+  <span class="label">wireframe</span>
+  <a href="#home">home</a>
+  <a href="#posts">posts</a>
+  <a href="#detail">detail</a>
+  <a href="#about">about</a>
+  <a href="#terminal">terminal</a>
+  <a href="#mobile">mobile</a>
+  <a href="#notfound">404</a>
+  <a href="#loading">loading</a>
+  <button class="theme-toggle" onclick="toggleTheme()"><span class="icon" id="themeIcon">&#9789;</span> <span id="themeLabel">light</span></button>
+</div>
+
+<!-- ============================================ -->
+<!-- HOME PAGE -->
+<!-- ============================================ -->
+<div class="page-section" id="home">
+  <div class="page-label">home</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">
+        sim<span class="accent">.</span>junghun
+      </a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#" class="active">home</a></li>
+          <li><a href="#">posts</a></li>
+          <li><a href="#">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="header-social">
+        <a href="#">github</a>
+        <a href="#">email</a>
+      </div>
+      <div class="status-dot" title="online"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-greeting">
+        <span class="line-accent"></span>
+        <span>backend engineer</span>
+      </div>
+      <h1>
+        I build reliable<br/>
+        backend systems<span class="dim">.</span>
+      </h1>
+      <p class="bio">
+        비즈니스 문제를 코드로 풀어내는 백엔드 엔지니어입니다.<br/>
+        배운 것을 정리하고, 깊이 이해하기 위해 기록합니다.
+      </p>
+      <div class="stack">
+        <span class="stack-item highlight">Spring</span>
+        <span class="stack-item highlight">Java</span>
+        <span class="stack-item">Kotlin</span>
+        <span class="stack-item">Docker</span>
+        <span class="stack-item">Kubernetes</span>
+        <span class="stack-item">React</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>recent posts</h2>
+        <a href="#">view all &rarr;</a>
+      </div>
+
+      <div class="posts-table">
+        <div class="post-row post-row-header">
+          <span>title</span>
+          <span style="text-align:right">date</span>
+          <span style="text-align:right">read</span>
+        </div>
+        <a class="post-row" href="#">
+          <div class="post-info">
+            <span class="post-category">spring-security</span>
+            <span class="post-title">JWT 만료 · 재발급 · 로그아웃 전략</span>
+          </div>
+          <span class="post-date">Mar 10</span>
+          <span class="post-read">8 min</span>
+        </a>
+        <a class="post-row" href="#">
+          <div class="post-info">
+            <span class="post-category">spring-security</span>
+            <span class="post-title">CORS는 왜 필요하고, 어떻게 동작할까</span>
+          </div>
+          <span class="post-date">Mar 08</span>
+          <span class="post-read">6 min</span>
+        </a>
+        <a class="post-row" href="#">
+          <div class="post-info">
+            <span class="post-category">side-project</span>
+            <span class="post-title">API 공통 응답 구조 설계하기</span>
+          </div>
+          <span class="post-date">Mar 05</span>
+          <span class="post-read">5 min</span>
+        </a>
+        <a class="post-row" href="#">
+          <div class="post-info">
+            <span class="post-category">spring-security</span>
+            <span class="post-title">SecurityFilterChain은 어떻게 동작할까</span>
+          </div>
+          <span class="post-date">Mar 02</span>
+          <span class="post-read">10 min</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        &copy; 2024 <span class="name">sim.junghun</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">github</a></li>
+        <li><a href="#">instagram</a></li>
+        <li><a href="#">email</a></li>
+        <li><a href="#">rss</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- POSTS PAGE -->
+<!-- ============================================ -->
+<div class="page-section" id="posts">
+  <div class="page-label">posts</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">sim<span class="accent">.</span>junghun</a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#">home</a></li>
+          <li><a href="#" class="active">posts</a></li>
+          <li><a href="#">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="header-social"><a href="#">github</a><a href="#">email</a></div>
+      <div class="status-dot"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="posts-layout">
+      <aside class="sidebar">
+        <p class="sidebar-label">categories</p>
+        <ul class="sidebar-tree">
+          <li><a href="#" class="active">all <span class="count">24</span></a></li>
+          <li>
+            <a href="#">development <span class="count">18</span></a>
+            <ul class="sub">
+              <li><a href="#"><span class="tree-icon">&#8227;</span> backend <span class="count">12</span></a></li>
+              <li><a href="#" class="active"><span class="tree-icon">&#8227;</span> spring-security <span class="count">8</span></a></li>
+            </ul>
+          </li>
+          <li><a href="#">devops <span class="count">3</span></a></li>
+          <li><a href="#">side-project <span class="count">3</span></a></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div class="posts-main-header">
+          <h1>Spring Security</h1>
+          <p class="meta">8 posts</p>
+        </div>
+
+        <div class="posts-table">
+          <div class="post-row post-row-header">
+            <span>title</span>
+            <span style="text-align:right">date</span>
+            <span style="text-align:right">read</span>
+          </div>
+          <a class="post-row" href="#">
+            <div class="post-info">
+              <span class="post-category">spring-security</span>
+              <span class="post-title">JWT 만료 · 재발급 · 로그아웃 전략</span>
+            </div>
+            <span class="post-date">Mar 10</span>
+            <span class="post-read">8 min</span>
+          </a>
+          <a class="post-row" href="#">
+            <div class="post-info">
+              <span class="post-category">spring-security</span>
+              <span class="post-title">CORS는 왜 필요하고, 어떻게 동작할까</span>
+            </div>
+            <span class="post-date">Mar 08</span>
+            <span class="post-read">6 min</span>
+          </a>
+          <a class="post-row" href="#">
+            <div class="post-info">
+              <span class="post-category">spring-security</span>
+              <span class="post-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</span>
+            </div>
+            <span class="post-date">Mar 05</span>
+            <span class="post-read">7 min</span>
+          </a>
+          <a class="post-row" href="#">
+            <div class="post-info">
+              <span class="post-category">spring-security</span>
+              <span class="post-title">SecurityFilterChain은 어떻게 동작할까</span>
+            </div>
+            <span class="post-date">Mar 02</span>
+            <span class="post-read">10 min</span>
+          </a>
+        </div>
+
+        <ul class="pagination">
+          <a href="#">&larr;</a>
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">&rarr;</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">&copy; 2024 <span class="name">sim.junghun</span></div>
+      <ul class="footer-links">
+        <li><a href="#">github</a></li>
+        <li><a href="#">instagram</a></li>
+        <li><a href="#">email</a></li>
+        <li><a href="#">rss</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- POST DETAIL -->
+<!-- ============================================ -->
+<div class="page-section" id="detail">
+  <div class="page-label">post detail</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">sim<span class="accent">.</span>junghun</a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#">home</a></li>
+          <li><a href="#" class="active">posts</a></li>
+          <li><a href="#">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="header-social"><a href="#">github</a><a href="#">email</a></div>
+      <div class="status-dot"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="detail-layout">
+      <article>
+        <div class="detail-meta">
+          <div class="detail-breadcrumb">
+            <a href="#">development</a>
+            <span class="sep">/</span>
+            <a href="#">backend</a>
+            <span class="sep">/</span>
+            <a href="#" style="color:var(--green)">spring-security</a>
+          </div>
+          <h1>JWT 만료 · 재발급 · 로그아웃 전략</h1>
+          <div class="tags">
+            <span class="tag primary">spring-security</span>
+            <span class="tag">jwt</span>
+            <span class="tag">authentication</span>
+          </div>
+          <div class="info">
+            <span>2026-03-10</span>
+            <span>&middot;</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+
+        <!-- Series Navigation -->
+        <nav class="series-nav">
+          <div class="series-header">
+            <div class="series-header-left">
+              <span class="series-badge">series</span>
+              <span class="series-title">스프링 시큐리티 시리즈</span>
+            </div>
+            <span class="series-count">9 / 12</span>
+          </div>
+          <ul class="series-list">
+            <li><a href="#"><span class="step">1</span> 스프링 애플리케이션 보안 솔루션 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">2</span> SecurityFilterChain은 어떻게 동작할까 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">3</span> 인증 흐름과 동작 구조 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">4</span> 역할(Role)과 권한(Authority) <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">5</span> 인증·인가와 세션 vs 토큰 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">6</span> JWT는 무엇이고, 왜 쓰는가 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">7</span> JWT 인증 구현하기 <span class="check">&#10003;</span></a></li>
+            <li><a href="#"><span class="step">8</span> CSRF 보호는 왜 필요하고, 어떻게 동작할까 <span class="check">&#10003;</span></a></li>
+            <li class="current"><a href="#"><span class="step">9</span> JWT 만료·재발급·로그아웃 전략 <span class="check">&#9679;</span></a></li>
+            <li><a href="#"><span class="step">10</span> CORS는 왜 필요하고, 어떻게 동작할까</a></li>
+            <li><a href="#"><span class="step">11</span> remember-me, 자동 로그인은 어떻게 동작할까</a></li>
+            <li><a href="#"><span class="step">12</span> OAuth2 로그인과 리소스 서버 개념 정리</a></li>
+          </ul>
+          <div class="series-footer">
+            <a href="#"><span>&larr;</span> CSRF 보호는 왜 필요하고...</a>
+            <a href="#"><span>CORS는 왜 필요하고...</span> <span>&rarr;</span></a>
+          </div>
+        </nav>
+
+        <div class="detail-body">
+          <h2>1. 왜 토큰 만료가 필요한가</h2>
+          <p>JWT는 서버에 상태를 저장하지 않는 <strong>stateless</strong> 인증 방식입니다. 하지만 토큰이 영원히 유효하다면 보안 위험이 커집니다.</p>
+
+          <div class="note">
+            <div class="note-title">Note</div>
+            <div>토큰은 열쇠와 같습니다. 열쇠를 분실했을 때를 대비해 유효기간이 있어야 합니다.</div>
+          </div>
+
+          <h3>1-1. Access Token vs Refresh Token</h3>
+          <p>Access Token은 짧은 수명(15분~1시간), Refresh Token은 긴 수명(7일~30일)을 가집니다. 이 두 토큰의 역할 분리가 핵심입니다.</p>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="filename">JwtTokenProvider.java</span>
+              <span class="copy-btn">copy</span>
+            </div>
+            <pre class="code-block-body"><span class="line-num"> 1</span><span class="keyword">@Component</span>
+<span class="line-num"> 2</span><span class="keyword">public class</span> <span class="type">JwtTokenProvider</span> {
+<span class="line-num"> 3</span>    <span class="keyword">private final long</span> ACCESS_TOKEN_VALIDITY = <span class="string">15 * 60 * 1000L</span>;
+<span class="line-num"> 4</span>    <span class="keyword">private final long</span> REFRESH_TOKEN_VALIDITY = <span class="string">7 * 24 * 60 * 60 * 1000L</span>;
+<span class="line-num"> 5</span>
+<span class="line-num"> 6</span>    <span class="keyword">public</span> <span class="type">String</span> createAccessToken(<span class="type">Authentication</span> auth) {
+<span class="line-num"> 7</span>        <span class="keyword">return</span> Jwts.builder()
+<span class="line-num"> 8</span>            .setSubject(auth.getName())
+<span class="line-num"> 9</span>            .setExpiration(<span class="keyword">new</span> <span class="type">Date</span>(
+<span class="line-num">10</span>                <span class="type">System</span>.currentTimeMillis() + ACCESS_TOKEN_VALIDITY))
+<span class="line-num">11</span>            .signWith(secretKey)
+<span class="line-num">12</span>            .compact();
+<span class="line-num">13</span>    }
+<span class="line-num">14</span>}</pre>
+          </div>
+
+          <h2>2. 재발급 전략</h2>
+          <p>클라이언트는 Access Token이 만료되면 Refresh Token으로 새 Access Token을 발급받습니다. 이 과정에서 보안을 강화할 수 있는 여러 전략이 있습니다.</p>
+
+          <blockquote>
+            토큰 재발급 시 <strong>Refresh Token Rotation</strong>을 적용하면 보안을 한 단계 더 강화할 수 있습니다.
+          </blockquote>
+
+          <h3>2-1. Refresh Token Rotation</h3>
+          <p>재발급 시 Refresh Token도 함께 새로 발급하는 전략입니다. 기존 Refresh Token은 즉시 무효화합니다.</p>
+
+          <h2>3. 로그아웃 처리</h2>
+          <p>JWT는 stateless이므로 서버에서 직접 토큰을 무효화할 수 없습니다. 대신 <code>블랙리스트</code> 방식을 사용합니다.</p>
+        </div>
+
+        <section class="recommend-section">
+          <h2>related posts</h2>
+          <ul class="recommend-list">
+            <li>
+              <div class="rec-info">
+                <span class="rec-cat">spring-security</span>
+                <div class="rec-title">CORS는 왜 필요하고, 어떻게 동작할까</div>
+              </div>
+              <span class="rec-arrow">&rarr;</span>
+            </li>
+            <li>
+              <div class="rec-info">
+                <span class="rec-cat">spring-security</span>
+                <div class="rec-title">인증 흐름과 동작 구조</div>
+              </div>
+              <span class="rec-arrow">&rarr;</span>
+            </li>
+          </ul>
+        </section>
+
+        <div class="comments-section">
+          <p class="comments-title">comments</p>
+          <p style="font-size:13px">Giscus &mdash; GitHub 계정으로 댓글을 남길 수 있습니다</p>
+        </div>
+      </article>
+
+      <aside class="toc">
+        <p class="toc-label">on this page</p>
+        <ul class="toc-list">
+          <li><a href="#" class="active">1. 왜 토큰 만료가 필요한가</a></li>
+          <li class="depth-3"><a href="#">1-1. Access Token vs Refresh Token</a></li>
+          <li><a href="#">2. 재발급 전략</a></li>
+          <li class="depth-3"><a href="#">2-1. Refresh Token Rotation</a></li>
+          <li><a href="#">3. 로그아웃 처리</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">&copy; 2024 <span class="name">sim.junghun</span></div>
+      <ul class="footer-links">
+        <li><a href="#">github</a></li>
+        <li><a href="#">instagram</a></li>
+        <li><a href="#">email</a></li>
+        <li><a href="#">rss</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ABOUT PAGE -->
+<!-- ============================================ -->
+<div class="page-section" id="about">
+  <div class="page-label">about</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">sim<span class="accent">.</span>junghun</a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#">home</a></li>
+          <li><a href="#">posts</a></li>
+          <li><a href="#" class="active">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="header-social"><a href="#">github</a><a href="#">email</a></div>
+      <div class="status-dot"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="about-layout">
+      <section class="about-hero">
+        <div class="about-greeting">
+          <span class="line-accent"></span>
+          <span>about me</span>
+        </div>
+        <h1>심정훈</h1>
+        <p class="about-role">Backend Engineer &middot; 3년 차</p>
+        <p class="about-bio">
+          비즈니스 문제를 코드로 풀어내는 백엔드 엔지니어입니다.<br/>
+          기업 메시징 플랫폼의 백엔드를 설계·운영한 경험이 있으며,<br/>
+          배운 것을 정리하고 깊이 이해하기 위해 기록합니다.
+        </p>
+        <div class="about-links">
+          <a href="#" class="about-link"><span class="about-link-icon">&#9679;</span> github</a>
+          <a href="#" class="about-link"><span class="about-link-icon">&#9679;</span> bak.libra26@gmail.com</a>
+          <a href="#" class="about-link"><span class="about-link-icon">&#9679;</span> bak-libra26.co.kr</a>
+        </div>
+      </section>
+
+      <!-- Core Strengths -->
+      <section class="about-section">
+        <div class="about-section-header">
+          <span class="about-section-num">01</span>
+          <h2>Core</h2>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon" style="color:var(--green)">&#9670;</div>
+            <div class="about-card-title">MSA Architecture</div>
+            <div class="about-card-desc">모놀리식 → Spring Boot · Spring Cloud 기반 MSA 전환 주도, 월 7천만~3억 건 메시지 안정 처리</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon" style="color:var(--blue)">&#9670;</div>
+            <div class="about-card-title">Messaging Integration</div>
+            <div class="about-card-desc">이통 3사 · 중계사 연동, SMS/LMS/MMS 전송 프로세스 설계, TCP/IP 클라이언트 라이브러리 개발</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon" style="color:var(--purple)">&#9670;</div>
+            <div class="about-card-title">CI/CD & DevOps</div>
+            <div class="about-card-desc">빌드·테스트·배포 파이프라인 구축 및 자동화</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="about-section">
+        <div class="about-section-header">
+          <span class="about-section-num">02</span>
+          <h2>Experience</h2>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-company">스탠다드네트웍스</div>
+              <div class="exp-role">전송개발팀</div>
+            </div>
+            <div class="exp-period">2023.08 &mdash; 2025.12</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-project">
+              <div class="exp-project-title">차세대 메시지 전송 플랫폼</div>
+              <div class="exp-project-meta">Java, Spring Boot, Spring WebFlux, Netty, Redis, RabbitMQ, MySQL</div>
+              <ul class="exp-list">
+                <li>자체 프레임워크 → Spring Boot · Spring Cloud MSA 전환, 서비스 단위 분리로 확장성 확보</li>
+                <li>이통 3사 · 중계사 연동 프로세스 설계 · 구현 (SMS, LMS/MMS)</li>
+                <li>세션 상태 감지 프로세스로 비정상 세션 자동 복구 및 장애 우회</li>
+                <li>로그 기반 리소스 분석으로 자원 폭증 구간 파악 → 로직 개선하여 안정성 향상</li>
+                <li>평균 메시지 처리 지연 40% 감소</li>
+              </ul>
+            </div>
+            <div class="exp-project">
+              <div class="exp-project-title">운영관리 페이지 개발</div>
+              <ul class="exp-list">
+                <li>발신번호 · 예외사업자 · 프로세스 설정 통합 관리 페이지 설계 · 구현</li>
+                <li>키워드 기반 스팸 필터링 관리 API 개발</li>
+              </ul>
+            </div>
+            <div class="exp-project">
+              <div class="exp-project-title">DevOps 환경 구축</div>
+              <ul class="exp-list">
+                <li>Nexus 저장소 + Jenkins CI 도입, 아티팩트 관리 체계 수립</li>
+                <li>GitHub Actions ↔ Jenkins ↔ Nexus ↔ Slack CI/CD 파이프라인 구축</li>
+                <li>배포 시간 80% 단축, 운영 리소스 절감</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stack -->
+      <section class="about-section">
+        <div class="about-section-header">
+          <span class="about-section-num">03</span>
+          <h2>Stack</h2>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-group">
+            <div class="stack-group-label">Backend</div>
+            <div class="stack-tags">
+              <span class="stack-tag primary">Java</span>
+              <span class="stack-tag primary">Spring Boot</span>
+              <span class="stack-tag">Spring WebFlux</span>
+              <span class="stack-tag">Spring Data JPA</span>
+              <span class="stack-tag">MyBatis</span>
+              <span class="stack-tag">Netty</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-label">Infra & DB</div>
+            <div class="stack-tags">
+              <span class="stack-tag">MySQL</span>
+              <span class="stack-tag">Redis</span>
+              <span class="stack-tag">RabbitMQ</span>
+              <span class="stack-tag">Nginx</span>
+              <span class="stack-tag">Docker</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-label">DevOps</div>
+            <div class="stack-tags">
+              <span class="stack-tag">Jenkins</span>
+              <span class="stack-tag">GitHub Actions</span>
+              <span class="stack-tag">Nexus</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-group-label">Protocol</div>
+            <div class="stack-tags">
+              <span class="stack-tag">TCP/IP</span>
+              <span class="stack-tag">HTTP/SOAP</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="about-section">
+        <div class="about-section-header">
+          <span class="about-section-num">04</span>
+          <h2>Education</h2>
+        </div>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-info">
+              <span class="edu-name">서울사이버대학교</span>
+              <span class="edu-detail">컴퓨터공학과</span>
+            </div>
+            <span class="edu-period">2025.03 ~ 재학중</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-info">
+              <span class="edu-name">멀티캠퍼스</span>
+              <span class="edu-detail">데이터 사이언스/엔지니어링 전문가 과정</span>
+            </div>
+            <span class="edu-period">2021.12 ~ 2022.05</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-info">
+              <span class="edu-name">KT DS</span>
+              <span class="edu-detail">Docker 컨테이너 아키텍처 · Java 프로그래밍 실무</span>
+            </div>
+            <span class="edu-period">2024</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-info">
+              <span class="edu-name">정보기기운용기능사</span>
+              <span class="edu-detail">한국산업인력공단</span>
+            </div>
+            <span class="edu-period">2025.04</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">&copy; 2024 <span class="name">sim.junghun</span></div>
+      <ul class="footer-links">
+        <li><a href="#">github</a></li>
+        <li><a href="#">instagram</a></li>
+        <li><a href="#">email</a></li>
+        <li><a href="#">rss</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- TERMINAL COMMAND BAR -->
+<!-- ============================================ -->
+<div class="page-section" id="terminal">
+  <div class="page-label">terminal command bar &mdash; Cmd+K to try it live</div>
+
+  <div class="demo-grid">
+    <div class="demo-col">
+      <!-- ls -->
+      <div>
+        <p class="demo-label">ls &mdash; directory listing</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">ls</span></div>
+            <div class="term-line"><span class="dir-name">개발/</span>          <span class="dir-name">데브옵스/</span>       <span class="dir-name">사이드-프로젝트/</span></div>
+            <div class="term-line"></div>
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">cd 개발/백엔드/스프링-시큐리티</span></div>
+            <div class="term-line"><span class="prompt-path">/home/simjunghun/개발/백엔드/스프링-시큐리티</span> <span class="prompt-symbol">$</span> <span class="cmd-text">ls</span></div>
+            <div class="term-line"><span class="file-name">cors-why-and-how.md</span></div>
+            <div class="term-line"><span class="file-name">csrf-protection.md</span></div>
+            <div class="term-line"><span class="file-name">jwt-token-strategy.md</span></div>
+            <div class="term-line"><span class="file-name">security-filter-chain.md</span></div>
+            <div class="term-line"><span class="file-name">authentication-flow.md</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ls -l -->
+      <div>
+        <p class="demo-label">ls -l &mdash; detailed listing</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun/개발/백엔드/스프링-시큐리티</span> <span class="prompt-symbol">$</span> <span class="cmd-text">ls -l</span></div>
+            <div class="term-line"><span class="dim">total 5</span></div>
+            <div class="term-line"><span class="dim">-rw-r--  Mar 10  8min</span>  <span class="file-name">jwt-token-strategy.md</span></div>
+            <div class="term-line"><span class="dim">-rw-r--  Mar 08  6min</span>  <span class="file-name">cors-why-and-how.md</span></div>
+            <div class="term-line"><span class="dim">-rw-r--  Mar 05  7min</span>  <span class="file-name">csrf-protection.md</span></div>
+            <div class="term-line"><span class="dim">-rw-r--  Mar 02  10min</span> <span class="file-name">security-filter-chain.md</span></div>
+            <div class="term-line"><span class="dim">-rw-r--  Feb 28  5min</span>  <span class="file-name">authentication-flow.md</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tree -->
+      <div>
+        <p class="demo-label">tree &mdash; category tree</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">tree</span></div>
+            <div class="term-line"><span class="dir-name">/home/simjunghun</span></div>
+            <div class="term-line"><span class="tree-branch">├── </span><span class="dir-name">개발/</span></div>
+            <div class="term-line"><span class="tree-branch">│   ├── </span><span class="dir-name">백엔드/</span></div>
+            <div class="term-line"><span class="tree-branch">│   │   └── </span><span class="dir-name">스프링/</span></div>
+            <div class="term-line"><span class="tree-branch">│   │       └── </span><span class="dir-name">스프링-시큐리티/</span> <span class="dim">(8)</span></div>
+            <div class="term-line"><span class="tree-branch">│   └── </span><span class="dir-name">프론트엔드/</span></div>
+            <div class="term-line"><span class="tree-branch">├── </span><span class="dir-name">데브옵스/</span> <span class="dim">(3)</span></div>
+            <div class="term-line"><span class="tree-branch">└── </span><span class="dir-name">사이드-프로젝트/</span> <span class="dim">(3)</span></div>
+            <div class="term-line"></div>
+            <div class="term-line"><span class="dim">3 directories, 14 posts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-col">
+      <!-- grep -->
+      <div>
+        <p class="demo-label">grep &mdash; search posts</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">grep JWT</span></div>
+            <div class="term-line"></div>
+            <div class="term-line"><span class="purple">/home/simjunghun/개발/백엔드/스프링/스프링-시큐리티/</span></div>
+            <div class="term-line">  <span class="file-link">jwt-token-strategy.md</span>         <span class="dim">Mar 10</span></div>
+            <div class="term-line">  <span class="file-link">jwt-what-and-why.md</span>            <span class="dim">Mar 01</span></div>
+            <div class="term-line">  <span class="file-link">oauth2-resource-server.md</span>      <span class="dim">Feb 25</span></div>
+            <div class="term-line"></div>
+            <div class="term-line"><span class="dim">found 3 results</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- find -->
+      <div>
+        <p class="demo-label">find &mdash; search by filename</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">find ~ -name "*시큐리티*"</span></div>
+            <div class="term-line"><span class="output">/home/simjunghun/개발/백엔드/스프링/스프링-시큐리티/security-filter-chain.md</span></div>
+            <div class="term-line"><span class="output">/home/simjunghun/개발/백엔드/스프링/스프링-시큐리티/authentication-flow.md</span></div>
+            <div class="term-line"><span class="output">/home/simjunghun/개발/백엔드/스프링/스프링-시큐리티/role-and-authority.md</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- help -->
+      <div>
+        <p class="demo-label">help &mdash; command reference</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun</span> <span class="prompt-symbol">$</span> <span class="cmd-text">help</span></div>
+            <div class="term-line"></div>
+            <div class="term-line"><span class="green">Available commands:</span></div>
+            <div class="term-line">  <span class="cyan">ls</span> <span class="dim">[-l] [-la]</span>    list posts &amp; categories</div>
+            <div class="term-line">  <span class="cyan">cd</span> <span class="dim">&lt;dir&gt;</span>         change category</div>
+            <div class="term-line">  <span class="cyan">pwd</span>              print current path</div>
+            <div class="term-line">  <span class="cyan">tree</span>             show category tree</div>
+            <div class="term-line">  <span class="cyan">cat</span> <span class="dim">&lt;file&gt;</span>        open post</div>
+            <div class="term-line">  <span class="cyan">grep</span> <span class="dim">[-i] &lt;q&gt;</span>    search posts</div>
+            <div class="term-line">  <span class="cyan">find</span> <span class="dim">&lt;path&gt; -name &lt;pattern&gt;</span></div>
+            <div class="term-line">  <span class="cyan">wc</span> <span class="dim">-l</span>             count posts</div>
+            <div class="term-line">  <span class="cyan">history</span>          command history</div>
+            <div class="term-line">  <span class="cyan">clear</span>            clear terminal</div>
+            <div class="term-line">  <span class="cyan">exit</span>             close terminal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab autocomplete -->
+      <div>
+        <p class="demo-label">Tab &mdash; autocomplete</p>
+        <div class="terminal-demo">
+          <div class="terminal-titlebar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="title">sim.junghun &mdash; terminal</span>
+          </div>
+          <div class="terminal-body" style="position:relative">
+            <div class="term-line"><span class="prompt-path">/home/simjunghun/개발/백엔드</span> <span class="prompt-symbol">$</span> <span class="cmd-text">cd 스</span><span style="display:inline-block;width:8px;height:15px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:middle"></span></div>
+            <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);padding:4px 0;font-family:var(--font);font-size:12px;width:200px;margin-top:4px;">
+              <div style="padding:4px 12px;color:var(--green);background:var(--surface-hover)">스프링/ <span style="color:var(--text-muted);font-size:11px;margin-left:8px">dir</span></div>
+              <div style="padding:4px 12px;color:var(--text-secondary)">스프링-시큐리티/ <span style="color:var(--text-muted);font-size:11px;margin-left:8px">dir</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shortcut hint banner -->
+  <div style="text-align:center;padding:0 32px 64px;font-family:var(--font);font-size:12px;color:var(--text-muted)">
+    Press <span style="padding:2px 8px;border:1px solid var(--border);border-radius:3px;color:var(--text-secondary)">Cmd+K</span> anywhere on this page to open the interactive terminal
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- TERMINAL OVERLAY (global, interactive) -->
+<!-- ============================================ -->
+<div class="terminal-backdrop" id="terminalBackdrop">
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="title">sim.junghun &mdash; terminal</span>
+      <span class="close-hint">Esc</span>
+    </div>
+    <div class="terminal-body" id="terminalBody"></div>
+    <div class="terminal-input-line">
+      <span class="prompt-path" id="termPromptPath">/home/simjunghun</span>
+      <span class="prompt-symbol">$</span>
+      <input type="text" id="termInput" placeholder="Type a command... (try: ls, grep, help)" autocomplete="off" spellcheck="false" />
+      <div class="terminal-autocomplete" id="termAutocomplete"></div>
+    </div>
+    <div class="terminal-footer">
+      <span>Cmd+K to toggle &middot; Esc to close</span>
+      <span id="termStatus"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- MOBILE -->
+<!-- ============================================ -->
+<div class="page-section" id="mobile">
+  <div class="page-label">mobile &mdash; 375px</div>
+
+  <div class="mobile-section">
+    <div class="mobile-grid">
+
+      <!-- Mobile: Home -->
+      <div class="mobile-col">
+        <span class="mobile-label">Home</span>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-content">
+            <div class="m-header">
+              <span class="m-logo">sim<span class="accent">.</span>junghun</span>
+              <span class="m-menu">&#9776;</span>
+            </div>
+            <div class="m-section">
+              <div class="m-greeting"><span class="line"></span> backend engineer</div>
+              <div class="m-h1">I build reliable<br/>backend systems<span class="dim">.</span></div>
+              <p class="m-bio">비즈니스 문제를 코드로 풀어내는 백엔드 엔지니어입니다. 배운 것을 정리하고 기록합니다.</p>
+              <div class="m-tags">
+                <span class="m-tag hl">Spring</span>
+                <span class="m-tag hl">Java</span>
+                <span class="m-tag">Kotlin</span>
+                <span class="m-tag">Docker</span>
+              </div>
+              <div class="m-section-head">recent posts</div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">JWT 만료 · 재발급 · 로그아웃 전략</div>
+                <div class="m-post-meta">Mar 10 · 8 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">CORS는 왜 필요하고, 어떻게 동작할까</div>
+                <div class="m-post-meta">Mar 08 · 6 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">side-project</div>
+                <div class="m-post-title">API 공통 응답 구조 설계하기</div>
+                <div class="m-post-meta">Mar 05 · 5 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</div>
+                <div class="m-post-meta">Mar 05 · 7 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile: Posts -->
+      <div class="mobile-col">
+        <span class="mobile-label">Posts</span>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-content">
+            <div class="m-header">
+              <span class="m-logo">sim<span class="accent">.</span>junghun</span>
+              <span class="m-menu">&#9776;</span>
+            </div>
+            <div class="m-section">
+              <div class="m-h1" style="font-size:20px;margin-bottom:4px">Spring Security</div>
+              <div class="m-post-meta" style="margin-bottom:16px">12 posts</div>
+
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+                <span class="m-tag" style="font-size:10px;padding:2px 8px">all</span>
+                <span class="m-tag hl" style="font-size:10px;padding:2px 8px">security</span>
+                <span class="m-tag" style="font-size:10px;padding:2px 8px">reactive</span>
+                <span class="m-tag" style="font-size:10px;padding:2px 8px">devops</span>
+              </div>
+
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">JWT 만료 · 재발급 · 로그아웃 전략</div>
+                <div class="m-post-meta">Mar 10 · 8 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">CORS는 왜 필요하고, 어떻게 동작할까</div>
+                <div class="m-post-meta">Mar 08 · 6 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">CSRF 보호는 왜 필요하고, 어떻게 동작할까</div>
+                <div class="m-post-meta">Mar 05 · 7 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">SecurityFilterChain은 어떻게 동작할까</div>
+                <div class="m-post-meta">Mar 02 · 10 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">JWT는 무엇이고, 왜 쓰는가</div>
+                <div class="m-post-meta">Mar 01 · 6 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">역할(Role)과 권한(Authority)</div>
+                <div class="m-post-meta">Feb 28 · 6 min</div>
+              </div>
+              <div class="m-post">
+                <div class="m-post-cat">spring-security</div>
+                <div class="m-post-title">인증 흐름과 동작 구조</div>
+                <div class="m-post-meta">Feb 26 · 7 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile: Detail -->
+      <div class="mobile-col">
+        <span class="mobile-label">Detail</span>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-content">
+            <div class="m-header">
+              <span class="m-logo">sim<span class="accent">.</span>junghun</span>
+              <span class="m-menu">&#9776;</span>
+            </div>
+            <div class="m-section">
+              <div class="m-breadcrumb">개발 / 백엔드 / <span style="color:var(--green)">spring-security</span></div>
+
+              <div class="m-series">
+                <div class="m-series-head">
+                  <div style="display:flex;align-items:center">
+                    <span class="m-series-badge">series</span>
+                    <span class="m-series-label">스프링 시큐리티</span>
+                  </div>
+                  <span class="m-series-count">9/12</span>
+                </div>
+              </div>
+
+              <div class="m-detail-title">JWT 만료 · 재발급 · 로그아웃 전략</div>
+              <div class="m-detail-info">2026-03-10 · 8 min read</div>
+
+              <div class="m-detail-body">
+                <h2>1. 왜 토큰 만료가 필요한가</h2>
+                <p>JWT는 서버에 상태를 저장하지 않는 stateless 인증 방식입니다. 하지만 토큰이 영원히 유효하다면 보안 위험이 커집니다.</p>
+
+                <h2>2. 재발급 전략</h2>
+                <p>클라이언트는 Access Token이 만료되면 Refresh Token으로 새 Access Token을 발급받습니다.</p>
+
+                <h2>3. 로그아웃 처리</h2>
+                <p>JWT는 stateless이므로 서버에서 직접 토큰을 무효화할 수 없습니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 404 -->
+<!-- ============================================ -->
+<div class="page-section" id="notfound">
+  <div class="page-label">404</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">sim<span class="accent">.</span>junghun</a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#">home</a></li>
+          <li><a href="#">posts</a></li>
+          <li><a href="#">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-right">
+      <div class="header-social"><a href="#">github</a><a href="#">email</a></div>
+      <div class="status-dot"></div>
+    </div>
+  </div>
+
+  <div class="page-404">
+    <div class="error-container">
+      <div class="error-terminal">
+        <div class="error-terminal-bar">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+          <span class="title">sim.junghun &mdash; zsh</span>
+        </div>
+        <div class="error-terminal-body">
+          <div><span class="prompt">$</span> curl -s localhost/this-page</div>
+          <div><span class="err">HTTP/1.1 404 Not Found</span></div>
+          <div></div>
+          <div><span class="prompt">$</span> echo $?</div>
+          <div>1</div>
+          <div></div>
+          <div><span class="dim"># 요청하신 페이지를 찾을 수 없습니다</span></div>
+          <div></div>
+          <div><span class="prompt">$</span> <span class="cursor-block"></span></div>
+        </div>
+      </div>
+      <div class="error-actions">
+        <a class="primary" href="#">cd ~/home</a>
+        <a class="secondary" href="#">cd ~/posts</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">&copy; 2024 <span class="name">sim.junghun</span></div>
+      <ul class="footer-links">
+        <li><a href="#">github</a></li>
+        <li><a href="#">instagram</a></li>
+        <li><a href="#">email</a></li>
+        <li><a href="#">rss</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- LOADING -->
+<!-- ============================================ -->
+<div class="page-section" id="loading">
+  <div class="page-label">loading</div>
+
+  <div class="header">
+    <div class="header-left">
+      <a class="header-logo" href="#">sim<span class="accent">.</span>junghun</a>
+    </div>
+    <div class="header-right">
+      <div class="status-dot"></div>
+    </div>
+  </div>
+
+  <div class="loading-section">
+    <div class="loading-terminal">
+      <div class="loading-terminal-bar">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+        <span class="title">sim.junghun &mdash; zsh</span>
+      </div>
+      <div class="loading-terminal-body">
+        <div><span class="prompt">$</span> <span class="pkg">sudo apt install sim.junghun-blog</span></div>
+        <div><span class="dim">Reading post lists... Done</span></div>
+        <div><span class="dim">Building dependency tree... Done</span></div>
+        <div></div>
+        <div><span class="dim">The following packages will be installed:</span></div>
+        <div><span class="blue">  sim.junghun-blog</span></div>
+        <div><span class="dim">Suggested:</span> <span class="dim">libcaffeine-4.0 libsleep-deprivation</span></div>
+        <div></div>
+        <div><span class="ok">Get:1</span> <span class="blue">bak-libra26.co.kr</span> <span class="dim">개발/</span> <span class="pkg">68 posts</span></div>
+        <div><span class="ok">Get:2</span> <span class="blue">bak-libra26.co.kr</span> <span class="dim">데브옵스/</span> <span class="pkg">21 posts</span></div>
+        <div><span class="ok">Get:3</span> <span class="blue">bak-libra26.co.kr</span> <span class="dim">사이드-프로젝트/</span> <span class="pkg">12 posts</span></div>
+        <div><span class="dim">Fetched</span> <span class="pkg">101 posts</span> <span class="dim">in 0.8s</span></div>
+        <div></div>
+
+        <div class="loading-progress-row">
+          <div class="loading-progress-bar"><div class="fill"></div></div>
+          <span class="loading-progress-pct">68%</span>
+        </div>
+
+        <div></div>
+        <div><span class="dim">Setting up sim.junghun-blog (2026.03-1) ...</span></div>
+        <div><span class="yellow">W:</span> <span class="dim">libsleep-deprivation is not installed. 블로그 쓰느라 수면 부족 예상됨.</span></div>
+        <div></div>
+        <div><span class="prompt">$</span> <span class="cursor-block"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SHORTCUT BAR (fixed bottom) -->
+<!-- ============================================ -->
+<div class="shortcut-bar">
+  <div class="sc-item"><kbd>&#8984;K</kbd> Terminal</div>
+  <div class="divider"></div>
+  <div class="sc-item"><kbd>?</kbd> Shortcuts</div>
+  <div class="divider"></div>
+  <div class="sc-item"><kbd>Esc</kbd> Close</div>
+  <div class="divider"></div>
+  <div class="sc-item"><kbd>&#8593;&#8595;</kbd> History</div>
+  <div class="divider"></div>
+  <div class="sc-item"><kbd>Tab</kbd> Autocomplete</div>
+</div>
+
+<!-- ============================================ -->
+<!-- SHORTCUTS MODAL -->
+<!-- ============================================ -->
+<div class="shortcuts-backdrop" id="shortcutsBackdrop">
+  <div class="shortcuts-panel">
+    <div class="shortcuts-header">
+      <h3>Keyboard Shortcuts</h3>
+      <span class="close-hint">Esc</span>
+    </div>
+    <div class="shortcuts-body">
+      <div class="shortcuts-group">
+        <div class="shortcuts-group-title">General</div>
+        <div class="sc-row">
+          <span class="sc-label">Open terminal</span>
+          <span class="sc-keys"><kbd>&#8984;</kbd><kbd>K</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Close terminal / modal</span>
+          <span class="sc-keys"><kbd>Esc</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Show shortcuts</span>
+          <span class="sc-keys"><kbd>?</kbd></span>
+        </div>
+      </div>
+      <div class="shortcuts-group">
+        <div class="shortcuts-group-title">Terminal</div>
+        <div class="sc-row">
+          <span class="sc-label">Execute command</span>
+          <span class="sc-keys"><kbd>Enter</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Previous / next history</span>
+          <span class="sc-keys"><kbd>&#8593;</kbd><kbd>&#8595;</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Autocomplete</span>
+          <span class="sc-keys"><kbd>Tab</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Clear terminal</span>
+          <span class="sc-keys"><kbd>Ctrl</kbd><kbd>L</kbd></span>
+        </div>
+      </div>
+      <div class="shortcuts-group">
+        <div class="shortcuts-group-title">Commands</div>
+        <div class="sc-row">
+          <span class="sc-label">List files</span>
+          <span class="sc-keys"><kbd>ls</kbd> <span class="sc-or">/</span> <kbd>ls -l</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Change directory</span>
+          <span class="sc-keys"><kbd>cd &lt;dir&gt;</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Search posts</span>
+          <span class="sc-keys"><kbd>grep &lt;keyword&gt;</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Find by filename</span>
+          <span class="sc-keys"><kbd>find ~ -name &lt;pattern&gt;</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Open post</span>
+          <span class="sc-keys"><kbd>cat &lt;file&gt;</kbd></span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-label">Category tree</span>
+          <span class="sc-keys"><kbd>tree</kbd></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== THEME TOGGLE =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+  if (html.getAttribute('data-theme') === 'light') {
+    html.removeAttribute('data-theme');
+    icon.innerHTML = '&#9789;';
+    label.textContent = 'light';
+  } else {
+    html.setAttribute('data-theme', 'light');
+    icon.innerHTML = '&#9728;';
+    label.textContent = 'dark';
+  }
+}
+
+(function() {
+  // ===== FILE SYSTEM DATA =====
+  const fs = {
+    '~': {
+      type: 'dir',
+      children: {
+        '개발': {
+          type: 'dir',
+          children: {
+            '백엔드': {
+              type: 'dir',
+              children: {
+                '스프링': {
+                  type: 'dir',
+                  children: {
+                    '스프링-시큐리티': {
+                      type: 'dir',
+                      children: {
+                        'spring-security-solution.md': { type: 'file', title: '스프링 시큐리티: 스프링 애플리케이션 보안 솔루션', date: 'Feb 20', read: '5min' },
+                        'security-filter-chain.md': { type: 'file', title: '스프링 시큐리티: SecurityFilterChain은 어떻게 동작할까', date: 'Feb 24', read: '10min' },
+                        'authentication-flow.md': { type: 'file', title: '스프링 시큐리티: 인증 흐름과 동작 구조', date: 'Feb 26', read: '7min' },
+                        'role-and-authority.md': { type: 'file', title: '스프링 시큐리티: 역할(Role)과 권한(Authority)', date: 'Feb 28', read: '6min' },
+                        'jwt-what-and-why.md': { type: 'file', title: '스프링 시큐리티: JWT(JSON Web Token)는 무엇이고, 왜 쓰는가', date: 'Mar 01', read: '6min' },
+                        'jwt-authentication.md': { type: 'file', title: '스프링 시큐리티: JWT(JSON Web Token) 인증 구현하기', date: 'Mar 03', read: '9min' },
+                        'csrf-protection.md': { type: 'file', title: '스프링 시큐리티: CSRF 보호는 왜 필요하고, 어떻게 동작할까', date: 'Mar 05', read: '7min' },
+                        'cors-why-and-how.md': { type: 'file', title: '스프링 시큐리티: CORS는 왜 필요하고, 어떻게 동작할까', date: 'Mar 08', read: '6min' },
+                        'jwt-token-strategy.md': { type: 'file', title: '스프링 시큐리티: JWT 만료·재발급·로그아웃 전략', date: 'Mar 10', read: '8min' },
+                        'remember-me.md': { type: 'file', title: '스프링 시큐리티: remember-me, 자동 로그인은 어떻게 동작할까', date: 'Mar 11', read: '5min' },
+                        'oauth2-login.md': { type: 'file', title: '스프링 시큐리티: OAuth2 로그인과 리소스 서버 개념 정리', date: 'Mar 12', read: '8min' }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        '데브옵스': {
+          type: 'dir',
+          children: {}
+        },
+        '사이드-프로젝트': {
+          type: 'dir',
+          children: {
+            '메신저': {
+              type: 'dir',
+              children: {
+                'api-common-response.md': { type: 'file', title: '메신저: API 공통 응답 구조 설계하기', date: 'Mar 05', read: '5min' },
+                'auto-configuration.md': { type: 'file', title: '메신저: Spring Boot AutoConfiguration 으로 공통 모듈 자동 등록하기', date: 'Mar 06', read: '7min' },
+                'swagger-interface.md': { type: 'file', title: '메신저: Swagger 문서를 인터페이스로 분리하기', date: 'Mar 07', read: '6min' }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  // ===== STATE =====
+  let cwd = '~';
+  let history = [];
+  let historyIndex = -1;
+
+  // ===== DOM =====
+  const backdrop = document.getElementById('terminalBackdrop');
+  const body = document.getElementById('terminalBody');
+  const input = document.getElementById('termInput');
+  const promptPath = document.getElementById('termPromptPath');
+  const statusEl = document.getElementById('termStatus');
+  const acEl = document.getElementById('termAutocomplete');
+
+  // ===== HELPERS =====
+  function resolve(path) {
+    if (path === '~' || path === '/' || path === HOME) return '~';
+    let parts;
+    if (path.startsWith('~/')) {
+      parts = ['~', ...path.slice(2).split('/').filter(Boolean)];
+    } else if (path.startsWith(HOME + '/')) {
+      parts = ['~', ...path.slice(HOME.length + 1).split('/').filter(Boolean)];
+    } else if (path.startsWith('/')) {
+      parts = ['~', ...path.slice(1).split('/').filter(Boolean)];
+    } else {
+      parts = [...cwd.split('/'), ...path.split('/').filter(Boolean)];
+    }
+    const resolved = [];
+    for (const p of parts) {
+      if (p === '..') { if (resolved.length > 1) resolved.pop(); }
+      else if (p !== '.') resolved.push(p);
+    }
+    return resolved.join('/') || '~';
+  }
+
+  function getNode(path) {
+    const parts = path.split('/');
+    let node = fs['~'];
+    for (let i = 1; i < parts.length; i++) {
+      if (!node || !node.children || !node.children[parts[i]]) return null;
+      node = node.children[parts[i]];
+    }
+    return node;
+  }
+
+  const HOME = '/home/simjunghun';
+
+  function shortPath(path) {
+    if (path === '~') return HOME;
+    return HOME + '/' + path.split('/').slice(1).join('/');
+  }
+
+  function getAllFiles(node, prefix) {
+    let results = [];
+    if (!node || !node.children) return results;
+    for (const [name, child] of Object.entries(node.children)) {
+      const fullPath = prefix ? prefix + '/' + name : name;
+      if (child.type === 'file') {
+        results.push({ name, path: fullPath, ...child });
+      } else {
+        results.push(...getAllFiles(child, fullPath));
+      }
+    }
+    return results;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // ===== OUTPUT =====
+  function print(html) {
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    div.innerHTML = html;
+    body.appendChild(div);
+  }
+
+  function printPrompt(cmd) {
+    print(`<span class="prompt-path">${escapeHtml(shortPath(cwd))}</span> <span class="prompt-symbol">$</span> <span class="cmd-text">${escapeHtml(cmd)}</span>`);
+  }
+
+  function scrollToBottom() {
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // ===== COMMANDS =====
+  const commands = {};
+
+  commands.pwd = function() {
+    print(`<span class="output">${escapeHtml(shortPath(cwd))}</span>`);
+  };
+
+  commands.ls = function(args) {
+    const node = getNode(cwd);
+    if (!node || !node.children) { print('<span class="err">ls: not a directory</span>'); return; }
+    const entries = Object.entries(node.children);
+    if (entries.length === 0) { print('<span class="dim">(empty)</span>'); return; }
+
+    const long = args.includes('-l') || args.includes('-la') || args.includes('-al');
+
+    const dirs = entries.filter(([,v]) => v.type === 'dir').sort((a,b) => a[0].localeCompare(b[0]));
+    const files = entries.filter(([,v]) => v.type === 'file').sort((a,b) => a[0].localeCompare(b[0]));
+
+    if (long) {
+      print(`<span class="dim">total ${entries.length}</span>`);
+      for (const [name] of dirs) {
+        print(`<span class="dim">drwxr-x--</span>  <span class="dir-name">${escapeHtml(name)}/</span>`);
+      }
+      for (const [name, f] of files) {
+        const pad1 = f.date.padEnd(7);
+        const pad2 = (f.read || '').padEnd(5);
+        print(`<span class="dim">-rw-r--  ${escapeHtml(pad1)} ${escapeHtml(pad2)}</span>  <span class="file-link" data-file="${escapeHtml(name)}">${escapeHtml(name)}</span>`);
+      }
+    } else {
+      if (dirs.length > 0) {
+        print(dirs.map(([n]) => `<span class="dir-name">${escapeHtml(n)}/</span>`).join('          '));
+      }
+      for (const [name] of files) {
+        print(`<span class="file-link" data-file="${escapeHtml(name)}">${escapeHtml(name)}</span>`);
+      }
+    }
+  };
+
+  commands.cd = function(args) {
+    const target = args[0] || '~';
+    const newPath = resolve(target);
+    const node = getNode(newPath);
+    if (!node) {
+      print(`<span class="err">cd: no such directory: ${escapeHtml(target)}</span>`);
+      return;
+    }
+    if (node.type === 'file') {
+      print(`<span class="err">cd: not a directory: ${escapeHtml(target)}</span>`);
+      return;
+    }
+    cwd = newPath;
+    updatePrompt();
+  };
+
+  commands.tree = function() {
+    function printTree(node, prefix, isLast, path) {
+      const entries = node.children ? Object.entries(node.children).filter(([,v]) => v.type === 'dir') : [];
+      const files = node.children ? Object.entries(node.children).filter(([,v]) => v.type === 'file') : [];
+      const all = [...entries, ...files];
+
+      for (let i = 0; i < all.length; i++) {
+        const [name, child] = all[i];
+        const last = i === all.length - 1;
+        const connector = last ? '└── ' : '├── ';
+        const childPrefix = last ? '    ' : '│   ';
+
+        if (child.type === 'dir') {
+          const fileCount = getAllFiles(child, '').length;
+          const countStr = fileCount > 0 ? ` <span class="dim">(${fileCount})</span>` : '';
+          print(`<span class="tree-branch">${escapeHtml(prefix + connector)}</span><span class="dir-name">${escapeHtml(name)}/</span>${countStr}`);
+          printTree(child, prefix + childPrefix, last, path + '/' + name);
+        } else {
+          print(`<span class="tree-branch">${escapeHtml(prefix + connector)}</span><span class="file-name">${escapeHtml(name)}</span>`);
+        }
+      }
+    }
+
+    const startNode = getNode(cwd);
+    print(`<span class="dir-name">${escapeHtml(shortPath(cwd))}</span>`);
+    printTree(startNode, '', true, cwd);
+
+    const allFiles = getAllFiles(startNode, '');
+    const dirCount = Object.values(startNode.children || {}).filter(v => v.type === 'dir').length;
+    print('');
+    print(`<span class="dim">${dirCount} directories, ${allFiles.length} posts</span>`);
+  };
+
+  commands.grep = function(args) {
+    let caseInsensitive = false;
+    const keywords = [];
+    for (const a of args) {
+      if (a === '-i') caseInsensitive = true;
+      else keywords.push(a);
+    }
+    const keyword = keywords.join(' ');
+    if (!keyword) { print('<span class="err">grep: missing keyword</span>'); return; }
+
+    const allFiles = getAllFiles(fs['~'], '~');
+    const results = allFiles.filter(f => {
+      const title = caseInsensitive ? f.title.toLowerCase() : f.title;
+      const name = caseInsensitive ? f.name.toLowerCase() : f.name;
+      const kw = caseInsensitive ? keyword.toLowerCase() : keyword;
+      return title.includes(kw) || name.includes(kw);
+    });
+
+    if (results.length === 0) {
+      print(`<span class="dim">no results for "${escapeHtml(keyword)}"</span>`);
+      return;
+    }
+
+    // Group by directory
+    const groups = {};
+    for (const r of results) {
+      const dir = r.path.split('/').slice(0, -1).join('/');
+      if (!groups[dir]) groups[dir] = [];
+      groups[dir].push(r);
+    }
+
+    for (const [dir, files] of Object.entries(groups)) {
+      print('');
+      print(`<span class="purple">${escapeHtml(dir)}/</span>`);
+      for (const f of files) {
+        print(`  <span class="file-link" data-file="${escapeHtml(f.name)}" data-path="${escapeHtml(f.path)}">${escapeHtml(f.name)}</span>         <span class="dim">${escapeHtml(f.date)}</span>`);
+      }
+    }
+    print('');
+    print(`<span class="dim">found ${results.length} result${results.length > 1 ? 's' : ''}</span>`);
+  };
+
+  commands.find = function(args) {
+    // find <path> -name "<pattern>"
+    let searchPath = '.';
+    let pattern = '*';
+    for (let i = 0; i < args.length; i++) {
+      if (args[i] === '-name' && args[i+1]) {
+        pattern = args[i+1].replace(/['"]/g, '');
+        i++;
+      } else if (!args[i].startsWith('-')) {
+        searchPath = args[i];
+      }
+    }
+
+    const resolvedPath = resolve(searchPath);
+    const startNode = getNode(resolvedPath);
+    if (!startNode) { print(`<span class="err">find: '${escapeHtml(searchPath)}': No such directory</span>`); return; }
+
+    const allFiles = getAllFiles(startNode, shortPath(resolvedPath));
+
+    // Convert glob to regex
+    const regexStr = pattern.replace(/\*/g, '.*').replace(/\?/g, '.');
+    const regex = new RegExp(regexStr, 'i');
+
+    const results = allFiles.filter(f => regex.test(f.name) || regex.test(f.title));
+    if (results.length === 0) {
+      print(`<span class="dim">no matches</span>`);
+      return;
+    }
+    for (const r of results) {
+      print(`<span class="output">${escapeHtml(r.path)}</span>`);
+    }
+  };
+
+  commands.cat = function(args) {
+    const fileName = args[0];
+    if (!fileName) { print('<span class="err">cat: missing filename</span>'); return; }
+
+    const node = getNode(cwd);
+    if (!node || !node.children) { print(`<span class="err">cat: ${escapeHtml(fileName)}: No such file</span>`); return; }
+
+    // Try exact match first, then partial
+    let file = node.children[fileName];
+    if (!file) {
+      const match = Object.entries(node.children).find(([k]) => k.startsWith(fileName) || k === fileName + '.md');
+      if (match) file = match[1];
+    }
+
+    if (!file || file.type !== 'file') {
+      print(`<span class="err">cat: ${escapeHtml(fileName)}: No such file</span>`);
+      return;
+    }
+
+    print('');
+    print(`<span class="green">${escapeHtml(file.title)}</span>`);
+    print(`<span class="dim">${file.date} · ${file.read} read</span>`);
+    print('');
+    print(`<span class="dim">→ opening post...</span>`);
+  };
+
+  commands.open = commands.cat;
+
+  commands.wc = function(args) {
+    if (args[0] !== '-l') { print('<span class="err">wc: only -l flag is supported</span>'); return; }
+    const node = getNode(cwd);
+    const files = getAllFiles(node, '');
+    print(`<span class="output">${files.length} posts in ${escapeHtml(shortPath(cwd))}</span>`);
+  };
+
+  commands.clear = function() {
+    body.innerHTML = '';
+  };
+
+  commands.help = function() {
+    print('');
+    print('<span class="green">Available commands:</span>');
+    print('  <span class="cyan">ls</span> <span class="dim">[-l] [-la]</span>    list posts &amp; categories');
+    print('  <span class="cyan">cd</span> <span class="dim">&lt;dir&gt;</span>         change category');
+    print('  <span class="cyan">pwd</span>              print current path');
+    print('  <span class="cyan">tree</span>             show category tree');
+    print('  <span class="cyan">cat</span> <span class="dim">&lt;file&gt;</span>        open post');
+    print('  <span class="cyan">open</span> <span class="dim">&lt;file&gt;</span>       open post (alias)');
+    print('  <span class="cyan">grep</span> <span class="dim">[-i] &lt;q&gt;</span>    search posts by title');
+    print('  <span class="cyan">find</span> <span class="dim">&lt;path&gt; -name &lt;pattern&gt;</span>');
+    print('  <span class="cyan">wc</span> <span class="dim">-l</span>             count posts');
+    print('  <span class="cyan">history</span>          command history');
+    print('  <span class="cyan">clear</span>            clear terminal');
+    print('  <span class="cyan">exit</span>             close terminal');
+    print('');
+    print('<span class="dim">Tab for autocomplete · ↑↓ for history</span>');
+  };
+
+  commands.history = function() {
+    if (history.length === 0) { print('<span class="dim">no history</span>'); return; }
+    history.forEach((cmd, i) => {
+      print(`<span class="dim">${String(i + 1).padStart(4)}</span>  ${escapeHtml(cmd)}`);
+    });
+  };
+
+  commands.exit = function() {
+    closeTerminal();
+  };
+
+  // ===== EXECUTE =====
+  function execute(raw) {
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+
+    history.push(trimmed);
+    historyIndex = history.length;
+    printPrompt(trimmed);
+
+    const parts = trimmed.match(/(?:[^\s"]+|"[^"]*")+/g) || [];
+    const cmd = parts[0];
+    const args = parts.slice(1);
+
+    if (commands[cmd]) {
+      commands[cmd](args);
+    } else {
+      print(`<span class="err">command not found: ${escapeHtml(cmd)}</span>`);
+      print('<span class="dim">type "help" for available commands</span>');
+    }
+
+    print('');
+    scrollToBottom();
+  }
+
+  // ===== AUTOCOMPLETE =====
+  let acItems = [];
+  let acIndex = -1;
+
+  function getCompletions(text) {
+    const parts = text.split(/\s+/);
+    const cmd = parts[0];
+    const partial = parts[parts.length - 1] || '';
+
+    // Command completion
+    if (parts.length === 1) {
+      const cmds = ['ls', 'cd', 'pwd', 'tree', 'cat', 'open', 'grep', 'find', 'wc', 'history', 'clear', 'exit', 'help'];
+      return cmds.filter(c => c.startsWith(partial)).map(c => ({ text: c, type: 'cmd' }));
+    }
+
+    // Path completion for cd, cat, open
+    if (['cd', 'cat', 'open'].includes(cmd)) {
+      const node = getNode(cwd);
+      if (!node || !node.children) return [];
+
+      // Handle partial path
+      const pathParts = partial.split('/');
+      const lastPart = pathParts.pop();
+      const parentPath = pathParts.length > 0 ? resolve(pathParts.join('/')) : cwd;
+      const parentNode = getNode(parentPath);
+      if (!parentNode || !parentNode.children) return [];
+
+      const prefix = pathParts.length > 0 ? pathParts.join('/') + '/' : '';
+
+      return Object.entries(parentNode.children)
+        .filter(([name]) => name.toLowerCase().startsWith((lastPart || '').toLowerCase()))
+        .map(([name, child]) => ({
+          text: prefix + name + (child.type === 'dir' ? '/' : ''),
+          type: child.type === 'dir' ? 'dir' : 'file'
+        }));
+    }
+
+    return [];
+  }
+
+  function showAutocomplete() {
+    const items = getCompletions(input.value);
+    acItems = items;
+    acIndex = -1;
+    acEl.innerHTML = '';
+
+    if (items.length === 0 || items.length > 10) {
+      acEl.classList.remove('show');
+      return;
+    }
+
+    for (let i = 0; i < items.length; i++) {
+      const div = document.createElement('div');
+      div.className = 'ac-item';
+      div.innerHTML = `${escapeHtml(items[i].text)} <span class="ac-type">${items[i].type}</span>`;
+      div.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        applyCompletion(i);
+      });
+      acEl.appendChild(div);
+    }
+    acEl.classList.add('show');
+  }
+
+  function hideAutocomplete() {
+    acEl.classList.remove('show');
+    acItems = [];
+    acIndex = -1;
+  }
+
+  function applyCompletion(index) {
+    const item = acItems[index];
+    if (!item) return;
+
+    const parts = input.value.split(/\s+/);
+    parts[parts.length - 1] = item.text;
+    input.value = parts.join(' ');
+    hideAutocomplete();
+    input.focus();
+  }
+
+  // ===== PROMPT =====
+  function updatePrompt() {
+    promptPath.textContent = shortPath(cwd);
+  }
+
+  // ===== OPEN/CLOSE =====
+  function openTerminal() {
+    backdrop.classList.add('open');
+    input.focus();
+    statusEl.textContent = shortPath(cwd);
+  }
+
+  function closeTerminal() {
+    backdrop.classList.remove('open');
+    hideAutocomplete();
+  }
+
+  function toggleTerminal() {
+    if (backdrop.classList.contains('open')) closeTerminal();
+    else openTerminal();
+  }
+
+  // ===== EVENT LISTENERS =====
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      toggleTerminal();
+    }
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+      e.preventDefault();
+      closeTerminal();
+    }
+  });
+
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeTerminal();
+  });
+
+  input.addEventListener('keydown', (e) => {
+    // IME 한글 조합 중이면 무시
+    if (e.isComposing || e.keyCode === 229) return;
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      hideAutocomplete();
+      execute(input.value);
+      input.value = '';
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (acEl.classList.contains('show') && acItems.length > 0) {
+        acIndex = acIndex <= 0 ? acItems.length - 1 : acIndex - 1;
+        updateAcHighlight();
+      } else if (historyIndex > 0) {
+        historyIndex--;
+        input.value = history[historyIndex] || '';
+      }
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (acEl.classList.contains('show') && acItems.length > 0) {
+        acIndex = acIndex >= acItems.length - 1 ? 0 : acIndex + 1;
+        updateAcHighlight();
+      } else if (historyIndex < history.length) {
+        historyIndex++;
+        input.value = history[historyIndex] || '';
+      }
+    }
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (acEl.classList.contains('show') && acItems.length > 0) {
+        applyCompletion(acIndex >= 0 ? acIndex : 0);
+      } else {
+        showAutocomplete();
+      }
+    }
+
+    if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      commands.clear();
+    }
+  });
+
+  function updateAcHighlight() {
+    const items = acEl.querySelectorAll('.ac-item');
+    items.forEach((el, i) => el.classList.toggle('active', i === acIndex));
+  }
+
+  input.addEventListener('input', () => {
+    if (input.value.length > 0) showAutocomplete();
+    else hideAutocomplete();
+  });
+
+  // Clickable file links
+  body.addEventListener('click', (e) => {
+    const link = e.target.closest('.file-link');
+    if (link) {
+      const fileName = link.dataset.file || link.textContent;
+      print('');
+      printPrompt('cat ' + fileName);
+
+      // Find the file
+      const node = getNode(cwd);
+      let file = node && node.children && node.children[fileName];
+      if (!file) {
+        // Search everywhere
+        const all = getAllFiles(fs['~'], '~');
+        const match = all.find(f => f.name === fileName);
+        if (match) file = match;
+      }
+
+      if (file && file.title) {
+        print('');
+        print(`<span class="green">${escapeHtml(file.title)}</span>`);
+        print(`<span class="dim">${file.date} · ${file.read} read</span>`);
+        print('');
+        print('<span class="dim">→ opening post...</span>');
+      } else {
+        print(`<span class="err">cat: ${escapeHtml(fileName)}: No such file</span>`);
+      }
+      print('');
+      scrollToBottom();
+    }
+  });
+
+  // ===== SHORTCUTS MODAL =====
+  const scBackdrop = document.getElementById('shortcutsBackdrop');
+
+  function openShortcuts() {
+    scBackdrop.classList.add('open');
+  }
+  function closeShortcuts() {
+    scBackdrop.classList.remove('open');
+  }
+
+  scBackdrop.addEventListener('click', (e) => {
+    if (e.target === scBackdrop) closeShortcuts();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    // ? key opens shortcuts (only when terminal is NOT focused)
+    if (e.key === '?' && !backdrop.classList.contains('open') && !scBackdrop.classList.contains('open')) {
+      e.preventDefault();
+      openShortcuts();
+      return;
+    }
+    if (e.key === 'Escape' && scBackdrop.classList.contains('open')) {
+      e.preventDefault();
+      closeShortcuts();
+      return;
+    }
+  });
+
+  // Print welcome
+  print('<span class="dim">sim.junghun terminal v1.0</span>');
+  print('<span class="dim">type "help" for commands, "exit" or Esc to close</span>');
+  print('');
+})();
+</script>
+
+</body>
+</html>
