@@ -1,4 +1,4 @@
-/* TOC sidebar — tree connector layout */
+/* TOC sidebar — indent + left-border indicator */
 .post-detail__toc {
   position: sticky;
   top: calc(36px + var(--header-height) + 16px);
@@ -16,33 +16,29 @@
 
 .toc__list {
   font-size: var(--font-size-xs);
+  border-left: 1px solid var(--border);
 }
 
 .toc__item {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 4px 8px;
-  border-radius: var(--radius);
+  display: block;
+  position: relative;
+  padding: 5px 10px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
   color: var(--text-muted);
   text-decoration: none;
-  transition: all var(--transition);
+  transition: color var(--transition), border-color var(--transition);
   cursor: pointer;
+  line-height: 1.5;
 }
 
 .toc__item:hover {
   color: var(--text-secondary);
-  background: var(--surface);
 }
 
 .toc__item.active {
   color: var(--green);
-}
-
-.toc__connector {
-  user-select: none;
-  flex-shrink: 0;
-  white-space: pre;
+  border-left-color: var(--green);
 }
 
 @media (max-width: 768px) {

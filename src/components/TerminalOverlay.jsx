@@ -85,21 +85,24 @@ const TerminalWindow = ({ windowId }) => {
   const resetRef = useRef(reset);
   useEffect(() => { resetRef.current = reset; });
 
-  // Initialize terminal on first render; resetRef avoids stale closure
-  // while initRef gates to a single execution.
+  // Initialize terminal once on mount
+  const pathnameRef = useRef(location.pathname);
   useEffect(() => {
     if (!initRef.current) {
       initRef.current = true;
-      resetRef.current(location.pathname);
+      resetRef.current(pathnameRef.current);
     }
-  }, [location.pathname]);
+  }, []);
 
-  // Focus input when window becomes active
+  // Focus input when window becomes active and visible (RAF ensures element is painted)
+  const win = desktop.getWindow(windowId);
+  const isVisible = win && win.state !== 'minimized';
   useEffect(() => {
-    if (desktop.activeWindowId === windowId && inputRef.current && !vi.active && !app) {
-      inputRef.current.focus();
+    if (desktop.activeWindowId === windowId && isVisible && !vi.active && !app) {
+      const id = requestAnimationFrame(() => inputRef.current?.focus());
+      return () => cancelAnimationFrame(id);
     }
-  }, [desktop.activeWindowId, windowId, vi.active, app]);
+  }, [desktop.activeWindowId, windowId, isVisible, vi.active, app]);
 
   // Auto-scroll
   useEffect(() => {

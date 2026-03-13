@@ -5,7 +5,7 @@
 
 .post-row {
   display: grid;
-  grid-template-columns: 88px 60px 56px 40px 56px 1fr;
+  grid-template-columns: 88px 60px auto 40px 56px 1fr;
   align-items: start;
   gap: 8px;
   padding: 14px 12px;
@@ -42,6 +42,7 @@
 .pr-cat {
   color: var(--cyan);
   white-space: nowrap;
+  max-width: 140px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

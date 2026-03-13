@@ -142,8 +142,11 @@ const PostDetailBody = ({ post }) => {
                     pre({node, children }) {
                         return <Code node={node}>{children}</Code>
                     },
-                    img({...props}) {
-                        return (<img src={props.src} alt={props.alt} loading="lazy" decoding="async"/>);
+                    img({src, alt}) {
+                        const imgSrc = (src.startsWith('http') || src.startsWith('/'))
+                            ? src
+                            : `/images/posts/${post.categories.join('/')}/${src}`;
+                        return (<img src={imgSrc} alt={alt} loading="lazy" decoding="async"/>);
                     }
                 }}>
                 {post.content}
@@ -275,31 +278,15 @@ const PostDetailToc = ({ post }) => {
     const toc = MarkdownUtil.toc({post: post});
     const activeId = useScrollSpy();
 
-    // Build tree connectors
     const minLevel = toc.length > 0 ? Math.min(...toc.map((t) => t.level)) : 2;
 
     return (
         <aside className="post-detail__toc">
             <div className="toc__title">on this page</div>
-            <div className="toc__list">
-                {toc.map((item, i) => {
+            <nav className="toc__list">
+                {toc.map((item) => {
                     const { level, text, slug } = item;
                     const depth = level - minLevel;
-                    const isLast = i === toc.length - 1 ||
-                        (i < toc.length - 1 && toc[i + 1].level <= level);
-
-                    // Build connector prefix
-                    let connector = '';
-                    if (depth === 0) {
-                        connector = isLast && i === toc.length - 1 ? '└' : '├';
-                    } else {
-                        const parentPrefix = '│ '.repeat(depth - 1);
-                        const nextSameOrHigher = toc.slice(i + 1).findIndex((t) => t.level <= level);
-                        const isLastAtDepth = nextSameOrHigher === -1 ||
-                            (nextSameOrHigher >= 0 && toc[i + 1 + nextSameOrHigher].level < level);
-                        connector = parentPrefix + '│ ' + (isLastAtDepth ? '└' : '├');
-                    }
-
                     const isActive = slug === activeId;
 
                     return (
@@ -307,13 +294,13 @@ const PostDetailToc = ({ post }) => {
                             key={slug}
                             href={`#${slug}`}
                             className={`toc__item${isActive ? ' active' : ''}`}
+                            style={{ paddingLeft: `${12 + depth * 14}px` }}
                         >
-                            <span className="toc__connector">{connector}</span>
-                            <span>{text}</span>
+                            {text}
                         </a>
                     );
                 })}
-            </div>
+            </nav>
         </aside>
     );
 };

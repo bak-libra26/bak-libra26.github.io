@@ -200,12 +200,12 @@ export const DesktopProvider = ({ children }) => {
   useEffect(() => { windowsRef.current = state.windows; });
 
   const getWindow = useCallback((id) => {
-    return windowsRef.current.find((w) => w.id === id) || null;
-  }, []);
+    return state.windows.find((w) => w.id === id) || null;
+  }, [state.windows]);
 
   const findByType = useCallback((type) => {
-    return windowsRef.current.find((w) => w.type === type) || null;
-  }, []);
+    return state.windows.find((w) => w.type === type) || null;
+  }, [state.windows]);
 
   const value = useMemo(() => ({
     ...state,

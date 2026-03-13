@@ -77,19 +77,15 @@ const PostsContent = ({ params }) => {
         <span className="path">{displayPath}</span>
         <span className="dollar">$</span>
         <span className="cmd">grep</span>
-        <div className="posts-search__input-wrap">
-          <input
-            type="text"
-            value={search}
-            onChange={handleSearch}
-            placeholder={placeholder}
-            spellCheck={false}
-            autoComplete="off"
-            aria-label="포스트 검색"
-          />
-          <span className="posts-search__ghost">{search || placeholder}</span>
-          {!search && <span className="cursor-blink">█</span>}
-        </div>
+        <input
+          type="text"
+          value={search}
+          onChange={handleSearch}
+          placeholder={placeholder}
+          spellCheck={false}
+          autoComplete="off"
+          aria-label="포스트 검색"
+        />
       </div>
 
       {/* Sort */}

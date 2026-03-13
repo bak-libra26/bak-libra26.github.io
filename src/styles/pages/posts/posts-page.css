@@ -14,6 +14,7 @@
 /* ── Panel ── */
 .posts-panel {
   min-width: 0;
+  min-height: calc(100vh - var(--header-height) - 128px);
 }
 
 /* ── Search (prompt-style standalone box) ── */
@@ -33,21 +34,13 @@
   border-color: var(--green);
 }
 
-.posts-search .path { color: var(--blue); font-size: var(--font-size-sm); }
-.posts-search .dollar { color: var(--text-muted); font-size: var(--font-size-sm); }
-.posts-search .cmd { color: var(--green); font-size: var(--font-size-sm); }
-
-.posts-search__input-wrap {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+.posts-search .path { color: var(--blue); font-size: var(--font-size-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; flex-shrink: 1; }
+.posts-search .dollar { color: var(--text-muted); font-size: var(--font-size-sm); flex-shrink: 0; }
+.posts-search .cmd { color: var(--green); font-size: var(--font-size-sm); flex-shrink: 0; }
 
 .posts-search input {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   font-family: var(--font);
   font-size: var(--font-size-sm);
   caret-color: var(--green);
@@ -55,33 +48,10 @@
   background: transparent;
   border: none;
   outline: none;
-  z-index: 1;
 }
 
 .posts-search input::placeholder {
-  color: transparent;
-}
-
-.posts-search__ghost {
-  font-size: var(--font-size-sm);
   color: var(--text-muted);
-  pointer-events: none;
-  white-space: pre;
-}
-
-.posts-search input:not(:placeholder-shown) ~ .posts-search__ghost {
-  color: transparent;
-}
-
-.posts-search .cursor-blink {
-  color: var(--green);
-  animation: blink 1s step-end infinite;
-  flex-shrink: 0;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .posts-search .cursor-blink { animation: none !important; }
 }
 
 /* ── Sort ── */
