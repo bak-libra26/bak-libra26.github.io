@@ -62,7 +62,7 @@
   padding: 4px 8px;
   border-radius: var(--radius);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   color: var(--text-secondary);
   text-decoration: none;
@@ -77,16 +77,22 @@
 .series-nav__item .num {
   color: var(--text-muted);
   min-width: 16px;
+  line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .series-nav__item .check {
   color: var(--green);
   min-width: 16px;
+  line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .series-nav__item .current-marker {
   color: var(--green);
   min-width: 16px;
+  line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .series-nav__item.active {

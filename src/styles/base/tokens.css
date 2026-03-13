@@ -18,6 +18,7 @@
   --z-sticky: 1020;
   --z-modal: 1050;
   --z-window-base: 10000;
+  --z-window-fullscreen: 10500;
   --z-shortcuts: 11000;
   --z-dock: 9998;
   --z-dock-ctx: 9999;

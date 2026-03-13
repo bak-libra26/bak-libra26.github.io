@@ -1,6 +1,15 @@
+/**
+ * @file useVi 커스텀 훅
+ * @description 브라우저 내 Vi/Vim 에디터 에뮬레이션을 제공하는 훅.
+ *              Normal, Insert, Command 모드를 지원하며, h/j/k/l 이동, 삽입 편집,
+ *              :q, :w, :wq 등의 Ex 명령어 처리, 그리고 읽기 전용 블로그에서의
+ *              유머러스한 에러 메시지(이스터에그)를 포함한다.
+ */
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { esc } from '../utils/html-util.js';
 
+/** Vi 명령어에 대한 읽기 전용 에러 메시지 모음 (랜덤 선택) */
 const VI_ERRORS = {
   write: [
     "E45: 'readonly' option is set (add ! to override)",
@@ -22,8 +31,15 @@ const VI_ERRORS = {
   ],
 };
 
+/** 배열에서 랜덤으로 하나의 요소를 선택한다 */
 function pickRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
+/**
+ * Vi 에디터 에뮬레이션 커스텀 훅
+ * @param {object} params
+ * @param {React.RefObject} params.terminalInputRef - Vi 종료 후 포커스를 되돌릴 터미널 입력 ref
+ * @returns {object} Vi 에디터 상태 및 제어 함수들 (active, mode, handleKeyDown, open, close 등)
+ */
 const useVi = ({ terminalInputRef }) => {
   const [mode, setMode] = useState(null); // { htmlLines, textLines, fileName }
   const bodyRef = useRef(null);
@@ -43,21 +59,24 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── helpers ── */
 
+  /** 하단 상태바에 임시 메시지를 표시한다 (3초 후 자동 제거) */
   const flash = useCallback((text, type = 'error') => {
     setMsg({ text, type });
     clearTimeout(msgTimer.current);
     msgTimer.current = setTimeout(() => setMsg(null), 3000);
   }, []);
 
+  /** Vi 에디터를 종료하고 모든 상태를 초기화한 뒤 터미널 입력으로 포커스를 되돌린다 */
   const exit = useCallback(() => {
     setMode(null);
     setInsert(false);
     setCmdMode(false);
     setMsg(null);
     setDirty(false);
-    setTimeout(() => terminalInputRef.current?.focus(), 0);
+    requestAnimationFrame(() => terminalInputRef.current?.focus());
   }, [terminalInputRef]);
 
+  /** 커서 위치를 이동한다 (행/열 범위를 자동으로 클램핑) */
   const moveCursor = useCallback((r, c) => {
     if (!mode) return;
     const clampedRow = Math.max(0, Math.min(r, mode.textLines.length - 1));
@@ -68,11 +87,13 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── open / close ── */
 
+  /** 파일을 Vi 에디터에서 열고 초기 상태를 설정한다 */
   const open = useCallback((htmlLines, textLines, fileName) => {
     setMode({ htmlLines, textLines, fileName });
     setRow(0); setCol(0); setCmd(''); setCmdMode(false); setInsert(false); setMsg(null); setDirty(false);
   }, []);
 
+  /** Vi 에디터를 닫고 모든 상태를 초기화한다 (포커스 복원 없음) */
   const close = useCallback(() => {
     setMode(null);
     setInsert(false);
@@ -83,6 +104,11 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── vi command-line execution ── */
 
+  /**
+   * Ex 명령어(: 모드)를 실행한다.
+   * :q(종료), :w(저장 시도), :wq(저장 후 종료), :{숫자}(행 이동) 등을 처리한다.
+   * 읽기 전용 블로그이므로 저장 관련 명령은 유머러스한 에러를 반환한다.
+   */
   const execCmd = useCallback((raw) => {
     const c = raw.trim();
     if (c === 'q' || c === 'quit') {
@@ -103,18 +129,21 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── insert mode line editing ── */
 
+  /** 전체 라인 배열을 교체하고 커서 위치를 갱신한다 */
   const updateLines = useCallback((textArr, htmlArr, newRow, newCol) => {
     setMode((prev) => ({ ...prev, textLines: textArr, htmlLines: htmlArr }));
     setRow(newRow); setCol(newCol);
     setDirty(true);
   }, []);
 
+  /** 특정 행의 텍스트를 교체하고 HTML을 재생성한다 */
   const updateLine = useCallback((lines, htmls, newLine, targetRow, newCol) => {
     const newText = [...lines]; newText[targetRow] = newLine;
     const newHtml = [...htmls]; newHtml[targetRow] = `<span class="t-out">${esc(newLine)}</span>`;
     updateLines(newText, newHtml, targetRow, newCol);
   }, [updateLines]);
 
+  /** Insert 모드에서의 키 입력 처리 (문자 입력, Enter, Backspace, Tab, 방향키) */
   const handleInsertKey = useCallback((e) => {
     if (e.key === 'Escape') { e.preventDefault(); setInsert(false); setMsg(null); return; }
     if (e.key === 'ArrowUp') { e.preventDefault(); moveCursor(row - 1, col); return; }
@@ -153,6 +182,11 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── normal mode key handler ── */
 
+  /**
+   * Normal 모드에서의 키 입력 처리.
+   * 모드 전환(i, a, I, A, o, O, :), 이동(h/j/k/l, w, b, 0, $, g, G),
+   * 페이지 이동(Ctrl+D, Ctrl+U, Space, PageDown/Up), 종료(q) 등을 처리한다.
+   */
   const handleNormalKey = useCallback((e) => {
     e.preventDefault();
     setMsg(null);
@@ -243,6 +277,7 @@ const useVi = ({ terminalInputRef }) => {
 
   /* ── unified key handler (dispatches by mode) ── */
 
+  /** 통합 키 입력 핸들러: 현재 모드(Command/Insert/Normal)에 따라 적절한 핸들러로 분배한다 */
   const handleKeyDown = useCallback((e) => {
     if (!mode) return;
 

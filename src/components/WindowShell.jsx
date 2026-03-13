@@ -1,19 +1,49 @@
+/**
+ * @file WindowShell.jsx - 데스크톱 윈도우 쉘 컴포넌트
+ *
+ * macOS 스타일의 윈도우 프레임을 제공한다.
+ * 데스크톱과 모바일에서 다르게 동작한다:
+ *
+ * 데스크톱:
+ *   - 드래그로 윈도우 이동
+ *   - 우하단 핸들로 리사이즈
+ *   - 신호등 버튼 (빨강=닫기, 노랑=최소화, 초록=전체화면)
+ *   - 타이틀바 더블클릭으로 전체화면 토글
+ *   - 첫 렌더링 시 화면 중앙에 자동 배치 (오프셋으로 캐스케이드)
+ *
+ * 모바일:
+ *   - 항상 전체화면 bottom-sheet 형태
+ *   - 헤더를 아래로 스와이프하여 닫기 (120px 이상)
+ *   - body 스크롤 잠금
+ *
+ * @exports WindowShell
+ */
+
 import { useRef, useEffect, useCallback, useState } from 'react';
 import useDesktop from '../hooks/useDesktop.js';
 import '../styles/components/window-shell.css';
 
+/** 윈도우 최소 크기 (px) */
 const MIN_W = 400;
 const MIN_H = 260;
+/** 모바일 판별 기준 브레이크포인트 (px) */
 const MOBILE_BP = 768;
 
 const isMobile = () => window.innerWidth <= MOBILE_BP;
 
-// Mobile bottom-sheet snap points
-const SNAP_HALF = 0.65;   // 65vh
-const SNAP_FULL = 1;      // 100vh
-const SNAP_UP_THRESHOLD = 0.8; // above 80vh → snap to full
-const DISMISS_THRESHOLD = 0.3; // below 30vh → close
+/** 모바일에서 스와이프로 닫기 위한 최소 이동 거리 (px) */
+const DISMISS_SWIPE = 120;
 
+/**
+ * WindowShell - 윈도우 프레임 컴포넌트
+ * @param {string} windowId - 데스크톱 컨텍스트에서의 윈도우 식별자
+ * @param {string} title - 타이틀바에 표시할 제목
+ * @param {React.ReactNode} titleExtra - 제목 옆에 표시할 추가 요소 (배지 등)
+ * @param {Function} onClose - 닫기 버튼 클릭 시 콜백
+ * @param {boolean} resizable - 리사이즈 가능 여부 (기본: true)
+ * @param {string} className - 추가 CSS 클래스
+ * @param {React.ReactNode} children - 윈도우 콘텐츠
+ */
 const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, className = '', children }) => {
   const desktop = useDesktop();
   const desktopRef = useRef(desktop);
@@ -22,40 +52,20 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
   const dragRef = useRef(null);
   const resizeRef = useRef(null);
   const cleanupRef = useRef([]);
+  const sheetTimerRef = useRef(null);
 
-  // Mobile bottom-sheet state
-  const [sheetHeight, setSheetHeight] = useState(SNAP_HALF); // 0-1 ratio of vh
+  // Mobile swipe-to-dismiss state (translateY offset in px)
+  const [sheetOffset, setSheetOffset] = useState(0);
   const [sheetDragging, setSheetDragging] = useState(false);
-  const sheetHeightRef = useRef(SNAP_HALF);
   const sheetDragRef = useRef(null);
-
-  // Reactive viewport height for mobile bottom-sheet
-  const [vpHeight, setVpHeight] = useState(() => window.visualViewport?.height || window.innerHeight);
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const update = () => setVpHeight(vv.height);
-    vv.addEventListener('resize', update);
-    return () => vv.removeEventListener('resize', update);
-  }, []);
 
   const win = desktop.getWindow(windowId);
 
   useEffect(() => {
-    return () => { cleanupRef.current.forEach((fn) => fn()); cleanupRef.current = []; };
+    return () => { cleanupRef.current.forEach((fn) => fn()); cleanupRef.current = []; clearTimeout(sheetTimerRef.current); };
   }, []);
 
-  // Reset sheet height when window is restored
   const winState = win?.state;
-  useEffect(() => {
-    if (winState === 'normal' && isMobile()) {
-      const id = requestAnimationFrame(() => {
-        sheetHeightRef.current = SNAP_HALF;
-        setSheetHeight(SNAP_HALF);
-      });
-      return () => cancelAnimationFrame(id);
-    }
-  }, [winState]);
 
   // Mobile: lock body scroll when bottom-sheet is visible
   useEffect(() => {
@@ -75,7 +85,7 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
       const offset = (d.windows.indexOf(currentWin)) * 24;
       d.moveWindow(windowId, {
         x: Math.max(0, (window.innerWidth - rect.width) / 2 + offset),
-        y: Math.max(40, (window.innerHeight - rect.height) / 3 + offset),
+        y: Math.max(40, (window.innerHeight - rect.height) / 2.5 + offset),
       });
     }
   }, [windowId]);
@@ -86,6 +96,18 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
     }
   }, [desktop, windowId]);
 
+  // Helper: attach move/up listeners and auto-cleanup on unmount
+  const addDragListeners = useCallback((move, up) => {
+    const detach = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', handleUp);
+    };
+    const handleUp = (ev) => { up(ev); detach(); cleanupRef.current = cleanupRef.current.filter((fn) => fn !== detach); };
+    cleanupRef.current.push(detach);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', handleUp);
+  }, []);
+
   // Desktop drag
   const startDrag = useCallback((e) => {
     const currentWin = desktopRef.current.getWindow(windowId);
@@ -94,21 +116,11 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
     const rect = windowRef.current?.getBoundingClientRect();
     if (!rect) return;
     dragRef.current = { sx: e.clientX, sy: e.clientY, ox: rect.left, oy: rect.top };
-    const move = (ev) => {
-      const d = dragRef.current;
-      if (d) desktopRef.current.moveWindow(windowId, { x: d.ox + ev.clientX - d.sx, y: d.oy + ev.clientY - d.sy });
-    };
-    const up = () => {
-      dragRef.current = null;
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
-      cleanupRef.current = cleanupRef.current.filter((fn) => fn !== cleanup);
-    };
-    const cleanup = () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
-    cleanupRef.current.push(cleanup);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
-  }, [windowId]);
+    addDragListeners(
+      (ev) => { const d = dragRef.current; if (d) desktopRef.current.moveWindow(windowId, { x: d.ox + ev.clientX - d.sx, y: d.oy + ev.clientY - d.sy }); },
+      () => { dragRef.current = null; },
+    );
+  }, [windowId, addDragListeners]);
 
   // Desktop resize
   const startResize = useCallback((e) => {
@@ -119,83 +131,52 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
     const rect = windowRef.current?.getBoundingClientRect();
     if (!rect) return;
     resizeRef.current = { sx: e.clientX, sy: e.clientY, ow: rect.width, oh: rect.height };
-    const move = (ev) => {
-      const r = resizeRef.current;
-      if (r) desktopRef.current.resizeWindow(windowId, {
-        w: Math.max(MIN_W, r.ow + ev.clientX - r.sx),
-        h: Math.max(MIN_H, r.oh + ev.clientY - r.sy),
-      });
-    };
-    const up = () => {
-      resizeRef.current = null;
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
-      cleanupRef.current = cleanupRef.current.filter((fn) => fn !== cleanup);
-    };
-    const cleanup = () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
-    cleanupRef.current.push(cleanup);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
-  }, [windowId]);
+    addDragListeners(
+      (ev) => { const r = resizeRef.current; if (r) desktopRef.current.resizeWindow(windowId, { w: Math.max(MIN_W, r.ow + ev.clientX - r.sx), h: Math.max(MIN_H, r.oh + ev.clientY - r.sy) }); },
+      () => { resizeRef.current = null; },
+    );
+  }, [windowId, addDragListeners]);
 
-  // Mobile bottom-sheet touch drag
+  // Mobile swipe-down-to-dismiss on header
   const startSheetDrag = useCallback((e) => {
     const touch = e.touches[0];
-    const vh = window.visualViewport?.height || window.innerHeight;
-    sheetDragRef.current = { startY: touch.clientY, startHeight: sheetHeightRef.current };
+    sheetDragRef.current = { startY: touch.clientY };
     setSheetDragging(true);
 
     const move = (ev) => {
       const d = sheetDragRef.current;
       if (!d) return;
-      const deltaY = d.startY - ev.touches[0].clientY;
-      const newRatio = Math.min(SNAP_FULL, Math.max(0.1, d.startHeight + deltaY / vh));
-      sheetHeightRef.current = newRatio;
-      setSheetHeight(newRatio);
+      const dy = Math.max(0, ev.touches[0].clientY - d.startY); // only allow downward
+      setSheetOffset(dy);
     };
 
-    const end = () => {
+    const endWithCheck = (ev) => {
+      const d = sheetDragRef.current;
+      const dy = d ? Math.max(0, ev.changedTouches[0].clientY - d.startY) : 0;
       sheetDragRef.current = null;
       setSheetDragging(false);
-      const current = sheetHeightRef.current;
 
-      if (current < DISMISS_THRESHOLD) {
-        // Animate down to 0 then close
-        sheetHeightRef.current = 0;
-        setSheetHeight(0);
-        setTimeout(() => {
+      if (dy > DISMISS_SWIPE) {
+        // Animate off-screen then close
+        setSheetOffset(window.innerHeight);
+        clearTimeout(sheetTimerRef.current);
+        sheetTimerRef.current = setTimeout(() => {
           onClose();
-          sheetHeightRef.current = SNAP_HALF;
-          setSheetHeight(SNAP_HALF);
+          setSheetOffset(0);
         }, 250);
-      } else if (current < SNAP_UP_THRESHOLD) {
-        sheetHeightRef.current = SNAP_HALF;
-        setSheetHeight(SNAP_HALF);
       } else {
-        sheetHeightRef.current = SNAP_FULL;
-        setSheetHeight(SNAP_FULL);
+        setSheetOffset(0);
       }
 
       window.removeEventListener('touchmove', move);
-      window.removeEventListener('touchend', end);
+      window.removeEventListener('touchend', endWithCheck);
       cleanupRef.current = cleanupRef.current.filter((fn) => fn !== cleanup);
     };
 
-    const cleanup = () => { window.removeEventListener('touchmove', move); window.removeEventListener('touchend', end); };
+    const cleanup = () => { window.removeEventListener('touchmove', move); window.removeEventListener('touchend', endWithCheck); };
     cleanupRef.current.push(cleanup);
     window.addEventListener('touchmove', move, { passive: true });
-    window.addEventListener('touchend', end);
-  }, [onClose]);
-
-  // Mobile backdrop tap to close
-  const handleBackdropTap = useCallback(() => {
-    sheetHeightRef.current = 0;
-    setSheetHeight(0);
-    setTimeout(() => {
-      onClose();
-      sheetHeightRef.current = SNAP_HALF;
-      setSheetHeight(SNAP_HALF);
-    }, 250);
+    window.addEventListener('touchend', endWithCheck);
   }, [onClose]);
 
   if (!win) return null;
@@ -204,28 +185,25 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
   const isFullscreen = win.state === 'fullscreen';
   const isActive = desktop.activeWindowId === windowId;
   const mobile = isMobile();
-  const isVisible = !isMinimized;
 
   // Style computation
-  const vh = vpHeight;
-
   let style;
   if (isMinimized) {
     style = { display: 'none' };
   } else if (mobile) {
-    const isFull = sheetHeight >= 0.95;
-    const heightPx = isFull ? vh : Math.round(sheetHeight * vh);
+    // Mobile: always full-screen, swipe down to dismiss
     style = {
       position: 'fixed',
+      top: 0,
       bottom: 0,
       left: 0,
       right: 0,
-      top: 'auto',
       width: '100%',
-      height: heightPx,
+      height: '100%',
       zIndex: 10000 + win.zIndex,
-      borderRadius: isFull ? '0' : 'var(--radius-lg) var(--radius-lg) 0 0',
-      transition: sheetDragging ? 'none' : 'height 0.25s ease, border-radius 0.2s ease',
+      borderRadius: '0',
+      transform: sheetOffset > 0 ? `translateY(${sheetOffset}px)` : undefined,
+      transition: sheetDragging ? 'none' : 'transform 0.25s ease',
     };
   } else if (isFullscreen) {
     style = {};
@@ -240,26 +218,21 @@ const WindowShell = ({ windowId, title, titleExtra, onClose, resizable = true, c
 
   return (
     <>
-      {/* Mobile backdrop */}
-      {mobile && isVisible && (
-        <div
-          className="wsh-backdrop"
-          style={{ zIndex: 10000 + win.zIndex - 1 }}
-          onClick={handleBackdropTap}
-        />
-      )}
-
       <div
         ref={windowRef}
         className={`wsh ${isFullscreen && !mobile ? 'wsh-fullscreen' : ''} ${isActive ? 'wsh-active' : ''} ${mobile ? 'wsh-mobile' : ''} ${className}`}
         style={style}
         onMouseDown={handleFocus}
       >
-        {/* Mobile: drag handle + minimal header */}
+        {/* Mobile: header bar with title + close */}
         {mobile && (
           <div className="wsh-sheet-header" onTouchStart={startSheetDrag}>
+            <div className="wsh-sheet-header__row">
+              <span className="wsh-title">{title}</span>
+              {titleExtra || null}
+              <button className="wsh-close-btn" onClick={onClose} aria-label="닫기">✕</button>
+            </div>
             <div className="wsh-drag-handle" />
-            <span className="wsh-title">{title}</span>
           </div>
         )}
 

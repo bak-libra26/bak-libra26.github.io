@@ -1,9 +1,23 @@
+/**
+ * @file HomePage.jsx - 블로그 메인 페이지
+ *
+ * 터미널 스타일의 UI로 구성된 랜딩 페이지이다.
+ * 섹션 구성:
+ *   1. whoami   — 자기소개 (이름, 역할, 한 줄 소개)
+ *   2. stack    — 기술 스택 (backend, infra, frontend)
+ *   3. recent   — 최근 게시글 목록 (최대 5개)
+ *   4. links    — 외부 링크 (GitHub, 이메일, About)
+ *
+ * @exports HomePage
+ */
+
 import { Link } from 'react-router-dom';
 
 import PostUtil from '../utils/post-util.js';
 import HrefUtil from '../utils/href-util.js';
 import DateUtil from '../utils/date-util.js';
 import SeoHelper from '../components/SeoHelper.jsx';
+import AdsenseAd from '../components/AdsenseAd.jsx';
 
 import '../styles/pages/home/home-page.css';
 
@@ -108,6 +122,11 @@ const HomePage = () => {
             <span className="arrow">→</span>
           </Link>
         </div>
+
+        <hr className="dashed-divider" />
+
+        {/* ── 광고 ── */}
+        <AdsenseAd slot="1102442335" />
 
         <hr className="dashed-divider" />
 

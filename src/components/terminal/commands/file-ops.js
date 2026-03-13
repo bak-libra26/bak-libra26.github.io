@@ -1,9 +1,24 @@
+/**
+ * @file commands/file-ops.js - 파일 관련 명령어
+ *
+ * cat   — 파일 미리보기 (마크다운 최대 30줄, 이스터에그 파일 지원)
+ * vi    — Vi 뷰어로 파일 열기 (이미지는 헥스덤프 표시)
+ * open  — 파일 열기 (글은 브라우저 이동, 이미지는 미리보기, 스크립트는 실행)
+ * wget  — 글을 md 또는 html 형식으로 다운로드
+ *
+ * 비공개(draft) 글에 접근하면 랜덤 유머 메시지를 표시한다.
+ */
+
 import { esc, escPath } from '../../../utils/html-util.js';
 import DateUtil from '../../../utils/date-util.js';
 import { POSTS_ROOT } from '../data/constants.js';
 import { EASTER_EGG_FILES } from '../data/easter-eggs.js';
 import { displayPath } from '../path-utils.js';
 
+/**
+ * 파일 인자를 해석하고 에러를 처리하는 공통 함수.
+ * 파일이 없거나 디렉토리이면 에러를 출력하고 null을 반환한다.
+ */
 function resolveFileWithErrors(ctx, cmd, args) {
   const path = args.join(' ');
   if (!path) {
@@ -24,6 +39,7 @@ function resolveFileWithErrors(ctx, cmd, args) {
   return target;
 }
 
+// 비공개(draft) 글 접근 시 표시할 유머 메시지 목록
 const HIDDEN_MESSAGES = [
   '🔒 이 글은 아직 작성 중입니다... 커밋하기엔 이른 코드처럼요.',
   '🚧 공사 중 — hard hat required.',
@@ -37,6 +53,13 @@ function getHiddenMessage() {
   return HIDDEN_MESSAGES[Math.floor(Math.random() * HIDDEN_MESSAGES.length)];
 }
 
+/**
+ * 파일 내용을 터미널에 미리보기한다.
+ * - 비공개 글: 유머 메시지 표시
+ * - 이미지: 바이너리 파일 안내 + open 명령 힌트
+ * - 글: 메타정보(날짜, 카테고리, 태그) + 최대 30줄 미리보기
+ * - 이스터에그 파일: 미리 정의된 텍스트 표시
+ */
 function previewFile(ctx, target) {
   const { vfs, renderer } = ctx;
   const post = vfs.getPost(target);
@@ -96,6 +119,7 @@ function previewFile(ctx, target) {
   renderer.print(`<span class="t-green">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`);
 }
 
+/** 파일을 열기: 글은 브라우저 이동, 이미지는 미리보기 윈도우, 스크립트는 앱 실행 */
 function openFile(ctx, target) {
   const { vfs, renderer } = ctx;
   const post = vfs.getPost(target);
@@ -139,6 +163,7 @@ function openFile(ctx, target) {
   }
 }
 
+/** 이미지 파일을 vi에서 열 때 표시할 가짜 헥스덤프를 생성한다. 파일 확장자에 따라 매직바이트를 다르게 설정한다. */
 function generateHexDump(fileName) {
   const ext = fileName.split('.').pop().toLowerCase();
   const SIGNATURES = {

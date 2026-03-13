@@ -202,7 +202,8 @@ const BlocksGame = ({ onExit }) => {
 
     // Dynamic cell size: fit the board within available height with padding
     const padding = 8;
-    const sideW = 120;
+    const mobile = cw < 500;
+    const sideW = mobile ? 80 : 120;
     const CELL = Math.min(
       Math.floor((ch - padding * 2) / ROWS),
       Math.floor((cw - sideW - padding * 2) / COLS),
@@ -282,49 +283,55 @@ const BlocksGame = ({ onExit }) => {
     }
 
     // Side panel
-    const sx = ox + fieldW + 20;
+    const sx = ox + fieldW + (mobile ? 10 : 20);
+    const labelFont = mobile ? '9px monospace' : '10px monospace';
+    const valueFont = mobile ? '13px monospace' : '16px monospace';
+    const previewCell = mobile ? 12 : 16;
+
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.font = '11px monospace';
+    ctx.font = mobile ? '10px monospace' : '11px monospace';
 
     // Next piece
     ctx.fillText('NEXT', sx, oy + 14);
     const nextBlocks = st.next.blocks;
     const nextColor = st.next.color;
-    const previewCell = 16;
     for (const [bx, by] of nextBlocks) {
       drawCell(ctx, sx + bx * previewCell, oy + 24 + by * previewCell, previewCell - 2, nextColor);
     }
 
     // Stats
-    const statY = oy + 110;
+    const statY = oy + (mobile ? 85 : 110);
+    const statGap = mobile ? 36 : 46;
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '10px monospace';
+    ctx.font = labelFont;
     ctx.fillText('SCORE', sx, statY);
     ctx.fillStyle = '#4ADE80';
-    ctx.font = '16px monospace';
-    ctx.fillText(String(st.score), sx, statY + 18);
+    ctx.font = valueFont;
+    ctx.fillText(String(st.score), sx, statY + 16);
 
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '10px monospace';
-    ctx.fillText('LEVEL', sx, statY + 46);
+    ctx.font = labelFont;
+    ctx.fillText('LEVEL', sx, statY + statGap);
     ctx.fillStyle = '#FACC15';
-    ctx.font = '16px monospace';
-    ctx.fillText(String(st.level), sx, statY + 64);
+    ctx.font = valueFont;
+    ctx.fillText(String(st.level), sx, statY + statGap + 16);
 
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '10px monospace';
-    ctx.fillText('LINES', sx, statY + 92);
+    ctx.font = labelFont;
+    ctx.fillText('LINES', sx, statY + statGap * 2);
     ctx.fillStyle = '#06B6D4';
-    ctx.font = '16px monospace';
-    ctx.fillText(String(st.lines), sx, statY + 110);
+    ctx.font = valueFont;
+    ctx.fillText(String(st.lines), sx, statY + statGap * 2 + 16);
 
-    // Controls hint
-    ctx.fillStyle = 'rgba(255,255,255,0.25)';
-    ctx.font = '9px monospace';
-    ctx.fillText('←→/h l  move', sx, statY + 155);
-    ctx.fillText('↑/k/w   rotate', sx, statY + 168);
-    ctx.fillText('↓/j/s   soft drop', sx, statY + 181);
-    ctx.fillText('SPACE   hard drop', sx, statY + 194);
+    // Controls hint (desktop only)
+    if (!mobile) {
+      ctx.fillStyle = 'rgba(255,255,255,0.25)';
+      ctx.font = '9px monospace';
+      ctx.fillText('←→/h l  move', sx, statY + 155);
+      ctx.fillText('↑/k/w   rotate', sx, statY + 168);
+      ctx.fillText('↓/j/s   soft drop', sx, statY + 181);
+      ctx.fillText('SPACE   hard drop', sx, statY + 194);
+    }
 
     // Game over overlay
     if (st.gameOver) {
@@ -456,9 +463,99 @@ const BlocksGame = ({ onExit }) => {
     return () => window.removeEventListener('keydown', handleKey);
   }, [onExit, initGame, movePiece, lock, rotatePiece, hardDrop]);
 
+  // Touch swipe on canvas (complementary to buttons)
+  const touchRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const onTouchStart = (e) => {
+      if (e.touches.length !== 1) return;
+      touchRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, time: Date.now() };
+    };
+    const onTouchEnd = (e) => {
+      if (!touchRef.current) return;
+      const t = touchRef.current;
+      touchRef.current = null;
+      const ch = e.changedTouches[0];
+      const dx = ch.clientX - t.x;
+      const dy = ch.clientY - t.y;
+      const dt = Date.now() - t.time;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+      // Tap (short, small movement) → rotate
+      if (dt < 200 && absDx < 15 && absDy < 15) {
+        rotatePiece();
+        return;
+      }
+      // Swipe thresholds
+      if (absDx > 30 && absDx > absDy) {
+        movePiece(dx > 0 ? 1 : -1, 0);
+      } else if (dy > 30 && absDy > absDx) {
+        if (dy > 80) { hardDrop(); } else { if (!movePiece(0, 1)) lock(); lastDropRef.current = performance.now(); }
+      }
+    };
+    canvas.addEventListener('touchstart', onTouchStart, { passive: true });
+    canvas.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      canvas.removeEventListener('touchstart', onTouchStart);
+      canvas.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [movePiece, rotatePiece, hardDrop, lock]);
+
+  const isMobile = window.innerWidth <= 768;
+
+  const btn = (label, action, style = {}) => (
+    <button
+      onTouchStart={(e) => { e.preventDefault(); action(); }}
+      onClick={action}
+      style={{
+        background: 'rgba(255,255,255,0.08)',
+        border: '1px solid rgba(255,255,255,0.15)',
+        borderRadius: 8,
+        color: 'rgba(255,255,255,0.7)',
+        fontSize: 20,
+        fontFamily: 'monospace',
+        width: 56, height: 56,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        cursor: 'pointer',
+        WebkitTapHighlightColor: 'transparent',
+        touchAction: 'manipulation',
+        ...style,
+      }}
+    >
+      {label}
+    </button>
+  );
+
   return (
-    <div style={{ width: '100%', height: '100%', overflow: 'hidden', background: '#1a1a2e', position: 'relative' }}>
-      <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden', background: '#1a1a2e', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      <canvas ref={canvasRef} style={{ display: 'block', width: '100%', flex: 1, minHeight: 0 }} />
+      {isMobile && !gameOver && (
+        <div style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          gap: 12, padding: '10px 16px',
+          paddingBottom: 'calc(10px + env(safe-area-inset-bottom))',
+          background: 'rgba(0,0,0,0.3)',
+          flexShrink: 0,
+        }}>
+          {btn('←', () => movePiece(-1, 0))}
+          {btn('↓', () => { if (!movePiece(0, 1)) lock(); lastDropRef.current = performance.now(); })}
+          {btn('↻', rotatePiece)}
+          {btn('→', () => movePiece(1, 0))}
+          {btn('⤓', hardDrop, { background: 'rgba(74,222,128,0.15)', borderColor: 'rgba(74,222,128,0.3)', color: '#4ADE80' })}
+        </div>
+      )}
+      {isMobile && gameOver && (
+        <div style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          gap: 12, padding: '10px 16px',
+          paddingBottom: 'calc(10px + env(safe-area-inset-bottom))',
+          background: 'rgba(0,0,0,0.3)',
+          flexShrink: 0,
+        }}>
+          {btn('↺', initGame, { width: 'auto', padding: '0 24px', fontSize: 14 })}
+        </div>
+      )}
     </div>
   );
 };

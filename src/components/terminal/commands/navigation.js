@@ -1,8 +1,23 @@
+/**
+ * @file commands/navigation.js - 디렉토리 탐색 관련 명령어
+ *
+ * ls  — 디렉토리 내용 목록 (플래그: -l 상세, -a 숨김파일 포함)
+ * cd  — 디렉토리 이동 (URL 동기화 포함)
+ * pwd — 현재 작업 디렉토리 출력
+ * tree — 디렉토리 트리 구조 출력 (최대 깊이 3)
+ */
+
 import { esc } from '../../../utils/html-util.js';
 import DateUtil from '../../../utils/date-util.js';
 import { getFileIcon } from '../data/file-icons.js';
 import { getSyncRoute, displayPath } from '../path-utils.js';
 
+/**
+ * ls 명령어: 디렉토리 내용을 출력한다.
+ * -l: 상세 형식 (퍼미션, 날짜, 태그 등)
+ * -a: 숨김 파일(.으로 시작) 포함
+ * 결과를 lastResults에 저장하여 "open 1", "cat 2" 등으로 참조할 수 있게 한다.
+ */
 export function execLs(ctx, args) {
   const { vfs, cwd, renderer } = ctx;
   const { flags, path, error } = ctx.parseArgs(args, { boolFlags: ['-l', '-a', '-la', '-al'] });
@@ -85,6 +100,7 @@ export function execLs(ctx, args) {
   }
 }
 
+/** cd 명령어: 작업 디렉토리를 변경하고, 라우트 매핑이 있으면 브라우저 URL도 동기화한다 */
 export function execCd(ctx, args) {
   const { vfs, cwd, renderer } = ctx;
   const path = args.join(' ');
@@ -103,10 +119,12 @@ export function execCd(ctx, args) {
   }
 }
 
+/** pwd 명령어: 현재 작업 디렉토리의 절대 경로를 출력한다 */
 export function execPwd(ctx) {
   ctx.renderer.print(`<span class="t-out">${esc(ctx.cwd)}</span>`);
 }
 
+/** tree 명령어: 디렉토리 구조를 트리 형태로 출력한다. 최대 깊이 3. */
 export function execTree(ctx, args) {
   const { vfs, renderer } = ctx;
   const path = args.join(' ') || '.';

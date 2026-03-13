@@ -1,3 +1,24 @@
+/**
+ * @file AboutPage.jsx - 소개(About) 페이지
+ *
+ * Unix man 페이지 스타일로 구성된 자기소개 페이지이다.
+ * 섹션 구조:
+ *   NAME        — 이름과 직책
+ *   SYNOPSIS    — 한 줄 소개
+ *   DESCRIPTION — 핵심 역량 (Core Competencies)
+ *   EXPERIENCE  — 경력 사항
+ *   STACK       — 기술 스택
+ *   EDUCATION   — 학력 및 교육 이수
+ *   SEE ALSO    — 외부 링크 (GitHub, 이메일)
+ *
+ * 보조 컴포넌트:
+ *   - Competency: 핵심 역량 항목 렌더링
+ *   - StackRow: 기술 스택 행 렌더링
+ *   - LinkRow: 외부 링크 행 렌더링
+ *
+ * @exports AboutPage
+ */
+
 import SeoHelper from '../components/SeoHelper.jsx';
 import '../styles/pages/about/about-page.css';
 
@@ -188,6 +209,7 @@ const AboutPage = () => (
   </>
 );
 
+/** Competency - 핵심 역량 항목 (제목 + 설명) */
 const Competency = ({ title, desc }) => (
   <div className="man-competency">
     <div className="man-competency__title"><span className="marker">▸</span> {title}</div>
@@ -195,6 +217,7 @@ const Competency = ({ title, desc }) => (
   </div>
 );
 
+/** StackRow - 기술 스택 행 (라벨 + 태그 목록, primary 배열에 포함된 태그는 강조 표시) */
 const StackRow = ({ label, tags, primary = [] }) => (
   <div className="man-stack-row">
     <span className="label">{label}</span>
@@ -206,6 +229,7 @@ const StackRow = ({ label, tags, primary = [] }) => (
   </div>
 );
 
+/** LinkRow - 외부 링크 행 (mailto:인 경우 target/rel 속성을 생략) */
 const LinkRow = ({ label, href, value }) => (
   <div className="man-link-row">
     <span className="label">{label}</span>

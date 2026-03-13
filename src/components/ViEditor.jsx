@@ -1,8 +1,32 @@
+/**
+ * @file ViEditor.jsx - Vi 에디터 UI 컴포넌트
+ *
+ * 터미널 내에서 Vi 스타일의 텍스트 뷰어를 구현한다.
+ *
+ * 구성:
+ *   - ViLine: 개별 라인 렌더러 (행 번호 + 내용 + 블록 커서)
+ *   - ViStatusbar: 하단 상태 표시줄 (파일명, 수정여부, 위치, 명령모드 입력)
+ *   - ViEditor: 전체 에디터 레이아웃
+ *
+ * 내용이 TILDE_MIN(20줄) 미만이면 남은 공간을 '~'로 채운다 (Vi 동작 모방).
+ * 커서는 NORMAL 모드에서 블록, INSERT 모드에서 바 형태로 표시된다.
+ *
+ * @exports ViEditor
+ */
+
 import { memo } from 'react';
 
+/** 최소 표시 줄 수 - 내용이 이보다 적으면 나머지를 '~'로 채운다 */
 const TILDE_MIN = 20;
 
-// ── Vi Line renderer with visible cursor ──
+/**
+ * ViLine - Vi 에디터의 개별 라인 컴포넌트
+ *
+ * 활성 라인(커서가 있는 라인)은 문자 단위로 분리하여 블록 커서를 표시하고,
+ * 비활성 라인은 하이라이트된 HTML을 그대로 렌더링한다.
+ *
+ * 커스텀 memo 비교 함수로 불필요한 리렌더링을 방지한다.
+ */
 const ViLine = memo(({ lineNum, text, html, cursorCol, isActive, isInsert }) => {
   if (!isActive) {
     return (
@@ -38,7 +62,13 @@ const ViLine = memo(({ lineNum, text, html, cursorCol, isActive, isInsert }) => 
   return true;
 });
 
-// ── Vi Statusbar ──
+/**
+ * ViStatusbar - Vi 하단 상태 표시줄
+ * 세 가지 상태를 구분하여 표시한다:
+ *   1. 명령 모드(cmdMode): ':' 다음에 입력 중인 명령어
+ *   2. 메시지(msg): 에러/정보 메시지
+ *   3. 기본: 파일명, 수정 여부, 줄 수, 현재 위치, 진행률
+ */
 const ViStatusbar = ({ mode, cmdMode, cmd, msg, dirty, totalLines, row, col }) => {
   return (
     <div className={`vi-statusbar ${msg?.type === 'error' ? 'vi-error' : ''}`}>
@@ -56,7 +86,7 @@ const ViStatusbar = ({ mode, cmdMode, cmd, msg, dirty, totalLines, row, col }) =
   );
 };
 
-// ── Vi Editor ──
+/** ViEditor - Vi 에디터 전체 레이아웃 (본문 + 틸드 + 상태바 + 숨겨진 입력) */
 const ViEditor = ({ vi }) => {
   const { mode, bodyRef, inputRef, row, col, cmdMode, cmd, insert, msg, dirty, totalLines, handleKeyDown } = vi;
   const tildeCount = mode.htmlLines.length < TILDE_MIN ? TILDE_MIN - mode.htmlLines.length : 0;

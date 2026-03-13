@@ -1,3 +1,12 @@
+/**
+ * @file TerminalEngine.js
+ * @description 터미널 에뮬레이터의 핵심 엔진 클래스.
+ *
+ * 가상 파일시스템(VFS) 위에서 동작하는 bash 스타일 터미널을 구현한다.
+ * 명령어 실행, 탭 자동완성, 명령어 히스토리(위/아래 화살표), 출력 버퍼 관리 등
+ * 터미널의 모든 비UI 로직을 담당한다. React 컴포넌트(useTerminal 훅)가
+ * 이 엔진 인스턴스를 생성하여 사용한다.
+ */
 import { esc, escPath } from '../utils/html-util.js';
 import vfs from './terminal/VirtualFS.js';
 import OutputRenderer from './terminal/OutputRenderer.js';
@@ -7,7 +16,22 @@ import COMMANDS from './terminal/commands/index.js';
 import { resolveScript } from './terminal/commands/script.js';
 import { execScriptPath } from './terminal/commands/file-ops.js';
 
+/**
+ * 터미널 에뮬레이터 엔진.
+ * 명령어 파싱, 실행, 탭 자동완성, 히스토리 관리를 수행한다.
+ */
 class TerminalEngine {
+  /**
+   * 터미널 엔진 인스턴스를 생성한다.
+   * @param {Object} options - 초기화 옵션
+   * @param {Function} options.onClose - 터미널 종료 시 콜백
+   * @param {Function} options.onOpenPost - 게시글 열기 콜백
+   * @param {Function} options.onSyncUrl - URL 동기화 콜백 (cd 명령 시 브라우저 주소 변경)
+   * @param {Function} options.onViOpen - vi 에디터 열기 콜백
+   * @param {Function} options.onPreviewImage - 이미지 미리보기 콜백
+   * @param {Function} options.onAppLaunch - 앱(게임 등) 실행 콜백
+   * @param {string} options.pathname - 현재 브라우저 경로 (초기 cwd 결정용)
+   */
   constructor({ onClose, onOpenPost, onSyncUrl, onViOpen, onPreviewImage, onAppLaunch, pathname }) {
     this.cwd = cwdFromPathname(pathname, vfs);
     this.history = [];
@@ -26,6 +50,10 @@ class TerminalEngine {
     this.outputLines.push('');
   }
 
+  /**
+   * 출력 버퍼가 1000줄을 초과하면 오래된 줄을 제거하여 메모리를 관리한다.
+   * @private
+   */
   _trimOutput() {
     if (this.outputLines.length > 1000) {
       this.outputLines.splice(0, this.outputLines.length - 1000);
@@ -36,7 +64,12 @@ class TerminalEngine {
   displayPath(absPath) { return displayPath(absPath); }
   printCmd(cmd) { this.renderer.printCmd(cmd); }
 
-  // Context object passed to command handlers
+  /**
+   * 명령어 핸들러에 전달되는 컨텍스트 객체를 생성한다.
+   * vfs, cwd, renderer, resolve 등 명령어 실행에 필요한 모든 유틸리티를 포함한다.
+   * @private
+   * @returns {Object} 명령어 실행 컨텍스트
+   */
   _buildCtx() {
     const engine = this;
     return {
@@ -59,6 +92,12 @@ class TerminalEngine {
 
   /* ── tab completion ── */
 
+  /**
+   * 입력 텍스트에 대한 탭 자동완성 후보를 계산한다.
+   * 명령어, 플래그, 파일/디렉토리 경로의 세 가지 타입을 지원한다.
+   * @param {string} text - 현재 입력 텍스트
+   * @returns {Object} { prefix, items, type } - 자동완성 결과
+   */
   getCompletions(text) {
     const raw = text.trimStart();
     const parts = splitCommand(raw);
@@ -129,6 +168,13 @@ class TerminalEngine {
     return { prefix: partial, items: matches, type: 'path' };
   }
 
+  /**
+   * 탭 키 입력을 처리한다.
+   * 후보가 1개이면 즉시 완성하고, 여러 개이면 공통 접두사까지 완성한다.
+   * 탭을 두 번 연속 누르면 후보 목록을 터미널에 출력한다.
+   * @param {string} inputValue - 현재 입력 필드 값
+   * @returns {string} 자동완성이 적용된 새로운 입력 값
+   */
   applyTab(inputValue) {
     this.tabCount++;
     const comp = this.getCompletions(inputValue);
@@ -173,6 +219,11 @@ class TerminalEngine {
 
   /* ── command execution ── */
 
+  /**
+   * 명령어 문자열을 실행한다.
+   * 입력을 히스토리에 추가하고, 스크립트/내장 명령어/번호 참조 등을 순서대로 확인하여 처리한다.
+   * @param {string} raw - 사용자가 입력한 원시 명령어 문자열
+   */
   exec(raw) {
     const trimmed = raw.trim();
     if (!trimmed) return;
@@ -258,11 +309,19 @@ class TerminalEngine {
     this._trimOutput();
   }
 
+  /**
+   * 히스토리에서 이전(위쪽) 명령어를 반환한다. 화살표 위 키에 바인딩된다.
+   * @returns {string|null} 이전 명령어 또는 null (더 이상 없을 때)
+   */
   historyUp() {
     if (this.historyIdx > 0) { this.historyIdx--; return this.history[this.historyIdx]; }
     return null;
   }
 
+  /**
+   * 히스토리에서 다음(아래쪽) 명령어를 반환한다. 화살표 아래 키에 바인딩된다.
+   * @returns {string} 다음 명령어 또는 빈 문자열 (최신 이후일 때)
+   */
   historyDown() {
     if (this.historyIdx < this.history.length - 1) { this.historyIdx++; return this.history[this.historyIdx]; }
     this.historyIdx = this.history.length;

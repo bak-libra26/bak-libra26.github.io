@@ -16,13 +16,13 @@
 }
 
 .wsh-fullscreen {
-  width: 100% !important;
-  height: 100vh !important;
-  height: 100dvh !important;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   border-radius: 0;
   position: fixed;
   inset: 0;
-  z-index: var(--z-shortcuts) !important;
+  z-index: var(--z-window-fullscreen);
   animation: none;
 }
 
@@ -137,12 +137,7 @@
    MOBILE BOTTOM-SHEET
    ============================================================ */
 
-/* Backdrop overlay */
-.wsh-backdrop {
-  display: none;
-}
-
-/* Sheet header (drag handle + title) */
+/* Sheet header — hidden on desktop */
 .wsh-sheet-header {
   display: none;
 }
@@ -151,21 +146,16 @@
   display: none;
 }
 
-@media (max-width: 768px) {
-  /* Backdrop */
-  .wsh-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    -webkit-tap-highlight-color: transparent;
-  }
+.wsh-close-btn {
+  display: none;
+}
 
-  /* Bottom sheet base */
+@media (max-width: 768px) {
+  /* Mobile: full-screen overlay */
   .wsh.wsh-mobile {
     border: none;
-    border-top: 1px solid var(--border);
-    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 0;
+    box-shadow: none;
     animation: wshSlideUp 0.25s ease;
   }
 
@@ -174,12 +164,12 @@
     display: none;
   }
 
-  /* Sheet header with drag handle */
+  /* Mobile header — app-bar style */
   .wsh-sheet-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 16px 6px;
+    padding-top: env(safe-area-inset-top);
     flex-shrink: 0;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border);
@@ -187,19 +177,53 @@
     user-select: none;
   }
 
-  .wsh-drag-handle {
-    display: block;
-    width: 36px;
-    height: 4px;
-    background: var(--text-muted);
-    border-radius: 2px;
-    opacity: 0.5;
-    margin-bottom: 6px;
+  .wsh-sheet-header__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
   }
 
-  .wsh-sheet-header .wsh-title {
-    font-size: 11px;
-    pointer-events: none;
+  .wsh-sheet-header__row .wsh-title {
+    flex: 1;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  /* Close button */
+  .wsh-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .wsh-close-btn:active {
+    background: var(--red);
+    color: var(--bg);
+    border-color: var(--red);
+  }
+
+  /* Swipe handle indicator */
+  .wsh-drag-handle {
+    display: block;
+    width: 32px;
+    height: 3px;
+    background: var(--text-muted);
+    border-radius: 2px;
+    opacity: 0.3;
+    margin-bottom: 4px;
   }
 
   /* No resize handle on mobile */

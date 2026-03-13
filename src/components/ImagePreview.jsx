@@ -1,8 +1,27 @@
+/**
+ * @file ImagePreview.jsx - 데스크톱 환경의 이미지 미리보기 윈도우 컴포넌트
+ *
+ * 터미널에서 이미지 파일을 열면 WindowShell 안에서 이미지를 표시한다.
+ *
+ * 기능:
+ *   - 줌 인/아웃: 버튼, 키보드(+/-), 마우스 휠
+ *   - 팬(드래그): 마우스로 이미지 이동
+ *   - Fit 버튼: 원래 크기로 리셋
+ *   - 0 키: 줌/팬 초기화
+ *   - 이미지 변경 시 자동 리셋
+ *
+ * @exports ImageWindow
+ */
+
 import { useEffect, useState, useCallback, useRef } from 'react';
 import useDesktop from '../hooks/useDesktop.js';
 import WindowShell from './WindowShell.jsx';
 import '../styles/components/image-preview.css';
 
+/**
+ * ImageWindow - 이미지 미리보기 윈도우
+ * @param {string} windowId - 데스크톱 컨텍스트에서의 윈도우 식별자
+ */
 const ImageWindow = ({ windowId }) => {
   const desktop = useDesktop();
   const win = desktop.getWindow(windowId);

@@ -5,9 +5,10 @@
 
 .post-row {
   display: grid;
-  grid-template-columns: 88px 60px auto 40px 56px 1fr;
+  grid-template-columns: 88px 60px auto 40px 56px minmax(0, 1fr);
   align-items: start;
   gap: 8px;
+  overflow: hidden;
   padding: 14px 12px;
   text-decoration: none;
   color: inherit;

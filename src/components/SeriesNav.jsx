@@ -1,9 +1,28 @@
+/**
+ * @file SeriesNav.jsx - 시리즈 네비게이션 컴포넌트
+ *
+ * 동일 서브카테고리에 속한 글들을 시리즈로 묶어 표시한다.
+ * 시리즈에 글이 2개 이상일 때만 렌더링된다.
+ *
+ * 기능:
+ *   - 접기/펼치기 토글
+ *   - 현재 글 위치 표시 (번호, 화살표, "현재" 레이블)
+ *   - 읽은 글(과거)에 체크마크, 미래 글은 흐리게 표시
+ *   - 이전/다음 글 네비게이션 버튼
+ *
+ * @exports SeriesNav
+ */
+
 import { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HrefUtil from '../utils/href-util.js';
 import PostService from '../services/post-service.js';
 import '../styles/components/series-nav.css';
 
+/**
+ * SeriesNav - 시리즈 네비게이터
+ * @param {Object} post - 현재 글의 Post 객체
+ */
 const SeriesNav = memo(({ post }) => {
   const [open, setOpen] = useState(true);
   const seriesPosts = PostService.findSeriesPosts({ post });

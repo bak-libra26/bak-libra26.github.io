@@ -36,13 +36,27 @@
   color: var(--text-secondary);
 }
 
+.toc__item:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+  border-radius: var(--radius);
+}
+
 .toc__item.active {
   color: var(--green);
   border-left-color: var(--green);
 }
 
+/* ── Sidebar Ad (TOC 아래 광고) ── */
+.post-detail__sidebar-ad {
+  margin-top: 32px;
+}
+
 @media (max-width: 768px) {
   .post-detail__toc {
+    display: none;
+  }
+  .post-detail__sidebar-ad {
     display: none;
   }
 }

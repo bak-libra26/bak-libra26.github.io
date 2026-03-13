@@ -155,6 +155,16 @@
     margin-top: 6px;
   }
 
+  /* Prevent drawer overflow from clipping the theme dropdown menu */
+  .header-drawer__theme .theme-dropdown__menu {
+    position: fixed;
+    top: auto;
+    bottom: auto;
+    right: 16px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
   /* Ensure touch targets meet 44px minimum */
   .header-drawer a {
     min-height: 44px;

@@ -1,7 +1,19 @@
+/**
+ * @file ShortcutBar - 화면 하단 독(Dock) 스타일의 단축키 바 컴포넌트
+ *
+ * 터미널 토글(Cmd+J), 단축키 목록(?) 등 고정 항목과
+ * 현재 열려 있는 윈도우 목록을 동적으로 표시한다.
+ * 윈도우 항목에서 우클릭 시 컨텍스트 메뉴(복원/최소화/전체화면/닫기)를 제공한다.
+ */
 import { useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { DesktopContext } from '../context/DesktopContext.jsx';
 import '../styles/components/shortcut-bar.css';
 
+/**
+ * 키보드 접근성 핸들러 - Enter 또는 Space 키 입력 시 콜백을 실행한다
+ * @param {Function} callback - 실행할 콜백 함수
+ * @returns {Function} keydown 이벤트 핸들러
+ */
 const handleKeyDown = (callback) => (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
@@ -9,17 +21,25 @@ const handleKeyDown = (callback) => (e) => {
   }
 };
 
+/** 윈도우 타입별 기본 아이콘 매핑 */
 const ICON_MAP = {
   terminal: '>_',
   post: '📄',
   image: '🖼',
 };
 
+/**
+ * 하단 단축키 바 컴포넌트
+ * @param {Object} props
+ * @param {Function} props.onOpenShortcuts - 단축키 안내 패널을 여는 콜백
+ * @returns {JSX.Element} 독(Dock) 스타일 단축키 바
+ */
 const ShortcutBar = ({ onOpenShortcuts }) => {
   const desktop = useContext(DesktopContext);
   const [ctx, setCtx] = useState(null); // { winId, x, y }
   const menuRef = useRef(null);
 
+  /** 터미널 윈도우 토글 - 최소화 상태면 복원, 아니면 포커스 */
   const handleToggleTerminal = () => {
     if (!desktop) return;
     const existing = desktop.findByType('terminal');
@@ -31,6 +51,7 @@ const ShortcutBar = ({ onOpenShortcuts }) => {
     }
   };
 
+  /** 윈도우 항목 우클릭 시 컨텍스트 메뉴를 표시한다 */
   const handleContextMenu = useCallback((e, winId) => {
     e.preventDefault();
     setCtx({ winId, x: e.clientX, y: e.clientY });
@@ -120,6 +141,19 @@ const ShortcutBar = ({ onOpenShortcuts }) => {
   );
 };
 
+/**
+ * 독 컨텍스트 메뉴 컴포넌트 - 윈도우 항목 우클릭 시 표시되는 팝업 메뉴
+ *
+ * 복원/최소화, 전체화면 토글, 닫기 등의 윈도우 제어 옵션을 제공한다.
+ * @param {Object} props
+ * @param {Object} props.win - 대상 윈도우 객체
+ * @param {number} props.x - 메뉴 표시 X 좌표
+ * @param {number} props.y - 메뉴 표시 Y 좌표 (실제로는 bottom 기준으로 배치)
+ * @param {Object} props.desktop - 데스크탑 컨텍스트 (윈도우 제어 메서드 포함)
+ * @param {Function} props.onDone - 메뉴 닫기 콜백
+ * @param {React.RefObject} props.menuRef - 메뉴 DOM 참조 (외부 클릭 감지용)
+ * @returns {JSX.Element} 컨텍스트 메뉴
+ */
 const DockContextMenu = ({ win, x, y, desktop, onDone, menuRef }) => {
   const isMinimized = win.state === 'minimized';
   const isFullscreen = win.state === 'fullscreen';

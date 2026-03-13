@@ -1,8 +1,22 @@
+/**
+ * @file AdsenseAd.jsx - Google AdSense 광고 컴포넌트
+ *
+ * 프로덕션 환경에서는 실제 AdSense 광고를 표시하고,
+ * 개발 환경(DEV)에서는 "AD PLACEHOLDER" 텍스트를 표시한다.
+ *
+ * @exports AdsenseAd
+ */
+
 import { useEffect } from 'react';
 
 import '../styles/components/adsense-ad.css';
 
-
+/**
+ * AdsenseAd - Google AdSense 광고 슬롯
+ * @param {string} slot - AdSense 광고 슬롯 ID
+ * @param {string} format - 광고 형식 (기본: 'auto')
+ * @param {boolean} responsive - 반응형 광고 여부 (기본: true)
+ */
 const AdsenseAd = ({
     slot, format = 'auto', responsive = true
 }) => {

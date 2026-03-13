@@ -215,8 +215,8 @@
   margin: 0;
   padding: 0;
   font-size: var(--font-size-sm);
-  white-space: pre;
-  word-break: normal;
+  white-space: pre-wrap;
+  word-break: break-all;
   background: none;
   border: none;
   color: inherit;
@@ -227,6 +227,7 @@
   display: inline-block;
   background-color: var(--green-dim);
   border-left: 3px solid var(--green);
+  padding-left: 3px;
   box-sizing: border-box;
 }
 

@@ -47,8 +47,10 @@
   color: var(--text);
   background: transparent;
   border: none;
-  outline: none;
 }
+
+.posts-search input:focus { outline: none; }
+.posts-search input:focus-visible { outline: none; }
 
 .posts-search input::placeholder {
   color: var(--text-muted);
@@ -142,6 +144,14 @@
   height: 28px;
   font-size: var(--font-size-sm);
   color: var(--text-muted);
+}
+
+/* ── In-feed Ad ── */
+.pp-infeed-ad {
+  margin: 12px 0;
+  padding: 12px 0;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
 }
 
 /* ── Tablet ── */

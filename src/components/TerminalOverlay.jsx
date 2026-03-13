@@ -1,3 +1,24 @@
+/**
+ * @file TerminalOverlay.jsx - 터미널 윈도우 컴포넌트
+ *
+ * WindowShell 안에서 실행되는 가상 터미널이다.
+ * 세 가지 모드를 지원한다:
+ *   1. 터미널 모드: 명령어 입력/출력 (useTerminal 훅)
+ *   2. Vi 에디터 모드: 파일 내용을 Vi 스타일로 표시 (useVi 훅)
+ *   3. 앱 모드: 미니 게임들 (cmatrix, snake, 2048, blocks, pipes, sl)
+ *
+ * 터미널에서 실행 가능한 주요 동작:
+ *   - 파일 열기: 마크다운 글을 새 윈도우로 열고 라우트 이동
+ *   - 이미지 미리보기: 이미지 파일을 미리보기 윈도우로 열기
+ *   - URL 동기화: cd 명령으로 URL을 변경
+ *   - Vi 열기: cat/vi 명령으로 파일 내용을 Vi 에디터로 표시
+ *   - 게임 실행: cmatrix, snake 등 명령으로 게임 윈도우 전환
+ *
+ * 모바일에서는 출력이 역순으로 표시된다 (입력란이 상단에 고정되므로).
+ *
+ * @exports TerminalWindow
+ */
+
 import { useRef, useEffect, useCallback, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useTerminal from '../hooks/useTerminal.js';
@@ -13,6 +34,10 @@ import Pipes from './games/Pipes.jsx';
 import SLTrain from './games/SLTrain.jsx';
 import '../styles/components/terminal-overlay.css';
 
+/**
+ * TerminalWindow - 터미널 윈도우 컴포넌트
+ * @param {string} windowId - 데스크톱 컨텍스트에서의 윈도우 식별자
+ */
 const TerminalWindow = ({ windowId }) => {
   const inputRef = useRef(null);
   const bodyRef = useRef(null);
@@ -22,7 +47,7 @@ const TerminalWindow = ({ windowId }) => {
   const initRef = useRef(false);
 
   const vi = useVi({ terminalInputRef: inputRef });
-  const [app, setApp] = useState(null); // 'cmatrix' | 'snake' | null
+  const [app, setApp] = useState(null);
 
   const handleClose = useCallback(() => {
     vi.close();
@@ -64,7 +89,6 @@ const TerminalWindow = ({ windowId }) => {
 
   const handleAppExit = useCallback(() => {
     setApp(null);
-    // Refocus terminal input after app exits
     setTimeout(() => inputRef.current?.focus(), 50);
   }, []);
 
@@ -94,7 +118,7 @@ const TerminalWindow = ({ windowId }) => {
     }
   }, []);
 
-  // Focus input when window becomes active and visible (RAF ensures element is painted)
+  // Focus input when window becomes active and visible
   const win = desktop.getWindow(windowId);
   const isVisible = win && win.state !== 'minimized';
   useEffect(() => {
@@ -104,9 +128,11 @@ const TerminalWindow = ({ windowId }) => {
     }
   }, [desktop.activeWindowId, windowId, isVisible, vi.active, app]);
 
-  // Auto-scroll
+  // Auto-scroll to bottom (desktop: keeps input visible; mobile: skipped, input is sticky-top)
   useEffect(() => {
-    if (bodyRef.current && !vi.active && !app) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+    if (bodyRef.current && !vi.active && !app && window.innerWidth > 768) {
+      bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+    }
   }, [outputLines, vi.active, app]);
 
   const APP_TITLES = { cmatrix: 'cmatrix.sh', snake: 'snake.sh', '2048': '2048.sh', blocks: 'blocks.sh', pipes: 'pipes.sh', sl: 'sl' };
@@ -123,7 +149,6 @@ const TerminalWindow = ({ windowId }) => {
       ? <span className={`vi-mode-badge ${vi.insert ? 'insert' : ''}`}>{vi.modeLabel}</span>
       : <span className="close-hint">esc</span>;
 
-  // Determine content
   const APP_COMPONENTS = {
     cmatrix: CMatrix,
     snake: SnakeGame,
@@ -136,14 +161,19 @@ const TerminalWindow = ({ windowId }) => {
   let content;
   const AppComponent = app ? APP_COMPONENTS[app] : null;
   if (AppComponent) {
-    content = <AppComponent onExit={handleAppExit} />;
+    content = (
+      <>
+        <AppComponent onExit={handleAppExit} />
+        <button className="app-exit-btn" onClick={handleAppExit} aria-label="Exit game">✕</button>
+      </>
+    );
   } else if (vi.active) {
     content = <ViEditor vi={vi} />;
   } else {
     content = (
       <>
         <div className="terminal-body" ref={bodyRef} onClick={() => inputRef.current?.focus()}>
-          {outputLines.map((line, i) => (
+          {(window.innerWidth <= 768 ? [...outputLines].reverse() : outputLines).map((line, i) => (
             <div key={i} className="tl" dangerouslySetInnerHTML={{ __html: line }} />
           ))}
           <div className="terminal-input-line">
